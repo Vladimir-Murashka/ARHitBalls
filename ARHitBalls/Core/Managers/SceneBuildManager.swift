@@ -14,6 +14,7 @@ protocol Buildable {
     func buildMainScreen() -> MainViewController
     func buildSettingsScreen() -> SettingsViewController
     func buildGameScreen() -> GameViewController
+    func buildRegistrationScreen() -> RegistrationViewController
 }
 
 final class SceneBuildManager {
@@ -81,6 +82,16 @@ extension SceneBuildManager: Buildable {
     func buildGameScreen() -> GameViewController {
         let viewController = GameViewController()
         let presenter = GamePresenter(sceneBuildManager: self)
+        
+        viewController.presenter = presenter
+        presenter.viewController = viewController
+        
+        return viewController
+    }
+    
+    func buildRegistrationScreen() -> RegistrationViewController {
+        let viewController = RegistrationViewController()
+        let presenter = RegistrationPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController

@@ -38,7 +38,8 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
     
     func registerButtonPressed() {
-        print(#function)
+        let rootViewController = sceneBuildManager.buildRegistrationScreen()
+        UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
     
 }

@@ -28,6 +28,8 @@
 		229BC19028AA86AA008D07A0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18F28AA86AA008D07A0 /* SettingsPresenter.swift */; };
 		229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19128AA86B7008D07A0 /* GamePresenter.swift */; };
 		229BC19728ABC484008D07A0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19628ABC484008D07A0 /* UIView.swift */; };
+		229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */; };
+		229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		229BC18F28AA86AA008D07A0 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		229BC19128AA86B7008D07A0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		229BC19628ABC484008D07A0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				229BC16B28AA7A34008D07A0 /* Splash */,
 				229BC18428AA82A0008D07A0 /* Menu */,
 				229BC16D28AA7A4B008D07A0 /* Auth */,
+				229BC19828ABF5DE008D07A0 /* Register */,
 				229BC16C28AA7A45008D07A0 /* Main */,
 				229BC16A28AA7A2A008D07A0 /* Settings */,
 				229BC16E28AA7C6D008D07A0 /* Game */,
@@ -216,6 +221,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		229BC19828ABF5DE008D07A0 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */,
+				229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,10 +311,12 @@
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
 				229BC18C28AA8680008D07A0 /* AuthPresenter.swift in Sources */,
+				229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
+				229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				229BC17D28AA80F2008D07A0 /* AuthViewController.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,

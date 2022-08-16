@@ -1,21 +1,22 @@
 //
-//  AuthViewController.swift
+//  RegistrationViewController.swift
 //  ARHitBalls
 //
-//  Created by Swift Learning on 15.08.2022.
+//  Created by Swift Learning on 16.08.2022.
 //
+
 import UIKit
 
-// MARK: - AuthViewProtocol
-protocol AuthViewProtocol: UIViewController {
+// MARK: - RegistrationViewProtocol
+protocol RegistrationViewProtocol: UIViewController {
     
 }
 
-// MARK: - AuthViewController
-final class AuthViewController: UIViewController {
+// MARK: - RegistrationViewController
+final class RegistrationViewController: UIViewController {
     
 //MARK: PublicProperties
-    var presenter: AuthPresenterProtocol?
+    var presenter: RegistrationPresenterProtocol?
     
 //MARK: SubViews
     private lazy var imageViewBackgroundScreen: UIImageView = {
@@ -25,15 +26,15 @@ final class AuthViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var authButton: UIButton = {
+    private lazy var registrationButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Зарегистрироваться", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 24)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(authButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(registrationButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -87,7 +88,30 @@ final class AuthViewController: UIViewController {
         textField.backgroundColor = .black
         textField.textColor = .white
         textField.textAlignment = .center
-        textField.placeholder = "Введите пароль"
+        textField.placeholder = "Придумайте пароль"
+        textField.layer.cornerRadius = 8
+        textField.layer.masksToBounds = true
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
+    private lazy var retypePasswordLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Повторите пароль"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var retypePasswordTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .black
+        textField.textColor = .white
+        textField.textAlignment = .center
+        textField.placeholder = "Введите пароль еще раз"
         textField.layer.cornerRadius = 8
         textField.layer.masksToBounds = true
         textField.isSecureTextEntry = true
@@ -112,7 +136,16 @@ final class AuthViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var commonLoginStackView: UIStackView = {
+    private lazy var retypePasswordStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private lazy var commonSingUpStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
         stackView.alignment = .fill
@@ -128,30 +161,30 @@ final class AuthViewController: UIViewController {
     }
     
 //MARK: OverrideMethods
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.view.endEditing(true)
-        }
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 //MARK: @objcFunc
     @objc
-    func authButtonPressed() {
-        presenter?.authButtonPressed()
+    func registrationButtonPressed() {
+        presenter?.registrationButtonPressed()
     }
-
+    
     @objc
     func quitButtonPressed() {
         presenter?.quitButtonPressed()
     }
 }
 
-// MARK: - AuthViewProtocol Impl
-extension AuthViewController: AuthViewProtocol {
+// MARK: - RegistrationViewProtocol Impl
+extension RegistrationViewController: RegistrationViewProtocol {
     
 }
 
 // MARK: - Private Methods
 
-private extension AuthViewController {
+private extension RegistrationViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
@@ -161,8 +194,9 @@ private extension AuthViewController {
         view.myAddSubview(imageViewBackgroundScreen)
         view.myAddSubview(emailStackView)
         view.myAddSubview(passwordStackView)
-        view.myAddSubview(commonLoginStackView)
-        view.myAddSubview(authButton)
+        view.myAddSubview(retypePasswordStackView)
+        view.myAddSubview(commonSingUpStackView)
+        view.myAddSubview(registrationButton)
         view.myAddSubview(quitButton)
         
         emailStackView.addArrangedSubview(emailLabel)
@@ -171,16 +205,20 @@ private extension AuthViewController {
         passwordStackView.addArrangedSubview(passwordLabel)
         passwordStackView.addArrangedSubview(passwordTextField)
         
-        commonLoginStackView.addArrangedSubview(emailStackView)
-        commonLoginStackView.addArrangedSubview(passwordStackView)
+        retypePasswordStackView.addArrangedSubview(retypePasswordLabel)
+        retypePasswordStackView.addArrangedSubview(retypePasswordTextField)
+        
+        commonSingUpStackView.addArrangedSubview(emailStackView)
+        commonSingUpStackView.addArrangedSubview(passwordStackView)
+        commonSingUpStackView.addArrangedSubview(retypePasswordStackView)
     }
     
     func setupConstraints() {
         let imageViewBackgroundScreenIndent: CGFloat = 0
-        let heightTextField: CGFloat = 30
-        let widthAuthButton: CGFloat = 100
-        let authButtonBottomIndent: CGFloat = 16
-        let commonLoginStackViewIndent: CGFloat = 16
+        let textFieldHeight: CGFloat = 30
+        let registrationButtonWidth: CGFloat = 250
+        let registrationButtonBottomIndent: CGFloat = 16
+        let commonSingUpStackViewIndent: CGFloat = 16
         let quitButtonLeadingIndent: CGFloat = 16
         let quitButtonTopIndent: CGFloat = 0
         let quitButtonHeight: CGFloat = 30
@@ -192,16 +230,17 @@ private extension AuthViewController {
             imageViewBackgroundScreen.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: imageViewBackgroundScreenIndent),
             imageViewBackgroundScreen.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: imageViewBackgroundScreenIndent),
             
-            emailTextField.heightAnchor.constraint(equalToConstant: heightTextField),
-            passwordTextField.heightAnchor.constraint(equalToConstant: heightTextField),
+            emailTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
+            passwordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
+            retypePasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
-            authButton.widthAnchor.constraint(equalToConstant: widthAuthButton),
-            authButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            authButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -authButtonBottomIndent),
+            registrationButton.widthAnchor.constraint(equalToConstant: registrationButtonWidth),
+            registrationButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -registrationButtonBottomIndent),
             
-            commonLoginStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            commonLoginStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonLoginStackViewIndent),
-            commonLoginStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -commonLoginStackViewIndent),
+            commonSingUpStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            commonSingUpStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonSingUpStackViewIndent),
+            commonSingUpStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -commonSingUpStackViewIndent),
             
             quitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingIndent),
             quitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopIndent),
@@ -209,5 +248,4 @@ private extension AuthViewController {
             quitButton.widthAnchor.constraint(equalToConstant: quitButtonWidth)
         ])
     }
-    
 }
