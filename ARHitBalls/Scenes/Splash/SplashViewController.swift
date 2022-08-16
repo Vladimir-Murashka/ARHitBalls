@@ -14,13 +14,13 @@ protocol SplashViewProtocol: UIViewController {
 
 // MARK: - SplashViewController
 final class SplashViewController: UIViewController {
-    private lazy var imageView: UIImageView = {
+    var presenter: SplashPresenterProtocol?
+    
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "bell")
         return imageView
     }()
-    
-    var presenter: SplashPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()

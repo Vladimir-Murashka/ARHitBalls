@@ -33,7 +33,8 @@ final class SplashPresenter {
 //MARK: - SplashPresenterExtension
 extension SplashPresenter: SplashPresenterProtocol {
     func viewDidLoad() {
-
+        userService.logOut()
+        
         let rootViewController = userService.isUserAuth()
         ? sceneBuildManager.buildMainScreen()
         : sceneBuildManager.buildMenuScreen()
