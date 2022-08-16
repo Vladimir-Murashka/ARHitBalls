@@ -29,7 +29,8 @@ final class MenuPresenter {
 //MARK: - MenuPresenterExtension
 extension MenuPresenter: MenuPresenterProtocol {
     func startButtonWithoutRegisterPressed() {
-        print(#function)
+        let rootViewController = sceneBuildManager.buildMainScreen()
+        UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
     
     func authButtonPressed() {
@@ -41,6 +42,5 @@ extension MenuPresenter: MenuPresenterProtocol {
         let rootViewController = sceneBuildManager.buildRegistrationScreen()
         UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
-    
 }
 

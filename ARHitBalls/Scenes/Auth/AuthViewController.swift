@@ -18,7 +18,7 @@ final class AuthViewController: UIViewController {
     var presenter: AuthPresenterProtocol?
     
 //MARK: SubViews
-    private lazy var imageViewBackgroundScreen: UIImageView = {
+    private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registerBackground")
         imageView.contentMode = .scaleAspectFill
@@ -49,7 +49,7 @@ final class AuthViewController: UIViewController {
         return button
     }()
     
-    private lazy var emailLabel: UILabel = {
+    private let emailLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -60,7 +60,7 @@ final class AuthViewController: UIViewController {
         return label
     }()
     
-    private lazy var emailTextField: UITextField = {
+    private let emailTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .black
         textField.textColor = .white
@@ -71,7 +71,7 @@ final class AuthViewController: UIViewController {
         return textField
     }()
     
-    private lazy var passwordLabel: UILabel = {
+    private let passwordLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -82,7 +82,7 @@ final class AuthViewController: UIViewController {
         return label
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .black
         textField.textColor = .white
@@ -94,7 +94,7 @@ final class AuthViewController: UIViewController {
         return textField
     }()
     
-    private lazy var emailStackView: UIStackView = {
+    private let emailStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
         stackView.alignment = .fill
@@ -103,7 +103,7 @@ final class AuthViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var passwordStackView: UIStackView = {
+    private let passwordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
         stackView.alignment = .fill
@@ -112,7 +112,7 @@ final class AuthViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var commonLoginStackView: UIStackView = {
+    private let commonLoginStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
         stackView.alignment = .fill

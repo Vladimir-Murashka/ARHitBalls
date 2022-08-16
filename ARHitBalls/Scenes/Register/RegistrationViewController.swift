@@ -19,7 +19,7 @@ final class RegistrationViewController: UIViewController {
     var presenter: RegistrationPresenterProtocol?
     
 //MARK: SubViews
-    private lazy var imageViewBackgroundScreen: UIImageView = {
+    private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registerBackground")
         imageView.contentMode = .scaleAspectFill
@@ -50,7 +50,7 @@ final class RegistrationViewController: UIViewController {
         return button
     }()
     
-    private lazy var emailLabel: UILabel = {
+    private let emailLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -61,7 +61,7 @@ final class RegistrationViewController: UIViewController {
         return label
     }()
     
-    private lazy var emailTextField: UITextField = {
+    private let emailTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .black
         textField.textColor = .white
@@ -72,7 +72,7 @@ final class RegistrationViewController: UIViewController {
         return textField
     }()
     
-    private lazy var passwordLabel: UILabel = {
+    private let passwordLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -83,7 +83,7 @@ final class RegistrationViewController: UIViewController {
         return label
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .black
         textField.textColor = .white
@@ -95,7 +95,7 @@ final class RegistrationViewController: UIViewController {
         return textField
     }()
     
-    private lazy var retypePasswordLabel: UILabel = {
+    private let retypePasswordLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -106,7 +106,7 @@ final class RegistrationViewController: UIViewController {
         return label
     }()
     
-    private lazy var retypePasswordTextField: UITextField = {
+    private let retypePasswordTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .black
         textField.textColor = .white
@@ -118,7 +118,7 @@ final class RegistrationViewController: UIViewController {
         return textField
     }()
     
-    private lazy var emailStackView: UIStackView = {
+    private let emailStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
         stackView.alignment = .fill
@@ -127,7 +127,7 @@ final class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var passwordStackView: UIStackView = {
+    private let passwordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
         stackView.alignment = .fill
@@ -136,7 +136,7 @@ final class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var retypePasswordStackView: UIStackView = {
+    private let retypePasswordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
         stackView.alignment = .fill
@@ -145,7 +145,7 @@ final class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var commonSingUpStackView: UIStackView = {
+    private let commonSingUpStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
         stackView.alignment = .fill
