@@ -34,6 +34,7 @@ final class SplashPresenter {
 extension SplashPresenter: SplashPresenterProtocol {
     func viewDidLoad() {
         userService.logOut()
+        //userService.registerUser()
         
         let rootViewController = userService.isUserAuth()
         ? sceneBuildManager.buildMainScreen()

@@ -14,6 +14,8 @@ protocol MenuViewProtocol: UIViewController {
 
 // MARK: - MenuViewController
 final class MenuViewController: UIViewController {
+    
+//MARK: PublicProperties
     var presenter: MenuPresenterProtocol?
     
 //MARK: SubViews
@@ -21,7 +23,6 @@ final class MenuViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registerBackground")
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -36,14 +37,14 @@ final class MenuViewController: UIViewController {
         return button
     }()
     
-    private lazy var loginButton: UIButton = {
+    private lazy var authButton: UIButton = {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(authButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -64,7 +65,6 @@ final class MenuViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -78,17 +78,17 @@ final class MenuViewController: UIViewController {
 //MARK: @objcFunc
     @objc
     func startButtonWithoutRegisterPressed() {
-        
+        presenter?.startButtonWithoutRegisterPressed()
     }
 
     @objc
-    func loginButtonPressed() {
-        
+    func authButtonPressed() {
+        presenter?.authButtonPressed()
     }
         
     @objc
     func registerButtonPressed() {
-            
+        presenter?.registerButtonPressed()
     }
     
 }
@@ -113,7 +113,7 @@ private extension MenuViewController {
         view.myAddSubview(commonStackView)
         
         commonStackView.addArrangedSubview(startButtonWithoutRegister)
-        commonStackView.addArrangedSubview(loginButton)
+        commonStackView.addArrangedSubview(authButton)
         commonStackView.addArrangedSubview(registerButton)
     }
     
