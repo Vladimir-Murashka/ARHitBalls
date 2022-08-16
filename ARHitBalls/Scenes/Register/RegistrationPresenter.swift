@@ -1,22 +1,22 @@
 //
-//  AuthPresenter.swift
+//  RegistrationPresenter.swift
 //  ARHitBalls
 //
-//  Created by Swift Learning on 15.08.2022.
+//  Created by Swift Learning on 16.08.2022.
 //
 
 import UIKit
 
-// MARK: - AuthPresenterProtocol
-protocol AuthPresenterProtocol: AnyObject {
-    func authButtonPressed()
+// MARK: -  RegistrationPresenterProtocol
+protocol  RegistrationPresenterProtocol: AnyObject {
+    func registrationButtonPressed()
     func quitButtonPressed()
 }
 
-// MARK: - AuthPresenter
-final class AuthPresenter {
+// MARK: -  RegistrationPresenter
+final class  RegistrationPresenter {
     
-    weak var viewController: AuthViewController?
+    weak var viewController: RegistrationViewController?
     
     private let sceneBuildManager: Buildable
     
@@ -25,9 +25,9 @@ final class AuthPresenter {
     }
 }
 
-//MARK: - AuthPresenterExtension
-extension AuthPresenter: AuthPresenterProtocol {
-    func authButtonPressed() {
+//MARK: -  RegistrationPresenterExtension
+extension  RegistrationPresenter: RegistrationPresenterProtocol {
+    func registrationButtonPressed() {
         let rootViewController = sceneBuildManager.buildMainScreen()
         UIApplication.shared.windows.first?.rootViewController = rootViewController
     }

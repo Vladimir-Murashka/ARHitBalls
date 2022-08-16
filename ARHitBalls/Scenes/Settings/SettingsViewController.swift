@@ -17,10 +17,30 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewController()
     }
 }
 
 // MARK: - SettingsViewProtocol Impl
 extension SettingsViewController: SettingsViewProtocol {
+    
+}
+
+// MARK: - Private Methods
+
+private extension SettingsViewController {
+    func setupViewController() {
+        addSubViews()
+        setupConstraints()
+    }
+    
+    func addSubViews() {
+        
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+        ])
+    }
     
 }

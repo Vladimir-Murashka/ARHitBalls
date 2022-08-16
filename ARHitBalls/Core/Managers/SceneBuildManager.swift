@@ -14,18 +14,24 @@ protocol Buildable {
     func buildMainScreen() -> MainViewController
     func buildSettingsScreen() -> SettingsViewController
     func buildGameScreen() -> GameViewController
+    func buildRegistrationScreen() -> RegistrationViewController
 }
 
 final class SceneBuildManager {
+    
+    private let userService: UserServiceable
+    private let defaultsManager: DefaultsManagerable
 
     init() {
+        defaultsManager = DefaultsManager()
+        userService = UserService(defaultsManager: defaultsManager)
     }
 }
 
 extension SceneBuildManager: Buildable {
     func buildSplashScreen() -> SplashViewController {
         let viewController = SplashViewController()
-        let presenter = SplashPresenter()
+        let presenter = SplashPresenter(userService: userService, sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -35,7 +41,7 @@ extension SceneBuildManager: Buildable {
     
     func buildMenuScreen() -> MenuViewController {
         let viewController = MenuViewController()
-        let presenter = MenuPresenter()
+        let presenter = MenuPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -45,7 +51,7 @@ extension SceneBuildManager: Buildable {
     
     func buildAuthScreen() -> AuthViewController {
         let viewController = AuthViewController()
-        let presenter = AuthPresenter()
+        let presenter = AuthPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -55,7 +61,7 @@ extension SceneBuildManager: Buildable {
     
     func buildMainScreen() -> MainViewController {
         let viewController = MainViewController()
-        let presenter = MainPresenter()
+        let presenter = MainPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -65,7 +71,7 @@ extension SceneBuildManager: Buildable {
     
     func buildSettingsScreen() -> SettingsViewController {
         let viewController = SettingsViewController()
-        let presenter = SettingsPresenter()
+        let presenter = SettingsPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -75,7 +81,17 @@ extension SceneBuildManager: Buildable {
     
     func buildGameScreen() -> GameViewController {
         let viewController = GameViewController()
-        let presenter = GamePresenter()
+        let presenter = GamePresenter(sceneBuildManager: self)
+        
+        viewController.presenter = presenter
+        presenter.viewController = viewController
+        
+        return viewController
+    }
+    
+    func buildRegistrationScreen() -> RegistrationViewController {
+        let viewController = RegistrationViewController()
+        let presenter = RegistrationPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
