@@ -18,10 +18,31 @@ final class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewController()
     }
 }
 
 // MARK: - MenuViewProtocol Impl
 extension MenuViewController: MenuViewProtocol {
+    
+}
+
+// MARK: - Private Methods
+
+private extension MenuViewController {
+    func setupViewController() {
+        view.backgroundColor = .yellow
+        addSubViews()
+        setupConstraints()
+    }
+    
+    func addSubViews() {
+        
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+        ])
+    }
     
 }

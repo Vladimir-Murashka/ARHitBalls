@@ -27,6 +27,7 @@
 		229BC18E28AA8699008D07A0 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18D28AA8699008D07A0 /* MainPresenter.swift */; };
 		229BC19028AA86AA008D07A0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18F28AA86AA008D07A0 /* SettingsPresenter.swift */; };
 		229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19128AA86B7008D07A0 /* GamePresenter.swift */; };
+		229BC19728ABC484008D07A0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19628ABC484008D07A0 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		229BC18D28AA8699008D07A0 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		229BC18F28AA86AA008D07A0 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		229BC19128AA86B7008D07A0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
+		229BC19628ABC484008D07A0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				229BC19528ABC468008D07A0 /* Extension */,
 				229BC17528AA7DF9008D07A0 /* Managers */,
 				229BC17028AA7DB6008D07A0 /* Services */,
 			);
@@ -203,6 +206,14 @@
 				229BC16028AA7091008D07A0 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		229BC19528ABC468008D07A0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				229BC19628ABC484008D07A0 /* UIView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 				229BC18C28AA8680008D07A0 /* AuthPresenter.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
+				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				229BC17D28AA80F2008D07A0 /* AuthViewController.swift in Sources */,

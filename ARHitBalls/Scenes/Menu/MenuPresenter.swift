@@ -15,6 +15,11 @@ final class MenuPresenter {
     
     weak var viewController: MenuViewController?
     
+    private let sceneBuildManager: Buildable
+    
+    init(sceneBuildManager: Buildable) {
+        self.sceneBuildManager = sceneBuildManager
+    }
 }
 
 //MARK: - MenuPresenterExtension

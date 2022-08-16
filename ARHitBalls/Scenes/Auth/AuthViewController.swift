@@ -17,10 +17,30 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewController()
     }
 }
 
 // MARK: - AuthViewProtocol Impl
 extension AuthViewController: AuthViewProtocol {
+    
+}
+
+// MARK: - Private Methods
+
+private extension AuthViewController {
+    func setupViewController() {
+        addSubViews()
+        setupConstraints()
+    }
+    
+    func addSubViews() {
+        
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+        ])
+    }
     
 }

@@ -17,10 +17,31 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewController()
     }
 }
 
 // MARK: - MainViewProtocol Impl
 extension MainViewController: MainViewProtocol {
+    
+}
+
+// MARK: - Private Methods
+
+private extension MainViewController {
+    func setupViewController() {
+        view.backgroundColor = .green
+        addSubViews()
+        setupConstraints()
+    }
+    
+    func addSubViews() {
+        
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+        ])
+    }
     
 }
