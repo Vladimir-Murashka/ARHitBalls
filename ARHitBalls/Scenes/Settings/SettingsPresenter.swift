@@ -5,24 +5,26 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
-// MARK: -  SettingsPresenterProtocol
-protocol  SettingsPresenterProtocol: AnyObject {
-    
-}
+// MARK: - SettingsPresenterProtocol
 
-// MARK: -  SettingsPresenter
-final class  SettingsPresenter {
-    
+protocol SettingsPresenterProtocol: AnyObject {}
+
+// MARK: - SettingsPresenter
+
+final class SettingsPresenter {
     weak var viewController: SettingsViewController?
+
+// MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    
+// MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager
     }
 }
 
-//MARK: -  SettingsPresenterExtension
-extension  SettingsPresenter: SettingsPresenterProtocol {
-    
-}
+//MARK: - SettingsPresenterExtension
+
+extension SettingsPresenter: SettingsPresenterProtocol {}

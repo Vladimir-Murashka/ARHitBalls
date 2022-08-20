@@ -7,13 +7,15 @@
 import UIKit
 
 // MARK: - SettingsViewProtocol
-protocol SettingsViewProtocol: UIViewController {
-    
-}
+
+protocol SettingsViewProtocol: UIViewController {}
 
 // MARK: - SettingsViewController
+
 final class SettingsViewController: UIViewController {
     var presenter: SettingsPresenterProtocol?
+    
+//MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +24,8 @@ final class SettingsViewController: UIViewController {
 }
 
 // MARK: - SettingsViewProtocol Impl
-extension SettingsViewController: SettingsViewProtocol {
-    
-}
+
+extension SettingsViewController: SettingsViewProtocol {}
 
 // MARK: - Private Methods
 
@@ -34,13 +35,9 @@ private extension SettingsViewController {
         setupConstraints()
     }
     
-    func addSubViews() {
-        
-    }
+    func addSubViews() {}
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-        ])
+        NSLayoutConstraint.activate([])
     }
-    
 }

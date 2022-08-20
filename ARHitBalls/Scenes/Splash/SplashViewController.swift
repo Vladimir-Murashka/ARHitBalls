@@ -8,19 +8,23 @@
 import UIKit
 
 // MARK: - SplashViewProtocol
-protocol SplashViewProtocol: UIViewController {
-  
-}
+
+protocol SplashViewProtocol: UIViewController {}
 
 // MARK: - SplashViewController
+
 final class SplashViewController: UIViewController {
     var presenter: SplashPresenterProtocol?
+    
+// MARK: - PrivateProperties
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "bell")
         return imageView
     }()
+    
+// MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +34,10 @@ final class SplashViewController: UIViewController {
 }
 
 // MARK: - SplashViewProtocol Impl
-extension SplashViewController: SplashViewProtocol {
-    
-}
 
-// MARK: - Private Methods
+extension SplashViewController: SplashViewProtocol {}
+
+// MARK: - PrivateMethods
 
 private extension SplashViewController {
     func setupViewController() {
@@ -43,7 +46,7 @@ private extension SplashViewController {
     }
     
     func addSubViews() {
-        view.myAddSubview(imageView)
+        view.addSubviews(imageView)
     }
     
     func setupConstraints() {
@@ -56,7 +59,6 @@ private extension SplashViewController {
             imageView.widthAnchor.constraint(equalToConstant: imageViewSize)
         ])
     }
-    
 }
 
 

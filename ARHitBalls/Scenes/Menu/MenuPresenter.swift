@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - MenuPresenterProtocol
+
 protocol MenuPresenterProtocol: AnyObject {
     func startButtonWithoutRegisterPressed()
     func authButtonPressed()
@@ -15,11 +16,15 @@ protocol MenuPresenterProtocol: AnyObject {
 }
 
 // MARK: - MenuPresenter
+
 final class MenuPresenter {
-    
     weak var viewController: MenuViewController?
     
+// MARK: - PrivateProperties
+    
     private let sceneBuildManager: Buildable
+    
+// MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager
@@ -27,10 +32,11 @@ final class MenuPresenter {
 }
 
 //MARK: - MenuPresenterExtension
+
 extension MenuPresenter: MenuPresenterProtocol {
     func startButtonWithoutRegisterPressed() {
         let rootViewController = sceneBuildManager.buildMainScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        viewController?.navigationController?.pushViewController(rootViewController, animated: true)
     }
     
     func authButtonPressed() {

@@ -30,6 +30,7 @@
 		229BC19728ABC484008D07A0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19628ABC484008D07A0 /* UIView.swift */; };
 		229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */; };
+		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		229BC19628ABC484008D07A0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				229BC19628ABC484008D07A0 /* UIView.swift */,
+				229F453828B130BD00075601 /* UIStackView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				229BC17D28AA80F2008D07A0 /* AuthViewController.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
+				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +470,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,6 +498,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
