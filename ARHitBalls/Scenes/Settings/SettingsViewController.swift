@@ -4,6 +4,7 @@
 //
 //  Created by Swift Learning on 15.08.2022.
 //
+
 import UIKit
 
 // MARK: - SettingsViewProtocol
@@ -15,7 +16,7 @@ protocol SettingsViewProtocol: UIViewController {}
 final class SettingsViewController: UIViewController {
     var presenter: SettingsPresenterProtocol?
     
-//MARK: - LifeCycle
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

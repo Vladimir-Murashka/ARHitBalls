@@ -16,7 +16,7 @@ protocol RegistrationViewProtocol: UIViewController {}
 final class RegistrationViewController: UIViewController {
     var presenter: RegistrationPresenterProtocol?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
@@ -167,20 +167,20 @@ final class RegistrationViewController: UIViewController {
         return button
     }()
     
-//MARK: - LifeCycle
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
-//MARK: - OverrideMethods
+    //MARK: - OverrideMethods
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-// MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func registrationButtonPressed() {

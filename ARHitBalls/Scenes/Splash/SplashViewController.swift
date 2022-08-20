@@ -16,7 +16,7 @@ protocol SplashViewProtocol: UIViewController {}
 final class SplashViewController: UIViewController {
     var presenter: SplashPresenterProtocol?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,7 +24,7 @@ final class SplashViewController: UIViewController {
         return imageView
     }()
     
-// MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

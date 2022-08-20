@@ -21,11 +21,11 @@ protocol MainPresenterProtocol: AnyObject {
 final class MainPresenter {
     weak var viewController: MainViewController?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
     
-// MARK: - Initializer
+    // MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager

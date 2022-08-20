@@ -16,7 +16,7 @@ protocol MenuViewProtocol: UIViewController {}
 final class MenuViewController: UIViewController {
     var presenter: MenuPresenterProtocol?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
@@ -95,14 +95,14 @@ final class MenuViewController: UIViewController {
     }()
     
     
-// MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
-// MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func startButtonWithoutRegisterPressed() {
@@ -129,7 +129,6 @@ extension MenuViewController: MenuViewProtocol {}
 
 private extension MenuViewController {
     func setupViewController() {
-        view.backgroundColor = .yellow
         addSubViews()
         setupConstraints()
     }

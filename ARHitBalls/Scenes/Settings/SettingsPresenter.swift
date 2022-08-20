@@ -5,6 +5,8 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
+import UIKit
+
 // MARK: - SettingsPresenterProtocol
 
 protocol SettingsPresenterProtocol: AnyObject {}
@@ -13,12 +15,12 @@ protocol SettingsPresenterProtocol: AnyObject {}
 
 final class SettingsPresenter {
     weak var viewController: SettingsViewController?
-
-// MARK: - PrivateProperties
+    
+    // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
     
-// MARK: - Initializer
+    // MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager

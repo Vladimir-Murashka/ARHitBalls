@@ -18,12 +18,12 @@ protocol SplashPresenterProtocol: AnyObject {
 final class SplashPresenter {
     weak var viewController: SplashViewController?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
     private let userService: UserServiceable
     
-// MARK: - Initializer
+    // MARK: - Initializer
     
     init(
         userService: UserServiceable,

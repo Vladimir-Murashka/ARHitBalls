@@ -19,7 +19,7 @@ final class SceneBuildManager {
     
     private let userService: UserServiceable
     private let defaultsManager: DefaultsManagerable
-
+    
     init() {
         defaultsManager = DefaultsManager()
         userService = UserService(defaultsManager: defaultsManager)

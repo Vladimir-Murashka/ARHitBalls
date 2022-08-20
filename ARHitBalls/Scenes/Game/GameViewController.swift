@@ -15,7 +15,7 @@ protocol GameViewProtocol: UIViewController {}
 final class GameViewController: UIViewController {
     var presenter: GamePresenterProtocol?
     
-//MARK: - LifeCycle
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

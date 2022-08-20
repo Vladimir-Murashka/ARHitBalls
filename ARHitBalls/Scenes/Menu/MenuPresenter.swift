@@ -20,11 +20,11 @@ protocol MenuPresenterProtocol: AnyObject {
 final class MenuPresenter {
     weak var viewController: MenuViewController?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
     
-// MARK: - Initializer
+    // MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager

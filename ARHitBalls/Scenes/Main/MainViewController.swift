@@ -4,6 +4,7 @@
 //
 //  Created by Swift Learning on 15.08.2022.
 //
+
 import UIKit
 
 // MARK: - MainViewProtocol
@@ -15,7 +16,7 @@ protocol MainViewProtocol: UIViewController {}
 final class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private lazy var logoutButton: UIButton = {
         let button = UIButton()
@@ -144,8 +145,8 @@ final class MainViewController: UIViewController {
         return stackView
     }()
     
-
-// MARK: LifeCycle
+    
+    // MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,7 +163,7 @@ final class MainViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-// MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func settingsButtonPressed() {

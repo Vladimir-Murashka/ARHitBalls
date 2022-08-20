@@ -8,17 +8,22 @@
 import UIKit
 
 // MARK: -  RegistrationPresenterProtocol
+
 protocol  RegistrationPresenterProtocol: AnyObject {
     func registrationButtonPressed()
     func quitButtonPressed()
 }
 
 // MARK: -  RegistrationPresenter
+
 final class  RegistrationPresenter {
-    
     weak var viewController: RegistrationViewController?
     
+    // MARK: - PrivateProperties
+    
     private let sceneBuildManager: Buildable
+    
+    // MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager
@@ -26,6 +31,7 @@ final class  RegistrationPresenter {
 }
 
 //MARK: -  RegistrationPresenterExtension
+
 extension  RegistrationPresenter: RegistrationPresenterProtocol {
     func registrationButtonPressed() {
         let rootViewController = sceneBuildManager.buildMainScreen()

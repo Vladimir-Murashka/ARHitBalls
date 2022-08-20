@@ -4,6 +4,7 @@
 //
 //  Created by Swift Learning on 15.08.2022.
 //
+
 import UIKit
 
 // MARK: - AuthViewProtocol
@@ -15,7 +16,7 @@ protocol AuthViewProtocol: UIViewController {}
 final class AuthViewController: UIViewController {
     var presenter: AuthPresenterProtocol?
     
-// MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
@@ -137,19 +138,19 @@ final class AuthViewController: UIViewController {
         return button
     }()
     
-//MARK: - LifeCycle
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
-//MARK: - OverrideMethods
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.view.endEditing(true)
-        }
-
-// MARK: - Actions
+    //MARK: - OverrideMethods
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // MARK: - Actions
     
     @objc
     private func authButtonPressed() {
@@ -188,12 +189,12 @@ private extension AuthViewController {
             emailLabel,
             emailTextField
         )
-
+        
         passwordStackView.addArrangedSubviews(
             passwordLabel,
             passwordTextField
         )
-
+        
         commonLoginStackView.addArrangedSubviews(
             emailStackView,
             passwordStackView
@@ -209,7 +210,7 @@ private extension AuthViewController {
         let quitButtonLeadingOffset: CGFloat = 16
         let quitButtonTopOffset: CGFloat = 0
         let quitButtonSize: CGFloat = 30
-       
+        
         NSLayoutConstraint.activate([
             imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: imageViewBackgroundScreenOffset),
             imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: imageViewBackgroundScreenOffset),
