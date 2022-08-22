@@ -9,7 +9,12 @@ import UIKit
 
 // MARK: - SettingsPresenterProtocol
 
-protocol SettingsPresenterProtocol: AnyObject {}
+protocol SettingsPresenterProtocol: AnyObject {
+     func vibrationSwitcherChange()
+     func soundEffectsSwitcherChenge()
+     func musicSwitcherChange()
+     func quitSettingsButtonPressed()
+}
 
 // MARK: - SettingsPresenter
 
@@ -29,4 +34,15 @@ final class SettingsPresenter {
 
 //MARK: - SettingsPresenterExtension
 
-extension SettingsPresenter: SettingsPresenterProtocol {}
+extension SettingsPresenter: SettingsPresenterProtocol {
+    func vibrationSwitcherChange() {}
+    
+    func soundEffectsSwitcherChenge() {}
+    
+    func musicSwitcherChange() {}
+    
+    func quitSettingsButtonPressed() {
+        let rootViewController = sceneBuildManager.buildMainScreen()
+        UIApplication.shared.windows.first?.rootViewController = rootViewController
+    }
+}

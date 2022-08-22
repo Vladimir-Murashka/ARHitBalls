@@ -16,11 +16,168 @@ protocol SettingsViewProtocol: UIViewController {}
 final class SettingsViewController: UIViewController {
     var presenter: SettingsPresenterProtocol?
     
+    //MARK: - PrivateProperties
+    
+    private let imageViewBackgroundScreen: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "settingBackground")
+        return imageView
+    }()
+    
+    private lazy var quitSettingButton: UIButton = {
+        let button = UIButton()
+        let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
+        button.setBackgroundImage(
+            imageQuitGameButton,
+            for: .normal
+        )
+        button.tintColor = .black
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        button.addTarget(
+            self,
+            action: #selector(quitSettingsButtonPressed),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
+    private let titleVibrationLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Вибрация"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var vibrationSwitcher: UISwitch = {
+        let switcher = UISwitch()
+        switcher.layer.cornerRadius = 15
+        switcher.layer.masksToBounds = true
+        switcher.backgroundColor = .black
+        switcher.isOn = true
+        switcher.addTarget(
+            self,
+            action:  #selector(vibrationSwitcherChange),
+            for: .valueChanged
+        )
+        return switcher
+    }()
+    
+    private let vibrationStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private let titleSoundEffectsLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Звуковые эффекты"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var soundEffectsSwitcher: UISwitch = {
+        let switcher = UISwitch()
+        switcher.layer.cornerRadius = 15
+        switcher.layer.masksToBounds = true
+        switcher.backgroundColor = .black
+        switcher.isOn = true
+        switcher.addTarget(
+            self,
+            action: #selector(soundEffectsSwitcherChenge),
+            for: .valueChanged
+        )
+        return switcher
+    }()
+    
+    private let soundEffectsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private let titleMusicLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Музыка"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var musicSwitcher: UISwitch = {
+        let switcher = UISwitch()
+        switcher.layer.cornerRadius = 15
+        switcher.layer.masksToBounds = true
+        switcher.backgroundColor = .black
+        switcher.isOn = true
+        switcher.addTarget(
+            self,
+            action: #selector(musicSwitcherChange),
+            for: .valueChanged
+        )
+        return switcher
+    }()
+    
+    private let musicStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private let commonSettigStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+    }
+    
+    //MARK: - Actions
+    
+    @objc
+    private func vibrationSwitcherChange() {
+        presenter?.vibrationSwitcherChange()
+    }
+    
+    @objc
+    private func soundEffectsSwitcherChenge() {
+        presenter?.soundEffectsSwitcherChenge()
+    }
+    
+    @objc
+    private func musicSwitcherChange() {
+        presenter?.musicSwitcherChange()
+    }
+    
+    @objc
+    private func quitSettingsButtonPressed() {
+        presenter?.quitSettingsButtonPressed()
     }
 }
 
@@ -28,7 +185,7 @@ final class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsViewProtocol {}
 
-// MARK: - Private Methods
+// MARK: - PrivateMethods
 
 private extension SettingsViewController {
     func setupViewController() {
@@ -36,9 +193,59 @@ private extension SettingsViewController {
         setupConstraints()
     }
     
-    func addSubViews() {}
+    func addSubViews() {
+        view.addSubviews(
+            imageViewBackgroundScreen,
+            quitSettingButton,
+            vibrationStackView,
+            soundEffectsStackView,
+            musicStackView,
+            commonSettigStackView
+        )
+        
+        vibrationStackView.addArrangedSubviews(
+            titleVibrationLabel,
+            vibrationSwitcher
+        )
+        
+        soundEffectsStackView.addArrangedSubviews(
+            titleSoundEffectsLabel,
+            soundEffectsSwitcher
+        )
+
+        musicStackView.addArrangedSubviews(
+            titleMusicLabel,
+            musicSwitcher
+        )
+
+        commonSettigStackView.addArrangedSubviews(
+            vibrationStackView,
+            soundEffectsStackView,
+            musicStackView
+        )
+    }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([])
+        let titleLabelWidth: CGFloat = 170
+        let stackViewTopOffset: CGFloat = 70
+        let stackViewSideOffset: CGFloat = 16
+        let quitButtonLeadingOffset: CGFloat = 16
+        let quitButtonTopOffset: CGFloat = 0
+        let quitButtonSize: CGFloat = 30
+        
+        NSLayoutConstraint.activate([
+            titleVibrationLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            titleSoundEffectsLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            titleMusicLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            
+            commonSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopOffset),
+            commonSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: stackViewSideOffset),
+            commonSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -stackViewSideOffset),
+            
+            quitSettingButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingOffset),
+            quitSettingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopOffset),
+            quitSettingButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
+            quitSettingButton.widthAnchor.constraint(equalToConstant: quitButtonSize)
+        ])
     }
 }
