@@ -21,12 +21,19 @@ final class MainViewController: UIViewController {
     private lazy var logoutButton: UIButton = {
         let button = UIButton()
         let imageQuitGameButton = UIImage(systemName: "house.circle")
-        button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.setBackgroundImage(
+            imageQuitGameButton,
+            for: .normal
+        )
         button.tintColor = .black
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(logoutButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -34,12 +41,19 @@ final class MainViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Настройки", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 24)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(settingsButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -113,26 +127,46 @@ final class MainViewController: UIViewController {
     
     private lazy var startQuickGameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Быстрая игра", for: .normal)
+        button.setTitle(
+            "Быстрая игра",
+            for: .normal
+        )
         button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(startQuickGameButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(startQuickGameButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
     private lazy var missionStartGameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Компания", for: .normal)
+        button.setTitle(
+            "Компания",
+            for: .normal
+        )
         button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         button.alpha = 0.5
-        button.addTarget(self, action: #selector(missionStartGameButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(missionStartGameButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -233,6 +267,10 @@ private extension MainViewController {
         let logoutButtonSize: CGFloat = 30
         let titleWidth: CGFloat = 200
         let valueWidth: CGFloat = 60
+        let settingButtonHeight: CGFloat = 30
+        let settingButtonWidth: CGFloat = 150
+        let stackViewHeight: CGFloat = 30
+        let buttonHeight: CGFloat = 48
         
         NSLayoutConstraint.activate([
             topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewOffset),
@@ -242,8 +280,8 @@ private extension MainViewController {
             logoutButton.heightAnchor.constraint(equalToConstant: logoutButtonSize),
             logoutButton.widthAnchor.constraint(equalToConstant: logoutButtonSize),
             
-            settingsButton.heightAnchor.constraint(equalToConstant: 30),
-            settingsButton.widthAnchor.constraint(equalToConstant: 150),
+            settingsButton.heightAnchor.constraint(equalToConstant: settingButtonHeight),
+            settingsButton.widthAnchor.constraint(equalToConstant: settingButtonWidth),
             
             verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -stackViewOffset),
             verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewOffset),
@@ -255,10 +293,10 @@ private extension MainViewController {
             timeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: valueWidth),
             levelLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: valueWidth),
             
-            timeStackView.heightAnchor.constraint(equalToConstant: 30),
-            levelStackView.heightAnchor.constraint(equalToConstant: 30),
-            missionStartGameButton.heightAnchor.constraint(equalToConstant: 48),
-            startQuickGameButton.heightAnchor.constraint(equalToConstant: 48)
+            timeStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
+            levelStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
+            missionStartGameButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            startQuickGameButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
     }
 }
