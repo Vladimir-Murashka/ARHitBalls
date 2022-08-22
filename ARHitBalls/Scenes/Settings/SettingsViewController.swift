@@ -95,7 +95,7 @@ final class SettingsViewController: UIViewController {
         switcher.isOn = true
         switcher.addTarget(
             self,
-            action: #selector(soundEffectsSwitcherChenge),
+            action: #selector(soundEffectsSwitcherChange),
             for: .valueChanged
         )
         return switcher
@@ -161,18 +161,18 @@ final class SettingsViewController: UIViewController {
     //MARK: - Actions
     
     @objc
-    private func vibrationSwitcherChange() {
-        presenter?.vibrationSwitcherChange()
+    private func vibrationSwitcherChange(_ sender: UISwitch) {
+        presenter?.vibrationSwitcherChange(sender)
     }
     
     @objc
-    private func soundEffectsSwitcherChenge() {
-        presenter?.soundEffectsSwitcherChenge()
+    private func soundEffectsSwitcherChange(_ sender: UISwitch) {
+        presenter?.soundEffectsSwitcherChange(sender)
     }
     
     @objc
-    private func musicSwitcherChange() {
-        presenter?.musicSwitcherChange()
+    private func musicSwitcherChange(_ sender: UISwitch) {
+        presenter?.musicSwitcherChange(sender)
     }
     
     @objc
@@ -191,6 +191,10 @@ private extension SettingsViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
+        
+        vibrationSwitcher.isOn = presenter?.fetchValueVibrationSwitcher() ?? false
+        soundEffectsSwitcher.isOn = presenter?.fetchValueSoundEffectsSwitcher() ?? false
+        musicSwitcher.isOn = presenter?.fetchValueMusicSwitcher() ?? false
     }
     
     func addSubViews() {

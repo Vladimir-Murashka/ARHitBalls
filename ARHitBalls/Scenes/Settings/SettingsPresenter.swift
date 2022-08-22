@@ -10,16 +10,20 @@ import UIKit
 // MARK: - SettingsPresenterProtocol
 
 protocol SettingsPresenterProtocol: AnyObject {
-     func vibrationSwitcherChange()
-     func soundEffectsSwitcherChenge()
-     func musicSwitcherChange()
-     func quitSettingsButtonPressed()
+    func vibrationSwitcherChange(_ sender: UISwitch)
+    func soundEffectsSwitcherChange(_ sender: UISwitch)
+    func musicSwitcherChange(_ sender: UISwitch)
+    func quitSettingsButtonPressed()
+    func fetchValueVibrationSwitcher() -> Bool
+    func fetchValueSoundEffectsSwitcher() -> Bool
+    func fetchValueMusicSwitcher() -> Bool
 }
 
 // MARK: - SettingsPresenter
 
 final class SettingsPresenter {
     weak var viewController: SettingsViewController?
+    let defaultsStorage: DefaultsManagerable = DefaultsManager()
     
     // MARK: - PrivateProperties
     
@@ -35,14 +39,40 @@ final class SettingsPresenter {
 //MARK: - SettingsPresenterExtension
 
 extension SettingsPresenter: SettingsPresenterProtocol {
-    func vibrationSwitcherChange() {}
+    func vibrationSwitcherChange(_ sender: UISwitch) {
+        defaultsStorage.saveObject(sender.isOn, for: .isVibrationOn)
+    }
+
+    func soundEffectsSwitcherChange(_ sender: UISwitch) {
+        defaultsStorage.saveObject(sender.isOn, for: .isSoundEffect)
+    }
     
-    func soundEffectsSwitcherChenge() {}
+    func musicSwitcherChange(_ sender: UISwitch) {
+        defaultsStorage.saveObject(sender.isOn, for: .isMusicOn)
+    }
     
-    func musicSwitcherChange() {}
+    func fetchValueVibrationSwitcher() -> Bool {
+        let valueVibrationSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
+    
+        return valueVibrationSwitcher
+    }
+    
+    func fetchValueSoundEffectsSwitcher() -> Bool {
+        let valueSoundEffectsSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
+        
+        return valueSoundEffectsSwitcher
+    }
+    
+    func fetchValueMusicSwitcher() -> Bool {
+        let valueMusicSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+        
+        return valueMusicSwitcher
+    }
     
     func quitSettingsButtonPressed() {
         let rootViewController = sceneBuildManager.buildMainScreen()
         UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
+
+    
 }
