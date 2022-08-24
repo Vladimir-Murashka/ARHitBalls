@@ -4,54 +4,36 @@
 //
 //  Created by Swift Learning on 15.08.2022.
 //
+
 import UIKit
 
 // MARK: - MainViewProtocol
-protocol MainViewProtocol: UIViewController {
-    
-}
+
+protocol MainViewProtocol: UIViewController {}
 
 // MARK: - MainViewController
+
 final class MainViewController: UIViewController {
-    
-//MARK: PublicProperties
     var presenter: MainPresenterProtocol?
     
-//MARK: SubViews
-    private lazy var logOutButton: UIButton = {
+    // MARK: - PrivateProperties
+    
+    private lazy var logoutButton: UIButton = {
         let button = UIButton()
         let imageQuitGameButton = UIImage(systemName: "house.circle")
-        button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.setBackgroundImage(
+            imageQuitGameButton,
+            for: .normal
+        )
         button.tintColor = .black
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(logOutButtonPressed), for: .touchUpInside)
-        return button
-    }()
-    
-    private let startQuickGameButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Быстрая игра", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(startQuickGameButtonPressed), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var missionStartGameButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Компания", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.alpha = 0.5
-        button.addTarget(self, action: #selector(missionStartGameButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(logoutButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -59,15 +41,31 @@ final class MainViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Настройки", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 24)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(
+            self,
+            action: #selector(settingsButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
-    private let infoTimeLable: UILabel = {
+    private let topStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let titleTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -78,7 +76,7 @@ final class MainViewController: UIViewController {
         return label
     }()
     
-    private let timeLable: UILabel = {
+    private let timeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -89,7 +87,15 @@ final class MainViewController: UIViewController {
         return label
     }()
     
-    private let infolevelLableText: UILabel = {
+    private let timeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private let titleLevelLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -100,7 +106,7 @@ final class MainViewController: UIViewController {
         return label
     }()
     
-    private let infolevelLableValue: UILabel = {
+    private let levelLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -111,7 +117,7 @@ final class MainViewController: UIViewController {
         return label
     }()
     
-    private let infolevelStackView: UIStackView = {
+    private let levelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
         stackView.alignment = .fill
@@ -119,15 +125,52 @@ final class MainViewController: UIViewController {
         return stackView
     }()
     
-    private let timeStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        return stackView
+    private lazy var startQuickGameButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(
+            "Быстрая игра",
+            for: .normal
+        )
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.addTarget(
+            self,
+            action: #selector(startQuickGameButtonPressed),
+            for: .touchUpInside
+        )
+        return button
     }()
     
-    private let commonInfoStackView: UIStackView = {
+    private lazy var missionStartGameButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(
+            "Компания",
+            for: .normal
+        )
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.alpha = 0.5
+        button.addTarget(
+            self,
+            action: #selector(missionStartGameButtonPressed),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
+    private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
         stackView.alignment = .fill
@@ -136,45 +179,53 @@ final class MainViewController: UIViewController {
         return stackView
     }()
     
-    private let commonButtonsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 12
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.axis = .vertical
-        return stackView
-    }()
-
-//MARK: LifeCycle
+    
+    // MARK: LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
-    //MARK: @objcFunc
-    @objc func settingsButtonPressed() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func settingsButtonPressed() {
         presenter?.settingsButtonPressed()
     }
     
-    @objc func startQuickGameButtonPressed() {
+    @objc
+    private func startQuickGameButtonPressed() {
         presenter?.startQuickGameButtonPressed()
     }
     
-    @objc func logOutButtonPressed() {
-        presenter?.logOutButtonPressed()
+    @objc
+    private func logoutButtonPressed() {
+        presenter?.logoutButtonPressed()
     }
     
-    @objc func missionStartGameButtonPressed() {
+    @objc
+    private func missionStartGameButtonPressed() {
         presenter?.missionStartGameButtonPressed()
     }
 }
 
 // MARK: - MainViewProtocol Impl
-extension MainViewController: MainViewProtocol {
-    
-}
 
-// MARK: - Private Methods
+extension MainViewController: MainViewProtocol {}
+
+// MARK: - PrivateMethods
+
 private extension MainViewController {
     func setupViewController() {
         view.backgroundColor = .systemGray
@@ -183,67 +234,69 @@ private extension MainViewController {
     }
     
     func addSubViews() {
-        view.myAddSubview(startQuickGameButton)
-        view.myAddSubview(missionStartGameButton)
-        view.myAddSubview(settingsButton)
-        view.myAddSubview(infolevelStackView)
-        view.myAddSubview(logOutButton)
-        view.myAddSubview(commonButtonsStackView)
-        view.myAddSubview(infoTimeLable)
-        view.myAddSubview(timeLable)
-        view.myAddSubview(timeStackView)
-        view.myAddSubview(commonInfoStackView)
+        topStackView.addArrangedSubviews(
+            logoutButton,
+            settingsButton
+        )
         
-        timeStackView.addArrangedSubview(infoTimeLable)
-        timeStackView.addArrangedSubview(timeLable)
+        timeStackView.addArrangedSubviews(
+            titleTimeLabel,
+            timeLabel
+        )
         
-        infolevelStackView.addArrangedSubview(infolevelLableText)
-        infolevelStackView.addArrangedSubview(infolevelLableValue)
+        levelStackView.addArrangedSubviews(
+            titleLevelLabel,
+            levelLabel
+        )
         
-        commonInfoStackView.addArrangedSubview(timeStackView)
-        commonInfoStackView.addArrangedSubview(infolevelStackView)
+        verticalStackView.addArrangedSubviews(
+            timeStackView,
+            levelStackView,
+            missionStartGameButton,
+            startQuickGameButton
+        )
         
-        commonButtonsStackView.addArrangedSubview(missionStartGameButton)
-        commonButtonsStackView.addArrangedSubview(startQuickGameButton)
+        view.addSubviews(
+            topStackView,
+            verticalStackView
+        )
     }
     
     func setupConstraints() {
-        let infoLableTextWidth: CGFloat = 200
-        let infoLableValueWidth: CGFloat = 60
-        let stackViewIndent: CGFloat = 16
-        let settingsButtonIndent: CGFloat = 16
+        let stackViewOffset: CGFloat = 16
+        let logoutButtonSize: CGFloat = 30
+        let titleWidth: CGFloat = 200
+        let valueWidth: CGFloat = 60
+        let settingButtonHeight: CGFloat = 30
+        let settingButtonWidth: CGFloat = 150
         let stackViewHeight: CGFloat = 30
-        
-        let logOutButtonLeadingIndent: CGFloat = 16
-        let logOutButtonTopIndent: CGFloat = 16
-        let logOutButtonHeight: CGFloat = 30
-        let logOutButtonWidth: CGFloat = 30
+        let buttonHeight: CGFloat = 48
         
         NSLayoutConstraint.activate([
-            infolevelLableText.widthAnchor.constraint(greaterThanOrEqualToConstant: infoLableTextWidth),
-            infolevelLableValue.widthAnchor.constraint(greaterThanOrEqualToConstant: infoLableValueWidth),
+            topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewOffset),
+            topStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewOffset),
+            topStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -stackViewOffset),
             
-            infoTimeLable.widthAnchor.constraint(greaterThanOrEqualToConstant: infoLableTextWidth),
-            timeLable.widthAnchor.constraint(greaterThanOrEqualToConstant: infoLableValueWidth),
+            logoutButton.heightAnchor.constraint(equalToConstant: logoutButtonSize),
+            logoutButton.widthAnchor.constraint(equalToConstant: logoutButtonSize),
             
-            commonButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewIndent),
-            commonButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -stackViewIndent),
-            commonButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -stackViewIndent),
+            settingsButton.heightAnchor.constraint(equalToConstant: settingButtonHeight),
+            settingsButton.widthAnchor.constraint(equalToConstant: settingButtonWidth),
             
-            settingsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -settingsButtonIndent),
-            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: settingsButtonIndent),
-        
+            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -stackViewOffset),
+            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewOffset),
+            verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -stackViewOffset),
+            
+            titleTimeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: titleWidth),
+            titleLevelLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: titleWidth),
+            
+            timeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: valueWidth),
+            levelLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: valueWidth),
+            
             timeStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
-            infolevelStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
-            
-            commonInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewIndent),
-            commonInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -stackViewIndent),
-            commonInfoStackView.bottomAnchor.constraint(equalTo: commonButtonsStackView.topAnchor, constant: -stackViewIndent),
-            
-            logOutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: logOutButtonLeadingIndent),
-            logOutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: logOutButtonTopIndent),
-            logOutButton.heightAnchor.constraint(equalToConstant: logOutButtonHeight),
-            logOutButton.widthAnchor.constraint(equalToConstant: logOutButtonWidth)
+            levelStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
+            missionStartGameButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            startQuickGameButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
     }
 }

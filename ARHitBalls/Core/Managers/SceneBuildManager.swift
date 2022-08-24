@@ -5,8 +5,6 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
-
-
 protocol Buildable {
     func buildSplashScreen() -> SplashViewController
     func buildMenuScreen() -> MenuViewController
@@ -21,7 +19,7 @@ final class SceneBuildManager {
     
     private let userService: UserServiceable
     private let defaultsManager: DefaultsManagerable
-
+    
     init() {
         defaultsManager = DefaultsManager()
         userService = UserService(defaultsManager: defaultsManager)

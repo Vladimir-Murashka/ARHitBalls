@@ -7,28 +7,34 @@
 
 import UIKit
 
-// MARK: -  MainPresenterProtocol
-protocol  MainPresenterProtocol: AnyObject {
+// MARK: - MainPresenterProtocol
+
+protocol MainPresenterProtocol: AnyObject {
     func settingsButtonPressed()
     func startQuickGameButtonPressed()
-    func logOutButtonPressed()
+    func logoutButtonPressed()
     func missionStartGameButtonPressed()
 }
 
-// MARK: -  MainPresenter
-final class  MainPresenter {
-    
+// MARK: - MainPresenter
+
+final class MainPresenter {
     weak var viewController: MainViewController?
     
+    // MARK: - PrivateProperties
+    
     private let sceneBuildManager: Buildable
+    
+    // MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager
     }
 }
 
-//MARK: -  MainPresenterExtension
-extension  MainPresenter: MainPresenterProtocol {
+//MARK: - MainPresenterExtension
+
+extension MainPresenter: MainPresenterProtocol {
     func settingsButtonPressed() {
         let rootViewController = sceneBuildManager.buildSettingsScreen()
         UIApplication.shared.windows.first?.rootViewController = rootViewController
@@ -38,9 +44,10 @@ extension  MainPresenter: MainPresenterProtocol {
         print(#function)
     }
     
-    func logOutButtonPressed() {
-        let rootViewController = sceneBuildManager.buildMenuScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+    func logoutButtonPressed() {
+        //let rootViewController = UINavigationController(rootViewController: sceneBuildManager.buildMenuScreen())
+        //UIApplication.shared.windows.first?.rootViewController = rootViewController
+        viewController?.navigationController?.popViewController(animated: true)
     }
     
     func missionStartGameButtonPressed() {

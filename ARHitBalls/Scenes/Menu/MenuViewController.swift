@@ -8,17 +8,16 @@
 import UIKit
 
 // MARK: - MenuViewProtocol
-protocol MenuViewProtocol: UIViewController {
-    
-}
+
+protocol MenuViewProtocol: UIViewController {}
 
 // MARK: - MenuViewController
+
 final class MenuViewController: UIViewController {
-    
-//MARK: PublicProperties
     var presenter: MenuPresenterProtocol?
     
-//MARK: SubViews
+    // MARK: - PrivateProperties
+    
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registerBackground")
@@ -28,34 +27,61 @@ final class MenuViewController: UIViewController {
     
     private lazy var startButtonWithoutRegister: UIButton = {
         let button = UIButton()
-        button.setTitle("Играть без регистрации", for: .normal)
+        button.setTitle(
+            "Играть без регистрации",
+            for: .normal
+        )
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(startButtonWithoutRegisterPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(startButtonWithoutRegisterPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
     private lazy var authButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Войти", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitle(
+            "Войти",
+            for: .normal
+        )
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(authButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(authButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
     private lazy var registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Регистрация", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitle(
+            "Регистрация",
+            for: .normal
+        )
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(registerButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -69,52 +95,55 @@ final class MenuViewController: UIViewController {
     }()
     
     
-//MARK: LifeCycle
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
-//MARK: @objcFunc
+    // MARK: - Actions
+    
     @objc
-    func startButtonWithoutRegisterPressed() {
+    private func startButtonWithoutRegisterPressed() {
         presenter?.startButtonWithoutRegisterPressed()
     }
-
+    
     @objc
-    func authButtonPressed() {
+    private func authButtonPressed() {
         presenter?.authButtonPressed()
     }
-        
+    
     @objc
-    func registerButtonPressed() {
+    private func registerButtonPressed() {
         presenter?.registerButtonPressed()
     }
-    
 }
 
 
 // MARK: - MenuViewProtocol Impl
-    extension MenuViewController: MenuViewProtocol {
-        
-    }
-    
-// MARK: - Private Methods
+
+extension MenuViewController: MenuViewProtocol {}
+
+// MARK: - PrivateMethods
 
 private extension MenuViewController {
     func setupViewController() {
-        view.backgroundColor = .yellow
         addSubViews()
         setupConstraints()
     }
     
     func addSubViews() {
-        view.myAddSubview(imageViewBackgroundScreen)
-        view.myAddSubview(commonStackView)
+        view.addSubviews(
+            imageViewBackgroundScreen,
+            commonStackView
+        )
         
-        commonStackView.addArrangedSubview(startButtonWithoutRegister)
-        commonStackView.addArrangedSubview(authButton)
-        commonStackView.addArrangedSubview(registerButton)
+        commonStackView.addArrangedSubviews(
+            startButtonWithoutRegister,
+            authButton,
+            registerButton
+        )
     }
     
     func setupConstraints() {
@@ -129,8 +158,7 @@ private extension MenuViewController {
             
             commonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonStackViewIndent),
             commonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:-commonStackViewIndent),
-            commonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -commonStackViewIndent),
+            commonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -commonStackViewIndent)
         ])
     }
-    
 }

@@ -8,17 +8,22 @@
 import UIKit
 
 // MARK: - AuthPresenterProtocol
+
 protocol AuthPresenterProtocol: AnyObject {
     func authButtonPressed()
     func quitButtonPressed()
 }
 
 // MARK: - AuthPresenter
+
 final class AuthPresenter {
-    
     weak var viewController: AuthViewController?
     
+    // MARK: - PrivateProperties
+    
     private let sceneBuildManager: Buildable
+    
+    // MARK: - Initializer
     
     init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager
@@ -26,6 +31,7 @@ final class AuthPresenter {
 }
 
 //MARK: - AuthPresenterExtension
+
 extension AuthPresenter: AuthPresenterProtocol {
     func authButtonPressed() {
         let rootViewController = sceneBuildManager.buildMainScreen()

@@ -7,13 +7,15 @@
 import UIKit
 
 // MARK: - GameViewProtocol
-protocol GameViewProtocol: UIViewController {
-    
-}
+
+protocol GameViewProtocol: UIViewController {}
 
 // MARK: - GameViewController
+
 final class GameViewController: UIViewController {
     var presenter: GamePresenterProtocol?
+    
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +24,10 @@ final class GameViewController: UIViewController {
 }
 
 // MARK: - GameViewProtocol Impl
-extension GameViewController: GameViewProtocol {
-    
-}
 
-// MARK: - Private Methods
+extension GameViewController: GameViewProtocol {}
+
+// MARK: - PrivateMethods
 
 private extension GameViewController {
     func setupViewController() {
@@ -34,13 +35,9 @@ private extension GameViewController {
         setupConstraints()
     }
     
-    func addSubViews() {
-        
-    }
+    func addSubViews() {}
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-        ])
+        NSLayoutConstraint.activate([])
     }
-    
 }

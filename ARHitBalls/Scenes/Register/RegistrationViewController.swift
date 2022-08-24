@@ -8,17 +8,16 @@
 import UIKit
 
 // MARK: - RegistrationViewProtocol
-protocol RegistrationViewProtocol: UIViewController {
-    
-}
+
+protocol RegistrationViewProtocol: UIViewController {}
 
 // MARK: - RegistrationViewController
+
 final class RegistrationViewController: UIViewController {
-    
-//MARK: PublicProperties
     var presenter: RegistrationPresenterProtocol?
     
-//MARK: SubViews
+    // MARK: - PrivateProperties
+    
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registerBackground")
@@ -26,27 +25,22 @@ final class RegistrationViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var registrationButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Зарегистрироваться", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 24)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(registrationButtonPressed), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var quitButton: UIButton = {
         let button = UIButton()
         let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
-        button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.setBackgroundImage(
+            imageQuitGameButton,
+            for: .normal
+        )
         button.tintColor = .black
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(quitButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(quitButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -72,6 +66,15 @@ final class RegistrationViewController: UIViewController {
         return textField
     }()
     
+    private let emailStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -93,6 +96,15 @@ final class RegistrationViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.isSecureTextEntry = true
         return textField
+    }()
+    
+    private let passwordStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        return stackView
     }()
     
     private let retypePasswordLabel: UILabel = {
@@ -118,24 +130,6 @@ final class RegistrationViewController: UIViewController {
         return textField
     }()
     
-    private let emailStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private let passwordStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
     private let retypePasswordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
@@ -154,35 +148,56 @@ final class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-//MARK: LifeCycle
+    private lazy var registrationButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(
+            "Зарегистрироваться",
+            for: .normal
+        )
+        button.titleLabel?.font = .systemFont(ofSize: 24)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.addTarget(
+            self,
+            action: #selector(registrationButtonPressed),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
-//MARK: OverrideMethods
+    //MARK: - OverrideMethods
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-//MARK: @objcFunc
+    // MARK: - Actions
+    
     @objc
-    func registrationButtonPressed() {
+    private func registrationButtonPressed() {
         presenter?.registrationButtonPressed()
     }
     
     @objc
-    func quitButtonPressed() {
+    private func quitButtonPressed() {
         presenter?.quitButtonPressed()
     }
 }
 
 // MARK: - RegistrationViewProtocol Impl
-extension RegistrationViewController: RegistrationViewProtocol {
-    
-}
 
-// MARK: - Private Methods
+extension RegistrationViewController: RegistrationViewProtocol {}
+
+// MARK: - PrivateMethods
 
 private extension RegistrationViewController {
     func setupViewController() {
@@ -191,44 +206,53 @@ private extension RegistrationViewController {
     }
     
     func addSubViews() {
-        view.myAddSubview(imageViewBackgroundScreen)
-        view.myAddSubview(emailStackView)
-        view.myAddSubview(passwordStackView)
-        view.myAddSubview(retypePasswordStackView)
-        view.myAddSubview(commonSingUpStackView)
-        view.myAddSubview(registrationButton)
-        view.myAddSubview(quitButton)
+        view.addSubviews(
+            imageViewBackgroundScreen,
+            emailStackView,
+            passwordStackView,
+            retypePasswordStackView,
+            commonSingUpStackView,
+            registrationButton,
+            quitButton
+        )
         
-        emailStackView.addArrangedSubview(emailLabel)
-        emailStackView.addArrangedSubview(emailTextField)
+        emailStackView.addArrangedSubviews(
+            emailLabel,
+            emailTextField
+        )
         
-        passwordStackView.addArrangedSubview(passwordLabel)
-        passwordStackView.addArrangedSubview(passwordTextField)
+        passwordStackView.addArrangedSubviews(
+            passwordLabel,
+            passwordTextField
+        )
         
-        retypePasswordStackView.addArrangedSubview(retypePasswordLabel)
-        retypePasswordStackView.addArrangedSubview(retypePasswordTextField)
+        retypePasswordStackView.addArrangedSubviews(
+            retypePasswordLabel,
+            retypePasswordTextField
+        )
         
-        commonSingUpStackView.addArrangedSubview(emailStackView)
-        commonSingUpStackView.addArrangedSubview(passwordStackView)
-        commonSingUpStackView.addArrangedSubview(retypePasswordStackView)
+        commonSingUpStackView.addArrangedSubviews(
+            emailStackView,
+            passwordStackView,
+            retypePasswordStackView
+        )
     }
     
     func setupConstraints() {
-        let imageViewBackgroundScreenIndent: CGFloat = 0
+        let imageViewBackgroundScreenOffset: CGFloat = 0
         let textFieldHeight: CGFloat = 30
         let registrationButtonWidth: CGFloat = 250
-        let registrationButtonBottomIndent: CGFloat = 16
-        let commonSingUpStackViewIndent: CGFloat = 16
-        let quitButtonLeadingIndent: CGFloat = 16
-        let quitButtonTopIndent: CGFloat = 0
-        let quitButtonHeight: CGFloat = 30
-        let quitButtonWidth: CGFloat = 30
+        let registrationButtonBottomOffset: CGFloat = 16
+        let commonSingUpStackViewOffset: CGFloat = 16
+        let quitButtonLeadingOffset: CGFloat = 16
+        let quitButtonTopOffset: CGFloat = 0
+        let quitButtonSize: CGFloat = 30
         
         NSLayoutConstraint.activate([
-            imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: imageViewBackgroundScreenIndent),
-            imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: imageViewBackgroundScreenIndent),
-            imageViewBackgroundScreen.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: imageViewBackgroundScreenIndent),
-            imageViewBackgroundScreen.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: imageViewBackgroundScreenIndent),
+            imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: imageViewBackgroundScreenOffset),
+            imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: imageViewBackgroundScreenOffset),
+            imageViewBackgroundScreen.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: imageViewBackgroundScreenOffset),
+            imageViewBackgroundScreen.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: imageViewBackgroundScreenOffset),
             
             emailTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             passwordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
@@ -236,16 +260,16 @@ private extension RegistrationViewController {
             
             registrationButton.widthAnchor.constraint(equalToConstant: registrationButtonWidth),
             registrationButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -registrationButtonBottomIndent),
+            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -registrationButtonBottomOffset),
             
             commonSingUpStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            commonSingUpStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonSingUpStackViewIndent),
-            commonSingUpStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -commonSingUpStackViewIndent),
+            commonSingUpStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonSingUpStackViewOffset),
+            commonSingUpStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -commonSingUpStackViewOffset),
             
-            quitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingIndent),
-            quitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopIndent),
-            quitButton.heightAnchor.constraint(equalToConstant: quitButtonHeight),
-            quitButton.widthAnchor.constraint(equalToConstant: quitButtonWidth)
+            quitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingOffset),
+            quitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopOffset),
+            quitButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
+            quitButton.widthAnchor.constraint(equalToConstant: quitButtonSize)
         ])
     }
 }

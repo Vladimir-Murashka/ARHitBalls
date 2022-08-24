@@ -8,7 +8,7 @@
 protocol UserServiceable {
     func isUserAuth() -> Bool
     func registerUser()
-    func logOut()
+    func logout()
 }
 
 final class UserService {
@@ -29,7 +29,7 @@ extension UserService: UserServiceable {
         defaultsManager.saveObject(true, for: .isUserAuth)
     }
     
-    func logOut() {
+    func logout() {
         defaultsManager.deleteObject(for: .isUserAuth)
     }
 }

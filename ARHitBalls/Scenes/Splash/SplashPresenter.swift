@@ -8,17 +8,22 @@
 import UIKit
 
 // MARK: - SplashPresenterProtocol
+
 protocol SplashPresenterProtocol: AnyObject {
     func viewDidLoad()
 }
 
 // MARK: - SplashPresenter
+
 final class SplashPresenter {
-    
     weak var viewController: SplashViewController?
+    
+    // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
     private let userService: UserServiceable
+    
+    // MARK: - Initializer
     
     init(
         userService: UserServiceable,
@@ -27,19 +32,20 @@ final class SplashPresenter {
         self.userService = userService
         self.sceneBuildManager = sceneBuildManager
     }
-    
 }
 
 //MARK: - SplashPresenterExtension
+
 extension SplashPresenter: SplashPresenterProtocol {
     func viewDidLoad() {
-        userService.logOut()
+        userService.logout()
         //userService.registerUser()
         
-        let rootViewController = userService.isUserAuth()
-        ? sceneBuildManager.buildMainScreen()
-        : sceneBuildManager.buildMenuScreen()
-        
+        let rootViewController = UINavigationController(
+            rootViewController: userService.isUserAuth()
+            ? sceneBuildManager.buildMainScreen()
+            : sceneBuildManager.buildMenuScreen()
+        )
         UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
 }
