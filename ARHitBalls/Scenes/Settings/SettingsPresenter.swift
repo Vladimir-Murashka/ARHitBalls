@@ -22,19 +22,16 @@ protocol SettingsPresenterProtocol: AnyObject {
 final class SettingsPresenter {
     weak var viewController: SettingsViewProtocol?
     
+    let defaultsStorage: DefaultsManagerable = DefaultsManager()
+    
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
-    private let defaultsStorage: DefaultsManagerable
     
     // MARK: - Initializer
     
-    init(
-        sceneBuildManager: Buildable,
-        defaultsStorage: DefaultsManagerable
-    ) {
+    init(sceneBuildManager: Buildable) {
         self.sceneBuildManager = sceneBuildManager
-        self.defaultsStorage = defaultsStorage
     }
 }
 
