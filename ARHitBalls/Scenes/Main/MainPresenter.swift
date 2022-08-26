@@ -24,11 +24,16 @@ final class MainPresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    private let alertManager: AlertManagerable
     
     // MARK: - Initializer
     
-    init(sceneBuildManager: Buildable) {
+    init(
+        sceneBuildManager: Buildable,
+        alertManager: AlertManagerable
+    ) {
         self.sceneBuildManager = sceneBuildManager
+        self.alertManager = alertManager
     }
 }
 
@@ -45,9 +50,19 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func logoutButtonPressed() {
-        //let rootViewController = UINavigationController(rootViewController: sceneBuildManager.buildMenuScreen())
-        //UIApplication.shared.windows.first?.rootViewController = rootViewController
-        viewController?.navigationController?.popViewController(animated: true)
+        guard let viewController = viewController.self else {
+            return
+        }
+        
+        alertManager.showAlert(
+            fromViewController: viewController,
+            title: "Внимание",
+            message: "Вы хотите выйти?",
+            firstButtonTitle: "Отменить",
+            firstActionBlock: {},
+            secondTitleButton: "Выйти") {
+                self.viewController?.navigationController?.popToRootViewController(animated: true)
+            }
     }
     
     func missionStartGameButtonPressed() {
