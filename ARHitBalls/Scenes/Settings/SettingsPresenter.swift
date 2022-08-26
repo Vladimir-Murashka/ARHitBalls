@@ -62,7 +62,6 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func quitSettingsButtonPressed() {
-        let rootViewController = sceneBuildManager.buildMainScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }

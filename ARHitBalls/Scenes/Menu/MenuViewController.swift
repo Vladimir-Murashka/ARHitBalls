@@ -131,6 +131,7 @@ private extension MenuViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
+        navigationController?.isNavigationBarHidden = true
     }
     
     func addSubViews() {

@@ -34,12 +34,11 @@ final class  RegistrationPresenter {
 
 extension  RegistrationPresenter: RegistrationPresenterProtocol {
     func registrationButtonPressed() {
-        let rootViewController = sceneBuildManager.buildMainScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let mainViewController = sceneBuildManager.buildMainScreen()
+        viewController?.navigationController?.pushViewController(mainViewController, animated: true)
     }
     
     func quitButtonPressed() {
-        let rootViewController = sceneBuildManager.buildMenuScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        viewController?.navigationController?.popViewController(animated: false)
     }
 }
