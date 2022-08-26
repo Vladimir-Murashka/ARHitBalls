@@ -14,7 +14,7 @@ protocol GamePresenterProtocol: AnyObject {}
 // MARK: - GamePresenter
 
 final class GamePresenter {
-    weak var viewController: GameViewController?
+    weak var viewController: GameViewProtocol?
     
     // MARK: - PrivateProperties
     

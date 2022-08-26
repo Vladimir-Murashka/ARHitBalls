@@ -35,6 +35,6 @@ extension DefaultsManager: DefaultsManagerable {
 enum DefaultsKey: String {
     case isUserAuth
     case isVibrationOn
-    case isSoundEffect
+    case isSoundOn
     case isMusicOn
 }

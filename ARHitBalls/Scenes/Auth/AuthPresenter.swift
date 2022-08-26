@@ -17,7 +17,7 @@ protocol AuthPresenterProtocol: AnyObject {
 // MARK: - AuthPresenter
 
 final class AuthPresenter {
-    weak var viewController: AuthViewController?
+    weak var viewController: AuthViewProtocol?
     
     // MARK: - PrivateProperties
     

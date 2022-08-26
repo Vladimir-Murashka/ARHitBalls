@@ -9,7 +9,13 @@ import UIKit
 
 // MARK: - SettingsViewProtocol
 
-protocol SettingsViewProtocol: UIViewController {}
+protocol SettingsViewProtocol: UIViewController {
+    func updateSwitchersValues(
+        vibrationValue: Bool,
+        soundValue: Bool,
+        musicValue: Bool
+    )
+}
 
 // MARK: - SettingsViewController
 
@@ -26,9 +32,9 @@ final class SettingsViewController: UIViewController {
     
     private lazy var quitSettingButton: UIButton = {
         let button = UIButton()
-        let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
+        let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
         button.setBackgroundImage(
-            imageQuitGameButton,
+            image,
             for: .normal
         )
         button.tintColor = .black
@@ -142,7 +148,7 @@ final class SettingsViewController: UIViewController {
         return stackView
     }()
     
-    private let commonSettigStackView: UIStackView = {
+    private let verticalSettigStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 12
@@ -156,6 +162,7 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        presenter?.viewDidLoad()
     }
     
     //MARK: - Actions
@@ -183,7 +190,17 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - SettingsViewProtocol Impl
 
-extension SettingsViewController: SettingsViewProtocol {}
+extension SettingsViewController: SettingsViewProtocol {
+    func updateSwitchersValues(
+        vibrationValue: Bool,
+        soundValue: Bool,
+        musicValue: Bool
+    ) {
+        vibrationSwitcher.isOn = vibrationValue
+        soundEffectsSwitcher.isOn = soundValue
+        musicSwitcher.isOn = musicValue
+    }
+}
 
 // MARK: - PrivateMethods
 
@@ -191,10 +208,6 @@ private extension SettingsViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
-        
-        vibrationSwitcher.isOn = presenter?.fetchValueVibrationSwitcher() ?? false
-        soundEffectsSwitcher.isOn = presenter?.fetchValueSoundEffectsSwitcher() ?? false
-        musicSwitcher.isOn = presenter?.fetchValueMusicSwitcher() ?? false
     }
     
     func addSubViews() {
@@ -204,7 +217,7 @@ private extension SettingsViewController {
             vibrationStackView,
             soundEffectsStackView,
             musicStackView,
-            commonSettigStackView
+            verticalSettigStackView
         )
         
         vibrationStackView.addArrangedSubviews(
@@ -222,7 +235,7 @@ private extension SettingsViewController {
             musicSwitcher
         )
 
-        commonSettigStackView.addArrangedSubviews(
+        verticalSettigStackView.addArrangedSubviews(
             vibrationStackView,
             soundEffectsStackView,
             musicStackView
@@ -242,9 +255,9 @@ private extension SettingsViewController {
             titleSoundEffectsLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
             titleMusicLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
             
-            commonSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopOffset),
-            commonSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: stackViewSideOffset),
-            commonSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -stackViewSideOffset),
+            verticalSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopOffset),
+            verticalSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: stackViewSideOffset),
+            verticalSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -stackViewSideOffset),
             
             quitSettingButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingOffset),
             quitSettingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopOffset),

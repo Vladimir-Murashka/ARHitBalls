@@ -19,7 +19,7 @@ protocol MainPresenterProtocol: AnyObject {
 // MARK: - MainPresenter
 
 final class MainPresenter {
-    weak var viewController: MainViewController?
+    weak var viewController: MainViewProtocol?
     
     // MARK: - PrivateProperties
     

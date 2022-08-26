@@ -18,7 +18,7 @@ protocol MenuPresenterProtocol: AnyObject {
 // MARK: - MenuPresenter
 
 final class MenuPresenter {
-    weak var viewController: MenuViewController?
+    weak var viewController: MenuViewProtocol?
     
     // MARK: - PrivateProperties
     

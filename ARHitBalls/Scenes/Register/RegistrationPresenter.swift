@@ -17,7 +17,7 @@ protocol  RegistrationPresenterProtocol: AnyObject {
 // MARK: -  RegistrationPresenter
 
 final class  RegistrationPresenter {
-    weak var viewController: RegistrationViewController?
+    weak var viewController: RegistrationViewProtocol?
     
     // MARK: - PrivateProperties
     
