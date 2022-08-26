@@ -69,7 +69,7 @@ extension SceneBuildManager: Buildable {
     
     func buildSettingsScreen() -> SettingsViewController {
         let viewController = SettingsViewController()
-        let presenter = SettingsPresenter(sceneBuildManager: self, defaultsStorage: defaultsManager)
+        let presenter = SettingsPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
