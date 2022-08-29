@@ -9,7 +9,15 @@ import UIKit
 
 // MARK: - GamePresenterProtocol
 
-protocol GamePresenterProtocol: AnyObject {}
+protocol GamePresenterProtocol: AnyObject {
+    func quitGameButtonPressed()
+    func firstShotButtonPressed()
+    func secondShotButtonPressed()
+    func thirdShotButtonPressed()
+    func fourthShotButtonPressed()
+    func fifthShotButtonPressed()
+    func sixthShotButtonPressed()
+}
 
 // MARK: - GamePresenter
 
@@ -29,4 +37,20 @@ final class GamePresenter {
 
 //MARK: - GamePresenterExtension
 
-extension GamePresenter: GamePresenterProtocol {}
+extension GamePresenter: GamePresenterProtocol {
+    func quitGameButtonPressed() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func firstShotButtonPressed() {}
+    
+    func secondShotButtonPressed() {}
+    
+    func thirdShotButtonPressed() {}
+    
+    func fourthShotButtonPressed() {}
+    
+    func fifthShotButtonPressed() {}
+    
+    func sixthShotButtonPressed() {}
+}
