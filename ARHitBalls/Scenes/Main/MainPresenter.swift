@@ -36,8 +36,8 @@ final class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func settingsButtonPressed() {
-        let rootViewController = sceneBuildManager.buildSettingsScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let settingsViewController = sceneBuildManager.buildSettingsScreen()
+        viewController?.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
     func startQuickGameButtonPressed() {
@@ -45,9 +45,7 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func logoutButtonPressed() {
-        //let rootViewController = UINavigationController(rootViewController: sceneBuildManager.buildMenuScreen())
-        //UIApplication.shared.windows.first?.rootViewController = rootViewController
-        viewController?.navigationController?.popViewController(animated: true)
+        viewController?.navigationController?.popToRootViewController(animated: true)
     }
     
     func missionStartGameButtonPressed() {

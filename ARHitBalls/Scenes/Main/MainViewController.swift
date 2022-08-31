@@ -187,16 +187,6 @@ final class MainViewController: UIViewController {
         setupViewController()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.isNavigationBarHidden = false
-    }
-    
     // MARK: - Actions
     
     @objc

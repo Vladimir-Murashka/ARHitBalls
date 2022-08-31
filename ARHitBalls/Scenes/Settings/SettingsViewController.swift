@@ -22,7 +22,7 @@ protocol SettingsViewProtocol: UIViewController {
 final class SettingsViewController: UIViewController {
     var presenter: SettingsPresenterProtocol?
     
-    //MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
