@@ -21,12 +21,9 @@ protocol AlertManagerable {
         from viewController: UIViewController,
         alertModel: AlertModel
     )
-    
 }
 
-final class AlertManager {
-    
-}
+final class AlertManager {}
 
 extension AlertManager: AlertManagerable {
     func showAlert(
@@ -38,15 +35,25 @@ extension AlertManager: AlertManagerable {
         secondTitleButton: String?,
         secondActionBlock: (() -> Void)?
     ) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
         
-        let firstAction = UIAlertAction(title: firstButtonTitle, style: .default, handler: { _ in
+        let firstAction = UIAlertAction(
+            title: firstButtonTitle,
+            style: .default,
+            handler: { _ in
             firstActionBlock?()
         })
         
-        let secondAction = UIAlertAction(title: secondTitleButton, style: .default) { _ in
+        let secondAction = UIAlertAction(
+            title: secondTitleButton,
+            style: .default,
+            handler: { _ in
             secondActionBlock?()
-        }
+        })
         
         alertController.addAction(firstAction)
         alertController.addAction(secondAction)
@@ -62,12 +69,14 @@ extension AlertManager: AlertManagerable {
         )
         
         for actionModel in alertModel.actions {
-            let action = UIAlertAction(title: actionModel.title, style: actionModel.style) { _ in
+            let action = UIAlertAction(
+                title: actionModel.title,
+                style: actionModel.style,
+                handler: { _ in
                 actionModel.actionBlock?()
-            }
+            })
             alertController.addAction(action)
         }
-        
         viewController.present(alertController, animated: true)
     }
 }
