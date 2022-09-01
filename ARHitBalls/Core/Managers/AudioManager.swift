@@ -23,14 +23,23 @@ final class AudioManager {
 extension AudioManager: AudioManagerable {
     
     func getSound(forResource: String, withExtension: String) {
-        guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else {
+        guard let url = Bundle.main.url(
+            forResource: forResource,
+            withExtension: withExtension
+        ) else {
             return
         }
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setCategory(
+                .playback,
+                mode: .default
+            )
             try AVAudioSession.sharedInstance().setActive(true)
             
-            musicPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            musicPlayer = try AVAudioPlayer(
+                contentsOf: url,
+                fileTypeHint: AVFileType.mp3.rawValue
+            )
             
             guard let player = musicPlayer else {
                 return
