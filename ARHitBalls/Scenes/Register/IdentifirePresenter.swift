@@ -9,31 +9,42 @@ import UIKit
 
 // MARK: -  RegistrationPresenterProtocol
 
-protocol  RegistrationPresenterProtocol: AnyObject {
-    func registrationButtonPressed()
+protocol  IdentifirePresenterProtocol: AnyObject {
+    func continueButtonPressed()
     func quitButtonPressed()
+    func viewDidLoad()
 }
 
 // MARK: -  RegistrationPresenter
 
-final class  RegistrationPresenter {
-    weak var viewController: RegistrationViewController?
+final class  IdentifirePresenter {
+    weak var viewController: IdentifireViewController?
     
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    private let type: AuthType
     
     // MARK: - Initializer
     
-    init(sceneBuildManager: Buildable) {
+    init(
+        sceneBuildManager: Buildable,
+        type: AuthType
+    ) {
         self.sceneBuildManager = sceneBuildManager
+        self.type = type
     }
 }
 
 //MARK: -  RegistrationPresenterExtension
 
-extension  RegistrationPresenter: RegistrationPresenterProtocol {
-    func registrationButtonPressed() {
+extension  IdentifirePresenter: IdentifirePresenterProtocol {
+    func viewDidLoad() {
+        type == .auth
+        ? viewController?.setupAuth()
+        : viewController?.setupRegister()
+    }
+    func continueButtonPressed() {
         let rootViewController = sceneBuildManager.buildMainScreen()
         UIApplication.shared.windows.first?.rootViewController = rootViewController
     }

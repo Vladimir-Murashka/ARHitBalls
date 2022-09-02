@@ -9,12 +9,15 @@ import UIKit
 
 // MARK: - RegistrationViewProtocol
 
-protocol RegistrationViewProtocol: UIViewController {}
+protocol IdentifireViewProtocol: UIViewController {
+    func setupAuth()
+    func setupRegister()
+}
 
 // MARK: - RegistrationViewController
 
-final class RegistrationViewController: UIViewController {
-    var presenter: RegistrationPresenterProtocol?
+final class IdentifireViewController: UIViewController {
+    var presenter: IdentifirePresenterProtocol?
     
     // MARK: - PrivateProperties
     
@@ -91,7 +94,7 @@ final class RegistrationViewController: UIViewController {
         textField.backgroundColor = .black
         textField.textColor = .white
         textField.textAlignment = .center
-        textField.placeholder = "Придумайте пароль"
+        textField.placeholder = "Введите пароль"
         textField.layer.cornerRadius = 8
         textField.layer.masksToBounds = true
         textField.isSecureTextEntry = true
@@ -148,7 +151,7 @@ final class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var registrationButton: UIButton = {
+    private lazy var continueButton: UIButton = {
         let button = UIButton()
         button.setTitle(
             "Зарегистрироваться",
@@ -161,7 +164,7 @@ final class RegistrationViewController: UIViewController {
         button.layer.masksToBounds = true
         button.addTarget(
             self,
-            action: #selector(registrationButtonPressed),
+            action: #selector(continueButtonPressed),
             for: .touchUpInside
         )
         return button
@@ -172,6 +175,8 @@ final class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        
+        presenter?.viewDidLoad()
     }
     
     //MARK: - OverrideMethods
@@ -183,8 +188,8 @@ final class RegistrationViewController: UIViewController {
     // MARK: - Actions
     
     @objc
-    private func registrationButtonPressed() {
-        presenter?.registrationButtonPressed()
+    private func continueButtonPressed() {
+        presenter?.continueButtonPressed()
     }
     
     @objc
@@ -195,11 +200,27 @@ final class RegistrationViewController: UIViewController {
 
 // MARK: - RegistrationViewProtocol Impl
 
-extension RegistrationViewController: RegistrationViewProtocol {}
+extension IdentifireViewController: IdentifireViewProtocol {
+    func setupAuth() {
+        retypePasswordStackView.isHidden = true
+        continueButton.setTitle(
+            "Войти",
+            for: .normal
+        )
+    }
+    
+    func setupRegister() {
+        continueButton.setTitle(
+            "Регистрация",
+            for: .normal
+        )
+        passwordTextField.placeholder = "Придумайте пароль"
+    }
+}
 
 // MARK: - PrivateMethods
 
-private extension RegistrationViewController {
+private extension IdentifireViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
@@ -212,7 +233,7 @@ private extension RegistrationViewController {
             passwordStackView,
             retypePasswordStackView,
             commonSingUpStackView,
-            registrationButton,
+            continueButton,
             quitButton
         )
         
@@ -258,9 +279,9 @@ private extension RegistrationViewController {
             passwordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             retypePasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
-            registrationButton.widthAnchor.constraint(equalToConstant: registrationButtonWidth),
-            registrationButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            registrationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -registrationButtonBottomOffset),
+            continueButton.widthAnchor.constraint(equalToConstant: registrationButtonWidth),
+            continueButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -registrationButtonBottomOffset),
             
             commonSingUpStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             commonSingUpStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonSingUpStackViewOffset),
