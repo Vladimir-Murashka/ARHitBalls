@@ -11,12 +11,7 @@ import UIKit
 
 protocol GamePresenterProtocol: AnyObject {
     func quitGameButtonPressed()
-    func firstShotButtonPressed()
-    func secondShotButtonPressed()
-    func thirdShotButtonPressed()
-    func fourthShotButtonPressed()
-    func fifthShotButtonPressed()
-    func sixthShotButtonPressed()
+    func shotButtonPressed(tag: Int)
 }
 
 // MARK: - GamePresenter
@@ -42,15 +37,22 @@ extension GamePresenter: GamePresenterProtocol {
         viewController?.navigationController?.popViewController(animated: true)
     }
     
-    func firstShotButtonPressed() {}
-    
-    func secondShotButtonPressed() {}
-    
-    func thirdShotButtonPressed() {}
-    
-    func fourthShotButtonPressed() {}
-    
-    func fifthShotButtonPressed() {}
-    
-    func sixthShotButtonPressed() {}
+    func shotButtonPressed(tag: Int) {
+        switch tag {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            break
+        case 5:
+            break
+        default:
+            break
+        }
+    }
 }

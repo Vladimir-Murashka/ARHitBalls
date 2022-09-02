@@ -36,7 +36,7 @@ final class GameViewController: UIViewController {
         return button
     }()
     
-    private let timerLable: UILabel = {
+    private let timerLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -47,7 +47,7 @@ final class GameViewController: UIViewController {
         return label
     }()
     
-    private let numberOfPlanetsOflabel: UILabel = {
+    private let numberOfPlanetslabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -96,106 +96,9 @@ final class GameViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var firstShotButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "earthUIImage")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.alpha = 0.5
-        button.addTarget(
-            self,
-            action: #selector(firstShotButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
-    private lazy var secondShotButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "jupiterUIImage")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.alpha = 0.5
-        button.addTarget(
-            self,
-            action: #selector(secondShotButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
-    private lazy var thirdShotButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "marsUIImage")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.alpha = 0.5
-        button.addTarget(
-            self,
-            action: #selector(thirdShotButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
-    private lazy var fourthShotButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "mercuryUIImage")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.alpha = 0.5
-        button.addTarget(
-            self,
-            action: #selector(fourthShotButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
-    private lazy var fifthShotButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "moonUIImage")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.alpha = 0.5
-        button.addTarget(
-            self,
-            action: #selector(fifthShotButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
-    private lazy var sixthShotButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "neptuneUIImage")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.alpha = 0.5
-        button.addTarget(
-            self,
-            action: #selector(sixthShotButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
     private let lowStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 5
-        
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         return stackView
@@ -216,33 +119,8 @@ final class GameViewController: UIViewController {
     }
     
     @objc
-    private func firstShotButtonPressed() {
-        presenter?.firstShotButtonPressed()
-    }
-    
-    @objc
-    private func secondShotButtonPressed() {
-        presenter?.secondShotButtonPressed()
-    }
-    
-    @objc
-    private func thirdShotButtonPressed() {
-        presenter?.thirdShotButtonPressed()
-    }
-    
-    @objc
-    private func fourthShotButtonPressed() {
-        presenter?.fourthShotButtonPressed()
-    }
-    
-    @objc
-    private func fifthShotButtonPressed() {
-        presenter?.fourthShotButtonPressed()
-    }
-    
-    @objc
-    private func sixthShotButtonPressed() {
-        presenter?.sixthShotButtonPressed()
+    private func shotButtonPressed(sender: UIButton) {
+        presenter?.shotButtonPressed(tag: sender.tag)
     }
 }
 
@@ -257,6 +135,31 @@ private extension GameViewController {
         view.backgroundColor = .systemGray
         addSubViews()
         setupConstraints()
+        setupShotButtons()
+    }
+    
+    func setupShotButtons() {
+        let planets = [
+            "earthUIImage",
+            "jupiterUIImage",
+            "marsUIImage",
+            "mercuryUIImage",
+            "moonUIImage",
+            "neptuneUIImage"
+        ]
+        
+        planets.enumerated().forEach { index, imageName in
+            let button = ShotButton()
+            button.setupBackgroundImage(named: imageName)
+            button.addTarget(
+                self,
+                action: #selector(shotButtonPressed),
+                for: .touchUpInside
+            )
+            button.tag = index
+            
+            lowStackView.addArrangedSubview(button)
+        }
     }
     
     func addSubViews() {
@@ -267,24 +170,15 @@ private extension GameViewController {
         )
         
         numbersOfPlanetsStackView.addArrangedSubviews(
-            numberOfPlanetsOflabel,
+            numberOfPlanetslabel,
             separatorNumbersOfPlanetsLabel,
             totalNumberOfPlanetsLabel
         )
         
         topStackView.addArrangedSubviews(
             quitGameButton,
-            timerLable,
+            timerLabel,
             numbersOfPlanetsStackView
-        )
-        
-        lowStackView.addArrangedSubviews(
-            firstShotButton,
-            secondShotButton,
-            thirdShotButton,
-            fourthShotButton,
-            fifthShotButton,
-            sixthShotButton
         )
     }
     
@@ -302,10 +196,10 @@ private extension GameViewController {
             quitGameButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
             quitGameButton.widthAnchor.constraint(equalToConstant: quitButtonSize),
             
-            numberOfPlanetsOflabel.widthAnchor.constraint(equalToConstant: planetsLabelWidth),
+            numberOfPlanetslabel.widthAnchor.constraint(equalToConstant: planetsLabelWidth),
             totalNumberOfPlanetsLabel.widthAnchor.constraint(equalToConstant: planetsLabelWidth),
     
-            timerLable.widthAnchor.constraint(equalToConstant: timerLabelWidth),
+            timerLabel.widthAnchor.constraint(equalToConstant: timerLabelWidth),
             
             topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topStackViewTopOffset),
             topStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: topStackViewSideOffset),

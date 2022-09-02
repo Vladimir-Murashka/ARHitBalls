@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol MyProtocol: CaseIterable {
-    var image: UIImage? { get }
-    
-}
-
 enum Planet: String, CaseIterable {
     case earth
     case jupiter
