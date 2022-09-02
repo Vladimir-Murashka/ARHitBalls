@@ -11,9 +11,9 @@ import UIKit
 
 protocol SettingsPresenterProtocol: AnyObject {
     func viewDidLoad()
-    func vibrationSwitcherChange(_ sender: UISwitch)
-    func soundEffectsSwitcherChange(_ sender: UISwitch)
-    func musicSwitcherChange(_ sender: UISwitch)
+    func vibrationSwitcherChange(value: Bool)
+    func soundEffectsSwitcherChange(value: Bool)
+    func musicSwitcherChange(value: Bool)
     func quitSettingsButtonPressed()
 }
 
@@ -52,16 +52,16 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             musicValue: musicSwitcherValue
         )
     }
-    func vibrationSwitcherChange(_ sender: UISwitch) {
-        defaultsStorage.saveObject(sender.isOn, for: .isVibrationOn)
+    func vibrationSwitcherChange(value: Bool) {
+        defaultsStorage.saveObject(value, for: .isVibrationOn)
     }
 
-    func soundEffectsSwitcherChange(_ sender: UISwitch) {
-        defaultsStorage.saveObject(sender.isOn, for: .isSoundOn)
+    func soundEffectsSwitcherChange(value: Bool) {
+        defaultsStorage.saveObject(value, for: .isSoundOn)
     }
     
-    func musicSwitcherChange(_ sender: UISwitch) {
-        defaultsStorage.saveObject(sender.isOn, for: .isMusicOn)
+    func musicSwitcherChange(value: Bool) {
+        defaultsStorage.saveObject(value, for: .isMusicOn)
     }
     
     func quitSettingsButtonPressed() {

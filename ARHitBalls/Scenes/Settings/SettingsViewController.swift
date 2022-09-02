@@ -168,18 +168,18 @@ final class SettingsViewController: UIViewController {
     //MARK: - Actions
     
     @objc
-    private func vibrationSwitcherChange(_ sender: UISwitch) {
-        presenter?.vibrationSwitcherChange(sender)
+    private func vibrationSwitcherChange() {
+        presenter?.vibrationSwitcherChange(value: vibrationSwitcher.isOn)
     }
     
     @objc
-    private func soundEffectsSwitcherChange(_ sender: UISwitch) {
-        presenter?.soundEffectsSwitcherChange(sender)
+    private func soundEffectsSwitcherChange() {
+        presenter?.soundEffectsSwitcherChange(value: soundEffectsSwitcher.isOn)
     }
     
     @objc
-    private func musicSwitcherChange(_ sender: UISwitch) {
-        presenter?.musicSwitcherChange(sender)
+    private func musicSwitcherChange() {
+        presenter?.musicSwitcherChange(value: musicSwitcher.isOn)
     }
     
     @objc
