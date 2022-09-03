@@ -31,6 +31,7 @@
 		229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				22E5941E28C37DC70063586D /* Entities */,
 				229BC19528ABC468008D07A0 /* Extension */,
 				229BC17528AA7DF9008D07A0 /* Managers */,
 				229BC17028AA7DB6008D07A0 /* Services */,
@@ -231,6 +234,14 @@
 				229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		22E5941E28C37DC70063586D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				22E5941F28C37E110063586D /* SettingType.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +335,7 @@
 				229BC17D28AA80F2008D07A0 /* AuthViewController.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
+				22E5942028C37E110063586D /* SettingType.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

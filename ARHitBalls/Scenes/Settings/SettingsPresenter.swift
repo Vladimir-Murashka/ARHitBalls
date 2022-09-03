@@ -15,6 +15,9 @@ protocol SettingsPresenterProtocol: AnyObject {
     func soundEffectsSwitcherChange(value: Bool)
     func musicSwitcherChange(value: Bool)
     func quitSettingsButtonPressed()
+    func timeStepperPressed()
+    func levelStepperPressed()
+    func startQuickGameButtonPressed()
 }
 
 // MARK: - SettingsPresenter
@@ -26,15 +29,18 @@ final class SettingsPresenter {
     
     private let sceneBuildManager: Buildable
     private let defaultsStorage: DefaultsManagerable
+    private let settingType: SettingType
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
-        defaultsStorage: DefaultsManagerable
+        defaultsStorage: DefaultsManagerable,
+        settingType: SettingType
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.defaultsStorage = defaultsStorage
+        self.settingType = settingType
     }
 }
 
@@ -51,7 +57,12 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             soundValue: soundEffectsSwitcherValue,
             musicValue: musicSwitcherValue
         )
+        
+        settingType == .mainSetting
+        ? viewController?.setupMainSetting()
+        : viewController?.setupQuickGameSetting()
     }
+    
     func vibrationSwitcherChange(value: Bool) {
         defaultsStorage.saveObject(value, for: .isVibrationOn)
     }
@@ -66,5 +77,14 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     
     func quitSettingsButtonPressed() {
         viewController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func timeStepperPressed() {}
+    
+    func levelStepperPressed() {}
+    
+    func startQuickGameButtonPressed() {
+        let gameViewController = sceneBuildManager.buildGameScreen()
+        viewController?.navigationController?.pushViewController(gameViewController, animated: true)
     }
 }
