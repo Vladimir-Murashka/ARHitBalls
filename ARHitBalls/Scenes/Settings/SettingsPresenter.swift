@@ -15,7 +15,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func soundEffectsSwitcherChange(value: Bool)
     func musicSwitcherChange(value: Bool)
     func quitSettingsButtonPressed()
-    func timeStepperPressed()
+    func timeStepperPressed(timeValue: Double)
     func levelStepperPressed(levelValue: Double)
     func startQuickGameButtonPressed()
 }
@@ -51,7 +51,8 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         let vibrationSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
         let soundEffectsSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundOn) ?? true
         let musicSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
-        let levelValue = defaultsStorage.fetchObject(type: Double.self, for: .levelValue) ?? 0
+        let levelValue = defaultsStorage.fetchObject(type: Double.self, for: .levelValue) ?? 1
+        let timeValue = defaultsStorage.fetchObject(type: Double.self, for: .timeValue) ?? 10
         
         viewController?.updateSwitchersValues(
             vibrationValue: vibrationSwitcherValue,
@@ -60,6 +61,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         )
         
         viewController?.updateLevelValueLabel(levelValue: levelValue)
+        viewController?.updateTimeValueLabel(timeValue: timeValue)
         
         settingType == .mainSetting
         ? viewController?.setupMainSetting()
@@ -82,7 +84,10 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         viewController?.navigationController?.popViewController(animated: true)
     }
     
-    func timeStepperPressed() {}
+    func timeStepperPressed(timeValue: Double) {
+        defaultsStorage.saveObject(timeValue, for: .timeValue)
+        viewController?.updateTimeValueLabel(timeValue: timeValue)
+    }
     
     func levelStepperPressed(levelValue: Double) {
         defaultsStorage.saveObject(levelValue, for: .levelValue)

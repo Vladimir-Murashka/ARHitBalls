@@ -16,6 +16,7 @@ protocol SettingsViewProtocol: UIViewController {
         musicValue: Bool
     )
     func updateLevelValueLabel(levelValue: Double)
+    func updateTimeValueLabel(timeValue: Double)
     func setupMainSetting()
     func setupQuickGameSetting()
 }
@@ -168,16 +169,15 @@ final class SettingsViewController: UIViewController {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = "00 : 00"
+        label.text = "00 : 10"
         label.backgroundColor = .black
         return label
     }()
     
     private lazy var timeStepper: UIStepper = {
         let stepper = UIStepper()
-        stepper.maximumValue = 190
+        stepper.maximumValue = 180
         stepper.minimumValue = 10
-        stepper.value = 0
         stepper.stepValue = 10
         stepper.backgroundColor = .black
         stepper.layer.cornerRadius = 8
@@ -305,8 +305,8 @@ final class SettingsViewController: UIViewController {
     }
     
     @objc
-    private func timeStepperPressed() {
-        presenter?.timeStepperPressed()
+    private func timeStepperPressed(timeValue: Double) {
+        presenter?.timeStepperPressed(timeValue: timeStepper.value)
     }
     
     @objc
@@ -336,6 +336,15 @@ extension SettingsViewController: SettingsViewProtocol {
     func updateLevelValueLabel(levelValue: Double) {
         levelStepper.value = levelValue
         levelValueLabel.text = "\(Int(levelValue))"         //View умная?
+    }
+    
+    func updateTimeValueLabel(timeValue: Double) {
+        timeStepper.value = timeValue
+        let timeStepperValue = Int(timeValue)               //View умная?
+        let seconds = timeStepperValue % 60
+        let minutes = (timeStepperValue / 60) % 60
+        let result = String(format: "%02d:%02d", minutes, seconds)
+        timeValueLabel.text = result
     }
     
     func setupMainSetting() {
