@@ -15,6 +15,7 @@ protocol SettingsViewProtocol: UIViewController {
         soundValue: Bool,
         musicValue: Bool
     )
+    func updateLevelValueLabel(levelValue: Double)
     func setupMainSetting()
     func setupQuickGameSetting()
 }
@@ -310,7 +311,7 @@ final class SettingsViewController: UIViewController {
     
     @objc
     private func levelStepperPressed() {
-        presenter?.levelStepperPressed()
+        presenter?.levelStepperPressed(levelValue: levelStepper.value)
     }
     
     @objc
@@ -330,6 +331,11 @@ extension SettingsViewController: SettingsViewProtocol {
         vibrationSwitcher.isOn = vibrationValue
         soundEffectsSwitcher.isOn = soundValue
         musicSwitcher.isOn = musicValue
+    }
+    
+    func updateLevelValueLabel(levelValue: Double) {
+        levelStepper.value = levelValue
+        levelValueLabel.text = "\(Int(levelValue))"         //View умная?
     }
     
     func setupMainSetting() {

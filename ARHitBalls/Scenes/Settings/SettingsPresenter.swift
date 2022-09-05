@@ -16,7 +16,7 @@ protocol SettingsPresenterProtocol: AnyObject {
     func musicSwitcherChange(value: Bool)
     func quitSettingsButtonPressed()
     func timeStepperPressed()
-    func levelStepperPressed()
+    func levelStepperPressed(levelValue: Double)
     func startQuickGameButtonPressed()
 }
 
@@ -51,12 +51,15 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         let vibrationSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
         let soundEffectsSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundOn) ?? true
         let musicSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+        let levelValue = defaultsStorage.fetchObject(type: Double.self, for: .levelValue) ?? 0
         
         viewController?.updateSwitchersValues(
             vibrationValue: vibrationSwitcherValue,
             soundValue: soundEffectsSwitcherValue,
             musicValue: musicSwitcherValue
         )
+        
+        viewController?.updateLevelValueLabel(levelValue: levelValue)
         
         settingType == .mainSetting
         ? viewController?.setupMainSetting()
@@ -81,7 +84,10 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     
     func timeStepperPressed() {}
     
-    func levelStepperPressed() {}
+    func levelStepperPressed(levelValue: Double) {
+        defaultsStorage.saveObject(levelValue, for: .levelValue)
+        viewController?.updateLevelValueLabel(levelValue: levelValue)
+    }
     
     func startQuickGameButtonPressed() {
         let gameViewController = sceneBuildManager.buildGameScreen()
