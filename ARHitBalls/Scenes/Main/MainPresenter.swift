@@ -41,12 +41,13 @@ final class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func settingsButtonPressed() {
-        let rootViewController = sceneBuildManager.buildSettingsScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let settingsViewController = sceneBuildManager.buildSettingsScreen(settingType: .mainSetting)
+        viewController?.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
     func startQuickGameButtonPressed() {
-        print(#function)
+        let settingViewController = sceneBuildManager.buildSettingsScreen(settingType: .quickGameSetting)
+        viewController?.navigationController?.pushViewController(settingViewController, animated: true)
     }
     
     func logoutButtonPressed() {

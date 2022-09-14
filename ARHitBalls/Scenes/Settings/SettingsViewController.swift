@@ -15,6 +15,10 @@ protocol SettingsViewProtocol: UIViewController {
         soundValue: Bool,
         musicValue: Bool
     )
+    func updateLevelValueLabel(levelValue: Double)
+    func updateTimeValueLabel(timeValue: Double)
+    func setupMainSetting()
+    func setupQuickGameSetting()
 }
 
 // MARK: - SettingsViewController
@@ -22,7 +26,7 @@ protocol SettingsViewProtocol: UIViewController {
 final class SettingsViewController: UIViewController {
     var presenter: SettingsPresenterProtocol?
     
-    //MARK: - PrivateProperties
+    // MARK: - PrivateProperties
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
@@ -148,6 +152,119 @@ final class SettingsViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var timeTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Время раунда"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var timeValueLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "00 : 10"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var timeStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.maximumValue = 180
+        stepper.minimumValue = 10
+        stepper.stepValue = 10
+        stepper.backgroundColor = .black
+        stepper.layer.cornerRadius = 8
+        stepper.addTarget(
+            self,
+            action: #selector(timeStepperPressed),
+            for: .valueChanged
+        )
+        return stepper
+    }()
+    
+    private let timeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private let levelTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Уровень сложности"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private let levelValueLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "00"
+        label.backgroundColor = .black
+        return label
+    }()
+
+    private lazy var levelStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.maximumValue = 20
+        stepper.minimumValue = 1
+        stepper.value = 0
+        stepper.stepValue = 1
+        stepper.backgroundColor = .black
+        stepper.layer.cornerRadius = 8
+        stepper.addTarget(
+            self,
+            action: #selector(levelStepperPressed),
+            for: .valueChanged
+        )
+        return stepper
+    }()
+    
+    private let levelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private lazy var startQuickGameButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(
+            "Начать",
+            for: .normal
+        )
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.addTarget(
+            self,
+            action: #selector(startQuickGameButtonPressed),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
     private let verticalSettigStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -168,23 +285,38 @@ final class SettingsViewController: UIViewController {
     //MARK: - Actions
     
     @objc
-    private func vibrationSwitcherChange(_ sender: UISwitch) {
-        presenter?.vibrationSwitcherChange(sender)
+    private func vibrationSwitcherChange() {
+        presenter?.vibrationSwitcherChange(value: vibrationSwitcher.isOn)
     }
     
     @objc
-    private func soundEffectsSwitcherChange(_ sender: UISwitch) {
-        presenter?.soundEffectsSwitcherChange(sender)
+    private func soundEffectsSwitcherChange() {
+        presenter?.soundEffectsSwitcherChange(value: soundEffectsSwitcher.isOn)
     }
     
     @objc
-    private func musicSwitcherChange(_ sender: UISwitch) {
-        presenter?.musicSwitcherChange(sender)
+    private func musicSwitcherChange() {
+        presenter?.musicSwitcherChange(value: musicSwitcher.isOn)
     }
     
     @objc
     private func quitSettingsButtonPressed() {
         presenter?.quitSettingsButtonPressed()
+    }
+    
+    @objc
+    private func timeStepperPressed(timeValue: Double) {
+        presenter?.timeStepperPressed(timeValue: timeStepper.value)
+    }
+    
+    @objc
+    private func levelStepperPressed() {
+        presenter?.levelStepperPressed(levelValue: levelStepper.value)
+    }
+    
+    @objc
+    private func startQuickGameButtonPressed() {
+        presenter?.startQuickGameButtonPressed()
     }
 }
 
@@ -199,6 +331,32 @@ extension SettingsViewController: SettingsViewProtocol {
         vibrationSwitcher.isOn = vibrationValue
         soundEffectsSwitcher.isOn = soundValue
         musicSwitcher.isOn = musicValue
+    }
+    
+    func updateLevelValueLabel(levelValue: Double) {
+        levelStepper.value = levelValue
+        levelValueLabel.text = "\(Int(levelValue))"         //View умная?
+    }
+    
+    func updateTimeValueLabel(timeValue: Double) {
+        timeStepper.value = timeValue
+        let timeStepperValue = Int(timeValue)               //View умная?
+        let seconds = timeStepperValue % 60
+        let minutes = (timeStepperValue / 60) % 60
+        let result = String(format: "%02d:%02d", minutes, seconds)
+        timeValueLabel.text = result
+    }
+    
+    func setupMainSetting() {
+        startQuickGameButton.isHidden = true
+        timeStackView.isHidden = true
+        levelStackView.isHidden = true
+    }
+    
+    func setupQuickGameSetting() {
+        vibrationStackView.isHidden = true
+        soundEffectsStackView.isHidden = true
+        musicStackView.isHidden = true
     }
 }
 
@@ -217,7 +375,10 @@ private extension SettingsViewController {
             vibrationStackView,
             soundEffectsStackView,
             musicStackView,
-            verticalSettigStackView
+            timeStackView,
+            levelStackView,
+            verticalSettigStackView,
+            startQuickGameButton
         )
         
         vibrationStackView.addArrangedSubviews(
@@ -234,11 +395,25 @@ private extension SettingsViewController {
             titleMusicLabel,
             musicSwitcher
         )
+        
+        timeStackView.addArrangedSubviews(
+            timeTitleLabel,
+            timeValueLabel,
+            timeStepper
+        )
+        
+        levelStackView.addArrangedSubviews(
+            levelTitleLabel,
+            levelValueLabel,
+            levelStepper
+        )
 
         verticalSettigStackView.addArrangedSubviews(
             vibrationStackView,
             soundEffectsStackView,
-            musicStackView
+            musicStackView,
+            levelStackView,
+            timeStackView
         )
     }
     
@@ -249,11 +424,20 @@ private extension SettingsViewController {
         let quitButtonLeadingOffset: CGFloat = 16
         let quitButtonTopOffset: CGFloat = 0
         let quitButtonSize: CGFloat = 30
+        let levelValueLabelWidth: CGFloat = 30
+        let timeValueLabelWidth: CGFloat = 70
+        let startQuickGameButtonOffset: CGFloat = 16
         
         NSLayoutConstraint.activate([
             titleVibrationLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
             titleSoundEffectsLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
             titleMusicLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            
+            levelTitleLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            levelValueLabel.widthAnchor.constraint(equalToConstant: levelValueLabelWidth),
+            
+            timeTitleLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            timeValueLabel.widthAnchor.constraint(equalToConstant: timeValueLabelWidth),
             
             verticalSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopOffset),
             verticalSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: stackViewSideOffset),
@@ -262,7 +446,11 @@ private extension SettingsViewController {
             quitSettingButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingOffset),
             quitSettingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopOffset),
             quitSettingButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
-            quitSettingButton.widthAnchor.constraint(equalToConstant: quitButtonSize)
+            quitSettingButton.widthAnchor.constraint(equalToConstant: quitButtonSize),
+            
+            startQuickGameButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startQuickGameButtonOffset),
+            startQuickGameButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -startQuickGameButtonOffset),
+            startQuickGameButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -startQuickGameButtonOffset)
         ])
     }
 }

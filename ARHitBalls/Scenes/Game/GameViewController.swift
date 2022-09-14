@@ -33,6 +33,7 @@ private extension GameViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
+        view.backgroundColor = .systemGray
     }
     
     func addSubViews() {}
