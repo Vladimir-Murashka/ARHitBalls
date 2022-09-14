@@ -19,10 +19,12 @@ final class SceneBuildManager {
     
     private let userService: UserServiceable
     private let defaultsManager: DefaultsManagerable
+    private let alertManager: AlertManagerable
     
     init() {
         defaultsManager = DefaultsManager()
         userService = UserService(defaultsManager: defaultsManager)
+        alertManager = AlertManager()
     }
 }
 
@@ -62,7 +64,7 @@ extension SceneBuildManager: Buildable {
     
     func buildMainScreen() -> MainViewController {
         let viewController = MainViewController()
-        let presenter = MainPresenter(sceneBuildManager: self)
+        let presenter = MainPresenter(sceneBuildManager: self, alertManager: alertManager)
         
         viewController.presenter = presenter
         presenter.viewController = viewController

@@ -31,6 +31,8 @@
 		229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
+		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
 		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
 		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,6 +188,7 @@
 		229BC17528AA7DF9008D07A0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				22FDAFC028B8F38A002146B6 /* AlertManager.swift */,
 				229BC17628AA7E24008D07A0 /* UserDefaultManager.swift */,
 				229BC17828AA7FB7008D07A0 /* SceneBuildManager.swift */,
 			);
@@ -236,9 +241,10 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		22E5941E28C37DC70063586D /* Entities */ = {
+        22E5941E28C37DC70063586D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+                22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
 				22E5941F28C37E110063586D /* SettingType.swift */,
 			);
 			path = Entities;
@@ -320,6 +326,7 @@
 				229BC17728AA7E24008D07A0 /* UserDefaultManager.swift in Sources */,
 				229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */,
 				229BC19028AA86AA008D07A0 /* SettingsPresenter.swift in Sources */,
+				22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */,
 				229BC17228AA7DD8008D07A0 /* UserServise.swift in Sources */,
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
@@ -329,6 +336,7 @@
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
+				22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
 				229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
