@@ -9,7 +9,10 @@ import UIKit
 
 // MARK: - GamePresenterProtocol
 
-protocol GamePresenterProtocol: AnyObject {}
+protocol GamePresenterProtocol: AnyObject {
+    func quitGameButtonPressed()
+    func shotButtonPressed(tag: Int)
+}
 
 // MARK: - GamePresenter
 
@@ -29,4 +32,27 @@ final class GamePresenter {
 
 //MARK: - GamePresenterExtension
 
-extension GamePresenter: GamePresenterProtocol {}
+extension GamePresenter: GamePresenterProtocol {
+    func quitGameButtonPressed() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func shotButtonPressed(tag: Int) {
+        switch tag {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            break
+        case 5:
+            break
+        default:
+            break
+        }
+    }
+}
