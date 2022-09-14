@@ -31,6 +31,7 @@
 		229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +190,7 @@
 			children = (
 				229BC17628AA7E24008D07A0 /* UserDefaultManager.swift */,
 				229BC17828AA7FB7008D07A0 /* SceneBuildManager.swift */,
+				22D801D728BE531600263002 /* AudioManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				229BC17928AA7FB7008D07A0 /* SceneBuildManager.swift in Sources */,
 				229BC18828AA8655008D07A0 /* SplashPresenter.swift in Sources */,
 				229BC18E28AA8699008D07A0 /* MainPresenter.swift in Sources */,
+				22D801D828BE531600263002 /* AudioManager.swift in Sources */,
 				229BC17728AA7E24008D07A0 /* UserDefaultManager.swift in Sources */,
 				229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */,
 				22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */,
