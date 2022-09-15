@@ -16,23 +16,22 @@
 		229BC17728AA7E24008D07A0 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC17628AA7E24008D07A0 /* UserDefaultManager.swift */; };
 		229BC17928AA7FB7008D07A0 /* SceneBuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC17828AA7FB7008D07A0 /* SceneBuildManager.swift */; };
 		229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC17A28AA80D6008D07A0 /* SplashViewController.swift */; };
-		229BC17D28AA80F2008D07A0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC17C28AA80F2008D07A0 /* AuthViewController.swift */; };
 		229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC17E28AA8100008D07A0 /* MainViewController.swift */; };
 		229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18028AA8112008D07A0 /* SettingsViewController.swift */; };
 		229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18228AA8126008D07A0 /* GameViewController.swift */; };
 		229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18528AA82BB008D07A0 /* MenuViewController.swift */; };
 		229BC18828AA8655008D07A0 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18728AA8655008D07A0 /* SplashPresenter.swift */; };
 		229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18928AA8666008D07A0 /* MenuPresenter.swift */; };
-		229BC18C28AA8680008D07A0 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18B28AA8680008D07A0 /* AuthPresenter.swift */; };
 		229BC18E28AA8699008D07A0 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18D28AA8699008D07A0 /* MainPresenter.swift */; };
 		229BC19028AA86AA008D07A0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC18F28AA86AA008D07A0 /* SettingsPresenter.swift */; };
 		229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19128AA86B7008D07A0 /* GamePresenter.swift */; };
 		229BC19728ABC484008D07A0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19628ABC484008D07A0 /* UIView.swift */; };
-		229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */; };
-		229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */; };
+		229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */; };
+		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
+		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
 		22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,23 +47,22 @@
 		229BC17628AA7E24008D07A0 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		229BC17828AA7FB7008D07A0 /* SceneBuildManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuildManager.swift; sourceTree = "<group>"; };
 		229BC17A28AA80D6008D07A0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		229BC17C28AA80F2008D07A0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		229BC17E28AA8100008D07A0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		229BC18028AA8112008D07A0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		229BC18228AA8126008D07A0 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		229BC18528AA82BB008D07A0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		229BC18728AA8655008D07A0 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		229BC18928AA8666008D07A0 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
-		229BC18B28AA8680008D07A0 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
 		229BC18D28AA8699008D07A0 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		229BC18F28AA86AA008D07A0 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		229BC19128AA86B7008D07A0 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		229BC19628ABC484008D07A0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireViewController.swift; sourceTree = "<group>"; };
+		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
+		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +109,6 @@
 			children = (
 				229BC16B28AA7A34008D07A0 /* Splash */,
 				229BC18428AA82A0008D07A0 /* Menu */,
-				229BC16D28AA7A4B008D07A0 /* Auth */,
 				229BC19828ABF5DE008D07A0 /* Register */,
 				229BC16C28AA7A45008D07A0 /* Main */,
 				229BC16A28AA7A2A008D07A0 /* Settings */,
@@ -147,15 +144,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		229BC16D28AA7A4B008D07A0 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				229BC17C28AA80F2008D07A0 /* AuthViewController.swift */,
-				229BC18B28AA8680008D07A0 /* AuthPresenter.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 		229BC16E28AA7C6D008D07A0 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +156,7 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				22FDAFC728BCFA05002146B6 /* Entities */,
 				22E1743C28C1211F00F20AE9 /* Classes */,
 				229BC19528ABC468008D07A0 /* Extension */,
 				229BC17528AA7DF9008D07A0 /* Managers */,
@@ -217,7 +206,6 @@
 		229BC19428AADF9A008D07A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				22FDAFC728BCFA05002146B6 /* Entities */,
 				229BC15E28AA7091008D07A0 /* Assets.xcassets */,
 				229BC16028AA7091008D07A0 /* LaunchScreen.storyboard */,
 			);
@@ -236,8 +224,8 @@
 		229BC19828ABF5DE008D07A0 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				229BC19928ABF60B008D07A0 /* RegistrationViewController.swift */,
-				229BC19B28ABF622008D07A0 /* RegistrationPresenter.swift */,
+				229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */,
+				229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -254,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */,
+				22E5941C28C2786A0063586D /* AuthType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -340,16 +329,15 @@
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
-				229BC18C28AA8680008D07A0 /* AuthPresenter.swift in Sources */,
-				229BC19A28ABF60B008D07A0 /* RegistrationViewController.swift in Sources */,
+				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
-				229BC19C28ABF622008D07A0 /* RegistrationPresenter.swift in Sources */,
+				22E5941D28C2786A0063586D /* AuthType.swift in Sources */,
+				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
-				229BC17D28AA80F2008D07A0 /* AuthViewController.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
