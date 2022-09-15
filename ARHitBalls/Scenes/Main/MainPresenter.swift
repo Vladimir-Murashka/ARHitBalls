@@ -41,7 +41,8 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func startQuickGameButtonPressed() {
-        print(#function)
+        let gameViewController = sceneBuildManager.buildGameScreen()
+        viewController?.navigationController?.pushViewController(gameViewController, animated: true)
     }
     
     func logoutButtonPressed() {

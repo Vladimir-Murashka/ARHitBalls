@@ -29,7 +29,10 @@
 		229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
+		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
+		22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +60,10 @@
 		229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
+		22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +156,8 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				22E5941B28C2784E0063586D /* Entities */,
+				22FDAFC728BCFA05002146B6 /* Entities */,
+				22E1743C28C1211F00F20AE9 /* Classes */,
 				229BC19528ABC468008D07A0 /* Extension */,
 				229BC17528AA7DF9008D07A0 /* Managers */,
 				229BC17028AA7DB6008D07A0 /* Services */,
@@ -172,6 +179,7 @@
 			children = (
 				229BC17628AA7E24008D07A0 /* UserDefaultManager.swift */,
 				229BC17828AA7FB7008D07A0 /* SceneBuildManager.swift */,
+				22D801D728BE531600263002 /* AudioManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -222,9 +230,18 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		22E5941B28C2784E0063586D /* Entities */ = {
+		22E1743C28C1211F00F20AE9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22E1743D28C1214B00F20AE9 /* ShotButton.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		22FDAFC728BCFA05002146B6 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
 			);
 			path = Entities;
@@ -303,8 +320,10 @@
 				229BC17928AA7FB7008D07A0 /* SceneBuildManager.swift in Sources */,
 				229BC18828AA8655008D07A0 /* SplashPresenter.swift in Sources */,
 				229BC18E28AA8699008D07A0 /* MainPresenter.swift in Sources */,
+				22D801D828BE531600263002 /* AudioManager.swift in Sources */,
 				229BC17728AA7E24008D07A0 /* UserDefaultManager.swift in Sources */,
 				229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */,
+				22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */,
 				229BC19028AA86AA008D07A0 /* SettingsPresenter.swift in Sources */,
 				229BC17228AA7DD8008D07A0 /* UserServise.swift in Sources */,
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
@@ -312,6 +331,7 @@
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
+				22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
