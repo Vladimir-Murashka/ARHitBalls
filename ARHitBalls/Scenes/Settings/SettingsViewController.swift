@@ -447,18 +447,42 @@ private extension SettingsViewController {
             timeTitleLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
             timeValueLabel.widthAnchor.constraint(equalToConstant: timeValueLabelWidth),
             
-            verticalSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopOffset),
-            verticalSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: stackViewSideOffset),
-            verticalSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -stackViewSideOffset),
+            verticalSettigStackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: stackViewTopOffset
+            ),
+            verticalSettigStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: stackViewSideOffset
+            ),
+            verticalSettigStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -stackViewSideOffset
+            ),
             
-            quitSettingButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingOffset),
-            quitSettingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopOffset),
+            quitSettingButton.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: quitButtonLeadingOffset
+            ),
+            quitSettingButton.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: quitButtonTopOffset
+            ),
             quitSettingButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
             quitSettingButton.widthAnchor.constraint(equalToConstant: quitButtonSize),
             
-            startQuickGameButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startQuickGameButtonOffset),
-            startQuickGameButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -startQuickGameButtonOffset),
-            startQuickGameButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -startQuickGameButtonOffset)
+            startQuickGameButton.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: startQuickGameButtonOffset
+            ),
+            startQuickGameButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -startQuickGameButtonOffset
+            ),
+            startQuickGameButton.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -startQuickGameButtonOffset
+            )
         ])
     }
 }

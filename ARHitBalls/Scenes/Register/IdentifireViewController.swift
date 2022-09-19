@@ -175,13 +175,15 @@ final class IdentifireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        
         presenter?.viewDidLoad()
     }
     
     //MARK: - OverrideMethods
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
         self.view.endEditing(true)
     }
     
@@ -270,10 +272,22 @@ private extension IdentifireViewController {
         let quitButtonSize: CGFloat = 30
         
         NSLayoutConstraint.activate([
-            imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: imageViewBackgroundScreenOffset),
-            imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: imageViewBackgroundScreenOffset),
-            imageViewBackgroundScreen.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: imageViewBackgroundScreenOffset),
-            imageViewBackgroundScreen.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: imageViewBackgroundScreenOffset),
+            imageViewBackgroundScreen.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
+            imageViewBackgroundScreen.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
+            imageViewBackgroundScreen.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
+            imageViewBackgroundScreen.bottomAnchor.constraint(
+                equalTo: view.bottomAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
             
             emailTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             passwordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
@@ -281,14 +295,29 @@ private extension IdentifireViewController {
             
             continueButton.widthAnchor.constraint(equalToConstant: registrationButtonWidth),
             continueButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -registrationButtonBottomOffset),
+            continueButton.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -registrationButtonBottomOffset
+            ),
             
             commonSingUpStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            commonSingUpStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonSingUpStackViewOffset),
-            commonSingUpStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -commonSingUpStackViewOffset),
+            commonSingUpStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: commonSingUpStackViewOffset
+            ),
+            commonSingUpStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -commonSingUpStackViewOffset
+            ),
             
-            quitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: quitButtonLeadingOffset),
-            quitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: quitButtonTopOffset),
+            quitButton.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: quitButtonLeadingOffset
+            ),
+            quitButton.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: quitButtonTopOffset
+            ),
             quitButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
             quitButton.widthAnchor.constraint(equalToConstant: quitButtonSize)
         ])

@@ -53,7 +53,10 @@ extension SceneBuildManager: Buildable {
     
     func buildMainScreen() -> MainViewController {
         let viewController = MainViewController()
-        let presenter = MainPresenter(sceneBuildManager: self, alertManager: alertManager)
+        let presenter = MainPresenter(
+            sceneBuildManager: self,
+            alertManager: alertManager
+        )
         
         viewController.presenter = presenter
         presenter.viewController = viewController

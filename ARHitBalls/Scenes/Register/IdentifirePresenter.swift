@@ -44,9 +44,13 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
         ? viewController?.setupAuth()
         : viewController?.setupRegister()
     }
+    
     func continueButtonPressed() {
-        let rootViewController = sceneBuildManager.buildMainScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let mainViewController = sceneBuildManager.buildMainScreen()
+        viewController?.navigationController?.pushViewController(
+            mainViewController,
+            animated: true
+        )
     }
     
     func quitButtonPressed() {

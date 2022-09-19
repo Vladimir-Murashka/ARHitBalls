@@ -61,7 +61,10 @@ extension AlertManager: AlertManagerable {
         viewController.present(alertController, animated: true)
     }
     
-    func showAlert(from viewController: UIViewController, alertModel: AlertModel) {
+    func showAlert(
+        from viewController: UIViewController,
+        alertModel: AlertModel
+    ) {
         let alertController = UIAlertController(
             title: alertModel.title,
             message: alertModel.message,
@@ -77,6 +80,9 @@ extension AlertManager: AlertManagerable {
             })
             alertController.addAction(action)
         }
-        viewController.present(alertController, animated: true)
+        viewController.present(
+            alertController,
+            animated: true
+        )
     }
 }

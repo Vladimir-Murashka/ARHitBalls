@@ -28,7 +28,6 @@ final class MainViewController: UIViewController {
         button.tintColor = .black
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(
             self,
             action: #selector(logoutButtonPressed),
@@ -48,7 +47,6 @@ final class MainViewController: UIViewController {
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(
             self,
             action: #selector(settingsButtonPressed),
@@ -61,7 +59,6 @@ final class MainViewController: UIViewController {
         let stackView = UIStackView()
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -263,9 +260,18 @@ private extension MainViewController {
         let buttonHeight: CGFloat = 48
         
         NSLayoutConstraint.activate([
-            topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewOffset),
-            topStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewOffset),
-            topStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -stackViewOffset),
+            topStackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: stackViewOffset
+            ),
+            topStackView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: stackViewOffset
+            ),
+            topStackView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -stackViewOffset
+            ),
             
             logoutButton.heightAnchor.constraint(equalToConstant: logoutButtonSize),
             logoutButton.widthAnchor.constraint(equalToConstant: logoutButtonSize),
@@ -273,9 +279,18 @@ private extension MainViewController {
             settingsButton.heightAnchor.constraint(equalToConstant: settingButtonHeight),
             settingsButton.widthAnchor.constraint(equalToConstant: settingButtonWidth),
             
-            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -stackViewOffset),
-            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewOffset),
-            verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -stackViewOffset),
+            verticalStackView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -stackViewOffset
+            ),
+            verticalStackView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: stackViewOffset
+            ),
+            verticalStackView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -stackViewOffset
+            ),
             
             titleTimeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: titleWidth),
             titleLevelLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: titleWidth),

@@ -36,17 +36,26 @@ final class MenuPresenter {
 extension MenuPresenter: MenuPresenterProtocol {
     func startButtonWithoutRegisterPressed() {
         let mainViewController = sceneBuildManager.buildMainScreen()
-        viewController?.navigationController?.pushViewController(mainViewController, animated: true)
+        viewController?.navigationController?.pushViewController(
+            mainViewController,
+            animated: true
+        )
     }
     
     func authButtonPressed() {
-        let rootViewController = sceneBuildManager.buildIdentifireScreen(type: .auth)
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let IdentifireViewController = sceneBuildManager.buildIdentifireScreen(type: .auth)
+        viewController?.navigationController?.pushViewController(
+            IdentifireViewController,
+            animated: false
+        )
     }
     
     func registerButtonPressed() {
-        let rootViewController = sceneBuildManager.buildIdentifireScreen(type: .register)
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let IdentifireViewController = sceneBuildManager.buildIdentifireScreen(type: .register)
+        viewController?.navigationController?.pushViewController(
+            IdentifireViewController,
+            animated: false
+        )
     }
 }
 

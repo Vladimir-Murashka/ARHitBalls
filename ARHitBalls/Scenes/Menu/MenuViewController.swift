@@ -31,7 +31,10 @@ final class MenuViewController: UIViewController {
             "Играть без регистрации",
             for: .normal
         )
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(
+            .white,
+            for: .normal
+        )
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
@@ -152,14 +155,35 @@ private extension MenuViewController {
         let commonStackViewIndent: CGFloat = 16
         
         NSLayoutConstraint.activate([
-            imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: imageViewBackgroundScreenIndent),
-            imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: imageViewBackgroundScreenIndent),
-            imageViewBackgroundScreen.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: imageViewBackgroundScreenIndent),
-            imageViewBackgroundScreen.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: imageViewBackgroundScreenIndent),
+            imageViewBackgroundScreen.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: imageViewBackgroundScreenIndent
+            ),
+            imageViewBackgroundScreen.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: imageViewBackgroundScreenIndent
+            ),
+            imageViewBackgroundScreen.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: imageViewBackgroundScreenIndent
+            ),
+            imageViewBackgroundScreen.bottomAnchor.constraint(
+                equalTo: view.bottomAnchor,
+                constant: imageViewBackgroundScreenIndent
+            ),
             
-            commonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: commonStackViewIndent),
-            commonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:-commonStackViewIndent),
-            commonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -commonStackViewIndent)
+            commonStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: commonStackViewIndent
+            ),
+            commonStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant:-commonStackViewIndent
+            ),
+            commonStackView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -commonStackViewIndent
+            )
         ])
     }
 }

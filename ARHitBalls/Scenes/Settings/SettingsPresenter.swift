@@ -48,11 +48,26 @@ final class SettingsPresenter {
 
 extension SettingsPresenter: SettingsPresenterProtocol {
     func viewDidLoad() {
-        let vibrationSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
-        let soundEffectsSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundOn) ?? true
-        let musicSwitcherValue = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
-        let levelValue = defaultsStorage.fetchObject(type: Double.self, for: .levelValue) ?? 1
-        let timeValue = defaultsStorage.fetchObject(type: Double.self, for: .timeValue) ?? 10
+        let vibrationSwitcherValue = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isVibrationOn
+        ) ?? true
+        let soundEffectsSwitcherValue = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isSoundOn
+        ) ?? true
+        let musicSwitcherValue = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isMusicOn
+        ) ?? true
+        let levelValue = defaultsStorage.fetchObject(
+            type: Double.self,
+            for: .levelValue
+        ) ?? 1
+        let timeValue = defaultsStorage.fetchObject(
+            type: Double.self,
+            for: .timeValue
+        ) ?? 10
         let correctTimeLabelText = transformationTimeLabelText(timeValue: timeValue)
         
         viewController?.updateSwitchersValues(
@@ -61,8 +76,14 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             musicValue: musicSwitcherValue
         )
         
-        viewController?.updateLevelValueLabel(levelValue: levelValue, levelText: String(Int(levelValue)))
-        viewController?.updateTimeValueLabel(timeValue: timeValue, timeText: correctTimeLabelText)
+        viewController?.updateLevelValueLabel(
+            levelValue: levelValue,
+            levelText: String(Int(levelValue))
+        )
+        viewController?.updateTimeValueLabel(
+            timeValue: timeValue,
+            timeText: correctTimeLabelText
+        )
         
         settingType == .mainSetting
         ? viewController?.setupMainSetting()
@@ -70,15 +91,24 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func vibrationSwitcherChange(value: Bool) {
-        defaultsStorage.saveObject(value, for: .isVibrationOn)
+        defaultsStorage.saveObject(
+            value,
+            for: .isVibrationOn
+        )
     }
 
     func soundEffectsSwitcherChange(value: Bool) {
-        defaultsStorage.saveObject(value, for: .isSoundOn)
+        defaultsStorage.saveObject(
+            value,
+            for: .isSoundOn
+        )
     }
     
     func musicSwitcherChange(value: Bool) {
-        defaultsStorage.saveObject(value, for: .isMusicOn)
+        defaultsStorage.saveObject(
+            value,
+            for: .isMusicOn
+        )
     }
     
     func quitSettingsButtonPressed() {
@@ -87,25 +117,44 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     
     func timeStepperPressed(timeValue: Double) {
         let correctTimeLabelText = transformationTimeLabelText(timeValue: timeValue)
-        defaultsStorage.saveObject(timeValue, for: .timeValue)
-        viewController?.updateTimeValueLabel(timeValue: timeValue, timeText: correctTimeLabelText)
+        defaultsStorage.saveObject(
+            timeValue,
+            for: .timeValue
+        )
+        viewController?.updateTimeValueLabel(
+            timeValue: timeValue,
+            timeText: correctTimeLabelText
+        )
     }
     
     func levelStepperPressed(levelValue: Double) {
-        defaultsStorage.saveObject(levelValue, for: .levelValue)
-        viewController?.updateLevelValueLabel(levelValue: levelValue, levelText: String(Int(levelValue)))
+        defaultsStorage.saveObject(
+            levelValue,
+            for: .levelValue
+        )
+        viewController?.updateLevelValueLabel(
+            levelValue: levelValue,
+            levelText: String(Int(levelValue))
+        )
     }
     
     func startQuickGameButtonPressed() {
         let gameViewController = sceneBuildManager.buildGameScreen()
-        viewController?.navigationController?.pushViewController(gameViewController, animated: true)
+        viewController?.navigationController?.pushViewController(
+            gameViewController,
+            animated: true
+        )
     }
     
     func transformationTimeLabelText(timeValue: Double) -> String {
         let timeStepperValue = Int(timeValue)
         let seconds = timeStepperValue % 60
         let minutes = (timeStepperValue / 60) % 60
-        let result = String(format: "%02d:%02d", minutes, seconds)
+        let result = String(
+            format: "%02d:%02d",
+            minutes,
+            seconds
+        )
         return result
     }
 }

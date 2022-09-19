@@ -22,7 +22,10 @@ final class UserService {
 
 extension UserService: UserServiceable {
     func isUserAuth() -> Bool {
-        defaultsManager.fetchObject(type: Bool.self, for: .isUserAuth) ?? false
+        defaultsManager.fetchObject(
+            type: Bool.self,
+            for: .isUserAuth
+        ) ?? false
     }
     
     func registerUser() {
