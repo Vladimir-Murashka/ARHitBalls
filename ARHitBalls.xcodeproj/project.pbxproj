@@ -29,6 +29,9 @@
 		229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
+		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
+		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
@@ -60,6 +63,9 @@
 		229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
+		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 		229BC17528AA7DF9008D07A0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				22FDAFC028B8F38A002146B6 /* AlertManager.swift */,
 				229BC17628AA7E24008D07A0 /* UserDefaultManager.swift */,
 				229BC17828AA7FB7008D07A0 /* SceneBuildManager.swift */,
 				22D801D728BE531600263002 /* AudioManager.swift */,
@@ -243,6 +250,8 @@
 			children = (
 				22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
+                22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
+                22E5941F28C37E110063586D /* SettingType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -325,6 +334,7 @@
 				229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */,
 				22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */,
 				229BC19028AA86AA008D07A0 /* SettingsPresenter.swift in Sources */,
+				22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */,
 				229BC17228AA7DD8008D07A0 /* UserServise.swift in Sources */,
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
@@ -334,12 +344,14 @@
 				22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
+				22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
 				22E5941D28C2786A0063586D /* AuthType.swift in Sources */,
 				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
+				22E5942028C37E110063586D /* SettingType.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

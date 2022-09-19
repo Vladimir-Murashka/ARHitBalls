@@ -132,9 +132,9 @@ extension GameViewController: GameViewProtocol {}
 
 private extension GameViewController {
     func setupViewController() {
-        view.backgroundColor = .systemGray
         addSubViews()
         setupConstraints()
+        view.backgroundColor = .systemGray
         setupShotButtons()
     }
     

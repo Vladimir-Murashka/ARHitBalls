@@ -34,4 +34,9 @@ extension DefaultsManager: DefaultsManagerable {
 
 enum DefaultsKey: String {
     case isUserAuth
+    case isVibrationOn
+    case isSoundOn
+    case isMusicOn
+    case levelValue
+    case timeValue
 }

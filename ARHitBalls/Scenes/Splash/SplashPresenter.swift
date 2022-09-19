@@ -16,7 +16,7 @@ protocol SplashPresenterProtocol: AnyObject {
 // MARK: - SplashPresenter
 
 final class SplashPresenter {
-    weak var viewController: SplashViewController?
+    weak var viewController: SplashViewProtocol?
     
     // MARK: - PrivateProperties
     

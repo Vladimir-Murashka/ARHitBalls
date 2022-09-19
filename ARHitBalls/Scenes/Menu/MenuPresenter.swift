@@ -18,7 +18,7 @@ protocol MenuPresenterProtocol: AnyObject {
 // MARK: - MenuPresenter
 
 final class MenuPresenter {
-    weak var viewController: MenuViewController?
+    weak var viewController: MenuViewProtocol?
     
     // MARK: - PrivateProperties
     
@@ -35,8 +35,8 @@ final class MenuPresenter {
 
 extension MenuPresenter: MenuPresenterProtocol {
     func startButtonWithoutRegisterPressed() {
-        let rootViewController = sceneBuildManager.buildMainScreen()
-        viewController?.navigationController?.pushViewController(rootViewController, animated: true)
+        let mainViewController = sceneBuildManager.buildMainScreen()
+        viewController?.navigationController?.pushViewController(mainViewController, animated: true)
     }
     
     func authButtonPressed() {

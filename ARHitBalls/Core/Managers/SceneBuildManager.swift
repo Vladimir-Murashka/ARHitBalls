@@ -9,7 +9,7 @@ protocol Buildable {
     func buildSplashScreen() -> SplashViewController
     func buildMenuScreen() -> MenuViewController
     func buildMainScreen() -> MainViewController
-    func buildSettingsScreen() -> SettingsViewController
+    func buildSettingsScreen(settingType: SettingType) -> SettingsViewController
     func buildGameScreen() -> GameViewController
     func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
 }
@@ -18,17 +18,22 @@ final class SceneBuildManager {
     
     private let userService: UserServiceable
     private let defaultsManager: DefaultsManagerable
+    private let alertManager: AlertManagerable
     
     init() {
         defaultsManager = DefaultsManager()
         userService = UserService(defaultsManager: defaultsManager)
+        alertManager = AlertManager()
     }
 }
 
 extension SceneBuildManager: Buildable {
     func buildSplashScreen() -> SplashViewController {
         let viewController = SplashViewController()
-        let presenter = SplashPresenter(userService: userService, sceneBuildManager: self)
+        let presenter = SplashPresenter(
+            userService: userService,
+            sceneBuildManager: self
+        )
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -48,7 +53,7 @@ extension SceneBuildManager: Buildable {
     
     func buildMainScreen() -> MainViewController {
         let viewController = MainViewController()
-        let presenter = MainPresenter(sceneBuildManager: self)
+        let presenter = MainPresenter(sceneBuildManager: self, alertManager: alertManager)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -56,9 +61,13 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildSettingsScreen() -> SettingsViewController {
+    func buildSettingsScreen(settingType: SettingType) -> SettingsViewController {
         let viewController = SettingsViewController()
-        let presenter = SettingsPresenter(sceneBuildManager: self)
+        let presenter = SettingsPresenter(
+            sceneBuildManager: self,
+            defaultsStorage: defaultsManager,
+            settingType: settingType
+        )
         
         viewController.presenter = presenter
         presenter.viewController = viewController

@@ -19,16 +19,21 @@ protocol MainPresenterProtocol: AnyObject {
 // MARK: - MainPresenter
 
 final class MainPresenter {
-    weak var viewController: MainViewController?
+    weak var viewController: MainViewProtocol?
     
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    private let alertManager: AlertManagerable
     
     // MARK: - Initializer
     
-    init(sceneBuildManager: Buildable) {
+    init(
+        sceneBuildManager: Buildable,
+        alertManager: AlertManagerable
+    ) {
         self.sceneBuildManager = sceneBuildManager
+        self.alertManager = alertManager
     }
 }
 
@@ -36,19 +41,29 @@ final class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func settingsButtonPressed() {
-        let rootViewController = sceneBuildManager.buildSettingsScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        let settingsViewController = sceneBuildManager.buildSettingsScreen(settingType: .mainSetting)
+        viewController?.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
     func startQuickGameButtonPressed() {
-        let gameViewController = sceneBuildManager.buildGameScreen()
-        viewController?.navigationController?.pushViewController(gameViewController, animated: true)
+        let settingViewController = sceneBuildManager.buildSettingsScreen(settingType: .quickGameSetting)
+        viewController?.navigationController?.pushViewController(settingViewController, animated: true)
     }
     
     func logoutButtonPressed() {
-        //let rootViewController = UINavigationController(rootViewController: sceneBuildManager.buildMenuScreen())
-        //UIApplication.shared.windows.first?.rootViewController = rootViewController
-        viewController?.navigationController?.popViewController(animated: true)
+        guard let viewController = viewController.self else {
+            return
+        }
+        
+        alertManager.showAlert(
+            fromViewController: viewController,
+            title: "Внимание",
+            message: "Вы хотите выйти?",
+            firstButtonTitle: "Отменить",
+            firstActionBlock: {},
+            secondTitleButton: "Выйти") {
+                self.viewController?.navigationController?.popToRootViewController(animated: true)
+            }
     }
     
     func missionStartGameButtonPressed() {

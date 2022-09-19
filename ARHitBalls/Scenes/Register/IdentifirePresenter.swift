@@ -50,7 +50,6 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
     }
     
     func quitButtonPressed() {
-        let rootViewController = sceneBuildManager.buildMenuScreen()
-        UIApplication.shared.windows.first?.rootViewController = rootViewController
+        viewController?.navigationController?.popViewController(animated: false)
     }
 }
