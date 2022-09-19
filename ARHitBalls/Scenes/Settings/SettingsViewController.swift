@@ -15,8 +15,14 @@ protocol SettingsViewProtocol: UIViewController {
         soundValue: Bool,
         musicValue: Bool
     )
-    func updateLevelValueLabel(levelValue: Double)
-    func updateTimeValueLabel(timeValue: Double)
+    func updateLevelValueLabel(
+        levelValue: Double,
+        levelText: String
+    )
+    func updateTimeValueLabel(
+        timeValue: Double,
+        timeText: String
+    )
     func setupMainSetting()
     func setupQuickGameSetting()
 }
@@ -333,18 +339,20 @@ extension SettingsViewController: SettingsViewProtocol {
         musicSwitcher.isOn = musicValue
     }
     
-    func updateLevelValueLabel(levelValue: Double) {
+    func updateLevelValueLabel(
+        levelValue: Double,
+        levelText: String
+    ) {
         levelStepper.value = levelValue
-        levelValueLabel.text = "\(Int(levelValue))"         //View умная?
+        levelValueLabel.text = levelText       
     }
     
-    func updateTimeValueLabel(timeValue: Double) {
+    func updateTimeValueLabel(
+        timeValue: Double,
+        timeText: String
+    ) {
         timeStepper.value = timeValue
-        let timeStepperValue = Int(timeValue)               //View умная?
-        let seconds = timeStepperValue % 60
-        let minutes = (timeStepperValue / 60) % 60
-        let result = String(format: "%02d:%02d", minutes, seconds)
-        timeValueLabel.text = result
+        timeValueLabel.text = timeText
     }
     
     func setupMainSetting() {
