@@ -40,13 +40,13 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
     
     func authButtonPressed() {
-        let authViewController = sceneBuildManager.buildAuthScreen()
-        viewController?.navigationController?.pushViewController(authViewController, animated: false)
+        let rootViewController = sceneBuildManager.buildIdentifireScreen(type: .auth)
+        UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
     
     func registerButtonPressed() {
-        let registrationViewController = sceneBuildManager.buildRegistrationScreen()
-        viewController?.navigationController?.pushViewController(registrationViewController, animated: false)
+        let rootViewController = sceneBuildManager.buildIdentifireScreen(type: .register)
+        UIApplication.shared.windows.first?.rootViewController = rootViewController
     }
 }
 

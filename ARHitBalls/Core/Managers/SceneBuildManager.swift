@@ -8,11 +8,10 @@
 protocol Buildable {
     func buildSplashScreen() -> SplashViewController
     func buildMenuScreen() -> MenuViewController
-    func buildAuthScreen() -> AuthViewController
     func buildMainScreen() -> MainViewController
     func buildSettingsScreen(settingType: SettingType) -> SettingsViewController
     func buildGameScreen() -> GameViewController
-    func buildRegistrationScreen() -> RegistrationViewController
+    func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
 }
 
 final class SceneBuildManager {
@@ -45,16 +44,6 @@ extension SceneBuildManager: Buildable {
     func buildMenuScreen() -> MenuViewController {
         let viewController = MenuViewController()
         let presenter = MenuPresenter(sceneBuildManager: self)
-        
-        viewController.presenter = presenter
-        presenter.viewController = viewController
-        
-        return viewController
-    }
-    
-    func buildAuthScreen() -> AuthViewController {
-        let viewController = AuthViewController()
-        let presenter = AuthPresenter(sceneBuildManager: self)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
@@ -96,9 +85,12 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildRegistrationScreen() -> RegistrationViewController {
-        let viewController = RegistrationViewController()
-        let presenter = RegistrationPresenter(sceneBuildManager: self)
+    func buildIdentifireScreen(type: AuthType) -> IdentifireViewController {
+        let viewController = IdentifireViewController()
+        let presenter = IdentifirePresenter(
+            sceneBuildManager: self,
+            type: type
+        )
         
         viewController.presenter = presenter
         presenter.viewController = viewController
