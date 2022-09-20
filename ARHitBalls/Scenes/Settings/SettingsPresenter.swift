@@ -30,6 +30,7 @@ final class SettingsPresenter {
     private let sceneBuildManager: Buildable
     private let defaultsStorage: DefaultsManagerable
     private let settingType: SettingType
+    private var timerValue: Double = 10
     
     // MARK: - Initializer
     
@@ -69,6 +70,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             for: .timeValue
         ) ?? 10
         let correctTimeLabelText = transformationTimeLabelText(timeValue: timeValue)
+        timerValue = timeValue // После инициализации необходимо взять текущее значение из сохраненных данных. Уместо это выполнять таким образом и в этом месте?
         
         viewController?.updateSwitchersValues(
             vibrationValue: vibrationSwitcherValue,
@@ -121,6 +123,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             timeValue,
             for: .timeValue
         )
+        timerValue = timeValue
         viewController?.updateTimeValueLabel(
             timeValue: timeValue,
             timeText: correctTimeLabelText
@@ -139,7 +142,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func startQuickGameButtonPressed() {
-        let gameViewController = sceneBuildManager.buildGameScreen()
+        let gameViewController = sceneBuildManager.buildGameScreen(timerValue: timerValue)
         viewController?.navigationController?.pushViewController(
             gameViewController,
             animated: true

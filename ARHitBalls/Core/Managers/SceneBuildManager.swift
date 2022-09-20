@@ -10,7 +10,7 @@ protocol Buildable {
     func buildMenuScreen() -> MenuViewController
     func buildMainScreen() -> MainViewController
     func buildSettingsScreen(settingType: SettingType) -> SettingsViewController
-    func buildGameScreen() -> GameViewController
+    func buildGameScreen(timerValue: Double) -> GameViewController
     func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
 }
 
@@ -78,9 +78,12 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildGameScreen() -> GameViewController {
+    func buildGameScreen(timerValue: Double) -> GameViewController {
         let viewController = GameViewController()
-        let presenter = GamePresenter(sceneBuildManager: self)
+        let presenter = GamePresenter(
+            sceneBuildManager: self,
+            timerValue: timerValue
+        )
         
         viewController.presenter = presenter
         presenter.viewController = viewController

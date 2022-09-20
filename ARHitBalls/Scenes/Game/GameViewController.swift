@@ -8,7 +8,9 @@ import UIKit
 
 // MARK: - GameViewProtocol
 
-protocol GameViewProtocol: UIViewController {}
+protocol GameViewProtocol: UIViewController {
+    func updateTimer(text: String)
+}
 
 // MARK: - GameViewController
 
@@ -109,6 +111,7 @@ final class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        presenter?.viewDidLoad()
     }
     
     // MARK: - Actions
@@ -126,7 +129,11 @@ final class GameViewController: UIViewController {
 
 // MARK: - GameViewProtocol Impl
 
-extension GameViewController: GameViewProtocol {}
+extension GameViewController: GameViewProtocol {
+    func updateTimer(text: String) {
+        timerLabel.text = text
+    }
+}
 
 // MARK: - PrivateMethods
 
