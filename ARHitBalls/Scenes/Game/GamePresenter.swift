@@ -24,15 +24,18 @@ final class GamePresenter {
     
     private let sceneBuildManager: Buildable
     private let timerValue: Double
+    private let currentLevelValue: Int
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
-        timerValue: Double
+        timerValue: Double,
+        currentLevelValue: Int
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.timerValue = timerValue
+        self.currentLevelValue = currentLevelValue
     }
 }
 
@@ -42,24 +45,13 @@ extension GamePresenter: GamePresenterProtocol {
     func viewDidLoad() {
         let timerValueText = transformationTimerLabelText(timeValue: timerValue)
         viewController?.updateTimer(text: timerValueText)
+        viewController?.updateLevel(text: String(currentLevelValue * 6))
     }
     
     func quitGameButtonPressed() {
         viewController?.navigationController?.popViewController(animated: true)
     }
-    
-    func transformationTimerLabelText(timeValue: Double) -> String {
-        let timeStepperValue = Int(timeValue)
-        let seconds = timeStepperValue % 60
-        let minutes = (timeStepperValue / 60) % 60
-        let result = String(
-            format: "%02d:%02d",
-            minutes,
-            seconds
-        )
-        return result
-    }
-    
+
     func shotButtonPressed(tag: Int) {
         switch tag {
         case 0:
@@ -77,5 +69,19 @@ extension GamePresenter: GamePresenterProtocol {
         default:
             break
         }
+    }
+}
+
+private extension GamePresenter {
+    func transformationTimerLabelText(timeValue: Double) -> String {
+        let timeStepperValue = Int(timeValue)
+        let seconds = timeStepperValue % 60
+        let minutes = (timeStepperValue / 60) % 60
+        let result = String(
+            format: "%02d:%02d",
+            minutes,
+            seconds
+        )
+        return result
     }
 }

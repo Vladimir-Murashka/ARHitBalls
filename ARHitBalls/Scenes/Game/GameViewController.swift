@@ -10,6 +10,7 @@ import UIKit
 
 protocol GameViewProtocol: UIViewController {
     func updateTimer(text: String)
+    func updateLevel(text: String)
 }
 
 // MARK: - GameViewController
@@ -132,6 +133,10 @@ final class GameViewController: UIViewController {
 extension GameViewController: GameViewProtocol {
     func updateTimer(text: String) {
         timerLabel.text = text
+    }
+    
+    func updateLevel(text: String) {
+        totalNumberOfPlanetsLabel.text = text
     }
 }
 
