@@ -5,8 +5,6 @@
 //  Created by Swift Learning on 16.08.2022.
 //
 
-import UIKit
-
 // MARK: -  RegistrationPresenterProtocol
 
 protocol  IdentifirePresenterProtocol: AnyObject {

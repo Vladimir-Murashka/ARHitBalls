@@ -13,7 +13,9 @@ import UIKit
 protocol GameViewProtocol: UIViewController {
     func sessionRun(with configuration: ARConfiguration)
     func sessionPause()
-    func addChild(node: SCNNode)
+    func addChild(nodeTarget: SCNNode)
+    func addChild(nodeShot: SCNNode)
+    func getARFrame() -> ARFrame?
 }
 
 // MARK: - GameViewController
@@ -130,6 +132,13 @@ final class GameViewController: UIViewController {
         presenter?.viewWillDisappear()
     }
     
+    override func touchesEnded(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
+        presenter?.touchesEnded()
+    }
+    
     // MARK: - Actions
     
     @objc
@@ -154,8 +163,17 @@ extension GameViewController: GameViewProtocol {
         sceneView.session.pause()
     }
     
-    func addChild(node: SCNNode) {
-        sceneView.scene.rootNode.addChildNode(node)
+    func addChild(nodeTarget: SCNNode) {
+        sceneView.scene.rootNode.addChildNode(nodeTarget)
+    }
+    
+    func addChild(nodeShot: SCNNode) {
+        sceneView.scene.rootNode.addChildNode(nodeShot)
+    }
+    
+    func getARFrame() -> ARFrame? {
+        let ARFrame = sceneView.session.currentFrame
+        return ARFrame
     }
 }
 
@@ -254,4 +272,13 @@ private extension GameViewController {
 
 extension GameViewController: ARSCNViewDelegate {}  // оставить тут или вынести в отдельный файл???
 
-extension GameViewController: SCNPhysicsContactDelegate {}
+extension GameViewController: SCNPhysicsContactDelegate {      // возможно для вьюхи излишне.
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if contact.nodeA.name == contact.nodeB.name {
+            DispatchQueue.main.async {
+                contact.nodeA.removeFromParentNode()
+                contact.nodeB.removeFromParentNode()
+            }
+        }
+    }
+}
