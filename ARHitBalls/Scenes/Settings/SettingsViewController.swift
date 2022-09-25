@@ -41,7 +41,7 @@ final class SettingsViewController: UIViewController {
     }()
     
     private lazy var quitSettingButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
         button.setBackgroundImage(
             image,
@@ -250,7 +250,7 @@ final class SettingsViewController: UIViewController {
     }()
     
     private lazy var startQuickGameButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
             "Начать",
             for: .normal
@@ -307,11 +307,13 @@ final class SettingsViewController: UIViewController {
     
     @objc
     private func quitSettingsButtonPressed() {
-        presenter?.quitSettingsButtonPressed()
+        quitSettingButton.pushAnimate { [weak self] in
+            self?.presenter?.quitSettingsButtonPressed()
+        }
     }
     
     @objc
-    private func timeStepperPressed(timeValue: Double) {
+    private func timeStepperPressed() {
         presenter?.timeStepperPressed(timeValue: timeStepper.value)
     }
     
@@ -322,7 +324,9 @@ final class SettingsViewController: UIViewController {
     
     @objc
     private func startQuickGameButtonPressed() {
-        presenter?.startQuickGameButtonPressed()
+        startQuickGameButton.pushAnimate { [weak self] in
+            self?.presenter?.startQuickGameButtonPressed()
+        }
     }
 }
 

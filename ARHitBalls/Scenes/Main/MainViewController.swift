@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
     // MARK: - PrivateProperties
     
     private lazy var logoutButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let imageQuitGameButton = UIImage(systemName: "house.circle")
         button.setBackgroundImage(
             imageQuitGameButton,
@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
     }()
     
     private lazy var settingsButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Настройки", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 24)
         button.setTitleColor(
@@ -123,7 +123,7 @@ final class MainViewController: UIViewController {
     }()
     
     private lazy var startQuickGameButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
             "Быстрая игра",
             for: .normal
@@ -145,7 +145,7 @@ final class MainViewController: UIViewController {
     }()
     
     private lazy var missionStartGameButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
             "Компания",
             for: .normal
@@ -188,22 +188,30 @@ final class MainViewController: UIViewController {
     
     @objc
     private func settingsButtonPressed() {
-        presenter?.settingsButtonPressed()
+        settingsButton.pushAnimate { [weak self] in
+            self?.presenter?.settingsButtonPressed()
+        }
     }
     
     @objc
     private func startQuickGameButtonPressed() {
-        presenter?.startQuickGameButtonPressed()
+        startQuickGameButton.pushAnimate { [weak self] in
+            self?.presenter?.startQuickGameButtonPressed()
+        }
     }
     
     @objc
     private func logoutButtonPressed() {
-        presenter?.logoutButtonPressed()
+        logoutButton.pushAnimate { [weak self] in
+            self?.presenter?.logoutButtonPressed()
+        }
     }
     
     @objc
     private func missionStartGameButtonPressed() {
-        presenter?.missionStartGameButtonPressed()
+        missionStartGameButton.pushAnimate { [weak self] in
+            self?.presenter?.missionStartGameButtonPressed()
+        }
     }
 }
 

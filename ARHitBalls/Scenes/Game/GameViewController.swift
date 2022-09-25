@@ -18,7 +18,7 @@ final class GameViewController: UIViewController {
     // MARK: - PrivateProperties
     
     private lazy var quitGameButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
         button.setBackgroundImage(
             image,
@@ -115,7 +115,9 @@ final class GameViewController: UIViewController {
     
     @objc
     private func quitGameButtonPressed() {
-        presenter?.quitGameButtonPressed()
+        quitGameButton.pushAnimate { [weak self] in
+            self?.presenter?.quitGameButtonPressed()
+        }
     }
     
     @objc

@@ -26,7 +26,7 @@ final class MenuViewController: UIViewController {
     }()
     
     private lazy var startButtonWithoutRegister: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
             "Играть без регистрации",
             for: .normal
@@ -47,7 +47,7 @@ final class MenuViewController: UIViewController {
     }()
     
     private lazy var authButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
             "Войти",
             for: .normal
@@ -68,7 +68,7 @@ final class MenuViewController: UIViewController {
     }()
     
     private lazy var registerButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
             "Регистрация",
             for: .normal
@@ -109,17 +109,23 @@ final class MenuViewController: UIViewController {
     
     @objc
     private func startButtonWithoutRegisterPressed() {
-        presenter?.startButtonWithoutRegisterPressed()
+        startButtonWithoutRegister.pushAnimate { [weak self] in
+            self?.presenter?.startButtonWithoutRegisterPressed()
+        }
     }
     
     @objc
     private func authButtonPressed() {
-        presenter?.authButtonPressed()
+        authButton.pushAnimate { [weak self] in
+            self?.presenter?.authButtonPressed()
+        }
     }
     
     @objc
     private func registerButtonPressed() {
-        presenter?.registerButtonPressed()
+        registerButton.pushAnimate { [weak self] in
+            self?.presenter?.registerButtonPressed()
+        }
     }
 }
 
