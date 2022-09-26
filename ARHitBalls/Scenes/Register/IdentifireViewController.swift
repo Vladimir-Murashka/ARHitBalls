@@ -29,7 +29,7 @@ final class IdentifireViewController: UIViewController {
     }()
     
     private lazy var quitButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
         button.setBackgroundImage(
             imageQuitGameButton,
@@ -152,9 +152,9 @@ final class IdentifireViewController: UIViewController {
     }()
     
     private lazy var continueButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle(
-            "Зарегистрироваться",
+            "",
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 24)
@@ -191,12 +191,16 @@ final class IdentifireViewController: UIViewController {
     
     @objc
     private func continueButtonPressed() {
-        presenter?.continueButtonPressed()
+        continueButton.pushAnimate { [weak self] in
+            self?.presenter?.continueButtonPressed()
+        }
     }
     
     @objc
     private func quitButtonPressed() {
-        presenter?.quitButtonPressed()
+        quitButton.pushAnimate { [weak self] in
+            self?.presenter?.quitButtonPressed()
+        }
     }
 }
 
@@ -213,7 +217,7 @@ extension IdentifireViewController: IdentifireViewProtocol {
     
     func setupRegister() {
         continueButton.setTitle(
-            "Регистрация",
+            "Зарегистрироваться",
             for: .normal
         )
         passwordTextField.placeholder = "Придумайте пароль"

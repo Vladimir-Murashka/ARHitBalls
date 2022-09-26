@@ -14,6 +14,8 @@ protocol GameViewProtocol: UIViewController {
     func sessionRun(with configuration: ARConfiguration)
     func sessionPause()
     func addChild(node: SCNNode)
+    func updateTimer(text: String)
+    func updateLevel(text: String)
 }
 
 // MARK: - GameViewController
@@ -26,7 +28,7 @@ final class GameViewController: UIViewController {
     private let sceneView = ARSCNView()
     
     private lazy var quitGameButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
         button.setBackgroundImage(
             image,
@@ -118,6 +120,7 @@ final class GameViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewDidLoad()
         setupViewController()
+        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +147,9 @@ final class GameViewController: UIViewController {
     
     @objc
     private func quitGameButtonPressed() {
-        presenter?.quitGameButtonPressed()
+        quitGameButton.pushAnimate { [weak self] in
+            self?.presenter?.quitGameButtonPressed()
+        }
     }
     
     @objc
@@ -166,6 +171,12 @@ extension GameViewController: GameViewProtocol {
     
     func addChild(node: SCNNode) {
         sceneView.scene.rootNode.addChildNode(node)
+    func updateTimer(text: String) {
+        timerLabel.text = text
+    }
+    
+    func updateLevel(text: String) {
+        totalNumberOfPlanetsLabel.text = text
     }
 }
 

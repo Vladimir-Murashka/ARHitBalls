@@ -28,6 +28,8 @@ final class SettingsPresenter {
     private let sceneBuildManager: Buildable
     private let defaultsStorage: DefaultsManagerable
     private let settingType: SettingType
+    private var timerValue: Double = 10
+    private var currentLevelValue: Int = 1
     
     // MARK: - Initializer
     
@@ -62,11 +64,13 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             type: Double.self,
             for: .levelValue
         ) ?? 1
-        let timeValue = defaultsStorage.fetchObject(
+        let timerValue = defaultsStorage.fetchObject(
             type: Double.self,
             for: .timeValue
-        ) ?? 10
-        let correctTimeLabelText = transformationTimeLabelText(timeValue: timeValue)
+        ) ?? timerValue
+        let correctTimeLabelText = transformationTimeLabelText(timeValue: timerValue)
+        self.timerValue = timerValue
+        currentLevelValue = Int(levelValue)
         
         viewController?.updateSwitchersValues(
             vibrationValue: vibrationSwitcherValue,
@@ -76,10 +80,10 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         
         viewController?.updateLevelValueLabel(
             levelValue: levelValue,
-            levelText: String(Int(levelValue))
+            levelText: String(currentLevelValue)
         )
         viewController?.updateTimeValueLabel(
-            timeValue: timeValue,
+            timeValue: timerValue,
             timeText: correctTimeLabelText
         )
         
@@ -119,6 +123,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             timeValue,
             for: .timeValue
         )
+        timerValue = timeValue
         viewController?.updateTimeValueLabel(
             timeValue: timeValue,
             timeText: correctTimeLabelText
@@ -130,6 +135,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             levelValue,
             for: .levelValue
         )
+        currentLevelValue = Int(levelValue)
         viewController?.updateLevelValueLabel(
             levelValue: levelValue,
             levelText: String(Int(levelValue))
@@ -137,13 +143,18 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func startQuickGameButtonPressed() {
-        let gameViewController = sceneBuildManager.buildGameScreen()
+        let gameViewController = sceneBuildManager.buildGameScreen(
+            timerValue: timerValue,
+            levelValue: currentLevelValue
+        )
         viewController?.navigationController?.pushViewController(
             gameViewController,
             animated: true
         )
     }
-    
+}
+
+private extension SettingsPresenter {
     func transformationTimeLabelText(timeValue: Double) -> String {
         let timeStepperValue = Int(timeValue)
         let seconds = timeStepperValue % 60
