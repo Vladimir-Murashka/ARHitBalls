@@ -5,8 +5,6 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
-import UIKit
-
 // MARK: - MenuPresenterProtocol
 
 protocol MenuPresenterProtocol: AnyObject {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268E4D628DCDB590029C755 /* CollisionCategory.swift */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
 		229BC15F28AA7091008D07A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229BC15E28AA7091008D07A0 /* Assets.xcassets */; };
@@ -29,16 +30,17 @@
 		229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
-		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
-		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
-		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
+		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
+		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
+		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
 		22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2268E4D628DCDB590029C755 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229BC15728AA708A008D07A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,12 +65,12 @@
 		229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
-		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
-		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
+		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
+		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
 		22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,8 +252,9 @@
 			children = (
 				22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
-                22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
-                22E5941F28C37E110063586D /* SettingType.swift */,
+				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
+				22E5941F28C37E110063586D /* SettingType.swift */,
+				2268E4D628DCDB590029C755 /* CollisionCategory.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */,
+				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */,
@@ -494,6 +498,7 @@
 				DEVELOPMENT_TEAM = H456X98Q5T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ARHitBalls/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
@@ -522,6 +527,7 @@
 				DEVELOPMENT_TEAM = H456X98Q5T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ARHitBalls/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;

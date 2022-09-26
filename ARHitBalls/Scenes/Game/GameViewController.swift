@@ -4,11 +4,16 @@
 //
 //  Created by Swift Learning on 15.08.2022.
 //
+import ARKit
+import SceneKit
 import UIKit
 
 // MARK: - GameViewProtocol
 
 protocol GameViewProtocol: UIViewController {
+    func sessionRun(with configuration: ARConfiguration)
+    func sessionPause()
+    func addChild(node: SCNNode)
     func updateTimer(text: String)
     func updateLevel(text: String)
 }
@@ -19,6 +24,8 @@ final class GameViewController: UIViewController {
     var presenter: GamePresenterProtocol?
     
     // MARK: - PrivateProperties
+    
+    private let sceneView = ARSCNView()
     
     private lazy var quitGameButton: UIButton = {
         let button = UIButton(type: .system)
@@ -111,8 +118,29 @@ final class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViewController()
         presenter?.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewWillAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter?.viewWillDisappear()
+    }
+    
+    override func touchesEnded(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
+        guard let frame = sceneView.session.currentFrame else {
+            return
+        }
+        presenter?.touchesEnded(frame: frame)
     }
     
     // MARK: - Actions
@@ -133,6 +161,16 @@ final class GameViewController: UIViewController {
 // MARK: - GameViewProtocol Impl
 
 extension GameViewController: GameViewProtocol {
+    func sessionRun(with configuration: ARConfiguration) {
+        sceneView.session.run(configuration)
+    }
+    
+    func sessionPause() {
+        sceneView.session.pause()
+    }
+    
+    func addChild(node: SCNNode) {
+        sceneView.scene.rootNode.addChildNode(node)
     func updateTimer(text: String) {
         timerLabel.text = text
     }
@@ -146,6 +184,8 @@ extension GameViewController: GameViewProtocol {
 
 private extension GameViewController {
     func setupViewController() {
+        sceneView.delegate = self
+        sceneView.scene.physicsWorld.contactDelegate = self
         addSubViews()
         setupConstraints()
         view.backgroundColor = .systemGray
@@ -178,6 +218,7 @@ private extension GameViewController {
     
     func addSubViews() {
         view.addSubviews(
+            sceneView,
             numbersOfPlanetsStackView,
             topStackView,
             lowStackView
@@ -222,7 +263,25 @@ private extension GameViewController {
             lowStackView.heightAnchor.constraint(equalToConstant: lowStackViewHeight),
             lowStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: lowStackViewLowOffset),
             lowStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: lowStackViewSideOffset),
-            lowStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -lowStackViewSideOffset)
+            lowStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -lowStackViewSideOffset),
+            
+            sceneView.topAnchor.constraint(equalTo: view.topAnchor),
+            sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            sceneView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sceneView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+}
+
+extension GameViewController: ARSCNViewDelegate {}
+
+extension GameViewController: SCNPhysicsContactDelegate {
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if contact.nodeA.name == contact.nodeB.name {
+            DispatchQueue.main.async {
+                contact.nodeA.removeFromParentNode()
+                contact.nodeB.removeFromParentNode()
+            }
+        }
     }
 }
