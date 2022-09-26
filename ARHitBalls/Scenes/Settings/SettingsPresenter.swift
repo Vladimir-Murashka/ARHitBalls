@@ -66,12 +66,12 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             type: Double.self,
             for: .levelValue
         ) ?? 1
-        let timeValue = defaultsStorage.fetchObject(
+        let timerValue = defaultsStorage.fetchObject(
             type: Double.self,
             for: .timeValue
-        ) ?? 10
-        let correctTimeLabelText = transformationTimeLabelText(timeValue: timeValue)
-        timerValue = timeValue // После инициализации необходимо взять текущее значение из сохраненных данных. Уместно это выполнять таким образом и в этом месте?
+        ) ?? timerValue
+        let correctTimeLabelText = transformationTimeLabelText(timeValue: timerValue)
+        self.timerValue = timerValue
         currentLevelValue = Int(levelValue)
         
         viewController?.updateSwitchersValues(
@@ -85,7 +85,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             levelText: String(currentLevelValue)
         )
         viewController?.updateTimeValueLabel(
-            timeValue: timeValue,
+            timeValue: timerValue,
             timeText: correctTimeLabelText
         )
         
