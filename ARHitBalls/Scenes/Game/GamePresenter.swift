@@ -15,7 +15,7 @@ protocol GamePresenterProtocol: AnyObject {
     func viewWillDisappear()
     func quitGameButtonPressed()
     func shotButtonPressed(tag: Int)
-    func touchesEnded()
+    func touchesEnded(frame: ARFrame)
 }
 
 // MARK: - GamePresenter
@@ -51,13 +51,10 @@ extension GamePresenter: GamePresenterProtocol {
         viewController?.sessionPause()
     }
     
-    func touchesEnded() {
-        guard let ARFrame = viewController?.getARFrame() else {
-            return
-        }
+    func touchesEnded(frame: ARFrame) {
         fire(
             planet: selectPlanet,
-            frame: ARFrame
+            frame: frame
         )
     }
     
@@ -160,7 +157,7 @@ private extension GamePresenter {
         planetNode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
         planetNode.physicsBody?.contactTestBitMask = CollisionCategory.missleCategory.rawValue
         
-        viewController?.addChild(nodeTarget: planetNode)
+        viewController?.addChild(node: planetNode)
     }
     
     func fire(
@@ -184,7 +181,7 @@ private extension GamePresenter {
             ),
             asImpulse: true
         )
-        viewController?.addChild(nodeShot: node)
+        viewController?.addChild(node: node)
     }
     
     func createShot(planet: Planet) -> SCNNode {
