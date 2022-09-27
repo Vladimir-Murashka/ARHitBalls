@@ -12,6 +12,7 @@ protocol MainPresenterProtocol: AnyObject {
     func startQuickGameButtonPressed()
     func logoutButtonPressed()
     func missionStartGameButtonPressed()
+    func kitButtonsPressed(tag: Int)
 }
 
 // MARK: - MainPresenter
@@ -71,6 +72,10 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func missionStartGameButtonPressed() {
+        print(#function)
+    }
+    
+    func kitButtonsPressed(tag: Int) {
         print(#function)
     }
 }

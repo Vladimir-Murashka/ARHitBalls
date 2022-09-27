@@ -130,6 +130,15 @@ final class MainViewController: UIViewController {
         return button
     }()
     
+    private let kitStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 5
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
     private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
@@ -175,6 +184,11 @@ final class MainViewController: UIViewController {
             self?.presenter?.missionStartGameButtonPressed()
         }
     }
+    
+    @objc
+    private func kitButtonsPressed(sender: UIButton) {
+        presenter?.kitButtonsPressed(tag: sender.tag)
+    }
 }
 
 // MARK: - MainViewProtocol Impl
@@ -187,7 +201,25 @@ private extension MainViewController {
     func setupViewController() {
         view.backgroundColor = .systemGray
         addSubViews()
+        setupKitButtons()
         setupConstraints()
+    }
+    
+    func setupKitButtons() {
+        let kitButtons = KitEnum.allCases
+        
+        kitButtons.enumerated().forEach { index,  kit in
+            let button = ShotButton()
+            button.setupBackgroundImage(named: kit.imageName )
+            button.addTarget(
+                self,
+                action: #selector(kitButtonsPressed),
+                for: .touchUpInside
+            )
+            button.tag = index
+            
+            kitStackView.addArrangedSubview(button)
+        }
     }
     
     func addSubViews() {
@@ -215,7 +247,8 @@ private extension MainViewController {
         
         view.addSubviews(
             topStackView,
-            verticalStackView
+            verticalStackView,
+            kitStackView
         )
     }
     
@@ -228,6 +261,8 @@ private extension MainViewController {
         let settingButtonWidth: CGFloat = 150
         let stackViewHeight: CGFloat = 30
         let buttonHeight: CGFloat = 48
+        let kitStackViewHeight: CGFloat = 220
+        let kitStackViewWidth: CGFloat = 50
         
         NSLayoutConstraint.activate([
             topStackView.topAnchor.constraint(
@@ -262,6 +297,11 @@ private extension MainViewController {
                 constant: -stackViewOffset
             ),
             
+            kitStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: stackViewOffset),
+            kitStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: stackViewOffset),
+            kitStackView.heightAnchor.constraint(equalToConstant: kitStackViewHeight),
+            kitStackView.widthAnchor.constraint(equalToConstant: kitStackViewWidth),
+            
             titleTimeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: titleWidth),
             titleLevelLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: titleWidth),
             
@@ -271,7 +311,7 @@ private extension MainViewController {
             timeStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
             levelStackView.heightAnchor.constraint(equalToConstant: stackViewHeight),
             missionStartGameButton.heightAnchor.constraint(equalToConstant: buttonHeight),
-            startQuickGameButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+            startQuickGameButton.heightAnchor.constraint(equalToConstant: buttonHeight),
         ])
     }
 }

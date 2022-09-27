@@ -16,6 +16,7 @@
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
 		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
 		223772D528E356E6004F820D /* PlanetsButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D428E356E6004F820D /* PlanetsButtonEnum.swift */; };
+		223772D728E38077004F820D /* KitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D628E38077004F820D /* KitEnum.swift */; };
 		2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268E4D628DCDB590029C755 /* CollisionCategory.swift */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
@@ -58,6 +59,7 @@
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
 		223772D428E356E6004F820D /* PlanetsButtonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsButtonEnum.swift; sourceTree = "<group>"; };
+		223772D628E38077004F820D /* KitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitEnum.swift; sourceTree = "<group>"; };
 		2268E4D628DCDB590029C755 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		22FDAFC728BCFA05002146B6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				223772D628E38077004F820D /* KitEnum.swift */,
 				22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */,
 				223772D428E356E6004F820D /* PlanetsButtonEnum.swift */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
@@ -397,6 +400,7 @@
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
+				223772D728E38077004F820D /* KitEnum.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,
 				223772D528E356E6004F820D /* PlanetsButtonEnum.swift in Sources */,
