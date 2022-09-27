@@ -9,7 +9,7 @@ import ARKit
 
 // MARK: - GamePresenterProtocol
 
-protocol GamePresenterProtocol: AnyObject {
+protocol GamePresenterProtocol: AnyObject, TimerProtocol {
     func viewDidLoad()
     func viewWillAppear()
     func viewWillDisappear()
@@ -47,6 +47,9 @@ final class GamePresenter {
 
 extension GamePresenter: GamePresenterProtocol {
     func viewDidLoad() {
+        let timerValueText = transformationTimerLabelText(timeValue: timerValue)
+        viewController?.updateTimer(text: timerValueText)
+        viewController?.updateLevel(text: String(currentLevelValue * 6))
         addPlanets()
     }
     
@@ -64,9 +67,6 @@ extension GamePresenter: GamePresenterProtocol {
             planet: selectPlanet,
             frame: frame
         )
-        let timerValueText = transformationTimerLabelText(timeValue: timerValue)
-        viewController?.updateTimer(text: timerValueText)
-        viewController?.updateLevel(text: String(currentLevelValue * 6))
     }
     
     func quitGameButtonPressed() {
@@ -233,21 +233,4 @@ private extension GamePresenter {
             pos
         )
     }
-    
-    func transformationTimerLabelText(timeValue: Double) -> String {
-        let timeStepperValue = Int(timeValue)
-        let seconds = timeStepperValue % 60
-        let minutes = (timeStepperValue / 60) % 60
-        let result = String(
-            format: "%02d:%02d",
-            minutes,
-            seconds
-        )
-        return result
-    }
 }
-
-
-
-
-

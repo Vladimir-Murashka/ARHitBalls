@@ -62,80 +62,51 @@ final class MainViewController: UIViewController {
         return stackView
     }()
     
-    private let titleTimeLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let titleTimeLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Текущее время раунда"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let timeLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let timeLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "20"
-        label.backgroundColor = .black
         return label
     }()
     
     private let timeStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private let titleLevelLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let titleLevelLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Текущий уровень"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let levelLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let levelLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "5"
-        label.backgroundColor = .black
         return label
     }()
     
     private let levelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private lazy var startQuickGameButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var startQuickGameButton: StartButton = {
+        let button = StartButton(type: .system)
         button.setTitle(
             "Быстрая игра",
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(
-            .white,
-            for: .normal
-        )
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(startQuickGameButtonPressed),
@@ -144,21 +115,13 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var missionStartGameButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var missionStartGameButton: StartButton = {
+        let button = StartButton(type: .system)
         button.setTitle(
             "Компания",
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(
-            .white,
-            for: .normal
-        )
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.alpha = 0.5
         button.addTarget(
             self,
             action: #selector(missionStartGameButtonPressed),
@@ -170,7 +133,6 @@ final class MainViewController: UIViewController {
     private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
         return stackView

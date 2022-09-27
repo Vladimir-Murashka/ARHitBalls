@@ -25,19 +25,12 @@ final class MenuViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var startButtonWithoutRegister: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var startButtonWithoutRegister: MenuButton = {
+        let button = MenuButton(type: .system)
         button.setTitle(
             "Играть без регистрации",
             for: .normal
         )
-        button.setTitleColor(
-            .white,
-            for: .normal
-        )
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(startButtonWithoutRegisterPressed),
@@ -46,19 +39,12 @@ final class MenuViewController: UIViewController {
         return button
     }()
     
-    private lazy var authButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var authButton: MenuButton = {
+        let button = MenuButton(type: .system)
         button.setTitle(
             "Войти",
             for: .normal
         )
-        button.setTitleColor(
-            .white,
-            for: .normal
-        )
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(authButtonPressed),
@@ -67,19 +53,12 @@ final class MenuViewController: UIViewController {
         return button
     }()
     
-    private lazy var registerButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var registerButton: MenuButton = {
+        let button = MenuButton(type: .system)
         button.setTitle(
             "Регистрация",
             for: .normal
         )
-        button.setTitleColor(
-            .white,
-            for: .normal
-        )
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(registerButtonPressed),
@@ -91,7 +70,6 @@ final class MenuViewController: UIViewController {
     private let commonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
         return stackView

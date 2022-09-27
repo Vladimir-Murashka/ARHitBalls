@@ -28,17 +28,8 @@ final class IdentifireViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var quitButton: UIButton = {
-        let button = UIButton(type: .system)
-        let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
-        button.setBackgroundImage(
-            imageQuitGameButton,
-            for: .normal
-        )
-        button.tintColor = .black
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 15
-        button.layer.masksToBounds = true
+    private lazy var quitButton: QuitButton = {
+        let button = QuitButton(type: .system)
         button.addTarget(
             self,
             action: #selector(quitButtonPressed),
@@ -47,56 +38,34 @@ final class IdentifireViewController: UIViewController {
         return button
     }()
     
-    private let emailLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let emailLabel: IdentifireLabel = {
+        let label = IdentifireLabel()
         label.text = "Email"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .black
-        textField.textColor = .white
-        textField.textAlignment = .center
+    private let emailTextField: IdentifireTextField = {
+        let textField = IdentifireTextField()
         textField.placeholder = "Введите email адрес"
-        textField.layer.cornerRadius = 8
-        textField.layer.masksToBounds = true
         return textField
     }()
     
     private let emailStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fill
         stackView.axis = .vertical
         return stackView
     }()
     
-    private let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let passwordLabel: IdentifireLabel = {
+        let label = IdentifireLabel()
         label.text = "Пароль"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .black
-        textField.textColor = .white
-        textField.textAlignment = .center
+    private let passwordTextField: IdentifireTextField = {
+        let textField = IdentifireTextField()
         textField.placeholder = "Введите пароль"
-        textField.layer.cornerRadius = 8
-        textField.layer.masksToBounds = true
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -104,31 +73,19 @@ final class IdentifireViewController: UIViewController {
     private let passwordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fill
         stackView.axis = .vertical
         return stackView
     }()
     
-    private let retypePasswordLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let retypePasswordLabel: IdentifireLabel = {
+        let label = IdentifireLabel()
         label.text = "Повторите пароль"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let retypePasswordTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .black
-        textField.textColor = .white
-        textField.textAlignment = .center
+    private let retypePasswordTextField: IdentifireTextField = {
+        let textField = IdentifireTextField()
         textField.placeholder = "Введите пароль еще раз"
-        textField.layer.cornerRadius = 8
-        textField.layer.masksToBounds = true
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -136,8 +93,6 @@ final class IdentifireViewController: UIViewController {
     private let retypePasswordStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fill
         stackView.axis = .vertical
         return stackView
     }()
@@ -145,23 +100,17 @@ final class IdentifireViewController: UIViewController {
     private let commonSingUpStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 20
-        stackView.alignment = .fill
-        stackView.distribution = .fill
         stackView.axis = .vertical
         return stackView
     }()
     
-    private lazy var continueButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var continueButton: StartButton = {
+        let button = StartButton(type: .system)
         button.setTitle(
             "",
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 24)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(continueButtonPressed),

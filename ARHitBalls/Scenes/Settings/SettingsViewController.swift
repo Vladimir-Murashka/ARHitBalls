@@ -40,17 +40,8 @@ final class SettingsViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var quitSettingButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.tintColor = .black
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 15
-        button.layer.masksToBounds = true
+    private lazy var quitSettingButton: QuitButton = {
+        let button = QuitButton(type: .system)
         button.addTarget(
             self,
             action: #selector(quitSettingsButtonPressed),
@@ -59,23 +50,14 @@ final class SettingsViewController: UIViewController {
         return button
     }()
     
-    private let titleVibrationLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let titleVibrationLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Вибрация"
-        label.backgroundColor = .black
         return label
     }()
     
-    private lazy var vibrationSwitcher: UISwitch = {
-        let switcher = UISwitch()
-        switcher.layer.cornerRadius = 15
-        switcher.layer.masksToBounds = true
-        switcher.backgroundColor = .black
-        switcher.isOn = true
+    private lazy var vibrationSwitcher: SettingSwitcher = {
+        let switcher = SettingSwitcher()
         switcher.addTarget(
             self,
             action:  #selector(vibrationSwitcherChange),
@@ -87,28 +69,18 @@ final class SettingsViewController: UIViewController {
     private let vibrationStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private let titleSoundEffectsLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let titleSoundEffectsLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Звуковые эффекты"
-        label.backgroundColor = .black
         return label
     }()
     
-    private lazy var soundEffectsSwitcher: UISwitch = {
-        let switcher = UISwitch()
-        switcher.layer.cornerRadius = 15
-        switcher.layer.masksToBounds = true
-        switcher.backgroundColor = .black
-        switcher.isOn = true
+    private lazy var soundEffectsSwitcher: SettingSwitcher = {
+        let switcher = SettingSwitcher()
         switcher.addTarget(
             self,
             action: #selector(soundEffectsSwitcherChange),
@@ -120,28 +92,18 @@ final class SettingsViewController: UIViewController {
     private let soundEffectsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private let titleMusicLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let titleMusicLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Музыка"
-        label.backgroundColor = .black
         return label
     }()
     
-    private lazy var musicSwitcher: UISwitch = {
-        let switcher = UISwitch()
-        switcher.layer.cornerRadius = 15
-        switcher.layer.masksToBounds = true
-        switcher.backgroundColor = .black
-        switcher.isOn = true
+    private lazy var musicSwitcher: SettingSwitcher = {
+        let switcher = SettingSwitcher()
         switcher.addTarget(
             self,
             action: #selector(musicSwitcherChange),
@@ -153,30 +115,18 @@ final class SettingsViewController: UIViewController {
     private let musicStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private lazy var timeTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private lazy var timeTitleLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Время раунда"
-        label.backgroundColor = .black
         return label
     }()
     
     private lazy var timeValueLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
-        label.text = "00 : 10"
-        label.backgroundColor = .black
+        let label = InfoLabel()
         return label
     }()
     
@@ -198,30 +148,18 @@ final class SettingsViewController: UIViewController {
     private let timeStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private let levelTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
+    private let levelTitleLabel: InfoLabel = {
+        let label = InfoLabel()
         label.text = "Уровень сложности"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let levelValueLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
-        label.text = "00"
-        label.backgroundColor = .black
+    private let levelValueLabel: InfoLabel = {
+        let label = InfoLabel()
         return label
     }()
 
@@ -244,25 +182,17 @@ final class SettingsViewController: UIViewController {
     private let levelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
-    private lazy var startQuickGameButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var startQuickGameButton: StartButton = {
+        let button = StartButton(type: .system)
         button.setTitle(
             "Начать",
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(
-            .white,
-            for: .normal
-        )
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(startQuickGameButtonPressed),
@@ -275,8 +205,6 @@ final class SettingsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 12
-        stackView.alignment = .fill
-        stackView.distribution = .fill
         return stackView
     }()
     

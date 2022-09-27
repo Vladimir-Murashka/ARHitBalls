@@ -28,16 +28,7 @@ final class GameViewController: UIViewController {
     private let sceneView = ARSCNView()
     
     private lazy var quitGameButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
-        button.setBackgroundImage(
-            image,
-            for: .normal
-        )
-        button.tintColor = .black
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 15
-        button.layer.masksToBounds = true
+        let button = QuitButton(type: .system)
         button.addTarget(
             self,
             action: #selector(quitGameButtonPressed),
@@ -170,7 +161,9 @@ extension GameViewController: GameViewProtocol {
     }
     
     func addChild(node: SCNNode) {
+        
         sceneView.scene.rootNode.addChildNode(node)
+    }
     func updateTimer(text: String) {
         timerLabel.text = text
     }

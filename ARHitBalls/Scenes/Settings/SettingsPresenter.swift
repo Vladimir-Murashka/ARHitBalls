@@ -7,7 +7,7 @@
 
 // MARK: - SettingsPresenterProtocol
 
-protocol SettingsPresenterProtocol: AnyObject {
+protocol SettingsPresenterProtocol: AnyObject, TimerProtocol {
     func viewDidLoad()
     func vibrationSwitcherChange(value: Bool)
     func soundEffectsSwitcherChange(value: Bool)
@@ -68,7 +68,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             type: Double.self,
             for: .timeValue
         ) ?? timerValue
-        let correctTimeLabelText = transformationTimeLabelText(timeValue: timerValue)
+        let correctTimeLabelText = transformationTimerLabelText(timeValue: timerValue)
         self.timerValue = timerValue
         currentLevelValue = Int(levelValue)
         
@@ -118,7 +118,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func timeStepperPressed(timeValue: Double) {
-        let correctTimeLabelText = transformationTimeLabelText(timeValue: timeValue)
+        let correctTimeLabelText = transformationTimerLabelText(timeValue: timeValue)
         defaultsStorage.saveObject(
             timeValue,
             for: .timeValue
@@ -154,16 +154,4 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
 }
 
-private extension SettingsPresenter {
-    func transformationTimeLabelText(timeValue: Double) -> String {
-        let timeStepperValue = Int(timeValue)
-        let seconds = timeStepperValue % 60
-        let minutes = (timeStepperValue / 60) % 60
-        let result = String(
-            format: "%02d:%02d",
-            minutes,
-            seconds
-        )
-        return result
-    }
-}
+private extension SettingsPresenter {}
