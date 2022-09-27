@@ -26,7 +26,7 @@ final class GamePresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
-    private var selectPlanet: Planet = .earth
+    private var selectPlanet: PlanetsTexturesEnum = .earth
     private let timerValue: Double
     private let currentLevelValue: Int
     
@@ -95,7 +95,7 @@ extension GamePresenter: GamePresenterProtocol {
 
 private extension GamePresenter {
     func addPlanets() {
-        let planets = Planet.allCases
+        let planets = PlanetsTexturesEnum.allCases
         for planet in planets {
             addRandomPisitionPlanet(
                 number: 5,
@@ -106,7 +106,7 @@ private extension GamePresenter {
     
     func addRandomPisitionPlanet(
         number: Int,
-        planet: Planet
+        planet: PlanetsTexturesEnum
     ) {
         for _ in 1...number {
             let xPos = randomPosition(
@@ -139,7 +139,7 @@ private extension GamePresenter {
     }
     
     func addPlanet(
-        planet: Planet,
+        planet: PlanetsTexturesEnum,
         xPos: Float,
         yPos: Float,
         zPos: Float
@@ -172,7 +172,7 @@ private extension GamePresenter {
     }
     
     func fire(
-        planet: Planet,
+        planet: PlanetsTexturesEnum,
         frame: ARFrame
     ) {
         let node = createShot(planet: planet)
@@ -195,7 +195,7 @@ private extension GamePresenter {
         viewController?.addChild(node: node)
     }
     
-    func createShot(planet: Planet) -> SCNNode {
+    func createShot(planet: PlanetsTexturesEnum) -> SCNNode {
         let shot = SCNSphere(radius: 0.03)
         let shotNode = SCNNode()
         shotNode.geometry = shot

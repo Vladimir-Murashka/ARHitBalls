@@ -15,6 +15,7 @@
 		223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AA28E2F1A8004F820D /* IdentifireTextField.swift */; };
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
 		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
+		223772D528E356E6004F820D /* PlanetsButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D428E356E6004F820D /* PlanetsButtonEnum.swift */; };
 		2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268E4D628DCDB590029C755 /* CollisionCategory.swift */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
@@ -44,7 +45,7 @@
 		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
 		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
 		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
-		22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */; };
+		22FDAFC928BCFA1E002146B6 /* PlanetsTexturesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		223772AA28E2F1A8004F820D /* IdentifireTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireTextField.swift; sourceTree = "<group>"; };
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
+		223772D428E356E6004F820D /* PlanetsButtonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsButtonEnum.swift; sourceTree = "<group>"; };
 		2268E4D628DCDB590029C755 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
-		22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsEnum.swift; sourceTree = "<group>"; };
+		22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsTexturesEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,7 +284,8 @@
 		22FDAFC728BCFA05002146B6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				22FDAFC828BCFA1E002146B6 /* PlanetsEnum.swift */,
+				22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */,
+				223772D428E356E6004F820D /* PlanetsButtonEnum.swift */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
 				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
 				22E5941F28C37E110063586D /* SettingType.swift */,
@@ -381,7 +384,7 @@
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
-				22FDAFC928BCFA1E002146B6 /* PlanetsEnum.swift in Sources */,
+				22FDAFC928BCFA1E002146B6 /* PlanetsTexturesEnum.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */,
@@ -396,6 +399,7 @@
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,
+				223772D528E356E6004F820D /* PlanetsButtonEnum.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

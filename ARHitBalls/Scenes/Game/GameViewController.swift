@@ -192,18 +192,11 @@ private extension GameViewController {
     }
     
     func setupShotButtons() {
-        let planets = [
-            "earthUIImage",
-            "jupiterUIImage",
-            "marsUIImage",
-            "mercuryUIImage",
-            "moonUIImage",
-            "neptuneUIImage"
-        ]
+        let planets = PlanetsButton.allCases
         
-        planets.enumerated().forEach { index, imageName in
+        planets.enumerated().forEach { index, planet in
             let button = ShotButton()
-            button.setupBackgroundImage(named: imageName)
+            button.setupBackgroundImage(named: planet.imageName)
             button.addTarget(
                 self,
                 action: #selector(shotButtonPressed),

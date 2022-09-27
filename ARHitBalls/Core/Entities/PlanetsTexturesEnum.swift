@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Planet: String, CaseIterable {
+enum PlanetsTexturesEnum: String, CaseIterable {
     case earth
     case jupiter
     case mars
