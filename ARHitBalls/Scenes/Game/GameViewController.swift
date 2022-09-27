@@ -37,6 +37,12 @@ final class GameViewController: UIViewController {
         return button
     }()
     
+    private let aim: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "aim")
+        return imageView
+    }()
+    
     private let timerLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -212,6 +218,7 @@ private extension GameViewController {
     func addSubViews() {
         view.addSubviews(
             sceneView,
+            aim,
             numbersOfPlanetsStackView,
             topStackView,
             lowStackView
@@ -261,7 +268,12 @@ private extension GameViewController {
             sceneView.topAnchor.constraint(equalTo: view.topAnchor),
             sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             sceneView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sceneView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            sceneView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            aim.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            aim.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            aim.widthAnchor.constraint(equalToConstant: 100),
+            aim.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
