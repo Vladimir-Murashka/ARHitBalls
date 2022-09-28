@@ -11,6 +11,12 @@
 		2208165E28E1FFF200936408 /* QuitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165D28E1FFF200936408 /* QuitButton.swift */; };
 		2208166028E2061800936408 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165F28E2061800936408 /* StartButton.swift */; };
 		2208166228E20D0900936408 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208166128E20D0900936408 /* MenuButton.swift */; };
+		221D056C28E4543100A7921A /* FruitsTextureEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056B28E4543100A7921A /* FruitsTextureEnum.swift */; };
+		221D056E28E4544500A7921A /* FruitsButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056D28E4544500A7921A /* FruitsButtonEnum.swift */; };
+		221D057028E4547100A7921A /* SportBallTextureEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056F28E4547100A7921A /* SportBallTextureEnum.swift */; };
+		221D057228E4548C00A7921A /* SportBallButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057128E4548C00A7921A /* SportBallButtonEnum.swift */; };
+		221D057428E454D800A7921A /* BilliardBallTextureEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057328E454D800A7921A /* BilliardBallTextureEnum.swift */; };
+		221D057628E454F200A7921A /* BilliardBallButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057528E454F200A7921A /* BilliardBallButtonEnum.swift */; };
 		223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772A828E2EE31004F820D /* IdentifireLabel.swift */; };
 		223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AA28E2F1A8004F820D /* IdentifireTextField.swift */; };
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
@@ -54,6 +60,12 @@
 		2208165D28E1FFF200936408 /* QuitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitButton.swift; sourceTree = "<group>"; };
 		2208165F28E2061800936408 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		2208166128E20D0900936408 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		221D056B28E4543100A7921A /* FruitsTextureEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsTextureEnum.swift; sourceTree = "<group>"; };
+		221D056D28E4544500A7921A /* FruitsButtonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsButtonEnum.swift; sourceTree = "<group>"; };
+		221D056F28E4547100A7921A /* SportBallTextureEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportBallTextureEnum.swift; sourceTree = "<group>"; };
+		221D057128E4548C00A7921A /* SportBallButtonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportBallButtonEnum.swift; sourceTree = "<group>"; };
+		221D057328E454D800A7921A /* BilliardBallTextureEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardBallTextureEnum.swift; sourceTree = "<group>"; };
+		221D057528E454F200A7921A /* BilliardBallButtonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardBallButtonEnum.swift; sourceTree = "<group>"; };
 		223772A828E2EE31004F820D /* IdentifireLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireLabel.swift; sourceTree = "<group>"; };
 		223772AA28E2F1A8004F820D /* IdentifireTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireTextField.swift; sourceTree = "<group>"; };
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
@@ -111,6 +123,42 @@
 				2208165B28E1FB4700936408 /* TimerProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		221D056528E4539100A7921A /* Planets */ = {
+			isa = PBXGroup;
+			children = (
+				22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */,
+				223772D428E356E6004F820D /* PlanetsButtonEnum.swift */,
+			);
+			path = Planets;
+			sourceTree = "<group>";
+		};
+		221D056628E453B000A7921A /* Fruits */ = {
+			isa = PBXGroup;
+			children = (
+				221D056B28E4543100A7921A /* FruitsTextureEnum.swift */,
+				221D056D28E4544500A7921A /* FruitsButtonEnum.swift */,
+			);
+			path = Fruits;
+			sourceTree = "<group>";
+		};
+		221D056728E453C500A7921A /* SportBalls */ = {
+			isa = PBXGroup;
+			children = (
+				221D056F28E4547100A7921A /* SportBallTextureEnum.swift */,
+				221D057128E4548C00A7921A /* SportBallButtonEnum.swift */,
+			);
+			path = SportBalls;
+			sourceTree = "<group>";
+		};
+		221D056828E453D700A7921A /* BilliardBalls */ = {
+			isa = PBXGroup;
+			children = (
+				221D057328E454D800A7921A /* BilliardBallTextureEnum.swift */,
+				221D057528E454F200A7921A /* BilliardBallButtonEnum.swift */,
+			);
+			path = BilliardBalls;
 			sourceTree = "<group>";
 		};
 		229BC14928AA7089008D07A0 = {
@@ -286,9 +334,11 @@
 		22FDAFC728BCFA05002146B6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				221D056528E4539100A7921A /* Planets */,
+				221D056628E453B000A7921A /* Fruits */,
+				221D056728E453C500A7921A /* SportBalls */,
+				221D056828E453D700A7921A /* BilliardBalls */,
 				223772D628E38077004F820D /* KitEnum.swift */,
-				22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */,
-				223772D428E356E6004F820D /* PlanetsButtonEnum.swift */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
 				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
 				22E5941F28C37E110063586D /* SettingType.swift */,
@@ -379,16 +429,20 @@
 				2208166028E2061800936408 /* StartButton.swift in Sources */,
 				223772AD28E31170004F820D /* InfoLabel.swift in Sources */,
 				223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */,
+				221D057028E4547100A7921A /* SportBallTextureEnum.swift in Sources */,
 				229BC17228AA7DD8008D07A0 /* UserServise.swift in Sources */,
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
+				221D056C28E4543100A7921A /* FruitsTextureEnum.swift in Sources */,
 				2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */,
 				223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */,
+				221D057628E454F200A7921A /* BilliardBallButtonEnum.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				22FDAFC928BCFA1E002146B6 /* PlanetsTexturesEnum.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
+				221D057428E454D800A7921A /* BilliardBallTextureEnum.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
@@ -397,7 +451,9 @@
 				2208165E28E1FFF200936408 /* QuitButton.swift in Sources */,
 				22E5941D28C2786A0063586D /* AuthType.swift in Sources */,
 				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,
+				221D056E28E4544500A7921A /* FruitsButtonEnum.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
+				221D057228E4548C00A7921A /* SportBallButtonEnum.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				223772D728E38077004F820D /* KitEnum.swift in Sources */,
