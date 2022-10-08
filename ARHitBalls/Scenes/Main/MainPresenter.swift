@@ -24,6 +24,7 @@ final class MainPresenter {
     
     private let sceneBuildManager: Buildable
     private let alertManager: AlertManagerable
+    private var selectedKit: KitEnum = .planets
     
     // MARK: - Initializer
     
@@ -40,7 +41,10 @@ final class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func settingsButtonPressed() {
-        let settingsViewController = sceneBuildManager.buildSettingsScreen(settingType: .mainSetting)
+        let settingsViewController = sceneBuildManager.buildSettingsScreen(
+            settingType: .mainSetting,
+            selectedKit: selectedKit
+        )
         viewController?.navigationController?.pushViewController(
             settingsViewController,
             animated: true
@@ -48,7 +52,10 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func startQuickGameButtonPressed() {
-        let settingViewController = sceneBuildManager.buildSettingsScreen(settingType: .quickGameSetting)
+        let settingViewController = sceneBuildManager.buildSettingsScreen(
+            settingType: .quickGameSetting,
+            selectedKit: selectedKit
+        )
         viewController?.navigationController?.pushViewController(
             settingViewController,
             animated: true
@@ -76,6 +83,14 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func kitButtonsPressed(tag: Int) {
-        print(#function)
+        if tag == 0 {
+            selectedKit = .planets
+        } else if tag == 1 {
+            selectedKit = .fruits
+        } else if tag == 2 {
+            selectedKit = .billiardBalls
+        } else {
+            selectedKit = .sportBalls
+        }
     }
 }

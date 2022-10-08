@@ -117,6 +117,7 @@ final class MainViewController: UIViewController {
     
     private lazy var missionStartGameButton: StartButton = {
         let button = StartButton(type: .system)
+        button.alpha = 0.5
         button.setTitle(
             "Компания",
             for: .normal
@@ -187,6 +188,9 @@ final class MainViewController: UIViewController {
     
     @objc
     private func kitButtonsPressed(sender: UIButton) {
+        kitStackView.subviews.forEach {
+            $0.alpha = sender == $0 ? 1 : 0.5
+        }
         presenter?.kitButtonsPressed(tag: sender.tag)
     }
 }
@@ -208,7 +212,7 @@ private extension MainViewController {
     func setupKitButtons() {
         let kitButtons = KitEnum.allCases
         
-        kitButtons.enumerated().forEach { index,  kit in
+        kitButtons.enumerated().forEach { index, kit in
             let button = ShotButton()
             button.setupBackgroundImage(named: kit.imageName )
             button.addTarget(
@@ -217,7 +221,9 @@ private extension MainViewController {
                 for: .touchUpInside
             )
             button.tag = index
-            
+            if button.tag == 0 {
+                button.alpha = 1
+            }
             kitStackView.addArrangedSubview(button)
         }
     }

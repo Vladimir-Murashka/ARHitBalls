@@ -26,20 +26,36 @@ final class GamePresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
-    private var selectPlanet: PlanetsTexturesEnum = .earth
+    private var selectedKit: KitEnum
+    private var value: ARObjectable = SportBalls.basketball
+    private var selectedItemNumber = 0
     private let timerValue: Double
     private let currentLevelValue: Int
     
+    private func setKit(_ value: Int) -> ARObjectModel? {
+        switch selectedKit {
+        case .planets:
+            return Planets(rawValue: selectedItemNumber)?.shot
+        case .fruits:
+            return Fruits(rawValue: selectedItemNumber)?.shot
+        case .billiardBalls:
+            return BilliardBalls(rawValue: selectedItemNumber)?.shot
+        case .sportBalls:
+            return SportBalls(rawValue: selectedItemNumber)?.shot
+        }
+    }
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
         timerValue: Double,
-        currentLevelValue: Int
+        currentLevelValue: Int,
+        selectedKit: KitEnum
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.timerValue = timerValue
         self.currentLevelValue = currentLevelValue
+        self.selectedKit = selectedKit
     }
 }
 
@@ -50,7 +66,8 @@ extension GamePresenter: GamePresenterProtocol {
         let timerValueText = transformationTimerLabelText(timeValue: timerValue)
         viewController?.updateTimer(text: timerValueText)
         viewController?.updateLevel(text: String(currentLevelValue * 6))
-        addPlanets()
+        viewController?.updateSelected(kit: selectedKit)
+        addARObject()
     }
     
     func viewWillAppear() {
@@ -63,8 +80,11 @@ extension GamePresenter: GamePresenterProtocol {
     }
     
     func touchesEnded(frame: ARFrame) {
+        guard let shot = setKit(selectedItemNumber) else {
+            return
+        }
         fire(
-            planet: selectPlanet,
+            shot: shot,
             frame: frame
         )
     }
@@ -74,39 +94,40 @@ extension GamePresenter: GamePresenterProtocol {
     }
 
     func shotButtonPressed(tag: Int) {
-        switch tag {
-        case 0:
-            selectPlanet = .earth
-        case 1:
-            selectPlanet = .jupiter
-        case 2:
-            selectPlanet = .mars
-        case 3:
-            selectPlanet = .mercury
-        case 4:
-            selectPlanet = .moon
-        case 5:
-            selectPlanet = .neptune
-        default:
-            break
-        }
+        selectedItemNumber = tag
     }
 }
 
 private extension GamePresenter {
-    func addPlanets() {
-        let planets = PlanetsTexturesEnum.allCases
-        for planet in planets {
-            addRandomPisitionPlanet(
-                number: 5,
-                planet: planet
+    func addARObject() {
+        var array: [ARObjectable] = []
+        
+        switch selectedKit {
+        case .planets:
+            array = Planets.allCases
+            
+        case .fruits:
+            array = Fruits.allCases
+            
+        case .billiardBalls:
+            array = BilliardBalls.allCases
+            
+        case .sportBalls:
+            array = SportBalls.allCases
+        }
+        
+        for item in array {
+            let shot = item.shot
+            addRandomPisitionARObject(
+                number: currentLevelValue,
+                object: shot
             )
         }
     }
     
-    func addRandomPisitionPlanet(
+    func addRandomPisitionARObject(
         number: Int,
-        planet: PlanetsTexturesEnum
+        object: ARObjectModel
     ) {
         for _ in 1...number {
             let xPos = randomPosition(
@@ -122,8 +143,8 @@ private extension GamePresenter {
                 to: 0
             )
             
-            addPlanet(
-                planet: planet,
+            createARObject(
+                object: object,
                 xPos: xPos,
                 yPos: yPos,
                 zPos: zPos)
@@ -138,44 +159,44 @@ private extension GamePresenter {
         return Float(arc4random()) / Float(UInt32.max) * (from - to) + to
     }
     
-    func addPlanet(
-        planet: PlanetsTexturesEnum,
+    func createARObject(
+        object: ARObjectModel,
         xPos: Float,
         yPos: Float,
         zPos: Float
     ) {
         let sphere = SCNSphere(radius: 0.1)
-        let planetNode = SCNNode()
+        let objectNode = SCNNode()
         let zPos: Float = -1.5
         
-        planetNode.geometry = sphere
-        planetNode.position = SCNVector3(
+        objectNode.geometry = sphere
+        objectNode.position = SCNVector3(
             xPos,
             yPos,
             zPos
         )
-        planetNode.name = planet.rawValue
+        objectNode.name = object.nodeName
         
         let material = SCNMaterial()
-        material.diffuse.contents = planet.image
+        material.diffuse.contents = object.textureImage
         material.locksAmbientWithDiffuse = true
-        planetNode.geometry?.materials = [material]
-        planetNode.physicsBody = SCNPhysicsBody(
+        objectNode.geometry?.materials = [material]
+        objectNode.physicsBody = SCNPhysicsBody(
             type: .static,
             shape: nil
         )
-        planetNode.physicsBody?.isAffectedByGravity = false
-        planetNode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-        planetNode.physicsBody?.contactTestBitMask = CollisionCategory.missleCategory.rawValue
+        objectNode.physicsBody?.isAffectedByGravity = false
+        objectNode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+        objectNode.physicsBody?.contactTestBitMask = CollisionCategory.missleCategory.rawValue
         
-        viewController?.addChild(node: planetNode)
+        viewController?.addChild(node: objectNode)
     }
     
     func fire(
-        planet: PlanetsTexturesEnum,
+        shot: ARObjectModel,
         frame: ARFrame
     ) {
-        let node = createShot(planet: planet)
+        let node = createARProjectile(shot)
         let (direction, position) = getUserVector(frame: frame)
         node.position = position
         let nodeDirection = SCNVector3(
@@ -195,7 +216,7 @@ private extension GamePresenter {
         viewController?.addChild(node: node)
     }
     
-    func createShot(planet: PlanetsTexturesEnum) -> SCNNode {
+    func createARProjectile(_ myShot: ARObjectModel) -> SCNNode {
         let shot = SCNSphere(radius: 0.03)
         let shotNode = SCNNode()
         shotNode.geometry = shot
@@ -206,10 +227,10 @@ private extension GamePresenter {
         shotNode.physicsBody?.isAffectedByGravity = false
         
         let material = SCNMaterial()
-        material.diffuse.contents = planet.image
+        material.diffuse.contents = myShot.textureImage
         material.locksAmbientWithDiffuse = true
         shotNode.geometry?.materials = [material]
-        shotNode.name = planet.rawValue
+        shotNode.name = myShot.nodeName
         shotNode.physicsBody?.categoryBitMask = CollisionCategory.missleCategory.rawValue
         shotNode.physicsBody?.contactTestBitMask = CollisionCategory.targetCategory.rawValue
         

@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SportBallTextureEnum: String, CaseIterable {
+enum SportBalls: String, CaseIterable {
     case basketball
     case golf
     case magic

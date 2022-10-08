@@ -16,6 +16,7 @@ protocol GameViewProtocol: UIViewController {
     func addChild(node: SCNNode)
     func updateTimer(text: String)
     func updateLevel(text: String)
+    func updateSelected(kit: KitEnum)
 }
 
 // MARK: - GameViewController
@@ -26,6 +27,7 @@ final class GameViewController: UIViewController {
     // MARK: - PrivateProperties
     
     private let sceneView = ARSCNView()
+    private var selectedKit: KitEnum = .planets
     
     private lazy var quitGameButton: UIButton = {
         let button = QuitButton(type: .system)
@@ -117,7 +119,6 @@ final class GameViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewDidLoad()
         setupViewController()
-        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,6 +152,9 @@ final class GameViewController: UIViewController {
     
     @objc
     private func shotButtonPressed(sender: UIButton) {
+        lowStackView.subviews.forEach {
+            $0.alpha = sender == $0 ? 1 : 0.5
+        }
         presenter?.shotButtonPressed(tag: sender.tag)
     }
 }
@@ -170,12 +174,17 @@ extension GameViewController: GameViewProtocol {
         
         sceneView.scene.rootNode.addChildNode(node)
     }
+    
     func updateTimer(text: String) {
         timerLabel.text = text
     }
     
     func updateLevel(text: String) {
         totalNumberOfPlanetsLabel.text = text
+    }
+    
+    func updateSelected(kit: KitEnum) {
+        selectedKit = kit
     }
 }
 
@@ -192,18 +201,34 @@ private extension GameViewController {
     }
     
     func setupShotButtons() {
-        let planets = PlanetsButton.allCases
+        var array: [ARObjectable] = []
         
-        planets.enumerated().forEach { index, planet in
+        switch selectedKit {
+        case .planets:
+            array = Planets.allCases
+            
+        case .fruits:
+            array = Fruits.allCases
+            
+        case .billiardBalls:
+            array = BilliardBalls.allCases
+            
+        case .sportBalls:
+            array = SportBalls.allCases
+        }
+        
+        array.enumerated().forEach { index, planet in
             let button = ShotButton()
-            button.setupBackgroundImage(named: planet.imageName)
+            button.setupBackgroundImage(named: planet.shot.buttonImageName)
             button.addTarget(
                 self,
                 action: #selector(shotButtonPressed),
                 for: .touchUpInside
             )
             button.tag = index
-            
+            if button.tag == 0 {
+                button.alpha = 1
+            }
             lowStackView.addArrangedSubview(button)
         }
     }

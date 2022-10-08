@@ -28,6 +28,7 @@ final class SettingsPresenter {
     private let sceneBuildManager: Buildable
     private let defaultsStorage: DefaultsManagerable
     private let settingType: SettingType
+    private let selectedKit: KitEnum
     private var timerValue: Double = 10
     private var currentLevelValue: Int = 1
     
@@ -36,11 +37,13 @@ final class SettingsPresenter {
     init(
         sceneBuildManager: Buildable,
         defaultsStorage: DefaultsManagerable,
-        settingType: SettingType
+        settingType: SettingType,
+        selectedKit: KitEnum
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.defaultsStorage = defaultsStorage
         self.settingType = settingType
+        self.selectedKit = selectedKit
     }
 }
 
@@ -145,7 +148,8 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     func startQuickGameButtonPressed() {
         let gameViewController = sceneBuildManager.buildGameScreen(
             timerValue: timerValue,
-            levelValue: currentLevelValue
+            levelValue: currentLevelValue,
+            selectedKit: selectedKit
         )
         viewController?.navigationController?.pushViewController(
             gameViewController,
