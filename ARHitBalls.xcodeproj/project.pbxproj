@@ -11,11 +11,17 @@
 		2208165E28E1FFF200936408 /* QuitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165D28E1FFF200936408 /* QuitButton.swift */; };
 		2208166028E2061800936408 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165F28E2061800936408 /* StartButton.swift */; };
 		2208166228E20D0900936408 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208166128E20D0900936408 /* MenuButton.swift */; };
+		221D056C28E4543100A7921A /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056B28E4543100A7921A /* Fruits.swift */; };
+		221D057028E4547100A7921A /* SportBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056F28E4547100A7921A /* SportBalls.swift */; };
+		221D057428E454D800A7921A /* BilliardBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057328E454D800A7921A /* BilliardBalls.swift */; };
 		223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772A828E2EE31004F820D /* IdentifireLabel.swift */; };
 		223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AA28E2F1A8004F820D /* IdentifireTextField.swift */; };
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
 		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
-		223772D528E356E6004F820D /* PlanetsButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D428E356E6004F820D /* PlanetsButtonEnum.swift */; };
+		223772D728E38077004F820D /* KitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D628E38077004F820D /* KitEnum.swift */; };
+		22568D4D28F038B900B83261 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4C28F038B900B83261 /* Planets.swift */; };
+		22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4E28F05D5500B83261 /* ARObjectable.swift */; };
+		22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D5228F1B24700B83261 /* ARObjectModel.swift */; };
 		2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268E4D628DCDB590029C755 /* CollisionCategory.swift */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
@@ -45,7 +51,6 @@
 		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
 		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
 		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
-		22FDAFC928BCFA1E002146B6 /* PlanetsTexturesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,11 +58,17 @@
 		2208165D28E1FFF200936408 /* QuitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitButton.swift; sourceTree = "<group>"; };
 		2208165F28E2061800936408 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		2208166128E20D0900936408 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		221D056B28E4543100A7921A /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
+		221D056F28E4547100A7921A /* SportBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportBalls.swift; sourceTree = "<group>"; };
+		221D057328E454D800A7921A /* BilliardBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardBalls.swift; sourceTree = "<group>"; };
 		223772A828E2EE31004F820D /* IdentifireLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireLabel.swift; sourceTree = "<group>"; };
 		223772AA28E2F1A8004F820D /* IdentifireTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireTextField.swift; sourceTree = "<group>"; };
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
-		223772D428E356E6004F820D /* PlanetsButtonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsButtonEnum.swift; sourceTree = "<group>"; };
+		223772D628E38077004F820D /* KitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitEnum.swift; sourceTree = "<group>"; };
+		22568D4C28F038B900B83261 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
+		22568D4E28F05D5500B83261 /* ARObjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectable.swift; sourceTree = "<group>"; };
+		22568D5228F1B24700B83261 /* ARObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectModel.swift; sourceTree = "<group>"; };
 		2268E4D628DCDB590029C755 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +100,6 @@
 		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
-		22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsTexturesEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +117,30 @@
 			isa = PBXGroup;
 			children = (
 				2208165B28E1FB4700936408 /* TimerProtocol.swift */,
+				22568D4E28F05D5500B83261 /* ARObjectable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		22568D5028F1B1ED00B83261 /* KitsEnums */ = {
+			isa = PBXGroup;
+			children = (
+				22568D4C28F038B900B83261 /* Planets.swift */,
+				221D056B28E4543100A7921A /* Fruits.swift */,
+				221D057328E454D800A7921A /* BilliardBalls.swift */,
+				221D056F28E4547100A7921A /* SportBalls.swift */,
+				223772D628E38077004F820D /* KitEnum.swift */,
+			);
+			path = KitsEnums;
+			sourceTree = "<group>";
+		};
+		22568D5128F1B21500B83261 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
+				22568D5228F1B24700B83261 /* ARObjectModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		229BC14928AA7089008D07A0 = {
@@ -284,10 +316,9 @@
 		22FDAFC728BCFA05002146B6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				22FDAFC828BCFA1E002146B6 /* PlanetsTexturesEnum.swift */,
-				223772D428E356E6004F820D /* PlanetsButtonEnum.swift */,
+				22568D5128F1B21500B83261 /* Models */,
+				22568D5028F1B1ED00B83261 /* KitsEnums */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
-				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
 				22E5941F28C37E110063586D /* SettingType.swift */,
 				2268E4D628DCDB590029C755 /* CollisionCategory.swift */,
 			);
@@ -375,17 +406,21 @@
 				22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */,
 				2208166028E2061800936408 /* StartButton.swift in Sources */,
 				223772AD28E31170004F820D /* InfoLabel.swift in Sources */,
+				22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */,
+				22568D4D28F038B900B83261 /* Planets.swift in Sources */,
 				223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */,
+				221D057028E4547100A7921A /* SportBalls.swift in Sources */,
 				229BC17228AA7DD8008D07A0 /* UserServise.swift in Sources */,
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
+				221D056C28E4543100A7921A /* Fruits.swift in Sources */,
 				2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */,
 				223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
-				22FDAFC928BCFA1E002146B6 /* PlanetsTexturesEnum.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
+				221D057428E454D800A7921A /* BilliardBalls.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
@@ -397,9 +432,10 @@
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
+				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
+				223772D728E38077004F820D /* KitEnum.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,
-				223772D528E356E6004F820D /* PlanetsButtonEnum.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
