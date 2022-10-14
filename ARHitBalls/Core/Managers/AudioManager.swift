@@ -8,21 +8,33 @@
 import AVFoundation
 
 protocol AudioManagerable {
-    func getSound(forResource: String, withExtension: String)
+    func loadSound(
+        forResource: String,
+        withExtension: String
+    )
+    func play()
+    func pause()
 }
 
 final class AudioManager {
     
     private var musicPlayer: AVAudioPlayer?
     
-    init(musicPlayer: AVAudioPlayer?) {
-        self.musicPlayer = musicPlayer
-    }
 }
 
 extension AudioManager: AudioManagerable {
+    func play() {
+        musicPlayer?.play()
+    }
     
-    func getSound(forResource: String, withExtension: String) {
+    func pause() {
+        musicPlayer?.pause()
+    }
+    
+    func loadSound(
+        forResource: String,
+        withExtension: String
+    ) {
         guard let url = Bundle.main.url(
             forResource: forResource,
             withExtension: withExtension
@@ -40,11 +52,6 @@ extension AudioManager: AudioManagerable {
                 contentsOf: url,
                 fileTypeHint: AVFileType.mp3.rawValue
             )
-            
-            guard let player = musicPlayer else {
-                return
-            }
-            player.play()
         } catch {
             fatalError()
         }

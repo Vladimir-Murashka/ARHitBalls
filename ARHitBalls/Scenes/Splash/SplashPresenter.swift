@@ -22,15 +22,22 @@ final class SplashPresenter {
     
     private let sceneBuildManager: Buildable
     private let userService: UserServiceable
+    private let defaultsStorage: DefaultsManagerable
+    private let generalBackgroundAudioManager: AudioManagerable
+    private var isMusicOn: Bool = true
     
     // MARK: - Initializer
     
     init(
         userService: UserServiceable,
-        sceneBuildManager: Buildable
+        defaultsStorage: DefaultsManagerable,
+        sceneBuildManager: Buildable,
+        generalBackgroundAudioManager: AudioManagerable
     ) {
         self.userService = userService
+        self.defaultsStorage = defaultsStorage
         self.sceneBuildManager = sceneBuildManager
+        self.generalBackgroundAudioManager = generalBackgroundAudioManager
     }
 }
 
@@ -38,6 +45,16 @@ final class SplashPresenter {
 
 extension SplashPresenter: SplashPresenterProtocol {
     func viewDidLoad() {
+        generalBackgroundAudioManager.loadSound(
+            forResource: "back",
+            withExtension: "mp3"
+        )
+        
+        isMusicOn = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+        if isMusicOn {
+            generalBackgroundAudioManager.play()
+        }
+        
         userService.logout()
         //userService.registerUser()
         
