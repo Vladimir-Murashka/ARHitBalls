@@ -305,6 +305,7 @@ extension GameViewController: SCNPhysicsContactDelegate {
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
                 self.presenter?.nodeSound()
+                self.presenter?.nodeVibration()
             }
         }
     }

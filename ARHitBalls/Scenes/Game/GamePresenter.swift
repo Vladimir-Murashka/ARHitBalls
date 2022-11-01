@@ -17,6 +17,7 @@ protocol GamePresenterProtocol: AnyObject, TimerProtocol {
     func shotButtonPressed(tag: Int)
     func touchesEnded(frame: ARFrame)
     func nodeSound()
+    func nodeVibration()
 }
 
 // MARK: - GamePresenter
@@ -38,6 +39,7 @@ final class GamePresenter {
     private let currentLevelValue: Int
     private var isMusicOn: Bool = true
     private var isSoundEffectOn: Bool = true
+    private var isVibrationOn: Bool = true
     
     private func setKit(_ value: Int) -> ARObjectModel? {
         switch selectedKit {
@@ -85,6 +87,11 @@ extension GamePresenter: GamePresenterProtocol {
         isSoundEffectOn = defaultsStorage.fetchObject(
             type: Bool.self,
             for: .isSoundOn
+        ) ?? true
+        
+        isVibrationOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isVibrationOn
         ) ?? true
         
         
@@ -147,6 +154,12 @@ extension GamePresenter: GamePresenterProtocol {
     func nodeSound() {
         if isSoundEffectOn {
             soundEffectManager.play()
+        }
+    }
+    
+    func nodeVibration() {
+        if isVibrationOn {
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         }
     }
 }
