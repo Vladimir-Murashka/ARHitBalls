@@ -16,6 +16,7 @@ protocol GameViewProtocol: UIViewController {
     func addChild(node: SCNNode)
     func updateTimer(text: String)
     func updateLevel(text: String)
+    func updateNumberOfPlanetslabel(text: String)
     func updateSelected(kit: KitEnum)
 }
 
@@ -62,7 +63,7 @@ final class GameViewController: UIViewController {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = "00"
+        label.text = "0"
         label.backgroundColor = .black
         return label
     }()
@@ -181,6 +182,10 @@ extension GameViewController: GameViewProtocol {
     
     func updateLevel(text: String) {
         totalNumberOfPlanetsLabel.text = text
+    }
+    
+    func updateNumberOfPlanetslabel(text: String) {
+        numberOfPlanetslabel.text = text
     }
     
     func updateSelected(kit: KitEnum) {
@@ -306,6 +311,8 @@ extension GameViewController: SCNPhysicsContactDelegate {
                 contact.nodeB.removeFromParentNode()
                 self.presenter?.nodeSound()
                 self.presenter?.nodeVibration()
+                self.presenter?.nodeContact()
+                self.presenter?.levelIsFinished()
             }
         }
     }

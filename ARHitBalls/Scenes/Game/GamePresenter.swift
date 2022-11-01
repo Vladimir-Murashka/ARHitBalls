@@ -18,6 +18,8 @@ protocol GamePresenterProtocol: AnyObject, TimerProtocol {
     func touchesEnded(frame: ARFrame)
     func nodeSound()
     func nodeVibration()
+    func nodeContact()
+    func levelIsFinished()
 }
 
 // MARK: - GamePresenter
@@ -33,6 +35,7 @@ final class GamePresenter {
     private let generalBackgroundAudioManager: AudioManagerable
     private let gameAudioManager: AudioManagerable
     private let soundEffectManager: AudioManagerable
+    private let alertManager: AlertManagerable
     private var value: ARObjectable = SportBalls.basketball
     private var selectedItemNumber = 0
     private let timerValue: Double
@@ -40,6 +43,8 @@ final class GamePresenter {
     private var isMusicOn: Bool = true
     private var isSoundEffectOn: Bool = true
     private var isVibrationOn: Bool = true
+    private var numberOfPlanets: Int = 0
+    private var totalNumberOfPlanets: Int = 0
     
     private func setKit(_ value: Int) -> ARObjectModel? {
         switch selectedKit {
@@ -61,6 +66,7 @@ final class GamePresenter {
         generalBackgroundAudioManager: AudioManagerable,
         gameAudioManager: AudioManagerable,
         soundEffectManager: AudioManagerable,
+        alertManager: AlertManagerable,
         timerValue: Double,
         currentLevelValue: Int,
         selectedKit: KitEnum
@@ -70,6 +76,7 @@ final class GamePresenter {
         self.generalBackgroundAudioManager = generalBackgroundAudioManager
         self.gameAudioManager = gameAudioManager
         self.soundEffectManager = soundEffectManager
+        self.alertManager = alertManager
         self.timerValue = timerValue
         self.currentLevelValue = currentLevelValue
         self.selectedKit = selectedKit
@@ -80,6 +87,7 @@ final class GamePresenter {
 
 extension GamePresenter: GamePresenterProtocol {
     func viewDidLoad() {
+        totalNumberOfPlanets = currentLevelValue * 6
         soundEffectManager.loadSound(
             forResource: "hit",
             withExtension: "mp3"
@@ -110,7 +118,7 @@ extension GamePresenter: GamePresenterProtocol {
         
         let timerValueText = transformationTimerLabelText(timeValue: timerValue)
         viewController?.updateTimer(text: timerValueText)
-        viewController?.updateLevel(text: String(currentLevelValue * 6))
+        viewController?.updateLevel(text: String(totalNumberOfPlanets))
         viewController?.updateSelected(kit: selectedKit)
         addARObject()
     }
@@ -160,6 +168,33 @@ extension GamePresenter: GamePresenterProtocol {
     func nodeVibration() {
         if isVibrationOn {
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        }
+    }
+    
+    func nodeContact() {
+        numberOfPlanets += 1
+        viewController?.updateNumberOfPlanetslabel(text: String(numberOfPlanets))
+    }
+    
+    func levelIsFinished() {
+        if totalNumberOfPlanets == numberOfPlanets {
+            guard let viewController = viewController.self else {
+                return
+            }
+            
+            viewController.sessionPause()
+            
+            alertManager.showAlert(
+                fromViewController: viewController,
+                title: "Поздравляем",
+                message: "Уровень пройден",
+                firstButtonTitle: "Выйти",
+                firstActionBlock: {
+                    viewController.navigationController?.popViewController(animated: true)
+                },
+                secondTitleButton: "Следующий Уровень") {
+                    
+                }
         }
     }
 }
