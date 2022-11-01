@@ -26,11 +26,17 @@ final class SceneBuildManager {
     private let userService: UserServiceable
     private let defaultsManager: DefaultsManagerable
     private let alertManager: AlertManagerable
+    private let commonAudioManager: AudioManagerable
+    private let gameAudioManager: AudioManagerable
+    private let soundEffectManager: AudioManagerable
     
     init() {
         defaultsManager = DefaultsManager()
         userService = UserService(defaultsManager: defaultsManager)
         alertManager = AlertManager()
+        commonAudioManager = AudioManager()
+        gameAudioManager = AudioManager()
+        soundEffectManager = AudioManager()
     }
 }
 
@@ -39,7 +45,9 @@ extension SceneBuildManager: Buildable {
         let viewController = SplashViewController()
         let presenter = SplashPresenter(
             userService: userService,
-            sceneBuildManager: self
+            defaultsStorage: defaultsManager,
+            sceneBuildManager: self,
+            generalBackgroundAudioManager: commonAudioManager
         )
         
         viewController.presenter = presenter
@@ -80,7 +88,8 @@ extension SceneBuildManager: Buildable {
             sceneBuildManager: self,
             defaultsStorage: defaultsManager,
             settingType: settingType,
-            selectedKit: selectedKit
+            selectedKit: selectedKit,
+            generalBackgroundAudioManager: commonAudioManager
         )
         
         viewController.presenter = presenter
@@ -97,6 +106,10 @@ extension SceneBuildManager: Buildable {
         let viewController = GameViewController()
         let presenter = GamePresenter(
             sceneBuildManager: self,
+            defaultsStorage: defaultsManager,
+            generalBackgroundAudioManager: commonAudioManager,
+            gameAudioManager: gameAudioManager,
+            soundEffectManager: soundEffectManager,
             timerValue: timerValue,
             currentLevelValue: levelValue,
             selectedKit: selectedKit

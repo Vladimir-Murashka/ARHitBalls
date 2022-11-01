@@ -16,6 +16,7 @@ protocol GamePresenterProtocol: AnyObject, TimerProtocol {
     func quitGameButtonPressed()
     func shotButtonPressed(tag: Int)
     func touchesEnded(frame: ARFrame)
+    func nodeSound()
 }
 
 // MARK: - GamePresenter
@@ -26,11 +27,17 @@ final class GamePresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    private let defaultsStorage: DefaultsManagerable
     private var selectedKit: KitEnum
+    private let generalBackgroundAudioManager: AudioManagerable
+    private let gameAudioManager: AudioManagerable
+    private let soundEffectManager: AudioManagerable
     private var value: ARObjectable = SportBalls.basketball
     private var selectedItemNumber = 0
     private let timerValue: Double
     private let currentLevelValue: Int
+    private var isMusicOn: Bool = true
+    private var isSoundEffectOn: Bool = true
     
     private func setKit(_ value: Int) -> ARObjectModel? {
         switch selectedKit {
@@ -48,11 +55,19 @@ final class GamePresenter {
     
     init(
         sceneBuildManager: Buildable,
+        defaultsStorage: DefaultsManagerable,
+        generalBackgroundAudioManager: AudioManagerable,
+        gameAudioManager: AudioManagerable,
+        soundEffectManager: AudioManagerable,
         timerValue: Double,
         currentLevelValue: Int,
         selectedKit: KitEnum
     ) {
         self.sceneBuildManager = sceneBuildManager
+        self.defaultsStorage = defaultsStorage
+        self.generalBackgroundAudioManager = generalBackgroundAudioManager
+        self.gameAudioManager = gameAudioManager
+        self.soundEffectManager = soundEffectManager
         self.timerValue = timerValue
         self.currentLevelValue = currentLevelValue
         self.selectedKit = selectedKit
@@ -63,6 +78,29 @@ final class GamePresenter {
 
 extension GamePresenter: GamePresenterProtocol {
     func viewDidLoad() {
+        soundEffectManager.loadSound(
+            forResource: "hit",
+            withExtension: "mp3"
+        )
+        isSoundEffectOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isSoundOn
+        ) ?? true
+        
+        
+        gameAudioManager.loadSound(
+            forResource: "track",
+            withExtension: "mp3"
+        )
+        isMusicOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isMusicOn
+        ) ?? true
+        
+        if isMusicOn {
+            gameAudioManager.play()
+        }
+        
         let timerValueText = transformationTimerLabelText(timeValue: timerValue)
         viewController?.updateTimer(text: timerValueText)
         viewController?.updateLevel(text: String(currentLevelValue * 6))
@@ -91,10 +129,25 @@ extension GamePresenter: GamePresenterProtocol {
     
     func quitGameButtonPressed() {
         viewController?.navigationController?.popViewController(animated: true)
+        gameAudioManager.pause()
+        isMusicOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isMusicOn
+        ) ?? true
+        
+        if isMusicOn {
+            generalBackgroundAudioManager.play()
+        }
     }
 
     func shotButtonPressed(tag: Int) {
         selectedItemNumber = tag
+    }
+    
+    func nodeSound() {
+        if isSoundEffectOn {
+            soundEffectManager.play()
+        }
     }
 }
 

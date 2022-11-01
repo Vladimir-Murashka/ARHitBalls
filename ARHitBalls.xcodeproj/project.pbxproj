@@ -23,6 +23,9 @@
 		22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4E28F05D5500B83261 /* ARObjectable.swift */; };
 		22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D5228F1B24700B83261 /* ARObjectModel.swift */; };
 		2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268E4D628DCDB590029C755 /* CollisionCategory.swift */; };
+		2271150C28F9AE3E00C3474C /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150B28F9AE3E00C3474C /* back.mp3 */; };
+		2271150E28F9B82D00C3474C /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150D28F9B82D00C3474C /* track.mp3 */; };
+		2271151028F9CB2500C3474C /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150F28F9CB2500C3474C /* hit.mp3 */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
 		229BC15F28AA7091008D07A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229BC15E28AA7091008D07A0 /* Assets.xcassets */; };
@@ -70,6 +73,9 @@
 		22568D4E28F05D5500B83261 /* ARObjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectable.swift; sourceTree = "<group>"; };
 		22568D5228F1B24700B83261 /* ARObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectModel.swift; sourceTree = "<group>"; };
 		2268E4D628DCDB590029C755 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
+		2271150B28F9AE3E00C3474C /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = back.mp3; path = ../../../../../back.mp3; sourceTree = "<group>"; };
+		2271150D28F9B82D00C3474C /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track.mp3; path = ../../../../../track.mp3; sourceTree = "<group>"; };
+		2271150F28F9CB2500C3474C /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = hit.mp3; path = ../../../../../hit.mp3; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229BC15728AA708A008D07A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +280,9 @@
 		229BC19428AADF9A008D07A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2271150F28F9CB2500C3474C /* hit.mp3 */,
+				2271150B28F9AE3E00C3474C /* back.mp3 */,
+				2271150D28F9B82D00C3474C /* track.mp3 */,
 				229BC15E28AA7091008D07A0 /* Assets.xcassets */,
 				229BC16028AA7091008D07A0 /* LaunchScreen.storyboard */,
 			);
@@ -385,6 +394,9 @@
 			files = (
 				229BC16228AA7091008D07A0 /* LaunchScreen.storyboard in Resources */,
 				229BC15F28AA7091008D07A0 /* Assets.xcassets in Resources */,
+				2271150E28F9B82D00C3474C /* track.mp3 in Resources */,
+				2271150C28F9AE3E00C3474C /* back.mp3 in Resources */,
+				2271151028F9CB2500C3474C /* hit.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

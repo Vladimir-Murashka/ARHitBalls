@@ -27,10 +27,12 @@ final class SettingsPresenter {
     
     private let sceneBuildManager: Buildable
     private let defaultsStorage: DefaultsManagerable
+    private let generalBackgroundAudioManager: AudioManagerable
     private let settingType: SettingType
     private let selectedKit: KitEnum
     private var timerValue: Double = 10
     private var currentLevelValue: Int = 1
+    
     
     // MARK: - Initializer
     
@@ -38,12 +40,14 @@ final class SettingsPresenter {
         sceneBuildManager: Buildable,
         defaultsStorage: DefaultsManagerable,
         settingType: SettingType,
-        selectedKit: KitEnum
+        selectedKit: KitEnum,
+        generalBackgroundAudioManager: AudioManagerable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.defaultsStorage = defaultsStorage
         self.settingType = settingType
         self.selectedKit = selectedKit
+        self.generalBackgroundAudioManager = generalBackgroundAudioManager
     }
 }
 
@@ -114,6 +118,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             value,
             for: .isMusicOn
         )
+        value ? generalBackgroundAudioManager.play() : generalBackgroundAudioManager.pause()
     }
     
     func quitSettingsButtonPressed() {
@@ -151,10 +156,12 @@ extension SettingsPresenter: SettingsPresenterProtocol {
             levelValue: currentLevelValue,
             selectedKit: selectedKit
         )
+        
         viewController?.navigationController?.pushViewController(
             gameViewController,
             animated: true
         )
+        generalBackgroundAudioManager.pause()
     }
 }
 

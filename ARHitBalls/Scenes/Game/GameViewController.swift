@@ -304,6 +304,7 @@ extension GameViewController: SCNPhysicsContactDelegate {
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
+                self.presenter?.nodeSound()
             }
         }
     }
