@@ -141,7 +141,11 @@ final class IdentifireViewController: UIViewController {
     @objc
     private func continueButtonPressed() {
         continueButton.pushAnimate { [weak self] in
-            self?.presenter?.continueButtonPressed()
+            self?.presenter?.continueButtonPressed(
+                emailTFValue: self?.emailTextField.text,
+                passwordTFValue: self?.passwordTextField.text,
+                passwordConfirmTFValue: self?.retypePasswordTextField.text
+            )
         }
     }
     

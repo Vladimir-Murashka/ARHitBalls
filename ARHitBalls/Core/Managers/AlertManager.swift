@@ -18,6 +18,13 @@ protocol AlertManagerable {
         secondActionBlock: (() -> Void)?
     )
     func showAlert(
+        fromViewController viewController: UIViewController,
+        title: String?,
+        message: String?,
+        firstButtonTitle: String?,
+        firstActionBlock: (() -> Void)?
+    )
+    func showAlert(
         from viewController: UIViewController,
         alertModel: AlertModel
     )
@@ -57,6 +64,31 @@ extension AlertManager: AlertManagerable {
         
         alertController.addAction(firstAction)
         alertController.addAction(secondAction)
+        
+        viewController.present(alertController, animated: true)
+    }
+    
+    func showAlert(
+        fromViewController viewController: UIViewController,
+        title: String?,
+        message: String?,
+        firstButtonTitle: String?,
+        firstActionBlock: (() -> Void)?
+    ) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        let firstAction = UIAlertAction(
+            title: firstButtonTitle,
+            style: .default,
+            handler: { _ in
+            firstActionBlock?()
+        })
+        
+        alertController.addAction(firstAction)
         
         viewController.present(alertController, animated: true)
     }

@@ -51,6 +51,7 @@ extension SplashPresenter: SplashPresenterProtocol {
         )
         
         isMusicOn = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+        
         if isMusicOn {
             generalBackgroundAudioManager.play()
         }

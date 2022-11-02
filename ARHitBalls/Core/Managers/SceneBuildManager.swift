@@ -126,7 +126,8 @@ extension SceneBuildManager: Buildable {
         let viewController = IdentifireViewController()
         let presenter = IdentifirePresenter(
             sceneBuildManager: self,
-            type: type
+            type: type,
+            alertManager: alertManager
         )
         
         viewController.presenter = presenter
