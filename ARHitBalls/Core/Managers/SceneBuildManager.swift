@@ -111,7 +111,7 @@ extension SceneBuildManager: Buildable {
             gameAudioManager: gameAudioManager,
             soundEffectManager: soundEffectManager,
             alertManager: alertManager,
-            timerValue: timerValue,
+            startTimerValue: timerValue,
             currentLevelValue: levelValue,
             selectedKit: selectedKit
         )

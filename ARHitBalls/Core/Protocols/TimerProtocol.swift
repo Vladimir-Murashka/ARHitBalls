@@ -15,7 +15,7 @@ extension TimerProtocol {
         let seconds = timeStepperValue % 60
         let minutes = (timeStepperValue / 60) % 60
         let result = String(
-            format: "%02d:%02d",
+            format: "%02d : %02d",
             minutes,
             seconds
         )

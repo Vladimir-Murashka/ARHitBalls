@@ -18,6 +18,7 @@ protocol GameViewProtocol: UIViewController {
     func updateLevel(text: String)
     func updateNumberOfPlanetslabel(text: String)
     func updateSelected(kit: KitEnum)
+    func cleanScene()
 }
 
 // MARK: - GameViewController
@@ -190,6 +191,11 @@ extension GameViewController: GameViewProtocol {
     
     func updateSelected(kit: KitEnum) {
         selectedKit = kit
+    }
+    
+    func cleanScene() {
+        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode() }
     }
 }
 
