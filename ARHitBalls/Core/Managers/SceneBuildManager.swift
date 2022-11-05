@@ -24,6 +24,7 @@ protocol Buildable {
 final class SceneBuildManager {
     
     private let userService: UserServiceable
+    private let firebaseService: FirebaseServicable
     private let defaultsManager: DefaultsManagerable
     private let alertManager: AlertManagerable
     private let commonAudioManager: AudioManagerable
@@ -32,7 +33,11 @@ final class SceneBuildManager {
     
     init() {
         defaultsManager = DefaultsManager()
-        userService = UserService(defaultsManager: defaultsManager)
+        firebaseService = FirebaseService()
+        userService = UserService(
+            defaultsManager: defaultsManager,
+            firebaseService: firebaseService
+        )
         alertManager = AlertManager()
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
@@ -70,7 +75,8 @@ extension SceneBuildManager: Buildable {
         let viewController = MainViewController()
         let presenter = MainPresenter(
             sceneBuildManager: self,
-            alertManager: alertManager
+            alertManager: alertManager,
+            userService: userService
         )
         
         viewController.presenter = presenter
@@ -126,7 +132,9 @@ extension SceneBuildManager: Buildable {
         let viewController = IdentifireViewController()
         let presenter = IdentifirePresenter(
             sceneBuildManager: self,
-            type: type
+            type: type,
+            alertManager: alertManager,
+            userService: userService
         )
         
         viewController.presenter = presenter

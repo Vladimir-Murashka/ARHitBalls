@@ -7,16 +7,30 @@
 
 protocol UserServiceable {
     func isUserAuth() -> Bool
-    func registerUser()
-    func logout()
+    func registerUser(
+        email: String,
+        password: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    )
+    func authUser(
+        email: String,
+        password: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    )
+    func logoutUser()
 }
 
 final class UserService {
     
     private let defaultsManager: DefaultsManagerable
+    private let firebaseService: FirebaseServicable
     
-    init(defaultsManager: DefaultsManagerable) {
+    init(
+        defaultsManager: DefaultsManagerable,
+        firebaseService: FirebaseServicable
+    ) {
         self.defaultsManager = defaultsManager
+        self.firebaseService = firebaseService
     }
 }
 
@@ -28,11 +42,48 @@ extension UserService: UserServiceable {
         ) ?? false
     }
     
-    func registerUser() {
-        defaultsManager.saveObject(true, for: .isUserAuth)
+    func registerUser(
+        email: String,
+        password: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        firebaseService.createUser(
+            email: email,
+            password: password
+        ) { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.defaultsManager.saveObject(true, for: .isUserAuth)
+                completion(.success(Void()))
+                
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
     
-    func logout() {
-        defaultsManager.deleteObject(for: .isUserAuth)
+    func authUser(
+        email: String,
+        password: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        firebaseService.singIn(
+            email: email,
+            password: password
+        ) { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.defaultsManager.saveObject(true, for: .isUserAuth)
+                completion(.success(Void()))
+                
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func logoutUser() {
+        firebaseService.logOut()
+        defaultsManager.saveObject(false, for: .isUserAuth)
     }
 }

@@ -5,6 +5,8 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
+import UIKit
+
 // MARK: - MainPresenterProtocol
 
 protocol MainPresenterProtocol: AnyObject {
@@ -25,15 +27,18 @@ final class MainPresenter {
     private let sceneBuildManager: Buildable
     private let alertManager: AlertManagerable
     private var selectedKit: KitEnum = .planets
+    private let userService: UserServiceable
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
-        alertManager: AlertManagerable
+        alertManager: AlertManagerable,
+        userService: UserServiceable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.alertManager = alertManager
+        self.userService = userService
     }
 }
 
@@ -74,7 +79,9 @@ extension MainPresenter: MainPresenterProtocol {
             firstButtonTitle: "Отменить",
             firstActionBlock: {},
             secondTitleButton: "Выйти") {
-                self.viewController?.navigationController?.popToRootViewController(animated: true)
+                self.userService.logoutUser()
+                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                UIApplication.shared.windows.first?.rootViewController = rootViewController
             }
     }
     
