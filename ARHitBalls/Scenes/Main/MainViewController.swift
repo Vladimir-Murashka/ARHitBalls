@@ -203,6 +203,7 @@ extension MainViewController: MainViewProtocol {}
 
 private extension MainViewController {
     func setupViewController() {
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemGray
         addSubViews()
         setupKitButtons()

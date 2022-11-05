@@ -30,17 +30,20 @@ final class  IdentifirePresenter {
     private let sceneBuildManager: Buildable
     private let type: AuthType
     private let alertManager: AlertManagerable
+    private let userService: UserServiceable
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
         type: AuthType,
-        alertManager: AlertManagerable
+        alertManager: AlertManagerable,
+        userService: UserServiceable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.type = type
         self.alertManager = alertManager
+        self.userService = userService
     }
 }
 
@@ -70,7 +73,8 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
         if type == .auth {
             
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                if error == nil{
+                if error == nil {
+                    self.userService.registerUser()
                     let mainViewController = self.sceneBuildManager.buildMainScreen()
                     self.viewController?.navigationController?.pushViewController(
                         mainViewController,
@@ -97,6 +101,7 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
                 
                 Auth.auth().createUser(withEmail: email, password: password){ (user, error) in
                     if error == nil {
+                        self.userService.registerUser()
                         let mainViewController = self.sceneBuildManager.buildMainScreen()
                         self.viewController?.navigationController?.pushViewController(
                             mainViewController,

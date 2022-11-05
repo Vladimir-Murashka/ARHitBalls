@@ -78,6 +78,8 @@
 		2271150B28F9AE3E00C3474C /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = back.mp3; path = ../../../../../back.mp3; sourceTree = "<group>"; };
 		2271150D28F9B82D00C3474C /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track.mp3; path = ../../../../../track.mp3; sourceTree = "<group>"; };
 		2271150F28F9CB2500C3474C /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = hit.mp3; path = ../../../../../hit.mp3; sourceTree = "<group>"; };
+		22866A0129143BE3009FF7D4 /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1.mp4; path = ../../../../../1.mp4; sourceTree = "<group>"; };
+		22866A0229143BED009FF7D4 /* 2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2.mp4; path = ../../../../../2.mp4; sourceTree = "<group>"; };
 		22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -290,6 +292,8 @@
 		229BC19428AADF9A008D07A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				22866A0129143BE3009FF7D4 /* 1.mp4 */,
+				22866A0229143BED009FF7D4 /* 2.mp4 */,
 				2271150F28F9CB2500C3474C /* hit.mp3 */,
 				2271150B28F9AE3E00C3474C /* back.mp3 */,
 				2271150D28F9B82D00C3474C /* track.mp3 */,

@@ -30,9 +30,10 @@ extension UserService: UserServiceable {
     
     func registerUser() {
         defaultsManager.saveObject(true, for: .isUserAuth)
+        
     }
     
     func logout() {
-        defaultsManager.deleteObject(for: .isUserAuth)
+        defaultsManager.saveObject(false, for: .isUserAuth)
     }
 }

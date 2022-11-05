@@ -70,7 +70,8 @@ extension SceneBuildManager: Buildable {
         let viewController = MainViewController()
         let presenter = MainPresenter(
             sceneBuildManager: self,
-            alertManager: alertManager
+            alertManager: alertManager,
+            userService: userService
         )
         
         viewController.presenter = presenter
@@ -127,7 +128,8 @@ extension SceneBuildManager: Buildable {
         let presenter = IdentifirePresenter(
             sceneBuildManager: self,
             type: type,
-            alertManager: alertManager
+            alertManager: alertManager,
+            userService: userService
         )
         
         viewController.presenter = presenter
