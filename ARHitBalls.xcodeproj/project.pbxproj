@@ -26,6 +26,8 @@
 		2271150C28F9AE3E00C3474C /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150B28F9AE3E00C3474C /* back.mp3 */; };
 		2271150E28F9B82D00C3474C /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150D28F9B82D00C3474C /* track.mp3 */; };
 		2271151028F9CB2500C3474C /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150F28F9CB2500C3474C /* hit.mp3 */; };
+		22866A042916CEA8009FF7D4 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A032916CEA8009FF7D4 /* FirebaseService.swift */; };
+		22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A052916D3EF009FF7D4 /* UserModels.swift */; };
 		22964CB72912C92B0007B7E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
@@ -80,6 +82,8 @@
 		2271150F28F9CB2500C3474C /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = hit.mp3; path = ../../../../../hit.mp3; sourceTree = "<group>"; };
 		22866A0129143BE3009FF7D4 /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1.mp4; path = ../../../../../1.mp4; sourceTree = "<group>"; };
 		22866A0229143BED009FF7D4 /* 2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2.mp4; path = ../../../../../2.mp4; sourceTree = "<group>"; };
+		22866A032916CEA8009FF7D4 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		22866A052916D3EF009FF7D4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			children = (
 				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
 				22568D5228F1B24700B83261 /* ARObjectModel.swift */,
+				22866A052916D3EF009FF7D4 /* UserModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,7 +198,7 @@
 			children = (
 				229BC16B28AA7A34008D07A0 /* Splash */,
 				229BC18428AA82A0008D07A0 /* Menu */,
-				229BC19828ABF5DE008D07A0 /* Register */,
+				229BC19828ABF5DE008D07A0 /* Identifire */,
 				229BC16C28AA7A45008D07A0 /* Main */,
 				229BC16A28AA7A2A008D07A0 /* Settings */,
 				229BC16E28AA7C6D008D07A0 /* Game */,
@@ -255,6 +260,7 @@
 			children = (
 				229BC17128AA7DD8008D07A0 /* UserServise.swift */,
 				229BC17328AA7DEF008D07A0 /* GameService.swift */,
+				22866A032916CEA8009FF7D4 /* FirebaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -312,13 +318,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		229BC19828ABF5DE008D07A0 /* Register */ = {
+		229BC19828ABF5DE008D07A0 /* Identifire */ = {
 			isa = PBXGroup;
 			children = (
 				229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */,
 				229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */,
 			);
-			path = Register;
+			path = Identifire;
 			sourceTree = "<group>";
 		};
 		22E1743C28C1211F00F20AE9 /* Classes */ = {
@@ -487,6 +493,7 @@
 				229BC18828AA8655008D07A0 /* SplashPresenter.swift in Sources */,
 				229BC18E28AA8699008D07A0 /* MainPresenter.swift in Sources */,
 				22D801D828BE531600263002 /* AudioManager.swift in Sources */,
+				22866A042916CEA8009FF7D4 /* FirebaseService.swift in Sources */,
 				229BC17728AA7E24008D07A0 /* UserDefaultManager.swift in Sources */,
 				229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */,
 				22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */,
@@ -516,6 +523,7 @@
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
 				2208165E28E1FFF200936408 /* QuitButton.swift in Sources */,
 				22E5941D28C2786A0063586D /* AuthType.swift in Sources */,
+				22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */,
 				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,

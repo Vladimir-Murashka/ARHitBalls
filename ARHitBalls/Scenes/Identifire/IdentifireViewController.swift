@@ -1,5 +1,5 @@
 //
-//  RegistrationViewController.swift
+//  IdentifireViewController.swift
 //  ARHitBalls
 //
 //  Created by Swift Learning on 16.08.2022.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-// MARK: - RegistrationViewProtocol
+// MARK: - IdentifireViewProtocol
 
 protocol IdentifireViewProtocol: UIViewController {
     func setupAuth()
     func setupRegister()
 }
 
-// MARK: - RegistrationViewController
+// MARK: - IdentifireViewController
 
 final class IdentifireViewController: UIViewController {
     var presenter: IdentifirePresenterProtocol?
@@ -157,7 +157,7 @@ final class IdentifireViewController: UIViewController {
     }
 }
 
-// MARK: - RegistrationViewProtocol Impl
+// MARK: - IdentifireViewProtocol Impl
 
 extension IdentifireViewController: IdentifireViewProtocol {
     func setupAuth() {

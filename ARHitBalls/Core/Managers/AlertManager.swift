@@ -9,7 +9,7 @@ import UIKit
 
 protocol AlertManagerable {
     func showAlert(
-        fromViewController viewController: UIViewController,
+        fromViewController viewController: UIViewController?,
         title: String?,
         message: String?,
         firstButtonTitle: String?,
@@ -18,14 +18,14 @@ protocol AlertManagerable {
         secondActionBlock: (() -> Void)?
     )
     func showAlert(
-        fromViewController viewController: UIViewController,
+        fromViewController viewController: UIViewController?,
         title: String?,
         message: String?,
         firstButtonTitle: String?,
         firstActionBlock: (() -> Void)?
     )
     func showAlert(
-        from viewController: UIViewController,
+        from viewController: UIViewController?,
         alertModel: AlertModel
     )
 }
@@ -34,7 +34,7 @@ final class AlertManager {}
 
 extension AlertManager: AlertManagerable {
     func showAlert(
-        fromViewController viewController: UIViewController,
+        fromViewController viewController: UIViewController?,
         title: String?,
         message: String?,
         firstButtonTitle: String?,
@@ -65,11 +65,11 @@ extension AlertManager: AlertManagerable {
         alertController.addAction(firstAction)
         alertController.addAction(secondAction)
         
-        viewController.present(alertController, animated: true)
+        viewController?.present(alertController, animated: true)
     }
     
     func showAlert(
-        fromViewController viewController: UIViewController,
+        fromViewController viewController: UIViewController?,
         title: String?,
         message: String?,
         firstButtonTitle: String?,
@@ -90,11 +90,11 @@ extension AlertManager: AlertManagerable {
         
         alertController.addAction(firstAction)
         
-        viewController.present(alertController, animated: true)
+        viewController?.present(alertController, animated: true)
     }
     
     func showAlert(
-        from viewController: UIViewController,
+        from viewController: UIViewController?,
         alertModel: AlertModel
     ) {
         let alertController = UIAlertController(
@@ -112,7 +112,7 @@ extension AlertManager: AlertManagerable {
             })
             alertController.addAction(action)
         }
-        viewController.present(
+        viewController?.present(
             alertController,
             animated: true
         )

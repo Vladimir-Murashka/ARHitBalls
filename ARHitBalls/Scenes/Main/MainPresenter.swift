@@ -79,10 +79,9 @@ extension MainPresenter: MainPresenterProtocol {
             firstButtonTitle: "Отменить",
             firstActionBlock: {},
             secondTitleButton: "Выйти") {
-                self.userService.logout()
+                self.userService.logoutUser()
                 let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
                 UIApplication.shared.windows.first?.rootViewController = rootViewController
-//                self.viewController?.navigationController?.popToRootViewController(animated: true)
             }
     }
     
