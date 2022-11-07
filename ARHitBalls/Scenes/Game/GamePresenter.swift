@@ -36,22 +36,25 @@ final class GamePresenter {
     private let soundEffectManager: AudioManagerable
     private let alertManager: AlertManagerable
     private let gameType: GameType
+    private let gameServise: GameServiceable
     
     private var isSoundEffectOn: Bool = true
     private var isVibrationOn: Bool = true
-    private var numberOfPlanets: Int = 0
+    private var isMusicOn: Bool = true
     
     private var value: ARObjectable = SportBalls.basketball
     private var selectedKit: KitEnum
     
     private var timer = Timer()
     
-    private var selectedItemNumber = 0
+    private let timerValue: Double
     private var currentTimerValue: Double = 0
-    private let startTimerValue: Double
-    private var currentLevelValue: Int
-    private var isMusicOn: Bool = true
+    
+    private var numberOfPlanets: Int = 0
     private var totalNumberOfPlanets: Int = 0
+    
+    private var currentLevelValue: Int
+    private var selectedItemNumber = 0
     
     private func setKit(_ value: Int) -> ARObjectModel? {
         switch selectedKit {
@@ -77,7 +80,8 @@ final class GamePresenter {
         startTimerValue: Double,
         currentLevelValue: Int,
         selectedKit: KitEnum,
-        gameType: GameType
+        gameType: GameType,
+        gameServise: GameServiceable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.defaultsStorage = defaultsStorage
@@ -85,10 +89,11 @@ final class GamePresenter {
         self.gameAudioManager = gameAudioManager
         self.soundEffectManager = soundEffectManager
         self.alertManager = alertManager
-        self.startTimerValue = startTimerValue
+        self.timerValue = startTimerValue
         self.currentLevelValue = currentLevelValue
         self.selectedKit = selectedKit
         self.gameType = gameType
+        self.gameServise = gameServise
     }
 }
 
@@ -96,8 +101,8 @@ final class GamePresenter {
 
 extension GamePresenter: GamePresenterProtocol {
     func viewDidLoad() {
-        currentTimerValue = startTimerValue
         
+        currentTimerValue = timerValue
         totalNumberOfPlanets = currentLevelValue * 6
         soundEffectManager.loadSound(
             forResource: "hit",
@@ -127,7 +132,7 @@ extension GamePresenter: GamePresenterProtocol {
             gameAudioManager.play()
         }
         
-        let timerValueText = transformationTimerLabelText(timeValue: startTimerValue)
+        let timerValueText = transformationTimerLabelText(timeValue: timerValue)
         
         viewController?.updateTimer(text: timerValueText)
         viewController?.updateLevel(text: String(totalNumberOfPlanets))
@@ -256,7 +261,7 @@ extension GamePresenter: GamePresenterProtocol {
                         }
                     },
                     secondTitleButton: "Перезапустить уровень") {
-                        self.currentTimerValue = self.startTimerValue
+                        self.currentTimerValue = self.timerValue
                         self.startTimer()
                         self.viewController?.cleanScene()
                         self.numberOfPlanets = 0
@@ -264,7 +269,25 @@ extension GamePresenter: GamePresenterProtocol {
                         self.addARObject()
                     }
             } else {
-                
+                stopTimer()
+                alertManager.showAlert(
+                    fromViewController: viewController,
+                    title: "Поздравляем",
+                    message: "Уровень пройден",
+                    firstButtonTitle: "Выйти",
+                    firstActionBlock: {
+                        self.viewController?.navigationController?.popViewController(animated: true)
+                        self.gameAudioManager.pause()
+                        self.isMusicOn = self.defaultsStorage.fetchObject(
+                            type: Bool.self,
+                            for: .isMusicOn
+                        ) ?? true
+                        
+                        if self.isMusicOn {
+                            self.generalBackgroundAudioManager.play()
+                        }
+                    },
+                    secondTitleButton: "Следующий уровень") {}
             }
             
         }
@@ -465,7 +488,7 @@ private extension GamePresenter {
                     }
                 },
                 secondTitleButton: "Перезапустить уровень") {
-                    self.currentTimerValue = self.startTimerValue
+                    self.currentTimerValue = self.timerValue
                     self.startTimer()
                     self.viewController?.cleanScene()
                     self.numberOfPlanets = 0

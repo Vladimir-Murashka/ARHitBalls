@@ -10,6 +10,7 @@ import UIKit
 // MARK: - MainPresenterProtocol
 
 protocol MainPresenterProtocol: AnyObject {
+    func viewDidLoad()
     func settingsButtonPressed()
     func startQuickGameButtonPressed()
     func logoutButtonPressed()
@@ -30,6 +31,7 @@ final class MainPresenter {
     private let userService: UserServiceable
     private let generalBackgroundAudioManager: AudioManagerable
     private let gameType: GameType
+    private let gameService: GameServiceable
     
     // MARK: - Initializer
     
@@ -38,19 +40,25 @@ final class MainPresenter {
         alertManager: AlertManagerable,
         userService: UserServiceable,
         generalBackgroundAudioManager: AudioManagerable,
-        gameType: GameType
+        gameType: GameType,
+        gameService: GameServiceable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.alertManager = alertManager
         self.userService = userService
         self.generalBackgroundAudioManager = generalBackgroundAudioManager
         self.gameType = gameType
+        self.gameService = gameService
     }
 }
 
 //MARK: - MainPresenterExtension
 
 extension MainPresenter: MainPresenterProtocol {
+    func viewDidLoad() {
+       
+    }
+    
     func settingsButtonPressed() {
         let settingsViewController = sceneBuildManager.buildSettingsScreen(
             settingType: .mainSetting,
@@ -74,10 +82,6 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func logoutButtonPressed() {
-        guard let viewController = viewController.self else {
-            return
-        }
-        
         alertManager.showAlert(
             fromViewController: viewController,
             title: "Внимание",
@@ -92,9 +96,10 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func missionStartGameButtonPressed() {
+        let gameValue = gameService.getGameValue()
         if gameType == .mission {
-            let timerValue: Double = 20
-            let currentLevelValue = 1
+            let timerValue = gameValue.timeValue
+            let currentLevelValue = gameValue.levelValue
             
             let gameViewController = sceneBuildManager.buildGameScreen(
                 timerValue: timerValue,

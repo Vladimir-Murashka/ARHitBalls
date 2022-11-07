@@ -6,13 +6,13 @@
 //
 
 struct GameUserModel {
-    var level: Int
+    var levelValue: Int
     
     init(level: Int) {
-        self.level = level
+        self.levelValue = level
     }
     
     init() {
-        self.level = 1
+        self.levelValue = 1
     }
 }

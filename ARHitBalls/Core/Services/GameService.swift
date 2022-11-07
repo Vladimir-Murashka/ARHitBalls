@@ -14,27 +14,20 @@ protocol GameServiceable {
 
 final class GameService {
     
-    private let defaultsManager: DefaultsManagerable
-    var gameLevelValue: Int = 1
-    var gameTimeValue: Double = 20
     private let maxLevelValue: Int = 10
     private let maxTimeValue: Double = 200
+    private var gameUserValue = GameUserModel()
     
-    init(defaultsManager: DefaultsManagerable) {
-        self.defaultsManager = defaultsManager
-    }
 }
 
 extension GameService: GameServiceable {
     func nextLevel() {
-        var gameUser = GameUserModel()
-        gameUser.level += 1
+        gameUserValue.levelValue += 1
     }
     
     func getGameValue() -> GameValueModel {
-        let gameUser = GameUserModel()
-        let time = Double(gameUser.level * 20)
-        return GameValueModel(level: gameUser.level, time: time)
+        let timerValue = Double(gameUserValue.levelValue * 20)
+        return GameValueModel(levelValue: gameUserValue.levelValue, timeValue: timerValue)
     }
     
     func getCollection() {

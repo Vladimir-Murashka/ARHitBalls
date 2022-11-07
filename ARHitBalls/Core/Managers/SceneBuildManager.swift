@@ -31,6 +31,7 @@ final class SceneBuildManager {
     private let commonAudioManager: AudioManagerable
     private let gameAudioManager: AudioManagerable
     private let soundEffectManager: AudioManagerable
+    private let gameService: GameServiceable
     
     init() {
         defaultsManager = DefaultsManager()
@@ -43,6 +44,7 @@ final class SceneBuildManager {
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
         soundEffectManager = AudioManager()
+        gameService = GameService()
     }
 }
 
@@ -79,7 +81,8 @@ extension SceneBuildManager: Buildable {
             alertManager: alertManager,
             userService: userService,
             generalBackgroundAudioManager: commonAudioManager,
-            gameType: gameType
+            gameType: gameType,
+            gameService: gameService
         )
         
         viewController.presenter = presenter
@@ -124,7 +127,8 @@ extension SceneBuildManager: Buildable {
             startTimerValue: timerValue,
             currentLevelValue: levelValue,
             selectedKit: selectedKit,
-            gameType: gameType
+            gameType: gameType,
+            gameServise: gameService
         )
         
         viewController.presenter = presenter
