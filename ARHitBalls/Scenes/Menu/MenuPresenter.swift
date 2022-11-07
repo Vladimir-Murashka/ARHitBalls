@@ -33,7 +33,7 @@ final class MenuPresenter {
 
 extension MenuPresenter: MenuPresenterProtocol {
     func startButtonWithoutRegisterPressed() {
-        let mainViewController = sceneBuildManager.buildMainScreen()
+        let mainViewController = sceneBuildManager.buildMainScreen(gameType: .freeGame)
         viewController?.navigationController?.pushViewController(
             mainViewController,
             animated: true

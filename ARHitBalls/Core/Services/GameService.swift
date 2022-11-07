@@ -6,7 +6,8 @@
 //
 
 protocol GameServiceable {
-    func nextLevel(levelValue: Int, timeValue: Double)
+    func nextLevel()
+    func getGameValue() -> GameValueModel
     func getCollection()
     func newCircleLevel(currentLevelValue: Int, currentTimeValue: Double)
 }
@@ -25,9 +26,15 @@ final class GameService {
 }
 
 extension GameService: GameServiceable {
-    func nextLevel(levelValue: Int, timeValue: Double) {
-        levelValue < maxLevelValue ? (gameLevelValue += 1) : (gameLevelValue = 1)
-        timeValue < maxTimeValue ? (gameTimeValue += 20) : (gameTimeValue = 20)
+    func nextLevel() {
+        var gameUser = GameUserModel()
+        gameUser.level += 1
+    }
+    
+    func getGameValue() -> GameValueModel {
+        let gameUser = GameUserModel()
+        let time = Double(gameUser.level * 20)
+        return GameValueModel(level: gameUser.level, time: time)
     }
     
     func getCollection() {

@@ -8,7 +8,7 @@
 protocol Buildable {
     func buildSplashScreen() -> SplashViewController
     func buildMenuScreen() -> MenuViewController
-    func buildMainScreen() -> MainViewController
+    func buildMainScreen(gameType: GameType) -> MainViewController
     func buildSettingsScreen(
         settingType: SettingType,
         selectedKit: KitEnum
@@ -16,7 +16,8 @@ protocol Buildable {
     func buildGameScreen(
         timerValue: Double,
         levelValue: Int,
-        selectedKit: KitEnum
+        selectedKit: KitEnum,
+        gameType: GameType
     ) -> GameViewController
     func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
 }
@@ -71,12 +72,14 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildMainScreen() -> MainViewController {
+    func buildMainScreen(gameType: GameType) -> MainViewController {
         let viewController = MainViewController()
         let presenter = MainPresenter(
             sceneBuildManager: self,
             alertManager: alertManager,
-            userService: userService
+            userService: userService,
+            generalBackgroundAudioManager: commonAudioManager,
+            gameType: gameType
         )
         
         viewController.presenter = presenter
@@ -107,7 +110,8 @@ extension SceneBuildManager: Buildable {
     func buildGameScreen(
         timerValue: Double,
         levelValue: Int,
-        selectedKit: KitEnum
+        selectedKit: KitEnum,
+        gameType: GameType
     ) -> GameViewController {
         let viewController = GameViewController()
         let presenter = GamePresenter(
@@ -119,7 +123,8 @@ extension SceneBuildManager: Buildable {
             alertManager: alertManager,
             startTimerValue: timerValue,
             currentLevelValue: levelValue,
-            selectedKit: selectedKit
+            selectedKit: selectedKit,
+            gameType: gameType
         )
         
         viewController.presenter = presenter

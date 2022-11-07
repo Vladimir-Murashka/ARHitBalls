@@ -28,17 +28,23 @@ final class MainPresenter {
     private let alertManager: AlertManagerable
     private var selectedKit: KitEnum = .planets
     private let userService: UserServiceable
+    private let generalBackgroundAudioManager: AudioManagerable
+    private let gameType: GameType
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
         alertManager: AlertManagerable,
-        userService: UserServiceable
+        userService: UserServiceable,
+        generalBackgroundAudioManager: AudioManagerable,
+        gameType: GameType
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.alertManager = alertManager
         self.userService = userService
+        self.generalBackgroundAudioManager = generalBackgroundAudioManager
+        self.gameType = gameType
     }
 }
 
@@ -86,7 +92,23 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func missionStartGameButtonPressed() {
-        print(#function)
+        if gameType == .mission {
+            let timerValue: Double = 20
+            let currentLevelValue = 1
+            
+            let gameViewController = sceneBuildManager.buildGameScreen(
+                timerValue: timerValue,
+                levelValue: currentLevelValue,
+                selectedKit: selectedKit,
+                gameType: .mission
+            )
+            
+            viewController?.navigationController?.pushViewController(
+                gameViewController,
+                animated: true
+            )
+            generalBackgroundAudioManager.pause()
+        }
     }
     
     func kitButtonsPressed(tag: Int) {

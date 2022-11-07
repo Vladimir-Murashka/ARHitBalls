@@ -154,7 +154,8 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         let gameViewController = sceneBuildManager.buildGameScreen(
             timerValue: timerValue,
             levelValue: currentLevelValue,
-            selectedKit: selectedKit
+            selectedKit: selectedKit,
+            gameType: .freeGame
         )
         
         viewController?.navigationController?.pushViewController(

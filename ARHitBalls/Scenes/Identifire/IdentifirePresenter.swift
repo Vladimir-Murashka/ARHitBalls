@@ -95,7 +95,7 @@ private extension IdentifirePresenter {
         ) { [weak self] result in
             switch result {
             case .success:
-                guard let mainViewController = self?.sceneBuildManager.buildMainScreen() else {
+                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
                     return
                 }
                 self?.viewController?.navigationController?.pushViewController(
@@ -120,7 +120,7 @@ private extension IdentifirePresenter {
         ) { [weak self] result in
             switch result {
             case .success:
-                guard let mainViewController = self?.sceneBuildManager.buildMainScreen() else {
+                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
                     return
                 }
                 self?.viewController?.navigationController?.pushViewController(

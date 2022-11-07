@@ -59,7 +59,7 @@ extension SplashPresenter: SplashPresenterProtocol {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
             let rootViewController = UINavigationController(
                 rootViewController: self.userService.isUserAuth()
-                ? self.sceneBuildManager.buildMainScreen()
+                ? self.sceneBuildManager.buildMainScreen(gameType: .mission)
                 : self.sceneBuildManager.buildMenuScreen()
             )
             UIApplication.shared.windows.first?.rootViewController = rootViewController
