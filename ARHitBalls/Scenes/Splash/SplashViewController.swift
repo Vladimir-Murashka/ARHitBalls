@@ -18,10 +18,22 @@ final class SplashViewController: UIViewController {
     
     // MARK: - PrivateProperties
     
-    private let imageView: UIImageView = {
+    private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "bell")
+        imageView.image = UIImage(named: "testBackground")
         return imageView
+    }()
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "LogoB")
+        return imageView
+    }()
+    
+    private let progressView: UIProgressView = {
+        let progressView = UIProgressView()
+        progressView.progressTintColor = .yellow
+        return progressView
     }()
     
     private var shapeLayer = CAShapeLayer()
@@ -37,8 +49,15 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        staticDownloadLine()
-        animation()
+        UIView.animate(
+            withDuration: 5,
+            delay: 0
+        ) {
+            self.progressView.setProgress(
+                1,
+                animated: true
+            )
+        }
     }
 }
 
@@ -54,80 +73,47 @@ private extension SplashViewController {
         setupConstraints()
     }
     
-    func animation() {
-        
-        let screenSize: CGRect = UIScreen.main.bounds
-        
-        let width = Int(screenSize.size.width)
-        let heigth = Int(screenSize.size.height)
-        
-        let startXPosition = width / 4
-        let finishXPosition = width / 4 * 3
-        
-        let yPosition = heigth - 200
-        
-        self.shapeLayer.removeFromSuperlayer()
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: startXPosition, y: yPosition))
-        path.addLine(to: CGPoint(x: finishXPosition, y: yPosition))
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = #colorLiteral(red: 0, green: 0.6087715843, blue: 1, alpha: 1).cgColor
-        shapeLayer.lineWidth = 6
-        shapeLayer.path = path.cgPath
-        
-        view.layer.addSublayer(shapeLayer)
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.duration = 5
-        shapeLayer.add(animation, forKey: "MyAnimation")
-        
-        self.shapeLayer = shapeLayer
-        
-    }
-    
-    func staticDownloadLine() {
-        
-        let screenSize: CGRect = UIScreen.main.bounds
-        
-        let width = Int(screenSize.size.width)
-        let heigth = Int(screenSize.size.height)
-        
-        let startXPosition = width / 4
-        let finishXPosition = width / 4 * 3
-        
-        let yPosition = heigth - 200
-        
-        self.staticShapeLayer.removeFromSuperlayer()
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: startXPosition, y: yPosition))
-        path.addLine(to: CGPoint(x: finishXPosition, y: yPosition))
-        
-        let staticShapeLayer = CAShapeLayer()
-        staticShapeLayer.strokeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor
-        staticShapeLayer.lineWidth = 6
-        staticShapeLayer.path = path.cgPath
-        
-        view.layer.addSublayer(staticShapeLayer)
-
-        self.staticShapeLayer = staticShapeLayer
-        
-    }
-    
     func addSubViews() {
-        view.addSubviews(imageView)
+        view.addSubviews(
+            backgroundImageView,
+            progressView,
+            logoImageView
+        )
     }
     
     func setupConstraints() {
-        let imageViewSize: CGFloat = 200
+        let sideOfSet: CGFloat = view.bounds.width / 4
+        let logoTopOfSet: CGFloat = 250
+        let logoWidth: CGFloat = 200
+        let progressViewBottomOfSet: CGFloat = 200
+        let progressViewHeight: CGFloat = 7
         
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: imageViewSize),
-            imageView.widthAnchor.constraint(equalToConstant: imageViewSize)
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: logoTopOfSet
+            ),
+            logoImageView.widthAnchor.constraint(equalToConstant: logoWidth),
+            
+            progressView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: sideOfSet
+            ),
+            progressView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -sideOfSet
+            ),
+            progressView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -progressViewBottomOfSet
+            ),
+            progressView.heightAnchor.constraint(equalToConstant: progressViewHeight)
         ])
     }
 }
