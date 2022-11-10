@@ -89,9 +89,19 @@ extension MainPresenter: MainPresenterProtocol {
             firstButtonTitle: "Отменить",
             firstActionBlock: {},
             secondTitleButton: "Выйти") {
-                self.userService.logoutUser()
-                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
-                UIApplication.shared.windows.first?.rootViewController = rootViewController
+                self.userService.logoutUser { result in
+                    switch result {
+                    case .success(_):
+                        let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                        UIApplication.shared.windows.first?.rootViewController = rootViewController
+                    case .failure(_):
+                        self.alertManager.showAlert(
+                            fromViewController: self.viewController,
+                            title: "Ошибка",
+                            message: "Проверьте соеденение с интернетом",
+                            firstButtonTitle: "OK") {}
+                    }
+                }
             }
     }
     
