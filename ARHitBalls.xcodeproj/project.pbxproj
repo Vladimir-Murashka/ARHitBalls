@@ -54,6 +54,7 @@
 		229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3170A291EA5B6003A8F93 /* UIImageView.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
@@ -115,6 +116,7 @@
 		229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22A3170A291EA5B6003A8F93 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			children = (
 				229BC19628ABC484008D07A0 /* UIView.swift */,
 				229F453828B130BD00075601 /* UIStackView.swift */,
+				22A3170A291EA5B6003A8F93 /* UIImageView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,
 				22866A0829192084009FF7D4 /* GameUserModel.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
+				22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
