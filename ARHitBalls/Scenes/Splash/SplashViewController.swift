@@ -20,7 +20,8 @@ final class SplashViewController: UIViewController {
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "testBackground")
+        imageView.image = UIImage(named: "SplashScreenBackground")
+        imageView.applyBlurEffect()
         return imageView
     }()
     
@@ -32,7 +33,10 @@ final class SplashViewController: UIViewController {
     
     private let progressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.progressTintColor = .yellow
+        progressView.backgroundColor = .white
+        progressView.progressTintColor = #colorLiteral(red: 0.1176470588, green: 0.2039215686, blue: 0.4901960784, alpha: 1)
+        progressView.layer.cornerRadius = 4
+        progressView.clipsToBounds = true
         return progressView
     }()
     
@@ -84,7 +88,7 @@ private extension SplashViewController {
     func setupConstraints() {
         let sideOfSet: CGFloat = view.bounds.width / 4
         let logoTopOfSet: CGFloat = 250
-        let logoWidth: CGFloat = 200
+        let logoWidth: CGFloat = 217
         let progressViewBottomOfSet: CGFloat = 200
         let progressViewHeight: CGFloat = 7
         
@@ -117,5 +121,3 @@ private extension SplashViewController {
         ])
     }
 }
-
-
