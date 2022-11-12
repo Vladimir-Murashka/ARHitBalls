@@ -31,6 +31,7 @@ private extension SceneDelegate {
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        window.overrideUserInterfaceStyle = .dark
         self.window = window
     }
 }

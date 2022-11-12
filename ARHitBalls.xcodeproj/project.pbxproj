@@ -19,6 +19,7 @@
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
 		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
 		223772D728E38077004F820D /* KitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D628E38077004F820D /* KitEnum.swift */; };
+		225427A0291FA0D50000D2F9 /* DelaGothicOne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */; };
 		22568D4D28F038B900B83261 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4C28F038B900B83261 /* Planets.swift */; };
 		22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4E28F05D5500B83261 /* ARObjectable.swift */; };
 		22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D5228F1B24700B83261 /* ARObjectModel.swift */; };
@@ -77,6 +78,7 @@
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
 		223772D628E38077004F820D /* KitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitEnum.swift; sourceTree = "<group>"; };
+		2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelaGothicOne.ttf; sourceTree = "<group>"; };
 		22568D4C28F038B900B83261 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
 		22568D4E28F05D5500B83261 /* ARObjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectable.swift; sourceTree = "<group>"; };
 		22568D5228F1B24700B83261 /* ARObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectModel.swift; sourceTree = "<group>"; };
@@ -147,6 +149,14 @@
 				22568D4E28F05D5500B83261 /* ARObjectable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		2254279D291FA0440000D2F9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		22568D5028F1B1ED00B83261 /* KitsEnums */ = {
@@ -308,6 +318,7 @@
 		229BC19428AADF9A008D07A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2254279D291FA0440000D2F9 /* Fonts */,
 				22866A0129143BE3009FF7D4 /* 1.mp4 */,
 				22866A0229143BED009FF7D4 /* 2.mp4 */,
 				2271150F28F9CB2500C3474C /* hit.mp3 */,
@@ -446,6 +457,7 @@
 				229BC16228AA7091008D07A0 /* LaunchScreen.storyboard in Resources */,
 				229BC15F28AA7091008D07A0 /* Assets.xcassets in Resources */,
 				2271150E28F9B82D00C3474C /* track.mp3 in Resources */,
+				225427A0291FA0D50000D2F9 /* DelaGothicOne.ttf in Resources */,
 				2271150C28F9AE3E00C3474C /* back.mp3 in Resources */,
 				2271151028F9CB2500C3474C /* hit.mp3 in Resources */,
 				22964CB72912C92B0007B7E9 /* GoogleService-Info.plist in Resources */,
@@ -694,6 +706,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -704,9 +717,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -724,6 +740,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -734,9 +751,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
