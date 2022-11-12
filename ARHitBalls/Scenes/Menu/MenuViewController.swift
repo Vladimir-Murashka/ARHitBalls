@@ -20,15 +20,21 @@ final class MenuViewController: UIViewController {
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "registerBackground")
+        imageView.image = UIImage(named: "generalBackground")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    private lazy var startButtonWithoutRegister: MenuButton = {
-        let button = MenuButton(type: .system)
-        button.setTitle(
-            "Играть без регистрации",
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "LogoS")
+        return imageView
+    }()
+    
+    private lazy var startButtonWithoutRegister: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(
+            UIImage(named: "demoButtonMenu"),
             for: .normal
         )
         button.addTarget(
@@ -41,10 +47,18 @@ final class MenuViewController: UIViewController {
     
     private lazy var authButton: MenuButton = {
         let button = MenuButton(type: .system)
+        button.setBackgroundImage(
+            UIImage(named: "generalButton"),
+            for: .normal
+        )
         button.setTitle(
             "Войти",
             for: .normal
         )
+        button.titleLabel?.font = UIFont(
+            name: "Dela Gothic One",
+            size: 16
+        ) ?? .systemFont(ofSize: 16)
         button.addTarget(
             self,
             action: #selector(authButtonPressed),
@@ -55,8 +69,21 @@ final class MenuViewController: UIViewController {
     
     private lazy var registerButton: MenuButton = {
         let button = MenuButton(type: .system)
-        button.setTitle(
-            "Регистрация",
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(
+                name: "Dela Gothic One",
+                size: 16
+            ) ?? .systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Зарегистрироваться",
+            attributes: buttonAttributes
+         )
+        
+        button.setAttributedTitle(
+            attributeString,
             for: .normal
         )
         button.addTarget(
@@ -69,12 +96,11 @@ final class MenuViewController: UIViewController {
     
     private let commonStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 12
+        stackView.spacing = 16
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
         return stackView
     }()
-    
     
     // MARK: - LifeCycle
     
@@ -124,11 +150,12 @@ private extension MenuViewController {
     func addSubViews() {
         view.addSubviews(
             imageViewBackgroundScreen,
-            commonStackView
+            commonStackView,
+            logoImageView,
+            startButtonWithoutRegister
         )
         
         commonStackView.addArrangedSubviews(
-            startButtonWithoutRegister,
             authButton,
             registerButton
         )
@@ -137,6 +164,9 @@ private extension MenuViewController {
     func setupConstraints() {
         let imageViewBackgroundScreenIndent: CGFloat = 0
         let commonStackViewIndent: CGFloat = 16
+        let commonStackViewBottomIndent: CGFloat = 50
+        let logoImageViewTopIndent: CGFloat = 52
+        let buttonHeightValue: CGFloat = 56
         
         NSLayoutConstraint.activate([
             imageViewBackgroundScreen.topAnchor.constraint(
@@ -156,6 +186,18 @@ private extension MenuViewController {
                 constant: imageViewBackgroundScreenIndent
             ),
             
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: logoImageViewTopIndent
+            ),
+            
+            startButtonWithoutRegister.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButtonWithoutRegister.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            authButton.heightAnchor.constraint(equalToConstant: buttonHeightValue),
+            registerButton.heightAnchor.constraint(equalToConstant: buttonHeightValue),
+            
             commonStackView.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                 constant: commonStackViewIndent
@@ -166,7 +208,7 @@ private extension MenuViewController {
             ),
             commonStackView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -commonStackViewIndent
+                constant: -commonStackViewBottomIndent
             )
         ])
     }

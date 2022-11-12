@@ -20,7 +20,7 @@ final class SplashViewController: UIViewController {
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "SplashScreenBackground")
+        imageView.image = UIImage(named: "splashScreenBackground")
         imageView.applyBlurEffect()
         return imageView
     }()

@@ -27,7 +27,6 @@ extension MenuButton {
             .white,
             for: .normal
         )
-        backgroundColor = .black
         layer.cornerRadius = 12
         layer.masksToBounds = true
     }
