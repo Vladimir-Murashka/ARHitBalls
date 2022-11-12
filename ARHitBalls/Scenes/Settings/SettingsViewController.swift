@@ -363,7 +363,6 @@ private extension SettingsViewController {
         let stackViewSideOffset: CGFloat = 16
         let quitButtonLeadingOffset: CGFloat = 16
         let quitButtonTopOffset: CGFloat = 0
-        let quitButtonSize: CGFloat = 30
         let levelValueLabelWidth: CGFloat = 30
         let timeValueLabelWidth: CGFloat = 70
         let startQuickGameButtonOffset: CGFloat = 16
@@ -400,8 +399,6 @@ private extension SettingsViewController {
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: quitButtonTopOffset
             ),
-            quitSettingButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
-            quitSettingButton.widthAnchor.constraint(equalToConstant: quitButtonSize),
             
             startQuickGameButton.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,

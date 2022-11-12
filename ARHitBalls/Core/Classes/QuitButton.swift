@@ -23,14 +23,12 @@ final class QuitButton: UIButton {
 
 extension QuitButton {
     func setupButton() {
-        let image = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
+        let image = UIImage(named: "quitButton")
         setBackgroundImage(
             image,
             for: .normal
         )
-        tintColor = .black
-        backgroundColor = .white
-        layer.cornerRadius = 15
+        layer.cornerRadius = 25
         layer.masksToBounds = true
     }
 }

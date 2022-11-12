@@ -8,13 +8,17 @@
 // MARK: -  IdentifirePresenterProtocol
 
 protocol  IdentifirePresenterProtocol: AnyObject {
+    func viewDidLoad()
     func continueButtonPressed(
         emailTFValue: String?,
         passwordTFValue: String?,
         passwordConfirmTFValue: String?
     )
     func quitButtonPressed()
-    func viewDidLoad()
+    func googleButtonPressed()
+    func faceBookButtonPressed()
+    func vKButtonPressed()
+    func appleButtonPressed()
 }
 
 // MARK: -  IdentifirePresenter
@@ -85,6 +89,14 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
     func quitButtonPressed() {
         viewController?.navigationController?.popViewController(animated: false)
     }
+    
+    func googleButtonPressed() {}
+    
+    func faceBookButtonPressed() {}
+    
+    func vKButtonPressed() {}
+    
+    func appleButtonPressed() {}
 }
 
 private extension IdentifirePresenter {
