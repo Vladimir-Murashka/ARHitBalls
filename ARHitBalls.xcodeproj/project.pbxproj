@@ -14,7 +14,6 @@
 		221D056C28E4543100A7921A /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056B28E4543100A7921A /* Fruits.swift */; };
 		221D057028E4547100A7921A /* SportBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056F28E4547100A7921A /* SportBalls.swift */; };
 		221D057428E454D800A7921A /* BilliardBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057328E454D800A7921A /* BilliardBalls.swift */; };
-		223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772A828E2EE31004F820D /* IdentifireLabel.swift */; };
 		223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AA28E2F1A8004F820D /* IdentifireTextField.swift */; };
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
 		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
@@ -73,7 +72,6 @@
 		221D056B28E4543100A7921A /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
 		221D056F28E4547100A7921A /* SportBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportBalls.swift; sourceTree = "<group>"; };
 		221D057328E454D800A7921A /* BilliardBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardBalls.swift; sourceTree = "<group>"; };
-		223772A828E2EE31004F820D /* IdentifireLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireLabel.swift; sourceTree = "<group>"; };
 		223772AA28E2F1A8004F820D /* IdentifireTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireTextField.swift; sourceTree = "<group>"; };
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 				2208165D28E1FFF200936408 /* QuitButton.swift */,
 				2208165F28E2061800936408 /* StartButton.swift */,
 				2208166128E20D0900936408 /* MenuButton.swift */,
-				223772A828E2EE31004F820D /* IdentifireLabel.swift */,
 				223772AA28E2F1A8004F820D /* IdentifireTextField.swift */,
 				223772AC28E31170004F820D /* InfoLabel.swift */,
 				223772AE28E3169D004F820D /* SettingSwitcher.swift */,
@@ -533,7 +530,6 @@
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
 				221D056C28E4543100A7921A /* Fruits.swift in Sources */,
 				2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */,
-				223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
