@@ -23,10 +23,7 @@ final class InfoLabel: UILabel {
 
 extension InfoLabel {
     func setupLabel() {
-        textAlignment = .center
+        textAlignment = .left
         textColor = .white
-        layer.cornerRadius = 8
-        layer.masksToBounds = true
-        backgroundColor = .black
     }
 }

@@ -16,7 +16,6 @@
 		221D057428E454D800A7921A /* BilliardBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057328E454D800A7921A /* BilliardBalls.swift */; };
 		223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AA28E2F1A8004F820D /* IdentifireTextField.swift */; };
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
-		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
 		223772D728E38077004F820D /* KitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D628E38077004F820D /* KitEnum.swift */; };
 		225427A0291FA0D50000D2F9 /* DelaGothicOne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */; };
 		22568D4D28F038B900B83261 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4C28F038B900B83261 /* Planets.swift */; };
@@ -74,7 +73,6 @@
 		221D057328E454D800A7921A /* BilliardBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardBalls.swift; sourceTree = "<group>"; };
 		223772AA28E2F1A8004F820D /* IdentifireTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireTextField.swift; sourceTree = "<group>"; };
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
-		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
 		223772D628E38077004F820D /* KitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitEnum.swift; sourceTree = "<group>"; };
 		2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelaGothicOne.ttf; sourceTree = "<group>"; };
 		22568D4C28F038B900B83261 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 				2208166128E20D0900936408 /* MenuButton.swift */,
 				223772AA28E2F1A8004F820D /* IdentifireTextField.swift */,
 				223772AC28E31170004F820D /* InfoLabel.swift */,
-				223772AE28E3169D004F820D /* SettingSwitcher.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -538,7 +535,6 @@
 				221D057428E454D800A7921A /* BilliardBalls.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				22866A0C291926E3009FF7D4 /* GameType.swift in Sources */,
-				223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
