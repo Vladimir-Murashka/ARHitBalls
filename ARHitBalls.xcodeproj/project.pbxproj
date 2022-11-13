@@ -18,6 +18,11 @@
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
 		223772D728E38077004F820D /* KitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D628E38077004F820D /* KitEnum.swift */; };
 		225427A0291FA0D50000D2F9 /* DelaGothicOne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */; };
+		225427A3292143960000D2F9 /* KitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A2292143960000D2F9 /* KitCollectionViewCell.swift */; };
+		225427A6292146E10000D2F9 /* KitCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A5292146E10000D2F9 /* KitCellViewModel.swift */; };
+		225427A82921651E0000D2F9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A72921651E0000D2F9 /* UICollectionView.swift */; };
+		225427AA292165980000D2F9 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A9292165980000D2F9 /* UICollectionViewCell.swift */; };
+		225427AD292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427AC292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift */; };
 		22568D4D28F038B900B83261 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4C28F038B900B83261 /* Planets.swift */; };
 		22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4E28F05D5500B83261 /* ARObjectable.swift */; };
 		22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D5228F1B24700B83261 /* ARObjectModel.swift */; };
@@ -75,6 +80,11 @@
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		223772D628E38077004F820D /* KitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitEnum.swift; sourceTree = "<group>"; };
 		2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelaGothicOne.ttf; sourceTree = "<group>"; };
+		225427A2292143960000D2F9 /* KitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitCollectionViewCell.swift; sourceTree = "<group>"; };
+		225427A5292146E10000D2F9 /* KitCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitCellViewModel.swift; sourceTree = "<group>"; };
+		225427A72921651E0000D2F9 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		225427A9292165980000D2F9 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
+		225427AC292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		22568D4C28F038B900B83261 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
 		22568D4E28F05D5500B83261 /* ARObjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectable.swift; sourceTree = "<group>"; };
 		22568D5228F1B24700B83261 /* ARObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectModel.swift; sourceTree = "<group>"; };
@@ -153,6 +163,30 @@
 				2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		225427A1292142B90000D2F9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				225427A2292143960000D2F9 /* KitCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		225427A4292146C10000D2F9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				225427A5292146E10000D2F9 /* KitCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		225427AB2921789C0000D2F9 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				225427AC292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		22568D5028F1B1ED00B83261 /* KitsEnums */ = {
@@ -261,6 +295,8 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				225427AB2921789C0000D2F9 /* Layout */,
+				225427A1292142B90000D2F9 /* Cells */,
 				22FDAFC728BCFA05002146B6 /* Entities */,
 				22E1743C28C1211F00F20AE9 /* Classes */,
 				2208165A28E1FB2100936408 /* Protocols */,
@@ -332,6 +368,8 @@
 				229BC19628ABC484008D07A0 /* UIView.swift */,
 				229F453828B130BD00075601 /* UIStackView.swift */,
 				22A3170A291EA5B6003A8F93 /* UIImageView.swift */,
+				225427A72921651E0000D2F9 /* UICollectionView.swift */,
+				225427A9292165980000D2F9 /* UICollectionViewCell.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -361,6 +399,7 @@
 		22FDAFC728BCFA05002146B6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				225427A4292146C10000D2F9 /* ViewModels */,
 				22568D5128F1B21500B83261 /* Models */,
 				22568D5028F1B1ED00B83261 /* KitsEnums */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
@@ -528,11 +567,15 @@
 				221D056C28E4543100A7921A /* Fruits.swift in Sources */,
 				2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
+				225427A6292146E10000D2F9 /* KitCellViewModel.swift in Sources */,
+				225427AA292165980000D2F9 /* UICollectionViewCell.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
+				225427A82921651E0000D2F9 /* UICollectionView.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
 				221D057428E454D800A7921A /* BilliardBalls.swift in Sources */,
+				225427AD292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
 				22866A0C291926E3009FF7D4 /* GameType.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
@@ -550,6 +593,7 @@
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
 				223772D728E38077004F820D /* KitEnum.swift in Sources */,
+				225427A3292143960000D2F9 /* KitCollectionViewCell.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
