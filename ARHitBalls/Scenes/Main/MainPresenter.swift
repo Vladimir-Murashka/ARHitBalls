@@ -15,6 +15,8 @@ protocol MainPresenterProtocol: AnyObject {
     func startQuickGameButtonPressed()
     func logoutButtonPressed()
     func missionStartGameButtonPressed()
+    func indicatorLeftButtonPressed()
+    func indicatorRightButtonPressed()
     func kitButtonsPressed(tag: Int)
 }
 
@@ -56,7 +58,9 @@ final class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoad() {
-       
+        if gameType == .mission {
+            viewController?.authUser()
+        }
     }
     
     func settingsButtonPressed() {
@@ -82,27 +86,32 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func logoutButtonPressed() {
-        alertManager.showAlert(
-            fromViewController: viewController,
-            title: "Внимание",
-            message: "Вы хотите выйти?",
-            firstButtonTitle: "Отменить",
-            firstActionBlock: {},
-            secondTitleButton: "Выйти") {
-                self.userService.logoutUser { result in
-                    switch result {
-                    case .success(_):
-                        let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
-                        UIApplication.shared.windows.first?.rootViewController = rootViewController
-                    case .failure(_):
-                        self.alertManager.showAlert(
-                            fromViewController: self.viewController,
-                            title: "Ошибка",
-                            message: "Проверьте соеденение с интернетом",
-                            firstButtonTitle: "OK") {}
+        if gameType == .mission {
+            alertManager.showAlert(
+                fromViewController: viewController,
+                title: "Внимание",
+                message: "Вы хотите выйти?",
+                firstButtonTitle: "Отменить",
+                firstActionBlock: {},
+                secondTitleButton: "Выйти") {
+                    self.userService.logoutUser { result in
+                        switch result {
+                        case .success(_):
+                            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                            UIApplication.shared.windows.first?.rootViewController = rootViewController
+                        case .failure(_):
+                            self.alertManager.showAlert(
+                                fromViewController: self.viewController,
+                                title: "Ошибка",
+                                message: "Проверьте соеденение с интернетом",
+                                firstButtonTitle: "OK") {}
+                        }
                     }
                 }
-            }
+        } else {
+            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+            UIApplication.shared.windows.first?.rootViewController = rootViewController
+        }
     }
     
     func missionStartGameButtonPressed() {
@@ -124,6 +133,14 @@ extension MainPresenter: MainPresenterProtocol {
             )
             generalBackgroundAudioManager.pause()
         }
+    }
+    
+    func indicatorLeftButtonPressed() {
+        print(#function)
+    }
+    
+    func indicatorRightButtonPressed() {
+        print(#function)
     }
     
     func kitButtonsPressed(tag: Int) {

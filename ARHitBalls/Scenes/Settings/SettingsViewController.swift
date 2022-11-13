@@ -36,7 +36,7 @@ final class SettingsViewController: UIViewController {
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "settingBackground")
+        imageView.image = UIImage(named: "generalBackground")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
