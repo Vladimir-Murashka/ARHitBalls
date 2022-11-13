@@ -20,6 +20,13 @@ final class MainViewController: UIViewController {
     
     // MARK: - PrivateProperties
     
+    private var kitCollections: [KitCellViewModel] = [
+        KitCellViewModel.init(image: "planetCollection"),
+        KitCellViewModel.init(image: "fruitCollection"),
+        KitCellViewModel.init(image: "billiardCollection"),
+        KitCellViewModel.init(image: "ballCollection")
+    ]
+    
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "generalBackground")
@@ -130,7 +137,11 @@ final class MainViewController: UIViewController {
             UIImage(named: "indicatorLeft"),
             for: .normal
         )
-        button.addTarget(self, action: #selector(indicatorLeftButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(indicatorLeftButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -140,14 +151,26 @@ final class MainViewController: UIViewController {
             UIImage(named: "indicatorRight"),
             for: .normal
         )
-        button.addTarget(self, action: #selector(indicatorRightButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(indicatorRightButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
-    private let collectionImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "planetCollection")
-        return imageView
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: KitCollectionViewFlowLayout(itemSize: KitCollectionViewCell.cellSize)
+        )
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.customRegister(KitCollectionViewCell.self)
+        return collectionView
     }()
     
     private let collectionStackView: UIStackView = {
@@ -328,7 +351,7 @@ private extension MainViewController {
         
         collectionStackView.addArrangedSubviews(
             indicatorLeftButton,
-            collectionImageView,
+            collectionView,
             indicatorRightButton
         )
         
@@ -398,6 +421,9 @@ private extension MainViewController {
             collectionStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
+            collectionView.heightAnchor.constraint(equalToConstant: 250),
+            collectionView.widthAnchor.constraint(equalToConstant: 240),
+            
             verticalStackView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                 constant: -stackViewOffset
@@ -406,3 +432,27 @@ private extension MainViewController {
         ])
     }
 }
+
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return kitCollections.count
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let cell = collectionView.customDequeueReusableCell(
+            KitCollectionViewCell.self,
+            indexPath: indexPath
+        )
+        let viewModel = kitCollections[indexPath.item]
+        cell.configureCell(with: viewModel)
+        return cell
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {}
