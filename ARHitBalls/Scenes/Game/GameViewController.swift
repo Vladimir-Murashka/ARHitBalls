@@ -137,7 +137,7 @@ final class GameViewController: UIViewController {
     
     private let lowStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 5
+        stackView.spacing = 3
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         return stackView
@@ -334,37 +334,85 @@ private extension GameViewController {
     func setupConstraints() {
         let topStackViewTopOffset: CGFloat = 0
         let topStackViewSideOffset: CGFloat = 16
-        let lowStackViewHeight: CGFloat = 50
-        let lowStackViewLowOffset: CGFloat = 0
-        let lowStackViewSideOffset: CGFloat = 16
+        let topStackViewTrailingOffset: CGFloat = 35
+        let lowStackViewHeight: CGFloat = 55
+        let lowStackViewBottomOffset: CGFloat = -8
+        let lowStackViewSideOffset: CGFloat = 8
+        let quitButtonSide: CGFloat = 52
+        let progressViewWidth: CGFloat = 200
+        let progressViewHeight: CGFloat = 8
+        let progressViewTopOffset: CGFloat = 166
+        let progressViewTrailingOffset: CGFloat = 126
+        let progressLogoImageViewLeadingOffset: CGFloat = 16
+        let progressLogoImageViewTopOffset: CGFloat = 250
+        let aimSize: CGFloat = 100
 
         NSLayoutConstraint.activate([
-            quitButtoLabel.heightAnchor.constraint(equalToConstant: 52),
-            quitButtoLabel.widthAnchor.constraint(equalToConstant: 52),
+            quitButtoLabel.heightAnchor.constraint(equalToConstant: quitButtonSide),
+            quitButtoLabel.widthAnchor.constraint(equalToConstant: quitButtonSide),
             
-            quitGameButton.heightAnchor.constraint(equalToConstant: 52),
-            quitGameButton.widthAnchor.constraint(equalToConstant: 52),
+            quitGameButton.heightAnchor.constraint(equalToConstant: quitButtonSide),
+            quitGameButton.widthAnchor.constraint(equalToConstant: quitButtonSide),
             
-            topBackgroundStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topStackViewTopOffset),
-            topBackgroundStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: topStackViewSideOffset),
-            topBackgroundStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -topStackViewSideOffset),
+            topBackgroundStackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: topStackViewTopOffset
+            ),
+            topBackgroundStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: topStackViewSideOffset
+            ),
+            topBackgroundStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -topStackViewSideOffset
+            ),
             
-            topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topStackViewTopOffset),
-            topStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: topStackViewSideOffset),
-            topStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -35),
+            topStackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: topStackViewTopOffset
+            ),
+            topStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: topStackViewSideOffset
+            ),
+            topStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -topStackViewTrailingOffset
+            ),
             
-            progressView.widthAnchor.constraint(equalToConstant: 200),
-            progressView.heightAnchor.constraint(equalToConstant: 8),
-            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 166),
-            progressView.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: 126),
+            progressView.widthAnchor.constraint(equalToConstant: progressViewWidth),
+            progressView.heightAnchor.constraint(equalToConstant: progressViewHeight),
+            progressView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: progressViewTopOffset
+            ),
+            progressView.trailingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: progressViewTrailingOffset
+            ),
             
-            progressLogoImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            progressLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
+            progressLogoImageView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: progressLogoImageViewLeadingOffset
+            ),
+            progressLogoImageView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: progressLogoImageViewTopOffset
+            ),
             
             lowStackView.heightAnchor.constraint(equalToConstant: lowStackViewHeight),
-            lowStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: lowStackViewLowOffset),
-            lowStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: lowStackViewSideOffset),
-            lowStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -lowStackViewSideOffset),
+            lowStackView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: lowStackViewBottomOffset
+            ),
+            lowStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: lowStackViewSideOffset
+            ),
+            lowStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -lowStackViewSideOffset
+            ),
             
             sceneView.topAnchor.constraint(equalTo: view.topAnchor),
             sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -373,8 +421,8 @@ private extension GameViewController {
             
             aim.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             aim.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            aim.widthAnchor.constraint(equalToConstant: 100),
-            aim.heightAnchor.constraint(equalToConstant: 100)
+            aim.widthAnchor.constraint(equalToConstant: aimSize),
+            aim.heightAnchor.constraint(equalToConstant: aimSize)
         ])
     }
 }
@@ -382,7 +430,10 @@ private extension GameViewController {
 extension GameViewController: ARSCNViewDelegate {}
 
 extension GameViewController: SCNPhysicsContactDelegate {
-    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+    func physicsWorld(
+        _ world: SCNPhysicsWorld,
+        didBegin contact: SCNPhysicsContact
+    ) {
         if contact.nodeA.name == contact.nodeB.name {
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
