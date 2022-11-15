@@ -422,7 +422,7 @@ private extension MainViewController {
             collectionStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             collectionView.heightAnchor.constraint(equalToConstant: 250),
-            collectionView.widthAnchor.constraint(equalToConstant: 240),
+            collectionView.widthAnchor.constraint(equalToConstant: 250),
             
             verticalStackView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
