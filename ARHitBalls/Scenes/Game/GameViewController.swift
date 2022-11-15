@@ -31,6 +31,32 @@ final class GameViewController: UIViewController {
     private let sceneView = ARSCNView()
     private var selectedKit: KitEnum = .planets
     
+    private let quitButtoLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        return label
+    }()
+    
+    private let timerBackgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "timerBackground")
+        return imageView
+    }()
+    
+    private let levelBackgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "levelGameBackground")
+        return imageView
+    }()
+    
+    private let topBackgroundStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 5
+        stackView.alignment = .center
+        stackView.distribution = .equalCentering
+        return stackView
+    }()
+    
     private lazy var quitGameButton: UIButton = {
         let button = QuitButton(type: .system)
         button.addTarget(
@@ -41,9 +67,9 @@ final class GameViewController: UIViewController {
         return button
     }()
     
-    private let aim: UIImageView = {
+    private let timerLogoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "aim")
+        imageView.image = UIImage(named: "timeImageS")
         return imageView
     }()
     
@@ -51,11 +77,70 @@ final class GameViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
         label.text = "00 : 00"
-        label.backgroundColor = .black
         return label
+    }()
+    
+    private let timerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 10
+        stackView.alignment = .center
+        stackView.distribution = .equalCentering
+        return stackView
+    }()
+    
+    private let levelLogoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "levelImageS")
+        return imageView
+    }()
+    
+    private let levelLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.text = "5"
+        return label
+    }()
+    
+    private let levelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 10
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
+    private let topStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 5
+        stackView.alignment = .center
+        stackView.distribution = .equalCentering
+        return stackView
+    }()
+    
+    private let progressLogoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "progressLogo")
+        return imageView
+    }()
+    
+    private let progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.backgroundColor = .white
+        progressView.progressTintColor = #colorLiteral(red: 0.1176470588, green: 0.2039215686, blue: 0.4901960784, alpha: 1)
+        progressView.setProgress(0.5, animated: true)
+        progressView.transform = CGAffineTransformMakeRotation(.pi * 1.5)
+        progressView.layer.cornerRadius = 4
+        progressView.clipsToBounds = true
+        return progressView
+    }()
+    
+    private let lowStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 5
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
     private let numberOfPlanetslabel: UILabel = {
@@ -65,18 +150,6 @@ final class GameViewController: UIViewController {
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "0"
-        label.backgroundColor = .black
-        return label
-    }()
-    
-    private let separatorNumbersOfPlanetsLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
-        label.text = "/"
-        label.backgroundColor = .clear
         return label
     }()
     
@@ -87,32 +160,13 @@ final class GameViewController: UIViewController {
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "00"
-        label.backgroundColor = .black
         return label
     }()
     
-    private let numbersOfPlanetsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 4
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        return stackView
-    }()
-    
-    private let topStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 5
-        stackView.alignment = .fill
-        stackView.distribution = .equalCentering
-        return stackView
-    }()
-    
-    private let lowStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 5
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        return stackView
+    private let aim: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "aim")
+        return imageView
     }()
     
     //MARK: - LifeCycle
@@ -207,7 +261,6 @@ private extension GameViewController {
         sceneView.scene.physicsWorld.contactDelegate = self
         addSubViews()
         setupConstraints()
-        view.backgroundColor = .systemGray
         setupShotButtons()
     }
     
@@ -247,29 +300,38 @@ private extension GameViewController {
     func addSubViews() {
         view.addSubviews(
             sceneView,
-            aim,
-            numbersOfPlanetsStackView,
+            topBackgroundStackView,
             topStackView,
+            progressView,
+            progressLogoImageView,
+            aim,
             lowStackView
         )
         
-        numbersOfPlanetsStackView.addArrangedSubviews(
-            numberOfPlanetslabel,
-            separatorNumbersOfPlanetsLabel,
-            totalNumberOfPlanetsLabel
+        timerStackView.addArrangedSubviews(
+            timerLogoImageView,
+            timerLabel
+        )
+        
+        levelStackView.addArrangedSubviews(
+            levelLogoImageView,
+            levelLabel
+        )
+        
+        topBackgroundStackView.addArrangedSubviews(
+            quitButtoLabel,
+            timerBackgroundImageView,
+            levelBackgroundImageView
         )
         
         topStackView.addArrangedSubviews(
             quitGameButton,
-            timerLabel,
-            numbersOfPlanetsStackView
+            timerStackView,
+            levelStackView
         )
     }
     
     func setupConstraints() {
-        let quitButtonSize: CGFloat = 30
-        let planetsLabelWidth: CGFloat = 30
-        let timerLabelWidth: CGFloat = 80
         let topStackViewTopOffset: CGFloat = 0
         let topStackViewSideOffset: CGFloat = 16
         let lowStackViewHeight: CGFloat = 50
@@ -277,17 +339,27 @@ private extension GameViewController {
         let lowStackViewSideOffset: CGFloat = 16
 
         NSLayoutConstraint.activate([
-            quitGameButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
-            quitGameButton.widthAnchor.constraint(equalToConstant: quitButtonSize),
+            quitButtoLabel.heightAnchor.constraint(equalToConstant: 52),
+            quitButtoLabel.widthAnchor.constraint(equalToConstant: 52),
             
-            numberOfPlanetslabel.widthAnchor.constraint(equalToConstant: planetsLabelWidth),
-            totalNumberOfPlanetsLabel.widthAnchor.constraint(equalToConstant: planetsLabelWidth),
-    
-            timerLabel.widthAnchor.constraint(equalToConstant: timerLabelWidth),
+            quitGameButton.heightAnchor.constraint(equalToConstant: 52),
+            quitGameButton.widthAnchor.constraint(equalToConstant: 52),
+            
+            topBackgroundStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topStackViewTopOffset),
+            topBackgroundStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: topStackViewSideOffset),
+            topBackgroundStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -topStackViewSideOffset),
             
             topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topStackViewTopOffset),
             topStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: topStackViewSideOffset),
-            topStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -topStackViewSideOffset),
+            topStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -35),
+            
+            progressView.widthAnchor.constraint(equalToConstant: 200),
+            progressView.heightAnchor.constraint(equalToConstant: 8),
+            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 166),
+            progressView.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: 126),
+            
+            progressLogoImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            progressLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
             
             lowStackView.heightAnchor.constraint(equalToConstant: lowStackViewHeight),
             lowStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: lowStackViewLowOffset),

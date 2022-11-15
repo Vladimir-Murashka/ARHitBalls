@@ -10,7 +10,7 @@ import UIKit
 final class KitCollectionViewCell: UICollectionViewCell {
     
     static let cellSize = CGSize(
-        width: 240,
+        width: 250,
         height: 250
     )
     
