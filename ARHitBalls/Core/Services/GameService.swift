@@ -8,34 +8,32 @@
 protocol GameServiceable {
     func nextLevel()
     func getGameValue() -> GameValueModel
-    func getCollection()
-    func newCircleLevel(currentLevelValue: Int, currentTimeValue: Double)
 }
 
 final class GameService {
     
-    private let maxLevelValue: Int = 10
-    private let maxTimeValue: Double = 200
-    private var gameUserValue = GameUserModel()
+    // MARK: - PrivateProperties
     
+    private var gameUserValue = GameUserModel()
+    private let defaultsStorage: DefaultsManagerable
+    
+    // MARK: - Initializer
+    
+    init(defaultsStorage: DefaultsManagerable) {
+        self.defaultsStorage = defaultsStorage
+    }
 }
 
 extension GameService: GameServiceable {
     func nextLevel() {
-        gameUserValue.levelValue += 1
+        gameUserValue = defaultsStorage.fetchObject(type: GameUserModel.self, for: .gameUserValue) ?? GameUserModel(level: 1)
+        gameUserValue = GameUserModel(level: 2)
+        defaultsStorage.saveObject(gameUserValue, for: .gameUserValue)
     }
     
     func getGameValue() -> GameValueModel {
-        let timerValue = Double(gameUserValue.levelValue * 20)
-        return GameValueModel(levelValue: gameUserValue.levelValue, timeValue: timerValue)
-    }
-    
-    func getCollection() {
-        
-    }
-    
-    func newCircleLevel(currentLevelValue: Int, currentTimeValue: Double) {
-        
+        gameUserValue = defaultsStorage.fetchObject(type: GameUserModel.self, for: .gameUserValue) ?? GameUserModel(level: 1)
+        return GameValueModel(levelValue: gameUserValue.levelValue)
     }
 }
 

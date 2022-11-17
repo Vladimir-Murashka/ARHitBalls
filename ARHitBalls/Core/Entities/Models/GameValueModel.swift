@@ -7,5 +7,4 @@
 
 struct GameValueModel {
     let levelValue: Int
-    let timeValue: Double
 }

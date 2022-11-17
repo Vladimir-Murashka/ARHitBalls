@@ -44,7 +44,7 @@ final class SceneBuildManager {
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
         soundEffectManager = AudioManager()
-        gameService = GameService()
+        gameService = GameService(defaultsStorage: defaultsManager)
     }
 }
 

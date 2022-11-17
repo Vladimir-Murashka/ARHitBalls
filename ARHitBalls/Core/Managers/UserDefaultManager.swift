@@ -54,4 +54,5 @@ enum DefaultsKey: String {
     case isMusicOn
     case levelValue
     case timeValue
+    case gameUserValue
 }

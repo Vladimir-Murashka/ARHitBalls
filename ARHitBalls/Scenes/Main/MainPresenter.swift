@@ -117,11 +117,10 @@ extension MainPresenter: MainPresenterProtocol {
     func missionStartGameButtonPressed() {
         let gameValue = gameService.getGameValue()
         if gameType == .mission {
-            let timerValue = gameValue.timeValue
             let currentLevelValue = gameValue.levelValue
             
             let gameViewController = sceneBuildManager.buildGameScreen(
-                timerValue: timerValue,
+                timerValue: 60,
                 levelValue: currentLevelValue,
                 selectedKit: selectedKit,
                 gameType: .mission

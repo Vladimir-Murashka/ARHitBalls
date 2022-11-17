@@ -269,6 +269,7 @@ extension GamePresenter: GamePresenterProtocol {
                         self.addARObject()
                     }
             } else {
+                gameServise.nextLevel()
                 stopTimer()
                 alertManager.showAlert(
                     fromViewController: viewController,
@@ -287,9 +288,17 @@ extension GamePresenter: GamePresenterProtocol {
                             self.generalBackgroundAudioManager.play()
                         }
                     },
-                    secondTitleButton: "Следующий уровень") {}
+                    secondTitleButton: "Следующий уровень") {
+                        let curLevelValue = self.gameServise.getGameValue()
+                        self.currentLevelValue = curLevelValue.levelValue
+                        self.currentTimerValue = self.timerValue
+                        self.startTimer()
+                        self.viewController?.cleanScene()
+                        self.numberOfPlanets = 0
+                        self.viewController?.updateNumberOfPlanetslabel(text: String(self.numberOfPlanets))
+                        self.addARObject()
+                    }
             }
-            
         }
     }
 }
