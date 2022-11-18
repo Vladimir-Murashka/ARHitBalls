@@ -42,19 +42,19 @@ final class GamePresenter {
     private var isVibrationOn: Bool = true
     private var isMusicOn: Bool = true
     
-    private var value: ARObjectable = SportBalls.basketball
     private var selectedKit: KitEnum
     
     private var timer = Timer()
-    
     private let timerValue: Double
     private var currentTimerValue: Double = 0
     
-    private var numberOfPlanets: Int = 0
-    private var totalNumberOfPlanets: Int = 0
+    private var numberOfARItems: Int = 0
+    private var totalNumberOfARItems: Int = 0
     
     private var currentLevelValue: Int
     private var selectedItemNumber = 0
+    
+    private var stepProgressView: Float = 0
     
     private func setKit(_ value: Int) -> ARObjectModel? {
         switch selectedKit {
@@ -77,7 +77,7 @@ final class GamePresenter {
         gameAudioManager: AudioManagerable,
         soundEffectManager: AudioManagerable,
         alertManager: AlertManagerable,
-        startTimerValue: Double,
+        timerValue: Double,
         currentLevelValue: Int,
         selectedKit: KitEnum,
         gameType: GameType,
@@ -89,7 +89,7 @@ final class GamePresenter {
         self.gameAudioManager = gameAudioManager
         self.soundEffectManager = soundEffectManager
         self.alertManager = alertManager
-        self.timerValue = startTimerValue
+        self.timerValue = timerValue
         self.currentLevelValue = currentLevelValue
         self.selectedKit = selectedKit
         self.gameType = gameType
@@ -103,11 +103,15 @@ extension GamePresenter: GamePresenterProtocol {
     func viewDidLoad() {
         
         currentTimerValue = timerValue
-        totalNumberOfPlanets = currentLevelValue * 6
+        totalNumberOfARItems = currentLevelValue * 6
+        
+        stepProgressView = 1 / Float(totalNumberOfARItems)
+        
         soundEffectManager.loadSound(
             forResource: "hit",
             withExtension: "mp3"
         )
+        
         isSoundEffectOn = defaultsStorage.fetchObject(
             type: Bool.self,
             for: .isSoundOn
@@ -118,15 +122,15 @@ extension GamePresenter: GamePresenterProtocol {
             for: .isVibrationOn
         ) ?? true
         
+        isMusicOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isMusicOn
+        ) ?? true
         
         gameAudioManager.loadSound(
             forResource: "track",
             withExtension: "mp3"
         )
-        isMusicOn = defaultsStorage.fetchObject(
-            type: Bool.self,
-            for: .isMusicOn
-        ) ?? true
         
         if isMusicOn {
             gameAudioManager.play()
@@ -135,10 +139,10 @@ extension GamePresenter: GamePresenterProtocol {
         let timerValueText = transformationTimerLabelText(timeValue: timerValue)
         
         viewController?.updateTimer(text: timerValueText)
-        viewController?.updateLevel(text: String(totalNumberOfPlanets))
+        viewController?.updateLevelLabel(text: String(currentLevelValue))
         viewController?.updateSelected(kit: selectedKit)
-        addARObject()
         startTimer()
+        addARObject()
     }
     
     func viewWillAppear() {
@@ -161,61 +165,30 @@ extension GamePresenter: GamePresenterProtocol {
     }
     
     func quitGameButtonPressed() {
-        if gameType == .freeGame {
-            stopTimer()
-            
-            viewController?.sessionPause()
-            
-            alertManager.showAlert(
-                fromViewController: viewController,
-                title: "Хотите покинуть игру?",
-                message: "Прогресс не будет сохранен",
-                firstButtonTitle: "Выйти",
-                firstActionBlock: {
-                    self.viewController?.navigationController?.popViewController(animated: true)
-                    self.gameAudioManager.pause()
-                    self.isMusicOn = self.defaultsStorage.fetchObject(
-                        type: Bool.self,
-                        for: .isMusicOn
-                    ) ?? true
-                    
-                    if self.isMusicOn {
-                        self.generalBackgroundAudioManager.play()
-                    }
-                },
-                secondTitleButton: "Остаться") {
-                    let configuration = ARWorldTrackingConfiguration()
-                    self.viewController?.sessionRun(with: configuration)
-                    self.startTimer()
+        stopTimer()
+        viewController?.sessionPause()
+        alertManager.showAlert(
+            fromViewController: viewController,
+            title: "Хотите покинуть игру?",
+            message: "Прогресс не будет сохранен",
+            firstButtonTitle: "Выйти",
+            firstActionBlock: {
+                self.viewController?.navigationController?.popViewController(animated: true)
+                self.gameAudioManager.pause()
+                self.isMusicOn = self.defaultsStorage.fetchObject(
+                    type: Bool.self,
+                    for: .isMusicOn
+                ) ?? true
+                
+                if self.isMusicOn {
+                    self.generalBackgroundAudioManager.play()
                 }
-        } else {
-            stopTimer()
-            
-            viewController?.sessionPause()
-            
-            alertManager.showAlert(
-                fromViewController: viewController,
-                title: "Хотите покинуть игру?",
-                message: "Прогресс не будет сохранен",
-                firstButtonTitle: "Выйти",
-                firstActionBlock: {
-                    self.viewController?.navigationController?.popViewController(animated: true)
-                    self.gameAudioManager.pause()
-                    self.isMusicOn = self.defaultsStorage.fetchObject(
-                        type: Bool.self,
-                        for: .isMusicOn
-                    ) ?? true
-                    
-                    if self.isMusicOn {
-                        self.generalBackgroundAudioManager.play()
-                    }
-                },
-                secondTitleButton: "Остаться") {
-                    let configuration = ARWorldTrackingConfiguration()
-                    self.viewController?.sessionRun(with: configuration)
-                    self.startTimer()
-                }
-        }
+            },
+            secondTitleButton: "Остаться") {
+                let configuration = ARWorldTrackingConfiguration()
+                self.viewController?.sessionRun(with: configuration)
+                self.startTimer()
+            }
     }
     
     func shotButtonPressed(tag: Int) {
@@ -235,12 +208,12 @@ extension GamePresenter: GamePresenterProtocol {
     }
     
     func nodeContact() {
-        numberOfPlanets += 1
-        viewController?.updateNumberOfPlanetslabel(text: String(numberOfPlanets))
+        numberOfARItems += 1
+        viewController?.updateProgressView(value: stepProgressView)
     }
     
     func levelIsFinished() {
-        if totalNumberOfPlanets == numberOfPlanets {
+        if totalNumberOfARItems == numberOfARItems {
             if gameType == .freeGame {
                 stopTimer()
                 alertManager.showAlert(
@@ -261,19 +234,23 @@ extension GamePresenter: GamePresenterProtocol {
                         }
                     },
                     secondTitleButton: "Перезапустить уровень") {
+                        self.numberOfARItems = 0
+                        self.totalNumberOfARItems = self.currentLevelValue * 6
                         self.currentTimerValue = self.timerValue
-                        self.startTimer()
+                        self.viewController?.zeroingProgressView()
                         self.viewController?.cleanScene()
-                        self.numberOfPlanets = 0
-                        self.viewController?.updateNumberOfPlanetslabel(text: String(self.numberOfPlanets))
+                        self.startTimer()
                         self.addARObject()
                     }
             } else {
                 do {
-                    let currentLevelValue = try gameServise.nextLevel()
-                    self.currentLevelValue = currentLevelValue.level
+                    let newCurrentLevelValue = try gameServise.nextLevel()
+                    self.currentLevelValue = newCurrentLevelValue.level
+                    self.numberOfARItems = 0
+                    self.totalNumberOfARItems = self.currentLevelValue * 6
+                    self.stepProgressView = 1 / Float(self.totalNumberOfARItems)
                 } catch {
-                    // обработать 
+                    // обработать
                 }
                 stopTimer()
                 alertManager.showAlert(
@@ -294,11 +271,11 @@ extension GamePresenter: GamePresenterProtocol {
                         }
                     },
                     secondTitleButton: "Следующий уровень") {
+                        self.viewController?.updateLevelLabel(text: String(self.currentLevelValue))
+                        self.viewController?.zeroingProgressView()
                         self.currentTimerValue = self.timerValue
-                        self.startTimer()
                         self.viewController?.cleanScene()
-                        self.numberOfPlanets = 0
-                        self.viewController?.updateNumberOfPlanetslabel(text: String(self.numberOfPlanets))
+                        self.startTimer()
                         self.addARObject()
                     }
             }
@@ -481,7 +458,6 @@ private extension GamePresenter {
         viewController?.updateTimer(text: timeString)
         if currentTimerValue == 0 {
             stopTimer()
-            
             alertManager.showAlert(
                 fromViewController: viewController,
                 title: "Ай яй яй",
@@ -500,11 +476,12 @@ private extension GamePresenter {
                     }
                 },
                 secondTitleButton: "Перезапустить уровень") {
+                    self.numberOfARItems = 0
+                    self.totalNumberOfARItems = self.currentLevelValue * 6
+                    self.viewController?.zeroingProgressView()
                     self.currentTimerValue = self.timerValue
-                    self.startTimer()
                     self.viewController?.cleanScene()
-                    self.numberOfPlanets = 0
-                    self.viewController?.updateNumberOfPlanetslabel(text: String(self.numberOfPlanets))
+                    self.startTimer()
                     self.addARObject()
                 }
         }
