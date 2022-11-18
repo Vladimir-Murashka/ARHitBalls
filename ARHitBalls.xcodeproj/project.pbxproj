@@ -33,7 +33,7 @@
 		22866A042916CEA8009FF7D4 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A032916CEA8009FF7D4 /* FirebaseService.swift */; };
 		22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A052916D3EF009FF7D4 /* UserModels.swift */; };
 		22866A0829192084009FF7D4 /* GameUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A0729192084009FF7D4 /* GameUserModel.swift */; };
-		22866A0A2919221F009FF7D4 /* GameValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A092919221F009FF7D4 /* GameValueModel.swift */; };
+		22866A0A2919221F009FF7D4 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A092919221F009FF7D4 /* GameModel.swift */; };
 		22866A0C291926E3009FF7D4 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A0B291926E3009FF7D4 /* GameType.swift */; };
 		22964CB72912C92B0007B7E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
@@ -97,7 +97,7 @@
 		22866A032916CEA8009FF7D4 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		22866A052916D3EF009FF7D4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		22866A0729192084009FF7D4 /* GameUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUserModel.swift; sourceTree = "<group>"; };
-		22866A092919221F009FF7D4 /* GameValueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameValueModel.swift; sourceTree = "<group>"; };
+		22866A092919221F009FF7D4 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		22866A0B291926E3009FF7D4 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 		22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,7 +208,7 @@
 				22568D5228F1B24700B83261 /* ARObjectModel.swift */,
 				22866A052916D3EF009FF7D4 /* UserModels.swift */,
 				22866A0729192084009FF7D4 /* GameUserModel.swift */,
-				22866A092919221F009FF7D4 /* GameValueModel.swift */,
+				22866A092919221F009FF7D4 /* GameModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -582,7 +582,7 @@
 				22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
 				2208165E28E1FFF200936408 /* QuitButton.swift in Sources */,
-				22866A0A2919221F009FF7D4 /* GameValueModel.swift in Sources */,
+				22866A0A2919221F009FF7D4 /* GameModel.swift in Sources */,
 				22E5941D28C2786A0063586D /* AuthType.swift in Sources */,
 				22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */,
 				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,

@@ -237,6 +237,11 @@ final class MainViewController: UIViewController {
         setupViewController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewWillAppear()
+    }
+    
     // MARK: - Actions
     
     @objc

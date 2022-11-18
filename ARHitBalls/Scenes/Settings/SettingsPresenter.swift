@@ -69,7 +69,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         ) ?? true
         let levelValue = defaultsStorage.fetchObject(
             type: Double.self,
-            for: .levelValue
+            for: .freeGameLevelValue
         ) ?? 1
         let timerValue = defaultsStorage.fetchObject(
             type: Double.self,
@@ -141,7 +141,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     func levelStepperPressed(levelValue: Double) {
         defaultsStorage.saveObject(
             levelValue,
-            for: .levelValue
+            for: .freeGameLevelValue
         )
         currentLevelValue = Int(levelValue)
         viewController?.updateLevelValueLabel(

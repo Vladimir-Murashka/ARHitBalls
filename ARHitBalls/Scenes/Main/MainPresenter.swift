@@ -11,6 +11,7 @@ import UIKit
 
 protocol MainPresenterProtocol: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
     func settingsButtonPressed()
     func startQuickGameButtonPressed()
     func logoutButtonPressed()
@@ -34,6 +35,7 @@ final class MainPresenter {
     private let generalBackgroundAudioManager: AudioManagerable
     private let gameType: GameType
     private let gameService: GameServiceable
+    private var gameModel: GameModel?
     
     // MARK: - Initializer
     
@@ -60,6 +62,16 @@ extension MainPresenter: MainPresenterProtocol {
     func viewDidLoad() {
         if gameType == .mission {
             viewController?.authUser()
+        }
+    }
+    
+    func viewWillAppear() {
+        if gameType == .mission {
+            do {
+                gameModel = try gameService.getGameModel()
+            } catch {
+                // обработать ошибку
+            }
         }
     }
     
@@ -115,9 +127,10 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func missionStartGameButtonPressed() {
-        let gameValue = gameService.getGameValue()
         if gameType == .mission {
-            let currentLevelValue = gameValue.levelValue
+            guard let currentLevelValue = gameModel?.level else {
+                return
+            }
             
             let gameViewController = sceneBuildManager.buildGameScreen(
                 timerValue: 60,

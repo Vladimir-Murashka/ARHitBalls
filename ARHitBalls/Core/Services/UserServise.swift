@@ -54,6 +54,7 @@ extension UserService: UserServiceable {
             switch result {
             case .success(_):
                 self?.defaultsManager.saveObject(true, for: .isUserAuth)
+                self?.defaultsManager.saveObject(1, for: .missionGameLevelValue)
                 completion(.success(Void()))
                 
             case let .failure(error):

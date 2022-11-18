@@ -5,9 +5,11 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
+import Foundation
+
 protocol GameServiceable {
-    func nextLevel()
-    func getGameValue() -> GameValueModel
+    func nextLevel() throws -> GameModel
+    func getGameModel() throws -> GameModel
 }
 
 final class GameService {
@@ -17,6 +19,8 @@ final class GameService {
     private var gameUserValue = GameUserModel()
     private let defaultsStorage: DefaultsManagerable
     
+    private var currentGameModel: GameModel?
+    
     // MARK: - Initializer
     
     init(defaultsStorage: DefaultsManagerable) {
@@ -25,15 +29,30 @@ final class GameService {
 }
 
 extension GameService: GameServiceable {
-    func nextLevel() {
-        gameUserValue = defaultsStorage.fetchObject(type: GameUserModel.self, for: .gameUserValue) ?? GameUserModel(level: 1)
-        gameUserValue = GameUserModel(level: 2)
-        defaultsStorage.saveObject(gameUserValue, for: .gameUserValue)
+    func nextLevel() throws -> GameModel {
+        guard var nextGameModel = currentGameModel else {
+            let error = NSError(domain: "error description", code: -1)
+            throw error
+        }
+        
+        nextGameModel.level += 1
+        
+        defaultsStorage.saveObject(nextGameModel.level, for: .missionGameLevelValue)
+        currentGameModel = nextGameModel
+        
+        return nextGameModel
     }
     
-    func getGameValue() -> GameValueModel {
-        gameUserValue = defaultsStorage.fetchObject(type: GameUserModel.self, for: .gameUserValue) ?? GameUserModel(level: 1)
-        return GameValueModel(levelValue: gameUserValue.levelValue)
+    func getGameModel() throws -> GameModel {
+        guard let level = defaultsStorage.fetchObject(type: Int.self, for: .missionGameLevelValue) else {
+            let error = NSError(domain: "error description", code: -1)
+            throw error
+        }
+        
+        let gameModel = GameModel(level: level)
+        self.currentGameModel = gameModel
+                
+        return gameModel
     }
 }
 

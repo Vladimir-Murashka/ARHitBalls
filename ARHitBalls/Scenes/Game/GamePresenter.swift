@@ -269,7 +269,12 @@ extension GamePresenter: GamePresenterProtocol {
                         self.addARObject()
                     }
             } else {
-                gameServise.nextLevel()
+                do {
+                    let currentLevelValue = try gameServise.nextLevel()
+                    self.currentLevelValue = currentLevelValue.level
+                } catch {
+                    // обработать 
+                }
                 stopTimer()
                 alertManager.showAlert(
                     fromViewController: viewController,
@@ -289,8 +294,6 @@ extension GamePresenter: GamePresenterProtocol {
                         }
                     },
                     secondTitleButton: "Следующий уровень") {
-                        let curLevelValue = self.gameServise.getGameValue()
-                        self.currentLevelValue = curLevelValue.levelValue
                         self.currentTimerValue = self.timerValue
                         self.startTimer()
                         self.viewController?.cleanScene()
