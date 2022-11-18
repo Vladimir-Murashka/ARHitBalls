@@ -15,8 +15,9 @@ protocol GameViewProtocol: UIViewController {
     func sessionPause()
     func addChild(node: SCNNode)
     func updateTimer(text: String)
-    func updateLevel(text: String)
-    func updateNumberOfPlanetslabel(text: String)
+    func updateLevelLabel(text: String)
+    func updateProgressView(value: Float)
+    func zeroingProgressView()
     func updateSelected(kit: KitEnum)
     func cleanScene()
 }
@@ -99,13 +100,13 @@ final class GameViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.text = "5"
+        label.text = "0"
         return label
     }()
     
     private let levelStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.distribution = .fillProportionally
         return stackView
     }()
@@ -128,7 +129,7 @@ final class GameViewController: UIViewController {
         let progressView = UIProgressView(progressViewStyle: .bar)
         progressView.backgroundColor = .white
         progressView.progressTintColor = #colorLiteral(red: 0.1176470588, green: 0.2039215686, blue: 0.4901960784, alpha: 1)
-        progressView.setProgress(0.5, animated: true)
+        progressView.progress = 0
         progressView.transform = CGAffineTransformMakeRotation(.pi * 1.5)
         progressView.layer.cornerRadius = 4
         progressView.clipsToBounds = true
@@ -141,26 +142,6 @@ final class GameViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         return stackView
-    }()
-    
-    private let numberOfPlanetslabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
-        label.text = "0"
-        return label
-    }()
-    
-    private let totalNumberOfPlanetsLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.layer.cornerRadius = 8
-        label.layer.masksToBounds = true
-        label.text = "00"
-        return label
     }()
     
     private let aim: UIImageView = {
@@ -235,12 +216,17 @@ extension GameViewController: GameViewProtocol {
         timerLabel.text = text
     }
     
-    func updateLevel(text: String) {
-        totalNumberOfPlanetsLabel.text = text
+    func updateLevelLabel(text: String) {
+        levelLabel.text = text
     }
     
-    func updateNumberOfPlanetslabel(text: String) {
-        numberOfPlanetslabel.text = text
+    func updateProgressView(value: Float) {
+        let progress = progressView.progress + value
+        progressView.setProgress(progress, animated: true)
+    }
+    
+    func zeroingProgressView() {
+        progressView.setProgress(0, animated: true)
     }
     
     func updateSelected(kit: KitEnum) {
