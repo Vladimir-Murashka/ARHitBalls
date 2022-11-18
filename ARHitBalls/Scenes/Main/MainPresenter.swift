@@ -72,6 +72,10 @@ extension MainPresenter: MainPresenterProtocol {
             } catch {
                 // обработать ошибку
             }
+            guard let levelLabelValue = gameModel?.level else {
+                return
+            }
+            viewController?.updateLevelLabel(value: String(levelLabelValue))
         }
     }
     

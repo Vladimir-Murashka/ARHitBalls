@@ -11,6 +11,7 @@ import UIKit
 
 protocol MainViewProtocol: UIViewController {
     func authUser()
+    func updateLevelLabel(value: String)
 }
 
 // MARK: - MainViewController
@@ -112,7 +113,7 @@ final class MainViewController: UIViewController {
             name: "Dela Gothic One",
             size: 24
         ) ?? .systemFont(ofSize: 24)
-        label.text = "5"
+        label.text = ""
         return label
     }()
     
@@ -233,8 +234,8 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
         setupViewController()
+        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -299,7 +300,12 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: MainViewProtocol {
     func authUser() {
+        middleStackView.isHidden = false
         missionStartGameButton.alpha = 1
+    }
+    
+    func updateLevelLabel(value: String) {
+        levelLabel.text = value
     }
 }
 
@@ -308,7 +314,7 @@ extension MainViewController: MainViewProtocol {
 private extension MainViewController {
     func setupViewController() {
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .systemGray
+        middleStackView.isHidden = true
         addSubViews()
         setupKitButtons()
         setupConstraints()
