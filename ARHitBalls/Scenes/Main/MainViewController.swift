@@ -11,6 +11,8 @@ import UIKit
 
 protocol MainViewProtocol: UIViewController {
     func authUser()
+    func updateLevelLabel(value: String)
+    func scrollCollectionView(item: Int)
 }
 
 // MARK: - MainViewController
@@ -112,7 +114,7 @@ final class MainViewController: UIViewController {
             name: "Dela Gothic One",
             size: 24
         ) ?? .systemFont(ofSize: 24)
-        label.text = "5"
+        label.text = ""
         return label
     }()
     
@@ -210,15 +212,6 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    private let kitStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 5
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
     private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
@@ -233,8 +226,8 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
         setupViewController()
+        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -285,21 +278,26 @@ final class MainViewController: UIViewController {
             self?.presenter?.indicatorRightButtonPressed()
         }
     }
-    
-    @objc
-    private func kitButtonsPressed(sender: UIButton) {
-        kitStackView.subviews.forEach {
-            $0.alpha = sender == $0 ? 1 : 0.5
-        }
-        presenter?.kitButtonsPressed(tag: sender.tag)
-    }
 }
 
 // MARK: - MainViewProtocol Impl
 
 extension MainViewController: MainViewProtocol {
     func authUser() {
+        middleStackView.isHidden = false
         missionStartGameButton.alpha = 1
+    }
+    
+    func updateLevelLabel(value: String) {
+        levelLabel.text = value
+    }
+    
+    func scrollCollectionView(item: Int) {
+        collectionView.scrollToItem(
+            at: IndexPath(item: item, section: 0),
+            at: .centeredHorizontally,
+            animated: true
+        )
     }
 }
 
@@ -308,29 +306,9 @@ extension MainViewController: MainViewProtocol {
 private extension MainViewController {
     func setupViewController() {
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .systemGray
+        middleStackView.isHidden = true
         addSubViews()
-        setupKitButtons()
         setupConstraints()
-    }
-    
-    func setupKitButtons() {
-        let kitButtons = KitEnum.allCases
-        
-        kitButtons.enumerated().forEach { index, kit in
-            let button = ShotButton()
-            button.setupBackgroundImage(named: kit.imageName )
-            button.addTarget(
-                self,
-                action: #selector(kitButtonsPressed),
-                for: .touchUpInside
-            )
-            button.tag = index
-            if button.tag == 0 {
-                button.alpha = 1
-            }
-            kitStackView.addArrangedSubview(button)
-        }
     }
     
     func addSubViews() {
@@ -379,6 +357,8 @@ private extension MainViewController {
         let imageViewBackgroundScreenIndent: CGFloat = 0
         let logoImageViewTopIndent: CGFloat = 52
         let stackViewOffset: CGFloat = 16
+        let middleStackViewTopOffset: CGFloat = 22
+        let collectionViewSize: CGFloat = 250
         
         NSLayoutConstraint.activate([
             imageViewBackgroundScreen.topAnchor.constraint(
@@ -420,14 +400,14 @@ private extension MainViewController {
             middleStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             middleStackView.topAnchor.constraint(
                 equalTo: logoImageView.bottomAnchor,
-                constant: 22
+                constant: middleStackViewTopOffset
             ),
             
             collectionStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            collectionView.heightAnchor.constraint(equalToConstant: 250),
-            collectionView.widthAnchor.constraint(equalToConstant: 250),
+            collectionView.heightAnchor.constraint(equalToConstant: collectionViewSize),
+            collectionView.widthAnchor.constraint(equalToConstant: collectionViewSize),
             
             verticalStackView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
@@ -461,3 +441,15 @@ extension MainViewController: UICollectionViewDataSource {
 }
 
 extension MainViewController: UICollectionViewDelegate {}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == collectionView,
+              let cell = collectionView.visibleCells.first,
+              let indexPath = collectionView.indexPath(for: cell)
+        else {
+            return
+        }
+        presenter?.didScrollKitCollection(at: indexPath)
+    }
+}
