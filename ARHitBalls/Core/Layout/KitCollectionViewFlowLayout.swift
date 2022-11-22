@@ -14,7 +14,7 @@ class KitCollectionViewFlowLayout: UICollectionViewFlowLayout {
     var scaleOffset: CGFloat = 100
     var scaleFactor: CGFloat = 0.7
     var alphaFactor: CGFloat = 0.1
-    var lineSpacing: CGFloat = -40.0
+    var lineSpacing: CGFloat = -30.0
     
     required init?(coder _: NSCoder) {
         fatalError()

@@ -18,7 +18,7 @@ protocol MainPresenterProtocol: AnyObject {
     func missionStartGameButtonPressed()
     func indicatorLeftButtonPressed()
     func indicatorRightButtonPressed()
-    func kitButtonsPressed(tag: Int)
+    func didScrollKitCollection(at indexPath: IndexPath)
 }
 
 // MARK: - MainPresenter
@@ -152,22 +152,22 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func indicatorLeftButtonPressed() {
-        print(#function)
+        let value = selectedKit.rawValue - 1
+        if value >= 0 {
+            selectedKit = KitEnum(rawValue: value) ?? KitEnum.planets
+            viewController?.scrollCollectionView(item: selectedKit.rawValue)
+        }
     }
     
     func indicatorRightButtonPressed() {
-        print(#function)
+        let value = selectedKit.rawValue + 1
+        if value <= 3 {
+            selectedKit = KitEnum(rawValue: value) ?? KitEnum.planets
+            viewController?.scrollCollectionView(item: selectedKit.rawValue)
+        }
     }
     
-    func kitButtonsPressed(tag: Int) {
-        if tag == 0 {
-            selectedKit = .planets
-        } else if tag == 1 {
-            selectedKit = .fruits
-        } else if tag == 2 {
-            selectedKit = .billiardBalls
-        } else {
-            selectedKit = .sportBalls
-        }
+    func didScrollKitCollection(at indexPath: IndexPath) {
+        selectedKit = KitEnum(rawValue: indexPath.row) ?? KitEnum.planets
     }
 }
