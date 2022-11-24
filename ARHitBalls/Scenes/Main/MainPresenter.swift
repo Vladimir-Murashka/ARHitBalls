@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - MainPresenterProtocol
 
-protocol MainPresenterProtocol: AnyObject {
+protocol MainPresenterProtocol: AnyObject, TimerProtocol {
     func viewDidLoad()
     func viewWillAppear()
     func settingsButtonPressed()
@@ -75,7 +75,14 @@ extension MainPresenter: MainPresenterProtocol {
             guard let levelLabelValue = gameModel?.level else {
                 return
             }
+            
+            guard let timerLabelValue = gameModel?.time else {
+                return
+            }
+            let timerLavelValueText = transformationTimerLabelText(timeValue: timerLabelValue)
+            
             viewController?.updateLevelLabel(value: String(levelLabelValue))
+            viewController?.updateTimeLabel(value: timerLavelValueText)
         }
     }
     
@@ -136,8 +143,12 @@ extension MainPresenter: MainPresenterProtocol {
                 return
             }
             
+            guard let currentTimeValue = gameModel?.time else {
+                return
+            }
+            
             let gameViewController = sceneBuildManager.buildGameScreen(
-                timerValue: 60,
+                timerValue: currentTimeValue,
                 levelValue: currentLevelValue,
                 selectedKit: selectedKit,
                 gameType: .mission

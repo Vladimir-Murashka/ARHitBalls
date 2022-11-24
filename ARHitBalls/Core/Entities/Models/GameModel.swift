@@ -7,4 +7,5 @@
 
 struct GameModel {
     var level: Int
+    var time: Double
 }

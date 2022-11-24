@@ -36,6 +36,7 @@ extension GameService: GameServiceable {
         }
         
         nextGameModel.level += 1
+        nextGameModel.time = Double(nextGameModel.level * 20)
         
         defaultsStorage.saveObject(nextGameModel.level, for: .missionGameLevelValue)
         currentGameModel = nextGameModel
@@ -49,7 +50,7 @@ extension GameService: GameServiceable {
             throw error
         }
         
-        let gameModel = GameModel(level: level)
+        let gameModel = GameModel(level: level, time: Double(level) * 20)
         self.currentGameModel = gameModel
                 
         return gameModel

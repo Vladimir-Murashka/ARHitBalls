@@ -244,8 +244,9 @@ extension GamePresenter: GamePresenterProtocol {
                     }
             } else {
                 do {
-                    let newCurrentLevelValue = try gameServise.nextLevel()
-                    self.currentLevelValue = newCurrentLevelValue.level
+                    let newGameModel = try gameServise.nextLevel()
+                    self.currentLevelValue = newGameModel.level
+                    self.currentTimerValue = newGameModel.time
                     self.numberOfARItems = 0
                     self.totalNumberOfARItems = self.currentLevelValue * 6
                     self.stepProgressView = 1 / Float(self.totalNumberOfARItems)
@@ -271,9 +272,10 @@ extension GamePresenter: GamePresenterProtocol {
                         }
                     },
                     secondTitleButton: "Следующий уровень") {
+                        let newTimerValueText = self.transformationTimerLabelText(timeValue: self.currentTimerValue)
                         self.viewController?.updateLevelLabel(text: String(self.currentLevelValue))
+                        self.viewController?.updateTimer(text: newTimerValueText)
                         self.viewController?.zeroingProgressView()
-                        self.currentTimerValue = self.timerValue
                         self.viewController?.cleanScene()
                         self.startTimer()
                         self.addARObject()

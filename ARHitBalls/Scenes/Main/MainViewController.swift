@@ -12,6 +12,7 @@ import UIKit
 protocol MainViewProtocol: UIViewController {
     func authUser()
     func updateLevelLabel(value: String)
+    func updateTimeLabel(value: String)
     func scrollCollectionView(item: Int)
 }
 
@@ -290,6 +291,10 @@ extension MainViewController: MainViewProtocol {
     
     func updateLevelLabel(value: String) {
         levelLabel.text = value
+    }
+    
+    func updateTimeLabel(value: String) {
+        timeLabel.text = value
     }
     
     func scrollCollectionView(item: Int) {
