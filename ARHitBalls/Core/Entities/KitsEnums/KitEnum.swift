@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum KitEnum: Int, CaseIterable {
+enum KitType: Int, CaseIterable {
     case planets
     case fruits
     case billiardBalls

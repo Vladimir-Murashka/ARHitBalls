@@ -31,26 +31,36 @@ final class GameService {
 extension GameService: GameServiceable {
     func nextLevel() throws -> GameModel {
         guard var nextGameModel = currentGameModel else {
-            let error = NSError(domain: "error description", code: -1)
+            let error = NSError(
+                domain: "error description",
+                code: -1
+            )
             throw error
         }
         
-        nextGameModel.level += 1
-        nextGameModel.time = Double(nextGameModel.level * 20)
+        nextGameModel.levelUP()
         
-        defaultsStorage.saveObject(nextGameModel.level, for: .missionGameLevelValue)
+        defaultsStorage.saveObject(
+            nextGameModel.level,
+            for: .missionGameLevelValue
+        )
         currentGameModel = nextGameModel
         
         return nextGameModel
     }
     
     func getGameModel() throws -> GameModel {
-        guard let level = defaultsStorage.fetchObject(type: Int.self, for: .missionGameLevelValue) else {
-            let error = NSError(domain: "error description", code: -1)
+        guard let level = defaultsStorage.fetchObject(
+            type: Int.self,
+            for: .missionGameLevelValue
+        ) else {
+            let error = NSError(
+                domain: "error description",
+                code: -1
+            )
             throw error
         }
-        
-        let gameModel = GameModel(level: level, time: Double(level) * 20)
+        let gameModel = GameModel(level: level)
         self.currentGameModel = gameModel
                 
         return gameModel

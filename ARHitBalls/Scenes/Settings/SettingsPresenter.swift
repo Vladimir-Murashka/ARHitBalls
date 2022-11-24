@@ -29,7 +29,7 @@ final class SettingsPresenter {
     private let defaultsStorage: DefaultsManagerable
     private let generalBackgroundAudioManager: AudioManagerable
     private let settingType: SettingType
-    private let selectedKit: KitEnum
+    private let selectedKit: KitType
     private var timerValue: Double = 10
     private var currentLevelValue: Int = 1
     
@@ -40,7 +40,7 @@ final class SettingsPresenter {
         sceneBuildManager: Buildable,
         defaultsStorage: DefaultsManagerable,
         settingType: SettingType,
-        selectedKit: KitEnum,
+        selectedKit: KitType,
         generalBackgroundAudioManager: AudioManagerable
     ) {
         self.sceneBuildManager = sceneBuildManager

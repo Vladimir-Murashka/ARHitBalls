@@ -30,7 +30,7 @@ final class MainPresenter {
     
     private let sceneBuildManager: Buildable
     private let alertManager: AlertManagerable
-    private var selectedKit: KitEnum = .planets
+    private var selectedKit: KitType = .planets
     private let userService: UserServiceable
     private let generalBackgroundAudioManager: AudioManagerable
     private let gameType: GameType
@@ -69,23 +69,24 @@ extension MainPresenter: MainPresenterProtocol {
         if gameType == .mission {
             do {
                 gameModel = try gameService.getGameModel()
+                guard let levelLabelValue = gameModel?.level else {
+                    return
+                }
+                
+                guard let timerLabelValue = gameModel?.time else {
+                    return
+                }
+                let timerLavelValueText = transformationTimerLabelText(timeValue: timerLabelValue)
+                
+                viewController?.updateLevelLabel(value: String(levelLabelValue))
+                viewController?.updateTimeLabel(value: timerLavelValueText)
+                viewController?.updateCollectionView(viewModel: fetchCurrentKitCell())
             } catch {
                 // обработать ошибку
             }
-            guard let levelLabelValue = gameModel?.level else {
-                return
-            }
-            
-            guard let timerLabelValue = gameModel?.time else {
-                return
-            }
-            let timerLavelValueText = transformationTimerLabelText(timeValue: timerLabelValue)
-            
-            viewController?.updateLevelLabel(value: String(levelLabelValue))
-            viewController?.updateTimeLabel(value: timerLavelValueText)
         }
     }
-    
+
     func settingsButtonPressed() {
         let settingsViewController = sceneBuildManager.buildSettingsScreen(
             settingType: .mainSetting,
@@ -165,7 +166,7 @@ extension MainPresenter: MainPresenterProtocol {
     func indicatorLeftButtonPressed() {
         let value = selectedKit.rawValue - 1
         if value >= 0 {
-            selectedKit = KitEnum(rawValue: value) ?? KitEnum.planets
+            selectedKit = KitType(rawValue: value) ?? KitType.planets
             viewController?.scrollCollectionView(item: selectedKit.rawValue)
         }
     }
@@ -173,12 +174,25 @@ extension MainPresenter: MainPresenterProtocol {
     func indicatorRightButtonPressed() {
         let value = selectedKit.rawValue + 1
         if value <= 3 {
-            selectedKit = KitEnum(rawValue: value) ?? KitEnum.planets
+            selectedKit = KitType(rawValue: value) ?? KitType.planets
             viewController?.scrollCollectionView(item: selectedKit.rawValue)
         }
     }
     
     func didScrollKitCollection(at indexPath: IndexPath) {
-        selectedKit = KitEnum(rawValue: indexPath.row) ?? KitEnum.planets
+        selectedKit = KitType(rawValue: indexPath.item) ?? KitType.planets
+    }
+}
+
+private extension MainPresenter {
+    
+    private func fetchCurrentKitCell() -> [KitCellViewModel] {
+        guard let gameModel = self.gameModel else {
+            return []
+        }
+        let result = gameModel.kits.map {
+            KitCellViewModel(image: $0.type.imageName, isLocked: $0.isLocked)
+        }
+        return result
     }
 }

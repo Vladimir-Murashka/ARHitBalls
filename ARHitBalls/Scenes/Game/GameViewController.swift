@@ -18,7 +18,7 @@ protocol GameViewProtocol: UIViewController {
     func updateLevelLabel(text: String)
     func updateProgressView(value: Float)
     func zeroingProgressView()
-    func updateSelected(kit: KitEnum)
+    func updateSelected(kit: KitType)
     func cleanScene()
 }
 
@@ -30,7 +30,7 @@ final class GameViewController: UIViewController {
     // MARK: - PrivateProperties
     
     private let sceneView = ARSCNView()
-    private var selectedKit: KitEnum = .planets
+    private var selectedKit: KitType = .planets
     
     private let quitButtoLabel: UILabel = {
         let label = UILabel()
@@ -229,7 +229,7 @@ extension GameViewController: GameViewProtocol {
         progressView.setProgress(0, animated: true)
     }
     
-    func updateSelected(kit: KitEnum) {
+    func updateSelected(kit: KitType) {
         selectedKit = kit
     }
     

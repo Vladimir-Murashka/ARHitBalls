@@ -36,6 +36,10 @@ final class KitCollectionViewCell: UICollectionViewCell {
     
     func configureCell(with viewModel: KitCellViewModel) {
         collectionImageView.image = UIImage(named: viewModel.image)
+        
+        if viewModel.isLocked {} else {}
+        
+        collectionImageView.alpha = viewModel.isLocked ? 1 : 0.5
     }
 }
 

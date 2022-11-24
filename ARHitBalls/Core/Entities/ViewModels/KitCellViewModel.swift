@@ -9,4 +9,5 @@ import UIKit
 
 struct KitCellViewModel {
     let image: String
+    let isLocked: Bool
 }

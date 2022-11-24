@@ -14,6 +14,7 @@ protocol MainViewProtocol: UIViewController {
     func updateLevelLabel(value: String)
     func updateTimeLabel(value: String)
     func scrollCollectionView(item: Int)
+    func updateCollectionView(viewModel: [KitCellViewModel])
 }
 
 // MARK: - MainViewController
@@ -23,12 +24,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - PrivateProperties
     
-    private var kitCollections: [KitCellViewModel] = [
-        KitCellViewModel.init(image: "planetCollection"),
-        KitCellViewModel.init(image: "fruitCollection"),
-        KitCellViewModel.init(image: "billiardCollection"),
-        KitCellViewModel.init(image: "ballCollection")
-    ]
+    private var viewModel: [KitCellViewModel] = []
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
@@ -304,6 +300,12 @@ extension MainViewController: MainViewProtocol {
             animated: true
         )
     }
+    
+    func updateCollectionView(viewModel: [KitCellViewModel]) {
+        self.viewModel = viewModel
+        collectionView.reloadData()
+    }
+
 }
 
 // MARK: - PrivateMethods
@@ -428,7 +430,7 @@ extension MainViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return kitCollections.count
+        return viewModel.count
     }
     
     func collectionView(
@@ -439,7 +441,7 @@ extension MainViewController: UICollectionViewDataSource {
             KitCollectionViewCell.self,
             indexPath: indexPath
         )
-        let viewModel = kitCollections[indexPath.item]
+        let viewModel = viewModel[indexPath.item]
         cell.configureCell(with: viewModel)
         return cell
     }

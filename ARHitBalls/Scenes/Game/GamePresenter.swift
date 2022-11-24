@@ -42,7 +42,7 @@ final class GamePresenter {
     private var isVibrationOn: Bool = true
     private var isMusicOn: Bool = true
     
-    private var selectedKit: KitEnum
+    private var selectedKit: KitType
     
     private var timer = Timer()
     private let timerValue: Double
@@ -79,7 +79,7 @@ final class GamePresenter {
         alertManager: AlertManagerable,
         timerValue: Double,
         currentLevelValue: Int,
-        selectedKit: KitEnum,
+        selectedKit: KitType,
         gameType: GameType,
         gameServise: GameServiceable
     ) {
