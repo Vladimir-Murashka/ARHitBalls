@@ -9,12 +9,16 @@ import UIKit
 
 // MARK: - MainPresenterProtocol
 
-protocol MainPresenterProtocol: AnyObject {
+protocol MainPresenterProtocol: AnyObject, TimerProtocol {
+    func viewDidLoad()
+    func viewWillAppear()
     func settingsButtonPressed()
     func startQuickGameButtonPressed()
     func logoutButtonPressed()
     func missionStartGameButtonPressed()
-    func kitButtonsPressed(tag: Int)
+    func indicatorLeftButtonPressed()
+    func indicatorRightButtonPressed()
+    func didScrollKitCollection(at indexPath: IndexPath)
 }
 
 // MARK: - MainPresenter
@@ -26,25 +30,63 @@ final class MainPresenter {
     
     private let sceneBuildManager: Buildable
     private let alertManager: AlertManagerable
-    private var selectedKit: KitEnum = .planets
+    private var selectedKit: KitType = .planets
     private let userService: UserServiceable
+    private let generalBackgroundAudioManager: AudioManagerable
+    private let gameType: GameType
+    private let gameService: GameServiceable
+    private var gameModel: GameModel?
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
         alertManager: AlertManagerable,
-        userService: UserServiceable
+        userService: UserServiceable,
+        generalBackgroundAudioManager: AudioManagerable,
+        gameType: GameType,
+        gameService: GameServiceable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.alertManager = alertManager
         self.userService = userService
+        self.generalBackgroundAudioManager = generalBackgroundAudioManager
+        self.gameType = gameType
+        self.gameService = gameService
     }
 }
 
 //MARK: - MainPresenterExtension
 
 extension MainPresenter: MainPresenterProtocol {
+    func viewDidLoad() {
+        if gameType == .mission {
+            viewController?.authUser()
+        }
+    }
+    
+    func viewWillAppear() {
+        if gameType == .mission {
+            do {
+                gameModel = try gameService.getGameModel()
+                guard let levelLabelValue = gameModel?.level else {
+                    return
+                }
+                
+                guard let timerLabelValue = gameModel?.time else {
+                    return
+                }
+                let timerLavelValueText = transformationTimerLabelText(timeValue: timerLabelValue)
+                
+                viewController?.updateLevelLabel(value: String(levelLabelValue))
+                viewController?.updateTimeLabel(value: timerLavelValueText)
+                viewController?.updateCollectionView(viewModel: fetchCurrentKitCell())
+            } catch {
+                // обработать ошибку
+            }
+        }
+    }
+
     func settingsButtonPressed() {
         let settingsViewController = sceneBuildManager.buildSettingsScreen(
             settingType: .mainSetting,
@@ -68,36 +110,89 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func logoutButtonPressed() {
-        guard let viewController = viewController.self else {
-            return
+        if gameType == .mission {
+            alertManager.showAlert(
+                fromViewController: viewController,
+                title: "Внимание",
+                message: "Вы хотите выйти?",
+                firstButtonTitle: "Отменить",
+                firstActionBlock: {},
+                secondTitleButton: "Выйти") {
+                    self.userService.logoutUser { result in
+                        switch result {
+                        case .success(_):
+                            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                            UIApplication.shared.windows.first?.rootViewController = rootViewController
+                        case .failure(_):
+                            self.alertManager.showAlert(
+                                fromViewController: self.viewController,
+                                title: "Ошибка",
+                                message: "Проверьте соеденение с интернетом",
+                                firstButtonTitle: "OK") {}
+                        }
+                    }
+                }
+        } else {
+            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+            UIApplication.shared.windows.first?.rootViewController = rootViewController
         }
-        
-        alertManager.showAlert(
-            fromViewController: viewController,
-            title: "Внимание",
-            message: "Вы хотите выйти?",
-            firstButtonTitle: "Отменить",
-            firstActionBlock: {},
-            secondTitleButton: "Выйти") {
-                self.userService.logoutUser()
-                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
-                UIApplication.shared.windows.first?.rootViewController = rootViewController
-            }
     }
     
     func missionStartGameButtonPressed() {
-        print(#function)
+        if gameType == .mission {
+            guard let currentLevelValue = gameModel?.level else {
+                return
+            }
+            
+            guard let currentTimeValue = gameModel?.time else {
+                return
+            }
+            
+            let gameViewController = sceneBuildManager.buildGameScreen(
+                timerValue: currentTimeValue,
+                levelValue: currentLevelValue,
+                selectedKit: selectedKit,
+                gameType: .mission
+            )
+            
+            viewController?.navigationController?.pushViewController(
+                gameViewController,
+                animated: true
+            )
+            generalBackgroundAudioManager.pause()
+        }
     }
     
-    func kitButtonsPressed(tag: Int) {
-        if tag == 0 {
-            selectedKit = .planets
-        } else if tag == 1 {
-            selectedKit = .fruits
-        } else if tag == 2 {
-            selectedKit = .billiardBalls
-        } else {
-            selectedKit = .sportBalls
+    func indicatorLeftButtonPressed() {
+        let value = selectedKit.rawValue - 1
+        if value >= 0 {
+            selectedKit = KitType(rawValue: value) ?? KitType.planets
+            viewController?.scrollCollectionView(item: selectedKit.rawValue)
         }
+    }
+    
+    func indicatorRightButtonPressed() {
+        let value = selectedKit.rawValue + 1
+        if value <= 3 {
+            selectedKit = KitType(rawValue: value) ?? KitType.planets
+            viewController?.scrollCollectionView(item: selectedKit.rawValue)
+        }
+    }
+    
+    func didScrollKitCollection(at indexPath: IndexPath) {
+        selectedKit = KitType(rawValue: indexPath.item) ?? KitType.planets
+    }
+}
+
+private extension MainPresenter {
+    
+    private func fetchCurrentKitCell() -> [KitCellViewModel] {
+        guard let gameModel = self.gameModel else {
+            return []
+        }
+        let result = gameModel.kits.map {
+            KitCellViewModel(image: $0.type.imageName, isLocked: $0.isLocked)
+        }
+        return result
     }
 }

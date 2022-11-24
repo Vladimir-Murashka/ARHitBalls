@@ -14,11 +14,15 @@
 		221D056C28E4543100A7921A /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056B28E4543100A7921A /* Fruits.swift */; };
 		221D057028E4547100A7921A /* SportBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D056F28E4547100A7921A /* SportBalls.swift */; };
 		221D057428E454D800A7921A /* BilliardBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D057328E454D800A7921A /* BilliardBalls.swift */; };
-		223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772A828E2EE31004F820D /* IdentifireLabel.swift */; };
 		223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AA28E2F1A8004F820D /* IdentifireTextField.swift */; };
 		223772AD28E31170004F820D /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AC28E31170004F820D /* InfoLabel.swift */; };
-		223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772AE28E3169D004F820D /* SettingSwitcher.swift */; };
 		223772D728E38077004F820D /* KitEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223772D628E38077004F820D /* KitEnum.swift */; };
+		225427A0291FA0D50000D2F9 /* DelaGothicOne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */; };
+		225427A3292143960000D2F9 /* KitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A2292143960000D2F9 /* KitCollectionViewCell.swift */; };
+		225427A6292146E10000D2F9 /* KitCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A5292146E10000D2F9 /* KitCellViewModel.swift */; };
+		225427A82921651E0000D2F9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A72921651E0000D2F9 /* UICollectionView.swift */; };
+		225427AA292165980000D2F9 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427A9292165980000D2F9 /* UICollectionViewCell.swift */; };
+		225427AD292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225427AC292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift */; };
 		22568D4D28F038B900B83261 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4C28F038B900B83261 /* Planets.swift */; };
 		22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4E28F05D5500B83261 /* ARObjectable.swift */; };
 		22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D5228F1B24700B83261 /* ARObjectModel.swift */; };
@@ -28,6 +32,9 @@
 		2271151028F9CB2500C3474C /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2271150F28F9CB2500C3474C /* hit.mp3 */; };
 		22866A042916CEA8009FF7D4 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A032916CEA8009FF7D4 /* FirebaseService.swift */; };
 		22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A052916D3EF009FF7D4 /* UserModels.swift */; };
+		22866A0829192084009FF7D4 /* GameUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A0729192084009FF7D4 /* GameUserModel.swift */; };
+		22866A0A2919221F009FF7D4 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A092919221F009FF7D4 /* GameModel.swift */; };
+		22866A0C291926E3009FF7D4 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A0B291926E3009FF7D4 /* GameType.swift */; };
 		22964CB72912C92B0007B7E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */; };
 		229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15528AA708A008D07A0 /* AppDelegate.swift */; };
 		229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC15728AA708A008D07A0 /* SceneDelegate.swift */; };
@@ -51,6 +58,7 @@
 		229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */; };
 		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
+		22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3170A291EA5B6003A8F93 /* UIImageView.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
@@ -68,11 +76,15 @@
 		221D056B28E4543100A7921A /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
 		221D056F28E4547100A7921A /* SportBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportBalls.swift; sourceTree = "<group>"; };
 		221D057328E454D800A7921A /* BilliardBalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardBalls.swift; sourceTree = "<group>"; };
-		223772A828E2EE31004F820D /* IdentifireLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireLabel.swift; sourceTree = "<group>"; };
 		223772AA28E2F1A8004F820D /* IdentifireTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireTextField.swift; sourceTree = "<group>"; };
 		223772AC28E31170004F820D /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
-		223772AE28E3169D004F820D /* SettingSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitcher.swift; sourceTree = "<group>"; };
 		223772D628E38077004F820D /* KitEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitEnum.swift; sourceTree = "<group>"; };
+		2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelaGothicOne.ttf; sourceTree = "<group>"; };
+		225427A2292143960000D2F9 /* KitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitCollectionViewCell.swift; sourceTree = "<group>"; };
+		225427A5292146E10000D2F9 /* KitCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitCellViewModel.swift; sourceTree = "<group>"; };
+		225427A72921651E0000D2F9 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		225427A9292165980000D2F9 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
+		225427AC292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		22568D4C28F038B900B83261 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
 		22568D4E28F05D5500B83261 /* ARObjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectable.swift; sourceTree = "<group>"; };
 		22568D5228F1B24700B83261 /* ARObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectModel.swift; sourceTree = "<group>"; };
@@ -84,6 +96,9 @@
 		22866A0229143BED009FF7D4 /* 2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2.mp4; path = ../../../../../2.mp4; sourceTree = "<group>"; };
 		22866A032916CEA8009FF7D4 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		22866A052916D3EF009FF7D4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
+		22866A0729192084009FF7D4 /* GameUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUserModel.swift; sourceTree = "<group>"; };
+		22866A092919221F009FF7D4 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		22866A0B291926E3009FF7D4 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 		22964CB62912C92B0007B7E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		229BC15228AA708A008D07A0 /* ARHitBalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARHitBalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229BC15528AA708A008D07A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +124,7 @@
 		229BC19928ABF60B008D07A0 /* IdentifireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifireViewController.swift; sourceTree = "<group>"; };
 		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		22A3170A291EA5B6003A8F93 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
@@ -141,6 +157,38 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		2254279D291FA0440000D2F9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2254279F291FA0D50000D2F9 /* DelaGothicOne.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		225427A1292142B90000D2F9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				225427A2292143960000D2F9 /* KitCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		225427A4292146C10000D2F9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				225427A5292146E10000D2F9 /* KitCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		225427AB2921789C0000D2F9 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				225427AC292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		22568D5028F1B1ED00B83261 /* KitsEnums */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +207,8 @@
 				22FDAFC328B8F58B002146B6 /* AlertModels.swift */,
 				22568D5228F1B24700B83261 /* ARObjectModel.swift */,
 				22866A052916D3EF009FF7D4 /* UserModels.swift */,
+				22866A0729192084009FF7D4 /* GameUserModel.swift */,
+				22866A092919221F009FF7D4 /* GameModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,6 +295,8 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				225427AB2921789C0000D2F9 /* Layout */,
+				225427A1292142B90000D2F9 /* Cells */,
 				22FDAFC728BCFA05002146B6 /* Entities */,
 				22E1743C28C1211F00F20AE9 /* Classes */,
 				2208165A28E1FB2100936408 /* Protocols */,
@@ -298,6 +350,7 @@
 		229BC19428AADF9A008D07A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2254279D291FA0440000D2F9 /* Fonts */,
 				22866A0129143BE3009FF7D4 /* 1.mp4 */,
 				22866A0229143BED009FF7D4 /* 2.mp4 */,
 				2271150F28F9CB2500C3474C /* hit.mp3 */,
@@ -314,6 +367,9 @@
 			children = (
 				229BC19628ABC484008D07A0 /* UIView.swift */,
 				229F453828B130BD00075601 /* UIStackView.swift */,
+				22A3170A291EA5B6003A8F93 /* UIImageView.swift */,
+				225427A72921651E0000D2F9 /* UICollectionView.swift */,
+				225427A9292165980000D2F9 /* UICollectionViewCell.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -334,10 +390,8 @@
 				2208165D28E1FFF200936408 /* QuitButton.swift */,
 				2208165F28E2061800936408 /* StartButton.swift */,
 				2208166128E20D0900936408 /* MenuButton.swift */,
-				223772A828E2EE31004F820D /* IdentifireLabel.swift */,
 				223772AA28E2F1A8004F820D /* IdentifireTextField.swift */,
 				223772AC28E31170004F820D /* InfoLabel.swift */,
-				223772AE28E3169D004F820D /* SettingSwitcher.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -345,11 +399,13 @@
 		22FDAFC728BCFA05002146B6 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				225427A4292146C10000D2F9 /* ViewModels */,
 				22568D5128F1B21500B83261 /* Models */,
 				22568D5028F1B1ED00B83261 /* KitsEnums */,
 				22E5941C28C2786A0063586D /* AuthType.swift */,
-				22E5941F28C37E110063586D /* SettingType.swift */,
 				2268E4D628DCDB590029C755 /* CollisionCategory.swift */,
+				22866A0B291926E3009FF7D4 /* GameType.swift */,
+				22E5941F28C37E110063586D /* SettingType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -434,6 +490,7 @@
 				229BC16228AA7091008D07A0 /* LaunchScreen.storyboard in Resources */,
 				229BC15F28AA7091008D07A0 /* Assets.xcassets in Resources */,
 				2271150E28F9B82D00C3474C /* track.mp3 in Resources */,
+				225427A0291FA0D50000D2F9 /* DelaGothicOne.ttf in Resources */,
 				2271150C28F9AE3E00C3474C /* back.mp3 in Resources */,
 				2271151028F9CB2500C3474C /* hit.mp3 in Resources */,
 				22964CB72912C92B0007B7E9 /* GoogleService-Info.plist in Resources */,
@@ -509,27 +566,34 @@
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
 				221D056C28E4543100A7921A /* Fruits.swift in Sources */,
 				2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */,
-				223772A928E2EE31004F820D /* IdentifireLabel.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
+				225427A6292146E10000D2F9 /* KitCellViewModel.swift in Sources */,
+				225427AA292165980000D2F9 /* UICollectionViewCell.swift in Sources */,
 				229BC19228AA86B7008D07A0 /* GamePresenter.swift in Sources */,
+				225427A82921651E0000D2F9 /* UICollectionView.swift in Sources */,
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
 				221D057428E454D800A7921A /* BilliardBalls.swift in Sources */,
+				225427AD292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
-				223772AF28E3169D004F820D /* SettingSwitcher.swift in Sources */,
+				22866A0C291926E3009FF7D4 /* GameType.swift in Sources */,
 				229BC19728ABC484008D07A0 /* UIView.swift in Sources */,
 				22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */,
 				229BC15628AA708A008D07A0 /* AppDelegate.swift in Sources */,
 				2208165E28E1FFF200936408 /* QuitButton.swift in Sources */,
+				22866A0A2919221F009FF7D4 /* GameModel.swift in Sources */,
 				22E5941D28C2786A0063586D /* AuthType.swift in Sources */,
 				22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */,
 				229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */,
+				22866A0829192084009FF7D4 /* GameUserModel.swift in Sources */,
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
+				22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
 				223772D728E38077004F820D /* KitEnum.swift in Sources */,
+				225427A3292143960000D2F9 /* KitCollectionViewCell.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,
 				229F453928B130BD00075601 /* UIStackView.swift in Sources */,
@@ -678,6 +742,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -686,11 +751,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls;
+				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -708,6 +776,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -716,11 +785,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls;
+				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -36,8 +36,40 @@ final class SettingsViewController: UIViewController {
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "settingBackground")
+        imageView.image = UIImage(named: "generalBackground")
+        imageView.contentMode = .scaleAspectFill
         return imageView
+    }()
+    
+    private let topImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "topTextField")
+        return imageView
+    }()
+    
+    private let middleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "middleTextField")
+        return imageView
+    }()
+    
+    private let bottonImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "bottomTextField")
+        return imageView
+    }()
+    
+    private let imageViewStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private lazy var topLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Настройки"
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
     }()
     
     private lazy var quitSettingButton: QuitButton = {
@@ -56,8 +88,8 @@ final class SettingsViewController: UIViewController {
         return label
     }()
     
-    private lazy var vibrationSwitcher: SettingSwitcher = {
-        let switcher = SettingSwitcher()
+    private lazy var vibrationSwitcher: UISwitch = {
+        let switcher = UISwitch()
         switcher.addTarget(
             self,
             action:  #selector(vibrationSwitcherChange),
@@ -68,7 +100,7 @@ final class SettingsViewController: UIViewController {
     
     private let vibrationStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 12
+        stackView.alignment = .center
         stackView.distribution = .equalSpacing
         return stackView
     }()
@@ -79,8 +111,8 @@ final class SettingsViewController: UIViewController {
         return label
     }()
     
-    private lazy var soundEffectsSwitcher: SettingSwitcher = {
-        let switcher = SettingSwitcher()
+    private lazy var soundEffectsSwitcher: UISwitch = {
+        let switcher = UISwitch()
         switcher.addTarget(
             self,
             action: #selector(soundEffectsSwitcherChange),
@@ -91,7 +123,7 @@ final class SettingsViewController: UIViewController {
     
     private let soundEffectsStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 12
+        stackView.alignment = .center
         stackView.distribution = .equalSpacing
         return stackView
     }()
@@ -102,8 +134,8 @@ final class SettingsViewController: UIViewController {
         return label
     }()
     
-    private lazy var musicSwitcher: SettingSwitcher = {
-        let switcher = SettingSwitcher()
+    private lazy var musicSwitcher: UISwitch = {
+        let switcher = UISwitch()
         switcher.addTarget(
             self,
             action: #selector(musicSwitcherChange),
@@ -114,7 +146,7 @@ final class SettingsViewController: UIViewController {
     
     private let musicStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 12
+        stackView.alignment = .center
         stackView.distribution = .equalSpacing
         return stackView
     }()
@@ -135,8 +167,6 @@ final class SettingsViewController: UIViewController {
         stepper.maximumValue = 180
         stepper.minimumValue = 10
         stepper.stepValue = 10
-        stepper.backgroundColor = .black
-        stepper.layer.cornerRadius = 8
         stepper.addTarget(
             self,
             action: #selector(timeStepperPressed),
@@ -147,8 +177,8 @@ final class SettingsViewController: UIViewController {
     
     private let timeStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 2
         stackView.distribution = .equalSpacing
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -169,8 +199,6 @@ final class SettingsViewController: UIViewController {
         stepper.minimumValue = 1
         stepper.value = 0
         stepper.stepValue = 1
-        stepper.backgroundColor = .black
-        stepper.layer.cornerRadius = 8
         stepper.addTarget(
             self,
             action: #selector(levelStepperPressed),
@@ -181,8 +209,8 @@ final class SettingsViewController: UIViewController {
     
     private let levelStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 12
         stackView.distribution = .equalSpacing
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -192,7 +220,14 @@ final class SettingsViewController: UIViewController {
             "Начать",
             for: .normal
         )
-        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setBackgroundImage(
+            UIImage(named: "generalButton"),
+            for: .normal
+        )
+        button.titleLabel?.font = UIFont(
+            name: "Dela Gothic One",
+            size: 16
+        ) ?? .systemFont(ofSize: 16)
         button.addTarget(
             self,
             action: #selector(startQuickGameButtonPressed),
@@ -204,7 +239,6 @@ final class SettingsViewController: UIViewController {
     private let verticalSettigStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 12
         return stackView
     }()
     
@@ -294,6 +328,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func setupQuickGameSetting() {
+        middleImageView.isHidden = true
         vibrationStackView.isHidden = true
         soundEffectsStackView.isHidden = true
         musicStackView.isHidden = true
@@ -311,12 +346,9 @@ private extension SettingsViewController {
     func addSubViews() {
         view.addSubviews(
             imageViewBackgroundScreen,
+            topLabel,
+            imageViewStackView,
             quitSettingButton,
-            vibrationStackView,
-            soundEffectsStackView,
-            musicStackView,
-            timeStackView,
-            levelStackView,
             verticalSettigStackView,
             startQuickGameButton
         )
@@ -347,6 +379,12 @@ private extension SettingsViewController {
             levelValueLabel,
             levelStepper
         )
+        
+        imageViewStackView.addArrangedSubviews(
+            topImageView,
+            middleImageView,
+            bottonImageView
+        )
 
         verticalSettigStackView.addArrangedSubviews(
             vibrationStackView,
@@ -358,38 +396,74 @@ private extension SettingsViewController {
     }
     
     func setupConstraints() {
-        let titleLabelWidth: CGFloat = 170
-        let stackViewTopOffset: CGFloat = 70
+        let imageViewBackgroundScreenOffset: CGFloat = 0
+        let stackViewTopOffset: CGFloat = 160
         let stackViewSideOffset: CGFloat = 16
         let quitButtonLeadingOffset: CGFloat = 16
         let quitButtonTopOffset: CGFloat = 0
-        let quitButtonSize: CGFloat = 30
-        let levelValueLabelWidth: CGFloat = 30
-        let timeValueLabelWidth: CGFloat = 70
         let startQuickGameButtonOffset: CGFloat = 16
+        let topLabelOffset: CGFloat = 16
+        let verticalSettigStackViewOffset: CGFloat = 25
+        let heightStackView: CGFloat = 56
         
         NSLayoutConstraint.activate([
-            titleVibrationLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
-            titleSoundEffectsLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
-            titleMusicLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
+            imageViewBackgroundScreen.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
+            imageViewBackgroundScreen.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
+            imageViewBackgroundScreen.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
+            imageViewBackgroundScreen.bottomAnchor.constraint(
+                equalTo: view.bottomAnchor,
+                constant: imageViewBackgroundScreenOffset
+            ),
             
-            levelTitleLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
-            levelValueLabel.widthAnchor.constraint(equalToConstant: levelValueLabelWidth),
-            
-            timeTitleLabel.widthAnchor.constraint(equalToConstant: titleLabelWidth),
-            timeValueLabel.widthAnchor.constraint(equalToConstant: timeValueLabelWidth),
-            
-            verticalSettigStackView.topAnchor.constraint(
+            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topLabel.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: topLabelOffset
+            ),
+            
+            vibrationStackView.heightAnchor.constraint(equalToConstant: heightStackView),
+            soundEffectsStackView.heightAnchor.constraint(equalToConstant: heightStackView),
+            musicStackView.heightAnchor.constraint(equalToConstant: heightStackView),
+            timeStackView.heightAnchor.constraint(equalToConstant: heightStackView),
+            levelStackView.heightAnchor.constraint(equalToConstant: heightStackView),
+            
+            topImageView.heightAnchor.constraint(equalToConstant: heightStackView),
+            middleImageView.heightAnchor.constraint(equalToConstant: heightStackView),
+            bottonImageView.heightAnchor.constraint(equalToConstant: heightStackView),
+            
+            imageViewStackView.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: stackViewTopOffset
+            ),
+            imageViewStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: stackViewSideOffset
+            ),
+            imageViewStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -stackViewSideOffset
+            ),
+        
+            verticalSettigStackView.topAnchor.constraint(
+                equalTo: view.topAnchor,
                 constant: stackViewTopOffset
             ),
             verticalSettigStackView.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                constant: stackViewSideOffset
+                constant: verticalSettigStackViewOffset
             ),
             verticalSettigStackView.trailingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                constant: -stackViewSideOffset
+                constant: -verticalSettigStackViewOffset
             ),
             
             quitSettingButton.leadingAnchor.constraint(
@@ -400,8 +474,6 @@ private extension SettingsViewController {
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: quitButtonTopOffset
             ),
-            quitSettingButton.heightAnchor.constraint(equalToConstant: quitButtonSize),
-            quitSettingButton.widthAnchor.constraint(equalToConstant: quitButtonSize),
             
             startQuickGameButton.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,

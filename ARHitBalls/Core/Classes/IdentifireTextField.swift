@@ -23,10 +23,8 @@ final class IdentifireTextField: UITextField {
 
 extension IdentifireTextField {
     func setupTextField() {
-        backgroundColor = .black
+        backgroundColor = .clear
         textColor = .white
         textAlignment = .center
-        layer.cornerRadius = 8
-        layer.masksToBounds = true
     }
 }

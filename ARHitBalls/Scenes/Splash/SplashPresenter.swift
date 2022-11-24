@@ -50,19 +50,24 @@ extension SplashPresenter: SplashPresenterProtocol {
             withExtension: "mp3"
         )
         
-        isMusicOn = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+        isMusicOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isMusicOn
+        ) ?? true
         
         if isMusicOn {
             generalBackgroundAudioManager.play()
         }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-            let rootViewController = UINavigationController(
-                rootViewController: self.userService.isUserAuth()
-                ? self.sceneBuildManager.buildMainScreen()
-                : self.sceneBuildManager.buildMenuScreen()
-            )
-            UIApplication.shared.windows.first?.rootViewController = rootViewController
-        })
+        
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + .seconds(5),
+            execute: {
+                let rootViewController = UINavigationController(
+                    rootViewController: self.userService.isUserAuth()
+                    ? self.sceneBuildManager.buildMainScreen(gameType: .mission)
+                    : self.sceneBuildManager.buildMenuScreen()
+                )
+                UIApplication.shared.windows.first?.rootViewController = rootViewController
+            })
     }
 }

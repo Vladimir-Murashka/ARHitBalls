@@ -17,7 +17,7 @@ protocol UserServiceable {
         password: String,
         completion: @escaping (Result<Void, Error>) -> Void
     )
-    func logoutUser()
+    func logoutUser(completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class UserService {
@@ -54,6 +54,7 @@ extension UserService: UserServiceable {
             switch result {
             case .success(_):
                 self?.defaultsManager.saveObject(true, for: .isUserAuth)
+                self?.defaultsManager.saveObject(1, for: .missionGameLevelValue)
                 completion(.success(Void()))
                 
             case let .failure(error):
@@ -82,8 +83,13 @@ extension UserService: UserServiceable {
         }
     }
     
-    func logoutUser() {
-        firebaseService.logOut()
-        defaultsManager.saveObject(false, for: .isUserAuth)
+    func logoutUser(completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try firebaseService.logout()
+            defaultsManager.saveObject(false, for: .isUserAuth)
+            completion(.success(Void()))
+        } catch {
+            completion(.failure(error))
+        }
     }
 }

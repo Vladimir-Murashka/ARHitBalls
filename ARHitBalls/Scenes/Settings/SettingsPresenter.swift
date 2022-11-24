@@ -29,7 +29,7 @@ final class SettingsPresenter {
     private let defaultsStorage: DefaultsManagerable
     private let generalBackgroundAudioManager: AudioManagerable
     private let settingType: SettingType
-    private let selectedKit: KitEnum
+    private let selectedKit: KitType
     private var timerValue: Double = 10
     private var currentLevelValue: Int = 1
     
@@ -40,7 +40,7 @@ final class SettingsPresenter {
         sceneBuildManager: Buildable,
         defaultsStorage: DefaultsManagerable,
         settingType: SettingType,
-        selectedKit: KitEnum,
+        selectedKit: KitType,
         generalBackgroundAudioManager: AudioManagerable
     ) {
         self.sceneBuildManager = sceneBuildManager
@@ -69,7 +69,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         ) ?? true
         let levelValue = defaultsStorage.fetchObject(
             type: Double.self,
-            for: .levelValue
+            for: .freeGameLevelValue
         ) ?? 1
         let timerValue = defaultsStorage.fetchObject(
             type: Double.self,
@@ -141,7 +141,7 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     func levelStepperPressed(levelValue: Double) {
         defaultsStorage.saveObject(
             levelValue,
-            for: .levelValue
+            for: .freeGameLevelValue
         )
         currentLevelValue = Int(levelValue)
         viewController?.updateLevelValueLabel(
@@ -154,7 +154,8 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         let gameViewController = sceneBuildManager.buildGameScreen(
             timerValue: timerValue,
             levelValue: currentLevelValue,
-            selectedKit: selectedKit
+            selectedKit: selectedKit,
+            gameType: .freeGame
         )
         
         viewController?.navigationController?.pushViewController(

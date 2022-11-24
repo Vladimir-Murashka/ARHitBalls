@@ -21,7 +21,7 @@ protocol FirebaseServicable {
         completion: @escaping (Result<UserModel, Error>) -> Void
     )
     
-    func logOut()
+    func logout() throws
 }
 
 final class FirebaseService {
@@ -42,7 +42,7 @@ extension FirebaseService: FirebaseServicable {
                 completion(.failure(error))
             }
             
-            if let user = user {
+            if let _ = user {
                 let userModel = UserModel()
                 completion(.success(userModel))
             }
@@ -62,18 +62,15 @@ extension FirebaseService: FirebaseServicable {
                 completion(.failure(error))
             }
             
-            if let user = user {
+            if let _ = user {
                 let userModel = UserModel()
                 completion(.success(userModel))
             }
         }
     }
     
-    func logOut() {
-        do {
-               try Auth.auth().signOut()
-           }
-        catch {}
+    func logout() throws {
+        try Auth.auth().signOut()
     }
 }
 

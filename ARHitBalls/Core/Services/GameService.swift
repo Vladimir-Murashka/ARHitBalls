@@ -5,37 +5,65 @@
 //  Created by Swift Learning on 15.08.2022.
 //
 
+import Foundation
+
 protocol GameServiceable {
-    func nextLevel(levelValue: Int, timeValue: Double)
-    func getCollection()
-    func newCircleLevel(currentLevelValue: Int, currentTimeValue: Double)
+    func nextLevel() throws -> GameModel
+    func getGameModel() throws -> GameModel
 }
 
 final class GameService {
     
-    private let defaultsManager: DefaultsManagerable
-    var gameLevelValue: Int = 1
-    var gameTimeValue: Double = 20
-    private let maxLevelValue: Int = 10
-    private let maxTimeValue: Double = 200
+    // MARK: - PrivateProperties
     
-    init(defaultsManager: DefaultsManagerable) {
-        self.defaultsManager = defaultsManager
+    private var gameUserValue = GameUserModel()
+    private let defaultsStorage: DefaultsManagerable
+    
+    private var currentGameModel: GameModel?
+    
+    // MARK: - Initializer
+    
+    init(defaultsStorage: DefaultsManagerable) {
+        self.defaultsStorage = defaultsStorage
     }
 }
 
 extension GameService: GameServiceable {
-    func nextLevel(levelValue: Int, timeValue: Double) {
-        levelValue < maxLevelValue ? (gameLevelValue += 1) : (gameLevelValue = 1)
-        timeValue < maxTimeValue ? (gameTimeValue += 20) : (gameTimeValue = 20)
+    func nextLevel() throws -> GameModel {
+        guard var nextGameModel = currentGameModel else {
+            let error = NSError(
+                domain: "error description",
+                code: -1
+            )
+            throw error
+        }
+        
+        nextGameModel.levelUP()
+        
+        defaultsStorage.saveObject(
+            nextGameModel.level,
+            for: .missionGameLevelValue
+        )
+        currentGameModel = nextGameModel
+        
+        return nextGameModel
     }
     
-    func getCollection() {
-        
-    }
-    
-    func newCircleLevel(currentLevelValue: Int, currentTimeValue: Double) {
-        
+    func getGameModel() throws -> GameModel {
+        guard let level = defaultsStorage.fetchObject(
+            type: Int.self,
+            for: .missionGameLevelValue
+        ) else {
+            let error = NSError(
+                domain: "error description",
+                code: -1
+            )
+            throw error
+        }
+        let gameModel = GameModel(level: level)
+        self.currentGameModel = gameModel
+                
+        return gameModel
     }
 }
 

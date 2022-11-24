@@ -8,15 +8,16 @@
 protocol Buildable {
     func buildSplashScreen() -> SplashViewController
     func buildMenuScreen() -> MenuViewController
-    func buildMainScreen() -> MainViewController
+    func buildMainScreen(gameType: GameType) -> MainViewController
     func buildSettingsScreen(
         settingType: SettingType,
-        selectedKit: KitEnum
+        selectedKit: KitType
     ) -> SettingsViewController
     func buildGameScreen(
         timerValue: Double,
         levelValue: Int,
-        selectedKit: KitEnum
+        selectedKit: KitType,
+        gameType: GameType
     ) -> GameViewController
     func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
 }
@@ -30,6 +31,7 @@ final class SceneBuildManager {
     private let commonAudioManager: AudioManagerable
     private let gameAudioManager: AudioManagerable
     private let soundEffectManager: AudioManagerable
+    private let gameService: GameServiceable
     
     init() {
         defaultsManager = DefaultsManager()
@@ -42,6 +44,7 @@ final class SceneBuildManager {
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
         soundEffectManager = AudioManager()
+        gameService = GameService(defaultsStorage: defaultsManager)
     }
 }
 
@@ -71,12 +74,15 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildMainScreen() -> MainViewController {
+    func buildMainScreen(gameType: GameType) -> MainViewController {
         let viewController = MainViewController()
         let presenter = MainPresenter(
             sceneBuildManager: self,
             alertManager: alertManager,
-            userService: userService
+            userService: userService,
+            generalBackgroundAudioManager: commonAudioManager,
+            gameType: gameType,
+            gameService: gameService
         )
         
         viewController.presenter = presenter
@@ -87,7 +93,7 @@ extension SceneBuildManager: Buildable {
     
     func buildSettingsScreen(
         settingType: SettingType,
-        selectedKit: KitEnum
+        selectedKit: KitType
     ) -> SettingsViewController {
         let viewController = SettingsViewController()
         let presenter = SettingsPresenter(
@@ -107,7 +113,8 @@ extension SceneBuildManager: Buildable {
     func buildGameScreen(
         timerValue: Double,
         levelValue: Int,
-        selectedKit: KitEnum
+        selectedKit: KitType,
+        gameType: GameType
     ) -> GameViewController {
         let viewController = GameViewController()
         let presenter = GamePresenter(
@@ -117,9 +124,11 @@ extension SceneBuildManager: Buildable {
             gameAudioManager: gameAudioManager,
             soundEffectManager: soundEffectManager,
             alertManager: alertManager,
-            startTimerValue: timerValue,
+            timerValue: timerValue,
             currentLevelValue: levelValue,
-            selectedKit: selectedKit
+            selectedKit: selectedKit,
+            gameType: gameType,
+            gameServise: gameService
         )
         
         viewController.presenter = presenter
