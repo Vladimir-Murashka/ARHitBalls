@@ -15,6 +15,13 @@ protocol MainViewProtocol: UIViewController {
     func updateTimeLabel(value: String)
     func scrollCollectionView(item: Int)
     func updateCollectionView(viewModel: [KitCellViewModel])
+    func lockIndicatorRightButton()
+    func activeIndicatorRightButton()
+    func lockIndicatorLeftButton()
+    func activeIndicatorLeftButton()
+    func lockStartGameButton()
+    func activeStartGameButton()
+    func activeDemoGameButton()
 }
 
 // MARK: - MainViewController
@@ -201,6 +208,7 @@ final class MainViewController: UIViewController {
             UIImage(named: "srartMissionGame"),
             for: .normal
         )
+        button.isEnabled = false
         button.addTarget(
             self,
             action: #selector(missionStartGameButtonPressed),
@@ -283,6 +291,7 @@ extension MainViewController: MainViewProtocol {
     func authUser() {
         middleStackView.isHidden = false
         missionStartGameButton.alpha = 1
+        missionStartGameButton.isEnabled = true
     }
     
     func updateLevelLabel(value: String) {
@@ -305,7 +314,45 @@ extension MainViewController: MainViewProtocol {
         self.viewModel = viewModel
         collectionView.reloadData()
     }
-
+    
+    func lockIndicatorRightButton() {
+        indicatorRightButton.isEnabled = false
+        indicatorRightButton.alpha = 0.5
+    }
+    
+    func activeIndicatorRightButton() {
+        indicatorRightButton.isEnabled = true
+        indicatorRightButton.alpha = 1
+    }
+    
+    func lockIndicatorLeftButton() {
+        indicatorLeftButton.isEnabled = false
+        indicatorLeftButton.alpha = 0.5
+    }
+    
+    func activeIndicatorLeftButton() {
+        indicatorLeftButton.isEnabled = true
+        indicatorLeftButton.alpha = 1
+    }
+    
+    func lockStartGameButton() {
+        missionStartGameButton.isEnabled = false
+        missionStartGameButton.alpha = 0.5
+        startQuickGameButton.isEnabled = false
+        startQuickGameButton.alpha = 0.5
+    }
+    
+    func activeStartGameButton() {
+        missionStartGameButton.isEnabled = true
+        missionStartGameButton.alpha = 1
+        startQuickGameButton.isEnabled = true
+        startQuickGameButton.alpha = 1
+    }
+    
+    func activeDemoGameButton() {
+        startQuickGameButton.isEnabled = true
+        startQuickGameButton.alpha = 1
+    }
 }
 
 // MARK: - PrivateMethods
@@ -314,6 +361,7 @@ private extension MainViewController {
     func setupViewController() {
         navigationController?.navigationBar.isHidden = true
         middleStackView.isHidden = true
+        lockIndicatorLeftButton()
         addSubViews()
         setupConstraints()
     }

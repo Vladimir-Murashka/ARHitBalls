@@ -92,8 +92,6 @@
 		2271150B28F9AE3E00C3474C /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = back.mp3; path = ../../../../../back.mp3; sourceTree = "<group>"; };
 		2271150D28F9B82D00C3474C /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track.mp3; path = ../../../../../track.mp3; sourceTree = "<group>"; };
 		2271150F28F9CB2500C3474C /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = hit.mp3; path = ../../../../../hit.mp3; sourceTree = "<group>"; };
-		22866A0129143BE3009FF7D4 /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1.mp4; path = ../../../../../1.mp4; sourceTree = "<group>"; };
-		22866A0229143BED009FF7D4 /* 2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2.mp4; path = ../../../../../2.mp4; sourceTree = "<group>"; };
 		22866A032916CEA8009FF7D4 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		22866A052916D3EF009FF7D4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		22866A0729192084009FF7D4 /* GameUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUserModel.swift; sourceTree = "<group>"; };
@@ -351,8 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				2254279D291FA0440000D2F9 /* Fonts */,
-				22866A0129143BE3009FF7D4 /* 1.mp4 */,
-				22866A0229143BED009FF7D4 /* 2.mp4 */,
 				2271150F28F9CB2500C3474C /* hit.mp3 */,
 				2271150B28F9AE3E00C3474C /* back.mp3 */,
 				2271150D28F9B82D00C3474C /* track.mp3 */,

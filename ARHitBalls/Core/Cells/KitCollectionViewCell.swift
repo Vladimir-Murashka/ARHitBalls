@@ -21,6 +21,13 @@ final class KitCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let collectionLockImageView: UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "collectionLock")
+        imageView.image = image
+        return imageView
+    }()
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -36,9 +43,7 @@ final class KitCollectionViewCell: UICollectionViewCell {
     
     func configureCell(with viewModel: KitCellViewModel) {
         collectionImageView.image = UIImage(named: viewModel.image)
-        
-        if viewModel.isLocked {} else {}
-        
+        collectionLockImageView.isHidden = viewModel.isLocked ? true : false
         collectionImageView.alpha = viewModel.isLocked ? 1 : 0.5
     }
 }
@@ -58,6 +63,7 @@ private extension KitCollectionViewCell {
     
     func addSubViews() {
         contentView.addSubviews(collectionImageView)
+        contentView.addSubviews(collectionLockImageView)
     }
     
     func setupConstraints() {
@@ -66,6 +72,9 @@ private extension KitCollectionViewCell {
             collectionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             collectionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            
+            collectionLockImageView.topAnchor.constraint(equalTo: collectionImageView.topAnchor, constant: 90),
+            collectionLockImageView.centerXAnchor.constraint(equalTo: collectionImageView.centerXAnchor)
         ])
     }
 }
