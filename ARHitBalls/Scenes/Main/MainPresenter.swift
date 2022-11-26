@@ -84,6 +84,9 @@ extension MainPresenter: MainPresenterProtocol {
             } catch {
                 // обработать ошибку
             }
+        } else {
+            gameModel = GameModel(level: 1)
+            viewController?.updateCollectionView(viewModel: fetchCurrentKitCell())
         }
     }
 
@@ -181,6 +184,41 @@ extension MainPresenter: MainPresenterProtocol {
     
     func didScrollKitCollection(at indexPath: IndexPath) {
         selectedKit = KitType(rawValue: indexPath.item) ?? KitType.planets
+        
+        guard let currentLevel = gameModel?.level else {
+            return
+        }
+        
+        if indexPath.item == 0 {
+            viewController?.lockIndicatorLeftButton()
+            gameType == .mission
+            ? viewController?.activeStartGameButton()
+            : viewController?.activeDemoGameButton()
+        } else {
+            viewController?.activeIndicatorLeftButton()
+        }
+        
+        if indexPath.item == 1 {
+            currentLevel <= 10
+            ? viewController?.lockStartGameButton()
+            : viewController?.activeStartGameButton()
+        }
+        
+        if indexPath.item == 2 {
+            currentLevel <= 20
+            ? viewController?.lockStartGameButton()
+            : viewController?.activeStartGameButton()
+        }
+        
+        if indexPath.item == 3 {
+            viewController?.lockIndicatorRightButton()
+            currentLevel <= 30
+            ? viewController?.lockStartGameButton()
+            : viewController?.activeStartGameButton()
+        } else {
+            viewController?.activeIndicatorRightButton()
+        }
+        
     }
 }
 
