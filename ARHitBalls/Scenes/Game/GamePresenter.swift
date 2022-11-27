@@ -167,28 +167,7 @@ extension GamePresenter: GamePresenterProtocol {
     func quitGameButtonPressed() {
         stopTimer()
         viewController?.sessionPause()
-        alertManager.showAlert(
-            fromViewController: viewController,
-            title: "Хотите покинуть игру?",
-            message: "Прогресс не будет сохранен",
-            firstButtonTitle: "Выйти",
-            firstActionBlock: {
-                self.viewController?.navigationController?.popViewController(animated: true)
-                self.gameAudioManager.pause()
-                self.isMusicOn = self.defaultsStorage.fetchObject(
-                    type: Bool.self,
-                    for: .isMusicOn
-                ) ?? true
-                
-                if self.isMusicOn {
-                    self.generalBackgroundAudioManager.play()
-                }
-            },
-            secondTitleButton: "Остаться") {
-                let configuration = ARWorldTrackingConfiguration()
-                self.viewController?.sessionRun(with: configuration)
-                self.startTimer()
-            }
+        viewController?.present(sceneBuildManager.buildEndGameScreen(), animated: true)
     }
     
     func shotButtonPressed(tag: Int) {

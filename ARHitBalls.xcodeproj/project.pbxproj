@@ -59,6 +59,8 @@
 		229BC19C28ABF622008D07A0 /* IdentifirePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */; };
 		229F453928B130BD00075601 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F453828B130BD00075601 /* UIStackView.swift */; };
 		22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3170A291EA5B6003A8F93 /* UIImageView.swift */; };
+		22B614E72932A51000F24C1F /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E62932A51000F24C1F /* EndGameViewController.swift */; };
+		22B614E92932A51F00F24C1F /* EndGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E82932A51F00F24C1F /* EndGamePresenter.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
@@ -123,6 +125,8 @@
 		229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifirePresenter.swift; sourceTree = "<group>"; };
 		229F453828B130BD00075601 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		22A3170A291EA5B6003A8F93 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		22B614E62932A51000F24C1F /* EndGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
+		22B614E82932A51F00F24C1F /* EndGamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePresenter.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				229BC16C28AA7A45008D07A0 /* Main */,
 				229BC16A28AA7A2A008D07A0 /* Settings */,
 				229BC16E28AA7C6D008D07A0 /* Game */,
+				22B614E52932A4D700F24C1F /* EndGame */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -377,6 +382,15 @@
 				229BC19B28ABF622008D07A0 /* IdentifirePresenter.swift */,
 			);
 			path = Identifire;
+			sourceTree = "<group>";
+		};
+		22B614E52932A4D700F24C1F /* EndGame */ = {
+			isa = PBXGroup;
+			children = (
+				22B614E62932A51000F24C1F /* EndGameViewController.swift */,
+				22B614E82932A51F00F24C1F /* EndGamePresenter.swift */,
+			);
+			path = EndGame;
 			sourceTree = "<group>";
 		};
 		22E1743C28C1211F00F20AE9 /* Classes */ = {
@@ -556,6 +570,7 @@
 				223772AD28E31170004F820D /* InfoLabel.swift in Sources */,
 				22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */,
 				22568D4D28F038B900B83261 /* Planets.swift in Sources */,
+				22B614E72932A51000F24C1F /* EndGameViewController.swift in Sources */,
 				223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */,
 				221D057028E4547100A7921A /* SportBalls.swift in Sources */,
 				229BC17228AA7DD8008D07A0 /* UserServise.swift in Sources */,
@@ -589,6 +604,7 @@
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
 				223772D728E38077004F820D /* KitEnum.swift in Sources */,
+				22B614E92932A51F00F24C1F /* EndGamePresenter.swift in Sources */,
 				225427A3292143960000D2F9 /* KitCollectionViewCell.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,
