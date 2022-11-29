@@ -20,7 +20,7 @@ protocol Buildable {
         gameType: GameType
     ) -> GameViewController
     func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
-    func buildEndGameScreen() -> EndGameViewController
+    func buildEndGameScreen(endGameType: EndGameType) -> EndGameViewController
 }
 
 final class SceneBuildManager {
@@ -153,10 +153,11 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildEndGameScreen() -> EndGameViewController {
+    func buildEndGameScreen(endGameType: EndGameType) -> EndGameViewController {
         let viewController = EndGameViewController()
         let presenter = EndGamePresenter(
-            sceneBuildManager: self
+            sceneBuildManager: self,
+            endGameType: endGameType
         )
         
         viewController.presenter = presenter

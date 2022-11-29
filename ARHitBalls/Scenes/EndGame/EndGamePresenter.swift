@@ -23,20 +23,39 @@ final class EndGamePresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
+    private let endGameType: EndGameType
     
     // MARK: - Initializer
     
     init(
-        sceneBuildManager: Buildable
+        sceneBuildManager: Buildable,
+        endGameType: EndGameType
     ) {
         self.sceneBuildManager = sceneBuildManager
+        self.endGameType = endGameType
     }
 }
 
 //MARK: - EndGamePresenterExtension
 
 extension EndGamePresenter: EndGamePresenterProtocol {
-    func viewDidLoad() {}
+    func viewDidLoad() {
+        if endGameType == .exitGame {
+            viewController?.setupExitGameType()
+        }
+        
+        if endGameType == .levelPassedFree {
+            viewController?.setupLevelPassedFreeType()
+        }
+        
+        if endGameType == .levelPassedAuth {
+            viewController?.setupLevelPassedAuthType()
+        }
+        
+        if endGameType == .timeIsOver {
+            viewController?.setupTimeIsOverType()
+        }
+    }
     
     func continueButtonPressed() {
         print(#function)

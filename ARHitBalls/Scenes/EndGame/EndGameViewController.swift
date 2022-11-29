@@ -9,7 +9,12 @@ import UIKit
 
 // MARK: - EndGameViewProtocol
 
-protocol EndGameViewProtocol: UIViewController {}
+protocol EndGameViewProtocol: UIViewController {
+    func setupExitGameType()
+    func setupTimeIsOverType()
+    func setupLevelPassedAuthType()
+    func setupLevelPassedFreeType()
+}
 
 // MARK: - EndGameViewController
 
@@ -68,7 +73,7 @@ final class EndGameViewController: UIViewController {
             for: .normal
         )
         button.setTitle(
-            "Продолжить игру",
+            "Продолжить",
             for: .normal
         )
         button.titleLabel?.font = UIFont(
@@ -94,7 +99,7 @@ final class EndGameViewController: UIViewController {
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let attributeString = NSMutableAttributedString(
-            string: "Выйти",
+            string: "Выйти в меню",
             attributes: buttonAttributes
          )
         
@@ -263,7 +268,34 @@ final class EndGameViewController: UIViewController {
 
 // MARK: - EndGameViewProtocol Impl
 
-extension EndGameViewController: EndGameViewProtocol {}
+extension EndGameViewController: EndGameViewProtocol {
+    func setupExitGameType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+    }
+    
+    func setupTimeIsOverType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+        attensionLabel.text = "Время вышло"
+        messageLabel.text = "Попробуй еще раз"
+        continueButton.setTitle("Перезапустить уровень", for: .normal)
+    }
+    
+    func setupLevelPassedAuthType() {
+        attensionLabel.text = "Поздравляем!"
+        messageLabel.text = "Уровень пройден"
+        continueButton.setTitle("Следующий уровень", for: .normal)
+    }
+    
+    func setupLevelPassedFreeType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+        attensionLabel.text = "Поздравляем!"
+        messageLabel.text = "Уровень пройден"
+        continueButton.setTitle("Перезапустить уровень", for: .normal)
+    }
+}
 
 // MARK: - PrivateMethods
 
@@ -330,7 +362,7 @@ private extension EndGameViewController {
     }
     
     func setupConstraints() {
-        let gameValueImageViewHeight: CGFloat = 85
+        let gameValueImageViewHeight: CGFloat = 90
         let gameValueImageViewWidth: CGFloat = 160
         let gameValueStackViewOffset: CGFloat = 8
         let verticalStackViewOffset: CGFloat = 50

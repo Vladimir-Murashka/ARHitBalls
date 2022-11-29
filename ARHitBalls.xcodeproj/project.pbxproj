@@ -61,6 +61,7 @@
 		22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3170A291EA5B6003A8F93 /* UIImageView.swift */; };
 		22B614E72932A51000F24C1F /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E62932A51000F24C1F /* EndGameViewController.swift */; };
 		22B614E92932A51F00F24C1F /* EndGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E82932A51F00F24C1F /* EndGamePresenter.swift */; };
+		22B614EB2933EE5F00F24C1F /* EndGameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614EA2933EE5E00F24C1F /* EndGameType.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
@@ -127,6 +128,7 @@
 		22A3170A291EA5B6003A8F93 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		22B614E62932A51000F24C1F /* EndGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		22B614E82932A51F00F24C1F /* EndGamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePresenter.swift; sourceTree = "<group>"; };
+		22B614EA2933EE5E00F24C1F /* EndGameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameType.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				2268E4D628DCDB590029C755 /* CollisionCategory.swift */,
 				22866A0B291926E3009FF7D4 /* GameType.swift */,
 				22E5941F28C37E110063586D /* SettingType.swift */,
+				22B614EA2933EE5E00F24C1F /* EndGameType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
+				22B614EB2933EE5F00F24C1F /* EndGameType.swift in Sources */,
 				221D057428E454D800A7921A /* BilliardBalls.swift in Sources */,
 				225427AD292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
