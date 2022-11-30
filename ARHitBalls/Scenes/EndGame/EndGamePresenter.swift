@@ -19,6 +19,7 @@ protocol EndGamePresenterProtocol: AnyObject {
 
 final class EndGamePresenter {
     weak var viewController: EndGameViewProtocol?
+    var delegate: EndGameDelegate?
     
     // MARK: - PrivateProperties
     
@@ -63,8 +64,7 @@ extension EndGamePresenter: EndGamePresenterProtocol {
     }
     
     func exitButtonPressed() {
-        print(#function)
-        viewController?.dismiss(animated: true)
+        delegate?.exitGame()
     }
 }
 
