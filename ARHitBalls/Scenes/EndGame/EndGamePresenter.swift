@@ -19,7 +19,7 @@ protocol EndGamePresenterProtocol: AnyObject {
 
 final class EndGamePresenter {
     weak var viewController: EndGameViewProtocol?
-    var delegate: EndGameDelegate?
+    weak var delegate: EndGameDelegate?
     
     // MARK: - PrivateProperties
     
@@ -51,6 +51,10 @@ extension EndGamePresenter: EndGamePresenterProtocol {
         
         if endGameType == .levelPassedAuth {
             viewController?.setupLevelPassedAuthType()
+            guard let newGameValue = delegate?.newGameValue() else {
+                return
+            }
+            viewController?.updateGameValueLabel(level: newGameValue[0], time: newGameValue[1])
         }
         
         if endGameType == .timeIsOver {
@@ -59,11 +63,22 @@ extension EndGamePresenter: EndGamePresenterProtocol {
     }
     
     func continueButtonPressed() {
-        print(#function)
         viewController?.dismiss(animated: true)
+        if endGameType == .exitGame {
+            delegate?.continueGame()
+        }
+        
+        if endGameType == .timeIsOver || endGameType == .levelPassedFree {
+            delegate?.restartLevel()
+        }
+        
+        if endGameType == .levelPassedAuth {
+            delegate?.nextLevel()
+        }
     }
     
     func exitButtonPressed() {
+        viewController?.dismiss(animated: true)
         delegate?.exitGame()
     }
 }

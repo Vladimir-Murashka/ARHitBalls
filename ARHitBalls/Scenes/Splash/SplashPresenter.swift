@@ -59,7 +59,7 @@ extension SplashPresenter: SplashPresenterProtocol {
             generalBackgroundAudioManager.play()
         }
         
-        defaultsStorage.saveObject(31, for: .missionGameLevelValue)
+        defaultsStorage.saveObject(1, for: .missionGameLevelValue)
         
         DispatchQueue.main.asyncAfter(
             deadline: .now() + .seconds(5),

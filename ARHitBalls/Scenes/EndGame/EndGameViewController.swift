@@ -14,6 +14,7 @@ protocol EndGameViewProtocol: UIViewController {
     func setupTimeIsOverType()
     func setupLevelPassedAuthType()
     func setupLevelPassedFreeType()
+    func updateGameValueLabel(level: String, time: String)
 }
 
 // MARK: - EndGameViewController
@@ -294,6 +295,11 @@ extension EndGameViewController: EndGameViewProtocol {
         attensionLabel.text = "Поздравляем!"
         messageLabel.text = "Уровень пройден"
         continueButton.setTitle("Перезапустить уровень", for: .normal)
+    }
+    
+    func updateGameValueLabel(level: String, time: String) {
+        levelLabel.text = level
+        timeLabel.text = time
     }
 }
 
