@@ -45,7 +45,7 @@ final class GamePresenter {
     private var selectedKit: KitType
     
     private var timer = Timer()
-    private let timerValue: Double
+    private var timerValue: Double
     private var currentTimerValue: Double = 0
     
     private var numberOfARItems: Int = 0
@@ -166,29 +166,13 @@ extension GamePresenter: GamePresenterProtocol {
     
     func quitGameButtonPressed() {
         stopTimer()
-        viewController?.sessionPause()
-        alertManager.showAlert(
-            fromViewController: viewController,
-            title: "Хотите покинуть игру?",
-            message: "Прогресс не будет сохранен",
-            firstButtonTitle: "Выйти",
-            firstActionBlock: {
-                self.viewController?.navigationController?.popViewController(animated: true)
-                self.gameAudioManager.pause()
-                self.isMusicOn = self.defaultsStorage.fetchObject(
-                    type: Bool.self,
-                    for: .isMusicOn
-                ) ?? true
-                
-                if self.isMusicOn {
-                    self.generalBackgroundAudioManager.play()
-                }
-            },
-            secondTitleButton: "Остаться") {
-                let configuration = ARWorldTrackingConfiguration()
-                self.viewController?.sessionRun(with: configuration)
-                self.startTimer()
-            }
+        viewController?.present(
+            sceneBuildManager.buildEndGameScreen(
+                endGameType: .exitGame,
+                delegate: self
+            ),
+            animated: true
+        )
     }
     
     func shotButtonPressed(tag: Int) {
@@ -216,70 +200,33 @@ extension GamePresenter: GamePresenterProtocol {
         if totalNumberOfARItems == numberOfARItems {
             if gameType == .freeGame {
                 stopTimer()
-                alertManager.showAlert(
-                    fromViewController: viewController,
-                    title: "Поздравляем",
-                    message: "Уровень пройден",
-                    firstButtonTitle: "Выйти",
-                    firstActionBlock: {
-                        self.viewController?.navigationController?.popViewController(animated: true)
-                        self.gameAudioManager.pause()
-                        self.isMusicOn = self.defaultsStorage.fetchObject(
-                            type: Bool.self,
-                            for: .isMusicOn
-                        ) ?? true
-                        
-                        if self.isMusicOn {
-                            self.generalBackgroundAudioManager.play()
-                        }
-                    },
-                    secondTitleButton: "Перезапустить уровень") {
-                        self.numberOfARItems = 0
-                        self.totalNumberOfARItems = self.currentLevelValue * 6
-                        self.currentTimerValue = self.timerValue
-                        self.viewController?.zeroingProgressView()
-                        self.viewController?.cleanScene()
-                        self.startTimer()
-                        self.addARObject()
-                    }
+                viewController?.present(
+                    sceneBuildManager.buildEndGameScreen(
+                        endGameType: .levelPassedFree,
+                        delegate: self
+                    ),
+                    animated: true
+                )
             } else {
+                viewController?.present(
+                    sceneBuildManager.buildEndGameScreen(
+                        endGameType: .levelPassedAuth,
+                        delegate: self
+                    ),
+                    animated: true
+                )
                 do {
                     let newGameModel = try gameServise.nextLevel()
-                    self.currentLevelValue = newGameModel.level
-                    self.currentTimerValue = newGameModel.time
-                    self.numberOfARItems = 0
-                    self.totalNumberOfARItems = self.currentLevelValue * 6
-                    self.stepProgressView = 1 / Float(self.totalNumberOfARItems)
+                    currentLevelValue = newGameModel.level
+                    currentTimerValue = newGameModel.time
+                    timerValue = newGameModel.time
+                    numberOfARItems = 0
+                    totalNumberOfARItems = currentLevelValue * 6
+                    stepProgressView = 1 / Float(totalNumberOfARItems)
                 } catch {
                     // обработать
                 }
                 stopTimer()
-                alertManager.showAlert(
-                    fromViewController: viewController,
-                    title: "Поздравляем",
-                    message: "Уровень пройден",
-                    firstButtonTitle: "Выйти",
-                    firstActionBlock: {
-                        self.viewController?.navigationController?.popViewController(animated: true)
-                        self.gameAudioManager.pause()
-                        self.isMusicOn = self.defaultsStorage.fetchObject(
-                            type: Bool.self,
-                            for: .isMusicOn
-                        ) ?? true
-                        
-                        if self.isMusicOn {
-                            self.generalBackgroundAudioManager.play()
-                        }
-                    },
-                    secondTitleButton: "Следующий уровень") {
-                        let newTimerValueText = self.transformationTimerLabelText(timeValue: self.currentTimerValue)
-                        self.viewController?.updateLevelLabel(text: String(self.currentLevelValue))
-                        self.viewController?.updateTimer(text: newTimerValueText)
-                        self.viewController?.zeroingProgressView()
-                        self.viewController?.cleanScene()
-                        self.startTimer()
-                        self.addARObject()
-                    }
             }
         }
     }
@@ -459,37 +406,62 @@ private extension GamePresenter {
         let timeString = transformationTimerLabelText(timeValue: currentTimerValue)
         viewController?.updateTimer(text: timeString)
         if currentTimerValue == 0 {
+            viewController?.present(
+                sceneBuildManager.buildEndGameScreen(
+                    endGameType: .timeIsOver,
+                    delegate: self
+                ),
+                animated: true
+            )
             stopTimer()
-            alertManager.showAlert(
-                fromViewController: viewController,
-                title: "Ай яй яй",
-                message: "Время вышло",
-                firstButtonTitle: "Выйти",
-                firstActionBlock: {
-                    self.viewController?.navigationController?.popViewController(animated: true)
-                    self.gameAudioManager.pause()
-                    self.isMusicOn = self.defaultsStorage.fetchObject(
-                        type: Bool.self,
-                        for: .isMusicOn
-                    ) ?? true
-                    
-                    if self.isMusicOn {
-                        self.generalBackgroundAudioManager.play()
-                    }
-                },
-                secondTitleButton: "Перезапустить уровень") {
-                    self.numberOfARItems = 0
-                    self.totalNumberOfARItems = self.currentLevelValue * 6
-                    self.viewController?.zeroingProgressView()
-                    self.currentTimerValue = self.timerValue
-                    self.viewController?.cleanScene()
-                    self.startTimer()
-                    self.addARObject()
-                }
         }
     }
     
     func stopTimer() {
         timer.invalidate()
+    }
+}
+
+extension GamePresenter: EndGameDelegate {
+    func continueGame() {
+       startTimer()
+    }
+    
+    func exitGame() {
+        viewController?.navigationController?.popViewController(animated: true)
+        gameAudioManager.pause()
+        isMusicOn = defaultsStorage.fetchObject(
+            type: Bool.self,
+            for: .isMusicOn
+        ) ?? true
+        
+        if isMusicOn {
+            generalBackgroundAudioManager.play()
+        }
+    }
+    
+    func restartLevel() {
+        numberOfARItems = 0
+        totalNumberOfARItems = currentLevelValue * 6
+        viewController?.zeroingProgressView()
+        currentTimerValue = timerValue + 1
+        viewController?.cleanScene()
+        startTimer()
+        addARObject()
+    }
+    
+    func nextLevel() {
+        let newTimerValueText = transformationTimerLabelText(timeValue: currentTimerValue)
+        viewController?.updateLevelLabel(text: String(currentLevelValue))
+        viewController?.updateTimer(text: newTimerValueText)
+        viewController?.zeroingProgressView()
+        viewController?.cleanScene()
+        startTimer()
+        addARObject()
+    }
+    
+    func newGameValue() -> [String] {
+        let newTimerValueText = transformationTimerLabelText(timeValue: timerValue - currentTimerValue)
+        return [String(currentLevelValue), newTimerValueText]
     }
 }

@@ -23,7 +23,7 @@ final class KitCollectionViewCell: UICollectionViewCell {
     
     private let collectionLockImageView: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "collectionLock")
+        let image = UIImage(named: "CollectionLock")
         imageView.image = image
         return imageView
     }()
