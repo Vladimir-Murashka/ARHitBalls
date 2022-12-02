@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
 
 // MARK: - IdentifireViewProtocol
 
@@ -360,5 +363,9 @@ private extension IdentifireViewController {
                 constant: -bottomStackViewBottomOffset
             )
         ])
+    }
+    
+    private func method() {
+
     }
 }

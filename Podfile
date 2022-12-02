@@ -7,6 +7,7 @@ target 'ARHitBalls' do
 
 	pod 'FirebaseAuth'
 	pod 'FirebaseCore'
+  pod 'GoogleSignIn'
 		
   # Pods for ARHitBalls
 

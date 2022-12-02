@@ -5,6 +5,7 @@
 //  Created by Swift Learning on 05.11.2022.
 //
 
+import GoogleSignIn
 import FirebaseAuth
 import FirebaseCore
 import Foundation
