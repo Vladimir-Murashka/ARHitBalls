@@ -18,6 +18,7 @@ protocol UserServiceable {
         completion: @escaping (Result<Void, Error>) -> Void
     )
     func logoutUser(completion: @escaping (Result<Void, Error>) -> Void)
+    func authUserWithGoogle()
 }
 
 final class UserService {
@@ -91,5 +92,9 @@ extension UserService: UserServiceable {
         } catch {
             completion(.failure(error))
         }
+    }
+    
+    func authUserWithGoogle() {
+        defaultsManager.saveObject(true, for: .isUserAuth)
     }
 }

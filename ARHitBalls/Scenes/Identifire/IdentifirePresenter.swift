@@ -4,6 +4,9 @@
 //
 //  Created by Swift Learning on 16.08.2022.
 //
+import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
 
 // MARK: -  IdentifirePresenterProtocol
 
@@ -90,7 +93,9 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
         viewController?.navigationController?.popViewController(animated: false)
     }
     
-    func googleButtonPressed() {}
+    func googleButtonPressed() {
+        authUserWithGoogle()
+    }
     
     func faceBookButtonPressed() {}
     
@@ -149,4 +154,46 @@ private extension IdentifirePresenter {
             }
         }
     }
+    
+    func authUserWithGoogle() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        
+        guard let viewController = viewController else {
+            return
+        }
+        
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: viewController) { user, error in
+            
+            if error != nil {
+                return
+            }
+            
+            guard
+                let authentication = user?.authentication,
+                let idToken = authentication.idToken
+            else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: authentication.accessToken)
+            
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    print(error, error.localizedDescription)
+                }
+                self.userService.authUserWithGoogle()
+                let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+
+                viewController.navigationController?.pushViewController(
+                    mainViewController,
+                    animated: true
+                )
+            }
+        }
+    }
+    
+    
 }
