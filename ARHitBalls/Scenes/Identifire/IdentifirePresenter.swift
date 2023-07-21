@@ -103,7 +103,9 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
     
     func vKButtonPressed() {}
     
-    func appleButtonPressed() {}
+    func appleButtonPressed() {
+        authUserWithApple()
+    }
 }
 
 private extension IdentifirePresenter {
@@ -224,5 +226,21 @@ private extension IdentifirePresenter {
         }
     }
     
-    
+    func authUserWithApple() {
+        authService.loginUser(with: nil,
+                              typeAuth: .apple,
+                              viewController: nil) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            self.viewController?.navigationController?.pushViewController(
+                mainViewController,
+                animated: true
+            )
+
+        }
+    }
 }

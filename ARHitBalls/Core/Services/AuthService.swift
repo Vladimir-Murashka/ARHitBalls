@@ -71,9 +71,6 @@ extension AuthService: AuthServicable {
             guard let userRequest = userRequest else { return }
             eMailProvider.loginUser(with: userRequest,
                                     completion: completion)
-            //TODO: - Убрать !!!
-            defaultsManager.saveObject(true, for: .isUserAuth)
-            defaultsManager.saveObject(1, for: .missionGameLevelValue)
         case .google:
             guard let viewController = viewController else { return }
             googleProvider.signIn(completion: completion,
@@ -81,6 +78,9 @@ extension AuthService: AuthServicable {
         case .apple:
             appleProvider.handleAppleIdRequest(completion: completion)
         }
+        //TODO: - Убрать !!!
+        defaultsManager.saveObject(true, for: .isUserAuth)
+        defaultsManager.saveObject(1, for: .missionGameLevelValue)
     }
     
     func registerUser(with userRequest: RegisterUserRequest?,

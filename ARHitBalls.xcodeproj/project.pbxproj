@@ -90,6 +90,7 @@
 		1B3A0FEB2A683D5D00B19C84 /* LoginUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		1B3A0FEC2A683D5D00B19C84 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		1B3A0FEF2A683D8500B19C84 /* CalculationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationModel.swift; sourceTree = "<group>"; };
+		1B3A0FF12A6B38F200B19C84 /* ARHitBalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARHitBalls.entitlements; sourceTree = "<group>"; };
 		2208165B28E1FB4700936408 /* TimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProtocol.swift; sourceTree = "<group>"; };
 		2208165D28E1FFF200936408 /* QuitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitButton.swift; sourceTree = "<group>"; };
 		2208165F28E2061800936408 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
@@ -276,6 +277,7 @@
 		229BC15428AA708A008D07A0 /* ARHitBalls */ = {
 			isa = PBXGroup;
 			children = (
+				1B3A0FF12A6B38F200B19C84 /* ARHitBalls.entitlements */,
 				229BC19328AADF6D008D07A0 /* Application */,
 				229BC16F28AA7DAE008D07A0 /* Core */,
 				229BC16928AA7A1E008D07A0 /* Scenes */,
@@ -802,9 +804,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ARHitBalls/ARHitBalls.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H456X98Q5T;
+				DEVELOPMENT_TEAM = B22MD3V3UZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ARHitBalls/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -819,7 +822,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls1;
+				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -836,9 +839,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ARHitBalls/ARHitBalls.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H456X98Q5T;
+				DEVELOPMENT_TEAM = B22MD3V3UZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ARHitBalls/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -853,7 +857,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls1;
+				PRODUCT_BUNDLE_IDENTIFIER = holog.ARHitBalls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
