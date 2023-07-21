@@ -31,7 +31,7 @@ final class MainPresenter {
     private let sceneBuildManager: Buildable
     private let alertManager: AlertManagerable
     private var selectedKit: KitType = .planets
-    private let userService: UserServiceable
+    private let authService: AuthServicable
     private let generalBackgroundAudioManager: AudioManagerable
     private let gameType: GameType
     private let gameService: GameServiceable
@@ -42,14 +42,14 @@ final class MainPresenter {
     init(
         sceneBuildManager: Buildable,
         alertManager: AlertManagerable,
-        userService: UserServiceable,
+        authService: AuthServicable,
         generalBackgroundAudioManager: AudioManagerable,
         gameType: GameType,
         gameService: GameServiceable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.alertManager = alertManager
-        self.userService = userService
+        self.authService = authService
         self.generalBackgroundAudioManager = generalBackgroundAudioManager
         self.gameType = gameType
         self.gameService = gameService
@@ -121,7 +121,7 @@ extension MainPresenter: MainPresenterProtocol {
                 firstButtonTitle: "Отменить",
                 firstActionBlock: {},
                 secondTitleButton: "Выйти") {
-                    self.userService.logoutUser { result in
+                    self.authService.logout { result in
                         switch result {
                         case .success(_):
                             let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())

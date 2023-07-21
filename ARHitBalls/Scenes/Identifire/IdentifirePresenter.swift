@@ -19,8 +19,6 @@ protocol  IdentifirePresenterProtocol: AnyObject {
     )
     func quitButtonPressed()
     func googleButtonPressed()
-//    func faceBookButtonPressed()
-//    func vKButtonPressed()
     func appleButtonPressed()
 }
 
@@ -34,7 +32,6 @@ final class  IdentifirePresenter {
     private let sceneBuildManager: Buildable
     private let type: AuthType
     private let alertManager: AlertManagerable
-    private let userService: UserServiceable
     private let authService: AuthServicable
     // MARK: - Initializer
     
@@ -42,13 +39,11 @@ final class  IdentifirePresenter {
         sceneBuildManager: Buildable,
         type: AuthType,
         alertManager: AlertManagerable,
-        userService: UserServiceable,
         authService: AuthServicable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.type = type
         self.alertManager = alertManager
-        self.userService = userService
         self.authService = authService
     }
 }

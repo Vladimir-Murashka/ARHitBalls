@@ -28,7 +28,6 @@ protocol Buildable {
 
 final class SceneBuildManager {
     
-    private let userService: UserServiceable
     private let firebaseService: FirebaseServicable
     private let defaultsManager: DefaultsManagerable
     private let alertManager: AlertManagerable
@@ -42,10 +41,6 @@ final class SceneBuildManager {
     init() {
         defaultsManager = DefaultsManager()
         firebaseService = FirebaseService1()
-        userService = UserService(
-            defaultsManager: defaultsManager,
-            firebaseService: firebaseService
-        )
         alertManager = AlertManager()
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
@@ -60,7 +55,7 @@ extension SceneBuildManager: Buildable {
     func buildSplashScreen() -> SplashViewController {
         let viewController = SplashViewController()
         let presenter = SplashPresenter(
-            userService: userService,
+            authService: authService,
             defaultsStorage: defaultsManager,
             sceneBuildManager: self,
             generalBackgroundAudioManager: commonAudioManager
@@ -87,7 +82,7 @@ extension SceneBuildManager: Buildable {
         let presenter = MainPresenter(
             sceneBuildManager: self,
             alertManager: alertManager,
-            userService: userService,
+            authService: authService,
             generalBackgroundAudioManager: commonAudioManager,
             gameType: gameType,
             gameService: gameService
@@ -151,7 +146,6 @@ extension SceneBuildManager: Buildable {
             sceneBuildManager: self,
             type: type,
             alertManager: alertManager,
-            userService: userService,
             authService: authService
         )
         

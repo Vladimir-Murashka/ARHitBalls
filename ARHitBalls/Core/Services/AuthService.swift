@@ -23,7 +23,7 @@ protocol AuthServicable {
                    completion: @escaping (Error?) -> Void)
     func registerUser(with userRequest: RegisterUserRequest?,
                       completion: @escaping (Bool, Error?) -> Void)
-    func logout(completion: @escaping (Error?) -> Void)
+    func logout(completion: @escaping ((Result<Void, Error>)) -> Void)
     func userAuthed()
 }
 
@@ -93,12 +93,13 @@ extension AuthService: AuthServicable {
         defaultsManager.saveObject(1, for: .missionGameLevelValue)
     }
     
-    func logout(completion: @escaping (Error?) -> Void) {
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
-            completion(nil)
+            defaultsManager.saveObject(false, for: .isUserAuth)
+            completion(.success(Void()))
         } catch let error {
-            completion(error)
+            completion(.failure(error))
         }
         self.defaultsManager.saveObject(false, for: .isUserAuth)
     }
