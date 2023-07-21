@@ -19,8 +19,8 @@ protocol  IdentifirePresenterProtocol: AnyObject {
     )
     func quitButtonPressed()
     func googleButtonPressed()
-    func faceBookButtonPressed()
-    func vKButtonPressed()
+//    func faceBookButtonPressed()
+//    func vKButtonPressed()
     func appleButtonPressed()
 }
 
@@ -98,40 +98,14 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
     func googleButtonPressed() {
         authUserWithGoogle()
     }
-    
-    func faceBookButtonPressed() {}
-    
-    func vKButtonPressed() {}
-    
-    func appleButtonPressed() {
+    func appleButtonPressed(
+    ) {
         authUserWithApple()
     }
 }
 
 private extension IdentifirePresenter {
     func authUser(email: String, password: String) {
-//        userService.authUser(
-//            email: email,
-//            password: password
-//        ) { [weak self] result in
-//            switch result {
-//            case .success:
-//                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
-//                    return
-//                }
-//                self?.viewController?.navigationController?.pushViewController(
-//                    mainViewController,
-//                    animated: true
-//                )
-//
-//            case .failure(_):
-//                self?.alertManager.showAlert(
-//                    fromViewController: self?.viewController,
-//                    title: "Ошибка",
-//                    message: "Данные не верны",
-//                    firstButtonTitle: "Исправить") {}
-//            }
-//        }
         let user: LoginUserRequest = LoginUserRequest(
             email: email,
             password: password
@@ -182,28 +156,6 @@ private extension IdentifirePresenter {
                 animated: true
             )
         }
-//        userService.registerUser(
-//            email: email,
-//            password: password
-//        ) { [weak self] result in
-//            switch result {
-//            case .success:
-//                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
-//                    return
-//                }
-//                self?.viewController?.navigationController?.pushViewController(
-//                    mainViewController,
-//                    animated: true
-//                )
-//
-//            case let .failure(error):
-//                self?.alertManager.showAlert(
-//                    fromViewController: self?.viewController,
-//                    title: "Ошибка",
-//                    message: error.localizedDescription,
-//                    firstButtonTitle: "OK") {}
-//            }
-//        }
     }
     
     func authUserWithGoogle() {
