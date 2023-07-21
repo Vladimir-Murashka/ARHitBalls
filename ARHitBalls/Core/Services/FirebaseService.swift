@@ -1,79 +1,146 @@
 //
 //  FirebaseService.swift
-//  ARHitBalls
+//  spravochnik_spz
 //
-//  Created by Swift Learning on 05.11.2022.
+//  Created by Natalia Shevaldina on 20.05.2023.
 //
 
-import GoogleSignIn
-import FirebaseAuth
 import FirebaseCore
-import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-protocol FirebaseServicable {
-    func singIn(
-        email: String,
-        password: String,
-        completion: @escaping (Result<UserModel, Error>) -> Void
-    )
-    func createUser(
-        email: String,
-        password: String,
-        completion: @escaping (Result<UserModel, Error>) -> Void
-    )
+protocol FirebaseServiceProtocol {
+    func setCalculation(userID: String,
+                        calcName: String,
+                        calcModel: Calculation,
+                        completion: @escaping (Result<Bool, Error>) -> Void)
     
-    func logout() throws
+    func getCalculation(userID: String,
+                        calcName: String,
+                        completion: @escaping (Result<Calculation, Error>) -> Void)
+    
+    func getAllCalculations(userID: String,
+                            completion: @escaping (Result<[QueryDocumentSnapshot]?, Error>) -> Void)
+    
+    func deleteCalculation(userID: String,
+                           calcName: String,
+                           completion: @escaping (Result<String, Error>) -> Void)
+    func addUserID(userID: String)
+    func getUserID() -> String
 }
 
 final class FirebaseService {
-    
+    var uid: String?
+    static let shared = FirebaseService()
+    func configureFB() -> Firestore {
+        var database: Firestore
+        let settings = FirestoreSettings()
+        Firestore.firestore().settings = settings
+        database = Firestore.firestore()
+        return database
+    }
 }
 
-extension FirebaseService: FirebaseServicable {
-    func singIn(
-        email: String,
-        password: String,
-        completion: @escaping (Result<UserModel, Error>) -> Void
-    ) {
-        Auth.auth().signIn(
-            withEmail: email,
-            password: password
-        ) { user, error in
-            if let error = error {
-                completion(.failure(error))
+extension FirebaseService: FirebaseServiceProtocol {
+    func getUserID() -> String {
+        print(self.uid)
+        guard let uid = self.uid else { return "" }
+        return uid
+    }
+    
+    func addUserID(userID: String) {
+        self.uid = userID
+        print(self.uid)
+    }
+    
+    func setCalculation(userID: String,
+                        calcName: String,
+                        calcModel: Calculation,
+                        completion: @escaping (Result<Bool, Error>) -> Void) {
+        let db = configureFB()
+        let calcRef = db.collection(userID).document(calcName)
+//        calcRef.setData(calcModel) { error in
+//            if let error = error {
+//                print("FirebaseService setCalculation: Error writing document: \(error)")
+//                completion(.failure(error))
+//            } else {
+//                print("FirebaseService setCalculation: Document successfully written!")
+//                completion(.success(""))
+//            }
+//        }
+        do {
+            try calcRef.setData(from: calcModel) { error in
+                if let error = error {
+                    print("FirebaseService setCalculation: Error writing document: \(error)")
+                    completion(.failure(error))
+                } else {
+                    print("FirebaseService setCalculation: Document successfully written!")
+                    completion(.success(true))
+                }
             }
-            
-            if let _ = user {
-                let userModel = UserModel()
-                completion(.success(userModel))
+        } catch let error {
+            print("FirebaseService setCalculation: Error writing to Firestore: \(error)")
+            completion(.failure(error))
+        }
+    }
+    
+    func getCalculation(userID: String,
+                        calcName: String,
+                        completion: @escaping (Result<Calculation, Error>) -> Void) {
+        let db = configureFB()
+        let calcRef = db.collection(userID).document(calcName)
+//        calcRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                print("Document data: \(dataDescription)")
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
+        calcRef.getDocument(as: Calculation.self) { result in
+            switch result {
+            case .success(let calc):
+                print("CalculationModel: \(calc)")
+                completion(.success(calc))
+            case .failure(let error):
+                print("Error decoding CalculationModel: \(error)")
+                completion(.failure(error))
             }
         }
     }
     
-    func createUser(
-        email: String,
-        password: String,
-        completion: @escaping (Result<UserModel, Error>) -> Void
-    ) {
-        Auth.auth().createUser(
-            withEmail: email,
-            password: password
-        ) { user, error in
-            if let error = error {
-                completion(.failure(error))
+    func getAllCalculations(userID: String,
+                           completion: @escaping (Result<[QueryDocumentSnapshot]?, Error>) -> Void) {
+        let db = configureFB()
+        let calcRef = db.collection(userID)
+        calcRef.getDocuments() { (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("ERROR getAllCalculations querySnapshot")
+                completion(.success(nil))
+                return
             }
-            
-            if let _ = user {
-                let userModel = UserModel()
-                completion(.success(userModel))
+            if let error = error {
+                print("Error getting documents: \(error)")
+                completion(.failure(error))
+            } else {
+                completion(.success(querySnapshot.documents))
             }
         }
     }
     
-    func logout() throws {
-        try Auth.auth().signOut()
+    func deleteCalculation(userID: String,
+                           calcName: String,
+                           completion: @escaping (Result<String, Error>) -> Void) {
+        let db = configureFB()
+        let calcRef = db.collection(userID).document(calcName)
+        calcRef.delete() { error in
+            if let error = error {
+                print("Error removing document: \(error)")
+                completion(.failure(error))
+            } else {
+                print("Document successfully removed!")
+                completion(.success(""))
+            }
+        }
     }
 }
-
-
-

@@ -35,19 +35,21 @@ final class  IdentifirePresenter {
     private let type: AuthType
     private let alertManager: AlertManagerable
     private let userService: UserServiceable
-    
+    private let authService: AuthServicable
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
         type: AuthType,
         alertManager: AlertManagerable,
-        userService: UserServiceable
+        userService: UserServiceable,
+        authService: AuthServicable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.type = type
         self.alertManager = alertManager
         self.userService = userService
+        self.authService = authService
     }
 }
 
@@ -106,92 +108,119 @@ extension  IdentifirePresenter: IdentifirePresenterProtocol {
 
 private extension IdentifirePresenter {
     func authUser(email: String, password: String) {
-        userService.authUser(
+//        userService.authUser(
+//            email: email,
+//            password: password
+//        ) { [weak self] result in
+//            switch result {
+//            case .success:
+//                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
+//                    return
+//                }
+//                self?.viewController?.navigationController?.pushViewController(
+//                    mainViewController,
+//                    animated: true
+//                )
+//
+//            case .failure(_):
+//                self?.alertManager.showAlert(
+//                    fromViewController: self?.viewController,
+//                    title: "Ошибка",
+//                    message: "Данные не верны",
+//                    firstButtonTitle: "Исправить") {}
+//            }
+//        }
+        let user: LoginUserRequest = LoginUserRequest(
             email: email,
             password: password
-        ) { [weak self] result in
-            switch result {
-            case .success:
-                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
-                    return
-                }
-                self?.viewController?.navigationController?.pushViewController(
-                    mainViewController,
-                    animated: true
-                )
-                
-            case .failure(_):
-                self?.alertManager.showAlert(
-                    fromViewController: self?.viewController,
-                    title: "Ошибка",
-                    message: "Данные не верны",
-                    firstButtonTitle: "Исправить") {}
+        )
+        
+        authService.loginUser(
+            with: user,
+            typeAuth: .email,
+            viewController: nil
+        ) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                self.alertManager.showAlert(
+                                    fromViewController: self.viewController,
+                                    title: "Ошибка",
+                                    message: "Данные не верны",
+                                    firstButtonTitle: "Исправить") {}
+                return
             }
+            
+            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            self.viewController?.navigationController?.pushViewController(
+                mainViewController,
+                animated: true
+            )
         }
     }
     
     func createUser(email: String, password: String) {
-        userService.registerUser(
+        let user: RegisterUserRequest = RegisterUserRequest(
             email: email,
             password: password
-        ) { [weak self] result in
-            switch result {
-            case .success:
-                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
-                    return
-                }
-                self?.viewController?.navigationController?.pushViewController(
-                    mainViewController,
-                    animated: true
-                )
-                
-            case let .failure(error):
-                self?.alertManager.showAlert(
-                    fromViewController: self?.viewController,
+        )
+        
+        authService.registerUser(with: user) { wasRegistered, error in
+            if let error = error {
+                print(error.localizedDescription)
+                self.alertManager.showAlert(
+                    fromViewController: self.viewController,
                     title: "Ошибка",
                     message: error.localizedDescription,
                     firstButtonTitle: "OK") {}
+                return
             }
+            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            self.viewController?.navigationController?.pushViewController(
+                mainViewController,
+                animated: true
+            )
         }
+//        userService.registerUser(
+//            email: email,
+//            password: password
+//        ) { [weak self] result in
+//            switch result {
+//            case .success:
+//                guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else {
+//                    return
+//                }
+//                self?.viewController?.navigationController?.pushViewController(
+//                    mainViewController,
+//                    animated: true
+//                )
+//
+//            case let .failure(error):
+//                self?.alertManager.showAlert(
+//                    fromViewController: self?.viewController,
+//                    title: "Ошибка",
+//                    message: error.localizedDescription,
+//                    firstButtonTitle: "OK") {}
+//            }
+//        }
     }
     
     func authUserWithGoogle() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
-        let config = GIDConfiguration(clientID: clientID)
-        
-        guard let viewController = viewController else {
-            return
-        }
-        
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: viewController) { user, error in
+        self.authService.loginUser(with: nil, typeAuth: .google, viewController: viewController) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
             
-            if error != nil {
+            guard let viewController = self.viewController else {
                 return
             }
             
-            guard
-                let authentication = user?.authentication,
-                let idToken = authentication.idToken
-            else {
-                return
-            }
-            
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: authentication.accessToken)
-            
-            Auth.auth().signIn(with: credential) { authResult, error in
-                if let error = error {
-                    print(error, error.localizedDescription)
-                }
-                self.userService.authUserWithGoogle()
-                let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            viewController.navigationController?.pushViewController(
+                mainViewController,
+                animated: true
+            )
 
-                viewController.navigationController?.pushViewController(
-                    mainViewController,
-                    animated: true
-                )
-            }
         }
     }
     

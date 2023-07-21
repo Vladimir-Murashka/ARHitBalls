@@ -36,10 +36,12 @@ final class SceneBuildManager {
     private let gameAudioManager: AudioManagerable
     private let soundEffectManager: AudioManagerable
     private let gameService: GameServiceable
+    private let authService: AuthServicable
+    private let firestore = FirebaseService.shared
     
     init() {
         defaultsManager = DefaultsManager()
-        firebaseService = FirebaseService()
+        firebaseService = FirebaseService1()
         userService = UserService(
             defaultsManager: defaultsManager,
             firebaseService: firebaseService
@@ -49,6 +51,8 @@ final class SceneBuildManager {
         gameAudioManager = AudioManager()
         soundEffectManager = AudioManager()
         gameService = GameService(defaultsStorage: defaultsManager)
+        authService = AuthService(defaultsManager: defaultsManager,
+                                  firestore: firestore)
     }
 }
 
@@ -147,7 +151,8 @@ extension SceneBuildManager: Buildable {
             sceneBuildManager: self,
             type: type,
             alertManager: alertManager,
-            userService: userService
+            userService: userService,
+            authService: authService
         )
         
         viewController.presenter = presenter
