@@ -114,34 +114,6 @@ final class IdentifireViewController: UIViewController {
         return button
     }()
     
-    private lazy var faceBookButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setBackgroundImage(
-            UIImage(named: "fbButton"),
-            for: .normal
-        )
-        button.addTarget(
-            self,
-            action: #selector(faceBookButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
-    private lazy var vKButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setBackgroundImage(
-            UIImage(named: "vkButton"),
-            for: .normal
-        )
-        button.addTarget(
-            self,
-            action: #selector(vKButtonPressed),
-            for: .touchUpInside
-        )
-        return button
-    }()
-    
     private lazy var appleButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(
@@ -209,20 +181,6 @@ final class IdentifireViewController: UIViewController {
     }
     
     @objc
-    private func faceBookButtonPressed() {
-        faceBookButton.pushAnimate { [weak self] in
-            self?.presenter?.faceBookButtonPressed()
-        }
-    }
-    
-    @objc
-    private func vKButtonPressed() {
-        vKButton.pushAnimate { [weak self] in
-            self?.presenter?.vKButtonPressed()
-        }
-    }
-    
-    @objc
     private func appleButtonPressed() {
         appleButton.pushAnimate { [weak self] in
             self?.presenter?.appleButtonPressed()
@@ -277,8 +235,6 @@ private extension IdentifireViewController {
         
         bottomStackView.addArrangedSubviews(
             googleButton,
-            faceBookButton,
-            vKButton,
             appleButton
         )
     }

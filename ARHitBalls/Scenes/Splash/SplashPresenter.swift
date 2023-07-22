@@ -21,7 +21,7 @@ final class SplashPresenter {
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
-    private let userService: UserServiceable
+    private let authService: AuthServicable
     private let defaultsStorage: DefaultsManagerable
     private let generalBackgroundAudioManager: AudioManagerable
     private var isMusicOn: Bool = true
@@ -29,12 +29,12 @@ final class SplashPresenter {
     // MARK: - Initializer
     
     init(
-        userService: UserServiceable,
+        authService: AuthServicable,
         defaultsStorage: DefaultsManagerable,
         sceneBuildManager: Buildable,
         generalBackgroundAudioManager: AudioManagerable
     ) {
-        self.userService = userService
+        self.authService = authService
         self.defaultsStorage = defaultsStorage
         self.sceneBuildManager = sceneBuildManager
         self.generalBackgroundAudioManager = generalBackgroundAudioManager
@@ -65,7 +65,7 @@ extension SplashPresenter: SplashPresenterProtocol {
             deadline: .now() + .seconds(5),
             execute: {
                 let rootViewController = UINavigationController(
-                    rootViewController: self.userService.isUserAuth()
+                    rootViewController: self.authService.isAuth()
                     ? self.sceneBuildManager.buildMainScreen(gameType: .mission)
                     : self.sceneBuildManager.buildMenuScreen()
                 )
