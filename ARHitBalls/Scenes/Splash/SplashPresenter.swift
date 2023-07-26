@@ -19,7 +19,7 @@ final class SplashPresenter {
     weak var viewController: SplashViewProtocol?
     
     // MARK: - PrivateProperties
-    
+    private let firestore: FirebaseServiceProtocol
     private let sceneBuildManager: Buildable
     private let authService: AuthServicable
     private let defaultsStorage: DefaultsManagerable
@@ -32,12 +32,14 @@ final class SplashPresenter {
         authService: AuthServicable,
         defaultsStorage: DefaultsManagerable,
         sceneBuildManager: Buildable,
-        generalBackgroundAudioManager: AudioManagerable
+        generalBackgroundAudioManager: AudioManagerable,
+        firestore: FirebaseServiceProtocol
     ) {
         self.authService = authService
         self.defaultsStorage = defaultsStorage
         self.sceneBuildManager = sceneBuildManager
         self.generalBackgroundAudioManager = generalBackgroundAudioManager
+        self.firestore = firestore
     }
 }
 
@@ -59,7 +61,19 @@ extension SplashPresenter: SplashPresenterProtocol {
             generalBackgroundAudioManager.play()
         }
         
-        defaultsStorage.saveObject(1, for: .missionGameLevelValue)
+        
+//        defaultsStorage.saveObject(1, for: .missionGameLevelValue)
+        
+//        let fbService: FirebaseServiceProtocol = FirebaseService()
+//        let model = LevelModel(userID: firestore.getUserID(), level: Level(level: 1))
+//        Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+//            switch result {
+//            case .success(let success):
+//                print("MODEL SET:", success)
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
         
         DispatchQueue.main.asyncAfter(
             deadline: .now() + .seconds(5),

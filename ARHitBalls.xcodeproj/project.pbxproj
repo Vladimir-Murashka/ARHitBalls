@@ -16,6 +16,7 @@
 		1B3A0FED2A683D5D00B19C84 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEB2A683D5D00B19C84 /* LoginUserRequest.swift */; };
 		1B3A0FEE2A683D5D00B19C84 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEC2A683D5D00B19C84 /* RegisterUserRequest.swift */; };
 		1B3A0FF02A683D8500B19C84 /* CalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEF2A683D8500B19C84 /* CalculationModel.swift */; };
+		1B3A10142A6D568B00B19C84 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A10132A6D568B00B19C84 /* Repository.swift */; };
 		2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165B28E1FB4700936408 /* TimerProtocol.swift */; };
 		2208165E28E1FFF200936408 /* QuitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165D28E1FFF200936408 /* QuitButton.swift */; };
 		2208166028E2061800936408 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165F28E2061800936408 /* StartButton.swift */; };
@@ -36,7 +37,6 @@
 		22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D4E28F05D5500B83261 /* ARObjectable.swift */; };
 		22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22568D5228F1B24700B83261 /* ARObjectModel.swift */; };
 		2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268E4D628DCDB590029C755 /* CollisionCategory.swift */; };
-		22866A042916CEA8009FF7D4 /* FirebaseService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A032916CEA8009FF7D4 /* FirebaseService1.swift */; };
 		22866A062916D3EF009FF7D4 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A052916D3EF009FF7D4 /* UserModels.swift */; };
 		22866A0829192084009FF7D4 /* GameUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A0729192084009FF7D4 /* GameUserModel.swift */; };
 		22866A0A2919221F009FF7D4 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22866A092919221F009FF7D4 /* GameModel.swift */; };
@@ -90,6 +90,7 @@
 		1B3A0FEC2A683D5D00B19C84 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		1B3A0FEF2A683D8500B19C84 /* CalculationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationModel.swift; sourceTree = "<group>"; };
 		1B3A0FF12A6B38F200B19C84 /* ARHitBalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARHitBalls.entitlements; sourceTree = "<group>"; };
+		1B3A10132A6D568B00B19C84 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		2208165B28E1FB4700936408 /* TimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProtocol.swift; sourceTree = "<group>"; };
 		2208165D28E1FFF200936408 /* QuitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitButton.swift; sourceTree = "<group>"; };
 		2208165F28E2061800936408 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		22568D4E28F05D5500B83261 /* ARObjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectable.swift; sourceTree = "<group>"; };
 		22568D5228F1B24700B83261 /* ARObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObjectModel.swift; sourceTree = "<group>"; };
 		2268E4D628DCDB590029C755 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
-		22866A032916CEA8009FF7D4 /* FirebaseService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService1.swift; sourceTree = "<group>"; };
 		22866A052916D3EF009FF7D4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		22866A0729192084009FF7D4 /* GameUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUserModel.swift; sourceTree = "<group>"; };
 		22866A092919221F009FF7D4 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -186,6 +186,14 @@
 				1B3A0FEC2A683D5D00B19C84 /* RegisterUserRequest.swift */,
 			);
 			path = AuthRequestsModels;
+			sourceTree = "<group>";
+		};
+		1B3A10122A6D567600B19C84 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1B3A10132A6D568B00B19C84 /* Repository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		2208165A28E1FB2100936408 /* Protocols */ = {
@@ -338,6 +346,7 @@
 		229BC16F28AA7DAE008D07A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1B3A10122A6D567600B19C84 /* Repository */,
 				1B3A0FDD2A6833C800B19C84 /* Providers */,
 				225427AB2921789C0000D2F9 /* Layout */,
 				225427A1292142B90000D2F9 /* Cells */,
@@ -358,7 +367,6 @@
 				1B3A0FE82A6834DA00B19C84 /* FirebaseService.swift */,
 				1B3A0FE42A68341D00B19C84 /* AuthService.swift */,
 				229BC17328AA7DEF008D07A0 /* GameService.swift */,
-				22866A032916CEA8009FF7D4 /* FirebaseService1.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -601,11 +609,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B3A10142A6D568B00B19C84 /* Repository.swift in Sources */,
 				229BC17928AA7FB7008D07A0 /* SceneBuildManager.swift in Sources */,
 				229BC18828AA8655008D07A0 /* SplashPresenter.swift in Sources */,
 				229BC18E28AA8699008D07A0 /* MainPresenter.swift in Sources */,
 				22D801D828BE531600263002 /* AudioManager.swift in Sources */,
-				22866A042916CEA8009FF7D4 /* FirebaseService1.swift in Sources */,
 				229BC17728AA7E24008D07A0 /* UserDefaultManager.swift in Sources */,
 				229BC18128AA8112008D07A0 /* SettingsViewController.swift in Sources */,
 				22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */,

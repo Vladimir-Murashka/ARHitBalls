@@ -78,9 +78,6 @@ extension AuthService: AuthServicable {
         case .apple:
             appleProvider.handleAppleIdRequest(completion: completion)
         }
-        //TODO: - Убрать !!!
-        defaultsManager.saveObject(true, for: .isUserAuth)
-        defaultsManager.saveObject(1, for: .missionGameLevelValue)
     }
     
     func registerUser(with userRequest: RegisterUserRequest?,
@@ -88,9 +85,6 @@ extension AuthService: AuthServicable {
         guard let userRequest = userRequest else { return }
         self.eMailProvider.registerUser(with: userRequest,
                                         completion: completion)
-        //TODO: - Убрать !!!
-        defaultsManager.saveObject(true, for: .isUserAuth)
-        defaultsManager.saveObject(1, for: .missionGameLevelValue)
     }
     
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
