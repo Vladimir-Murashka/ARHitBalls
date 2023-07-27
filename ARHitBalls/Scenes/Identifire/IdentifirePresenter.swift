@@ -126,7 +126,8 @@ private extension IdentifirePresenter {
                 return
             }
             
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+//            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            let mainViewController = self.sceneBuildManager.buildSplashScreen()
             self.viewController?.navigationController?.pushViewController(
                 mainViewController,
                 animated: true
@@ -171,7 +172,8 @@ private extension IdentifirePresenter {
                     firstButtonTitle: "OK") {}
                 return
             }
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+//            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            let mainViewController = self.sceneBuildManager.buildSplashScreen()
             self.viewController?.navigationController?.pushViewController(
                 mainViewController,
                 animated: true
@@ -198,7 +200,8 @@ private extension IdentifirePresenter {
                 print(error.localizedDescription)
                 return
             }
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+//            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            let mainViewController = self.sceneBuildManager.buildSplashScreen()
             
             guard let viewController = self.viewController else {
                 return
@@ -242,7 +245,9 @@ private extension IdentifirePresenter {
                 return
             }
             
-            guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else { return }
+//            guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else { return }
+            guard let _self = self else { return }
+            let mainViewController = _self.sceneBuildManager.buildSplashScreen()
             self?.viewController?.navigationController?.pushViewController(
                 mainViewController,
                 animated: true

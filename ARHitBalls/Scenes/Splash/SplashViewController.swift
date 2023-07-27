@@ -9,7 +9,9 @@ import UIKit
 
 // MARK: - SplashViewProtocol
 
-protocol SplashViewProtocol: UIViewController {}
+protocol SplashViewProtocol: UIViewController {
+    func endDownloading()
+}
 
 // MARK: - SplashViewController
 
@@ -58,7 +60,7 @@ final class SplashViewController: UIViewController {
             delay: 0
         ) {
             self.progressView.setProgress(
-                1,
+                0.5,
                 animated: true
             )
         }
@@ -67,7 +69,14 @@ final class SplashViewController: UIViewController {
 
 // MARK: - SplashViewProtocol Impl
 
-extension SplashViewController: SplashViewProtocol {}
+extension SplashViewController: SplashViewProtocol {
+    func endDownloading() {
+        self.progressView.setProgress(
+            1,
+            animated: true
+        )
+    }
+}
 
 // MARK: - PrivateMethods
 

@@ -58,7 +58,8 @@ extension SceneBuildManager: Buildable {
             defaultsStorage: defaultsManager,
             sceneBuildManager: self,
             generalBackgroundAudioManager: commonAudioManager,
-            firestore: firestore
+            firestore: firestore,
+            gameService: gameService
         )
         
         viewController.presenter = presenter

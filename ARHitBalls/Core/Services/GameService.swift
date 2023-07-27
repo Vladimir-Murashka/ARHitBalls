@@ -10,6 +10,7 @@ import Foundation
 protocol GameServiceable {
     func nextLevel() throws -> GameModel
     func getGameModel(completion: @escaping (GameModel?) -> Void)
+    var currentLevel: Int { get set }
 }
 
 final class GameService {
@@ -20,6 +21,7 @@ final class GameService {
     private let defaultsStorage: DefaultsManagerable
     private let firestore: FirebaseServiceProtocol
     private var currentGameModel: GameModel?
+    var currentLevel: Int = 1
     
     // MARK: - Initializer
     
