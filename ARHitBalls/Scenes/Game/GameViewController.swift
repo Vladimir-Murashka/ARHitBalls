@@ -321,7 +321,7 @@ private extension GameViewController {
         let topStackViewTopOffset: CGFloat = 0
         let topStackViewSideOffset: CGFloat = 16
         let topStackViewTrailingOffset: CGFloat = 35
-        let lowStackViewHeight: CGFloat = 55
+        let lowStackViewHeight: CGFloat = (view.frame.width - 16 - (3 * 5)) / 6
         let lowStackViewBottomOffset: CGFloat = -8
         let lowStackViewSideOffset: CGFloat = 8
         let quitButtonSide: CGFloat = 52
