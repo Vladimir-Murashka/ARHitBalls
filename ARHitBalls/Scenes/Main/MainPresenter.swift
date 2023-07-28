@@ -60,30 +60,31 @@ final class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func viewDidLoad() {
+        print("asdsadas")
         if gameType == .mission {
             viewController?.authUser()
         }
+        
     }
     
     func viewWillAppear() {
         if gameType == .mission {
-            do {
-                gameModel = try gameService.getGameModel()
-                guard let levelLabelValue = gameModel?.level else {
-                    return
-                }
                 
-                guard let timerLabelValue = gameModel?.time else {
-                    return
-                }
-                let timerLavelValueText = transformationTimerLabelText(timeValue: timerLabelValue)
-                
-                viewController?.updateLevelLabel(value: String(levelLabelValue))
-                viewController?.updateTimeLabel(value: timerLavelValueText)
-                viewController?.updateCollectionView(viewModel: fetchCurrentKitCell())
-            } catch {
-                // обработать ошибку
+            gameModel = GameModel(level: self.gameService.currentLevel)
+            guard let levelLabelValue = gameModel?.level else {
+                return
             }
+            guard let timerLabelValue = gameModel?.time else {
+                return
+            }
+            
+            
+            let timerLavelValueText = self.transformationTimerLabelText(timeValue: timerLabelValue)
+            self.viewController?.updateLevelLabel(value: String(levelLabelValue))
+            self.viewController?.updateTimeLabel(value: timerLavelValueText)
+            self.viewController?.updateCollectionView(viewModel: self.fetchCurrentKitCell())
+                
+            
         } else {
             gameModel = GameModel(level: 1)
             viewController?.updateCollectionView(viewModel: fetchCurrentKitCell())

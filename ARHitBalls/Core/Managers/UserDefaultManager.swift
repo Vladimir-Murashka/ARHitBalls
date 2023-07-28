@@ -54,5 +54,4 @@ enum DefaultsKey: String {
     case isMusicOn
     case freeGameLevelValue
     case timeValue
-    case missionGameLevelValue
 }

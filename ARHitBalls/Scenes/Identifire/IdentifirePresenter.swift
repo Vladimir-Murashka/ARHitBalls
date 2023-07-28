@@ -28,23 +28,28 @@ final class  IdentifirePresenter {
     weak var viewController: IdentifireViewController?
     
     // MARK: - PrivateProperties
-    
+    private let firestore: FirebaseServiceProtocol
     private let sceneBuildManager: Buildable
     private let type: AuthType
     private let alertManager: AlertManagerable
     private let authService: AuthServicable
+    private let defaultsManager: DefaultsManagerable
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
         type: AuthType,
         alertManager: AlertManagerable,
-        authService: AuthServicable
+        authService: AuthServicable,
+        firestore: FirebaseServiceProtocol,
+        defaultsManager: DefaultsManagerable
     ) {
         self.sceneBuildManager = sceneBuildManager
         self.type = type
         self.alertManager = alertManager
         self.authService = authService
+        self.firestore = firestore
+        self.defaultsManager = defaultsManager
     }
 }
 
@@ -121,11 +126,31 @@ private extension IdentifirePresenter {
                 return
             }
             
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            let mainViewController = self.sceneBuildManager.buildSplashScreen()
             self.viewController?.navigationController?.pushViewController(
                 mainViewController,
                 animated: true
             )
+            
+            self.defaultsManager.saveObject(true, for: .isUserAuth)
+            let fbService: FirebaseServiceProtocol = FirebaseService()
+            Repository(firebaseService: fbService).getCalculation(userID: self.firestore.getUserID() ) { result in
+                switch result {
+                case .success(let success):
+                    print("MODEL GET:", success)
+                case .failure(let failure):
+                    print(failure)
+                    let model = LevelModel(userID: self.firestore.getUserID() , level: Level(level: 1))
+                    Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                        switch result {
+                        case .success(let success):
+                            print("MODEL SET:", success)
+                        case .failure(let failure):
+                            print(failure)
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -145,11 +170,23 @@ private extension IdentifirePresenter {
                     firstButtonTitle: "OK") {}
                 return
             }
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            let mainViewController = self.sceneBuildManager.buildSplashScreen()
             self.viewController?.navigationController?.pushViewController(
                 mainViewController,
                 animated: true
             )
+            
+            self.defaultsManager.saveObject(true, for: .isUserAuth)
+            let fbService: FirebaseServiceProtocol = FirebaseService()
+            let model = LevelModel(userID: self.firestore.getUserID(), level: Level(level: 1))
+            Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                switch result {
+                case .success(let success):
+                    print("MODEL SET:", success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
         }
     }
     
@@ -159,7 +196,7 @@ private extension IdentifirePresenter {
                 print(error.localizedDescription)
                 return
             }
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
+            let mainViewController = self.sceneBuildManager.buildSplashScreen()
             
             guard let viewController = self.viewController else {
                 return
@@ -169,25 +206,64 @@ private extension IdentifirePresenter {
                 mainViewController,
                 animated: true
             )
-
+            
+            self.defaultsManager.saveObject(true, for: .isUserAuth)
+            let fbService: FirebaseServiceProtocol = FirebaseService()
+            Repository(firebaseService: fbService).getCalculation(userID: self.firestore.getUserID()) { result in
+                switch result {
+                case .success(let success):
+                    print("MODEL GET:", success)
+                case .failure(let failure):
+                    print(failure)
+                    let model = LevelModel(userID: self.firestore.getUserID(), level: Level(level: 1))
+                    Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                        switch result {
+                        case .success(let success):
+                            print("MODEL SET:", success)
+                        case .failure(let failure):
+                            print(failure)
+                        }
+                    }
+                }
+            }
         }
     }
     
     func authUserWithApple() {
         authService.loginUser(with: nil,
                               typeAuth: .apple,
-                              viewController: nil) { error in
+                              viewController: nil) { [weak self] error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             
-            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
-            self.viewController?.navigationController?.pushViewController(
+            guard let _self = self else { return }
+            let mainViewController = _self.sceneBuildManager.buildSplashScreen()
+            self?.viewController?.navigationController?.pushViewController(
                 mainViewController,
                 animated: true
             )
-
+            
+            self?.defaultsManager.saveObject(true, for: .isUserAuth)
+            let fbService: FirebaseServiceProtocol = FirebaseService()
+            Repository(firebaseService: fbService).getCalculation(userID: self?.firestore.getUserID() ?? "") { result in
+                switch result {
+                case .success(let success):
+                    print("MODEL GET:", success)
+                case .failure(let failure):
+                    print(failure)
+                    let model = LevelModel(userID: self?.firestore.getUserID() ?? "", level: Level(level: 1))
+                    Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                        switch result {
+                        case .success(let success):
+                            print("MODEL SET:", success)
+                        case .failure(let failure):
+                            print(failure)
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -28,7 +28,6 @@ protocol Buildable {
 
 final class SceneBuildManager {
     
-    private let firebaseService: FirebaseServicable
     private let defaultsManager: DefaultsManagerable
     private let alertManager: AlertManagerable
     private let commonAudioManager: AudioManagerable
@@ -40,12 +39,11 @@ final class SceneBuildManager {
     
     init() {
         defaultsManager = DefaultsManager()
-        firebaseService = FirebaseService1()
         alertManager = AlertManager()
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
         soundEffectManager = AudioManager()
-        gameService = GameService(defaultsStorage: defaultsManager)
+        gameService = GameService(firestore: firestore)
         authService = AuthService(defaultsManager: defaultsManager,
                                   firestore: firestore)
     }
@@ -58,7 +56,9 @@ extension SceneBuildManager: Buildable {
             authService: authService,
             defaultsStorage: defaultsManager,
             sceneBuildManager: self,
-            generalBackgroundAudioManager: commonAudioManager
+            generalBackgroundAudioManager: commonAudioManager,
+            firestore: firestore,
+            gameService: gameService
         )
         
         viewController.presenter = presenter
@@ -146,7 +146,9 @@ extension SceneBuildManager: Buildable {
             sceneBuildManager: self,
             type: type,
             alertManager: alertManager,
-            authService: authService
+            authService: authService,
+            firestore: firestore,
+            defaultsManager: defaultsManager
         )
         
         viewController.presenter = presenter
