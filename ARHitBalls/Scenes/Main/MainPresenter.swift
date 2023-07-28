@@ -69,24 +69,6 @@ extension MainPresenter: MainPresenterProtocol {
     
     func viewWillAppear() {
         if gameType == .mission {
-            
-//                gameService.getGameModel(completion: { [weak self] result in
-//
-//                    guard let _self = self else { return }
-//                    _self.gameModel = result
-//                    guard let levelLabelValue = result?.level else {
-//                    return
-//                }
-//
-//                guard let timerLabelValue = result?.time else {
-//                    return
-//                }
-//                    let timerLavelValueText = _self.transformationTimerLabelText(timeValue: timerLabelValue)
-//                    _self.viewController?.updateLevelLabel(value: String(levelLabelValue))
-//                    _self.viewController?.updateTimeLabel(value: timerLavelValueText)
-//                    _self.viewController?.updateCollectionView(viewModel: _self.fetchCurrentKitCell())
-//
-//                })
                 
             gameModel = GameModel(level: self.gameService.currentLevel)
             guard let levelLabelValue = gameModel?.level else {

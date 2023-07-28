@@ -26,7 +26,7 @@ final class SplashPresenter {
     private let generalBackgroundAudioManager: AudioManagerable
     private var gameService: GameServiceable
     private var isMusicOn: Bool = true
-//    private var afterAuth:
+
     // MARK: - Initializer
     
     init(
@@ -64,21 +64,7 @@ extension SplashPresenter: SplashPresenterProtocol {
             generalBackgroundAudioManager.play()
         }
         
-        
-//        defaultsStorage.saveObject(1, for: .missionGameLevelValue)
-        
-//        let fbService: FirebaseServiceProtocol = FirebaseService()
-//        let model = LevelModel(userID: firestore.getUserID(), level: Level(level: 1))
-//        Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
-//            switch result {
-//            case .success(let success):
-//                print("MODEL SET:", success)
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
         if self.authService.isAuth() {
-//            gameService.currentLevel = 10
             navigationAfterLogin()
         } else {
             navigationBeforeLogin()
@@ -91,9 +77,6 @@ extension SplashPresenter: SplashPresenterProtocol {
             execute: {
                 let rootViewController = UINavigationController(
                     rootViewController: self.sceneBuildManager.buildMenuScreen()
-//                        self.authService.isAuth()
-//                    ? self.sceneBuildManager.buildMainScreen(gameType: .mission)
-//                    : self.sceneBuildManager.buildMenuScreen()
                 )
                 UIApplication.shared.windows.first?.rootViewController = rootViewController
             })
@@ -103,7 +86,7 @@ extension SplashPresenter: SplashPresenterProtocol {
         DispatchQueue.main.asyncAfter(
             deadline: .now() + .seconds(5),
             execute: {
-                self.gameService.getGameModel { [weak self ]result in
+                self.gameService.getGameModel { [weak self] result in
                     
                     guard let _self = self else {
                         return
@@ -113,8 +96,6 @@ extension SplashPresenter: SplashPresenterProtocol {
                         return
                     }
                     
-                    
-                    
                     _self.gameService.currentLevel = level
                     
                     self?.viewController?.endDownloading()
@@ -122,12 +103,11 @@ extension SplashPresenter: SplashPresenterProtocol {
                         
                         let rootViewController = UINavigationController(
                             rootViewController:
-                            _self.sceneBuildManager.buildMainScreen(gameType: .mission)
+                                _self.sceneBuildManager.buildMainScreen(gameType: .mission)
                         )
                         UIApplication.shared.windows.first?.rootViewController = rootViewController
                     }
                 }
             })
     }
-    
 }

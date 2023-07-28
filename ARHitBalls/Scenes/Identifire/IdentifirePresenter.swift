@@ -126,7 +126,6 @@ private extension IdentifirePresenter {
                 return
             }
             
-//            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
             let mainViewController = self.sceneBuildManager.buildSplashScreen()
             self.viewController?.navigationController?.pushViewController(
                 mainViewController,
@@ -138,7 +137,6 @@ private extension IdentifirePresenter {
             Repository(firebaseService: fbService).getCalculation(userID: self.firestore.getUserID() ) { result in
                 switch result {
                 case .success(let success):
-//                    self.defaultsManager.saveObject(success.level, for: .missionGameLevelValue)
                     print("MODEL GET:", success)
                 case .failure(let failure):
                     print(failure)
@@ -172,7 +170,6 @@ private extension IdentifirePresenter {
                     firstButtonTitle: "OK") {}
                 return
             }
-//            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
             let mainViewController = self.sceneBuildManager.buildSplashScreen()
             self.viewController?.navigationController?.pushViewController(
                 mainViewController,
@@ -190,7 +187,6 @@ private extension IdentifirePresenter {
                     print(failure)
                 }
             }
-//            self.defaultsManager.saveObject(1, for: .missionGameLevelValue)
         }
     }
     
@@ -200,7 +196,6 @@ private extension IdentifirePresenter {
                 print(error.localizedDescription)
                 return
             }
-//            let mainViewController = self.sceneBuildManager.buildMainScreen(gameType: .mission)
             let mainViewController = self.sceneBuildManager.buildSplashScreen()
             
             guard let viewController = self.viewController else {
@@ -217,12 +212,10 @@ private extension IdentifirePresenter {
             Repository(firebaseService: fbService).getCalculation(userID: self.firestore.getUserID()) { result in
                 switch result {
                 case .success(let success):
-//                    self.defaultsManager.saveObject(success.level, for: .missionGameLevelValue)
                     print("MODEL GET:", success)
                 case .failure(let failure):
                     print(failure)
                     let model = LevelModel(userID: self.firestore.getUserID(), level: Level(level: 1))
-//                    self.defaultsManager.saveObject(1, for: .missionGameLevelValue)
                     Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
                         switch result {
                         case .success(let success):
@@ -245,7 +238,6 @@ private extension IdentifirePresenter {
                 return
             }
             
-//            guard let mainViewController = self?.sceneBuildManager.buildMainScreen(gameType: .mission) else { return }
             guard let _self = self else { return }
             let mainViewController = _self.sceneBuildManager.buildSplashScreen()
             self?.viewController?.navigationController?.pushViewController(
@@ -258,7 +250,6 @@ private extension IdentifirePresenter {
             Repository(firebaseService: fbService).getCalculation(userID: self?.firestore.getUserID() ?? "") { result in
                 switch result {
                 case .success(let success):
-//                    self?.defaultsManager.saveObject(success.level, for: .missionGameLevelValue)
                     print("MODEL GET:", success)
                 case .failure(let failure):
                     print(failure)
