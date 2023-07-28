@@ -43,8 +43,7 @@ final class SceneBuildManager {
         commonAudioManager = AudioManager()
         gameAudioManager = AudioManager()
         soundEffectManager = AudioManager()
-        gameService = GameService(defaultsStorage: defaultsManager,
-                                  firestore: firestore)
+        gameService = GameService(firestore: firestore)
         authService = AuthService(defaultsManager: defaultsManager,
                                   firestore: firestore)
     }

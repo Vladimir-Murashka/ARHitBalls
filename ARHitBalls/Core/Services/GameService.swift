@@ -18,16 +18,13 @@ final class GameService {
     // MARK: - PrivateProperties
     
     private var gameUserValue = GameUserModel()
-    private let defaultsStorage: DefaultsManagerable
     private let firestore: FirebaseServiceProtocol
     private var currentGameModel: GameModel?
     var currentLevel: Int = 1
     
     // MARK: - Initializer
     
-    init(defaultsStorage: DefaultsManagerable,
-         firestore: FirebaseServiceProtocol) {
-        self.defaultsStorage = defaultsStorage
+    init(firestore: FirebaseServiceProtocol) {
         self.firestore = firestore
     }
 }
@@ -55,32 +52,10 @@ extension GameService: GameServiceable {
             }
         }
         
-//        defaultsStorage.saveObject(
-//            nextGameModel.level,
-//            for: .missionGameLevelValue
-//        )
-        
         currentGameModel = nextGameModel
         
         return nextGameModel
     }
-    
-//    func getGameModel() throws -> GameModel {
-//        guard let level = defaultsStorage.fetchObject(
-//            type: Int.self,
-//            for: .missionGameLevelValue
-//        ) else {
-//            let error = NSError(
-//                domain: "error description",
-//                code: -1
-//            )
-//            throw error
-//        }
-//        let gameModel = GameModel(level: level)
-//        self.currentGameModel = gameModel
-//
-//        return gameModel
-//    }
     
     func getGameModel(completion: @escaping (GameModel?) -> Void) {
         let fbService: FirebaseServiceProtocol = FirebaseService()
@@ -91,10 +66,6 @@ extension GameService: GameServiceable {
                 self.currentGameModel = gameModel
                 completion(gameModel)
             case .failure(let failure):
-//                let error = NSError(
-//                    domain: "error description",
-//                    code: -1
-//                )
                 // Возможно тут будет ошибка, нужно тестить
                 let gameModel = GameModel(level: 1)
                 self.currentGameModel = gameModel
