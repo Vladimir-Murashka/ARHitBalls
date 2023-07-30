@@ -20,6 +20,7 @@ protocol GameViewProtocol: UIViewController {
     func zeroingProgressView()
     func updateSelected(kit: KitType)
     func cleanScene()
+    func getCoordinateOfAllNodes() -> [SCNVector3]
 }
 
 // MARK: - GameViewController
@@ -236,6 +237,10 @@ extension GameViewController: GameViewProtocol {
     func cleanScene() {
         sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode() }
+    }
+    
+    func getCoordinateOfAllNodes() -> [SCNVector3] {
+        return presenter?.getCoordinatesOfAllNodes(from: sceneView.scene.rootNode) ?? []
     }
 }
 
