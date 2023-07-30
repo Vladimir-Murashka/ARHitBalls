@@ -56,7 +56,7 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(
-            withDuration: 5,
+            withDuration: 3,
             delay: 0
         ) {
             self.progressView.setProgress(
@@ -71,10 +71,15 @@ final class SplashViewController: UIViewController {
 
 extension SplashViewController: SplashViewProtocol {
     func endDownloading() {
-        self.progressView.setProgress(
-            1,
-            animated: true
-        )
+        UIView.animate(
+            withDuration: 2,
+            delay: 0
+        ) {
+            self.progressView.setProgress(
+                1,
+                animated: true
+            )
+        }
     }
 }
 
