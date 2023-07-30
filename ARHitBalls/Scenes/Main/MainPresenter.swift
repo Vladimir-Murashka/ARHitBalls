@@ -70,7 +70,7 @@ extension MainPresenter: MainPresenterProtocol {
     func viewWillAppear() {
         if gameType == .mission {
                 
-            gameModel = GameModel(level: self.gameService.currentLevel)
+            gameModel = self.gameService.currentGameModel
             guard let levelLabelValue = gameModel?.level else {
                 return
             }

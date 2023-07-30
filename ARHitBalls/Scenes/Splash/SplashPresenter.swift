@@ -92,11 +92,11 @@ extension SplashPresenter: SplashPresenterProtocol {
                         return
                     }
                     
-                    guard let level = result?.level else {
+                    guard let _result = result else {
                         return
                     }
                     
-                    _self.gameService.currentLevel = level
+                    _self.gameService.changeCurrentGameModel(model: _result)
                     
                     self?.viewController?.endDownloading()
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
