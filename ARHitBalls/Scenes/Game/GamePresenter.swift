@@ -20,6 +20,7 @@ protocol GamePresenterProtocol: AnyObject, TimerProtocol {
     func nodeVibration()
     func nodeContact()
     func levelIsFinished()
+    func getCoordinatesOfAllNodes(from rootNode: SCNNode) -> [SCNVector3]
 }
 
 // MARK: - GamePresenter
@@ -28,7 +29,6 @@ final class GamePresenter {
     weak var viewController: GameViewProtocol?
     
     // MARK: - PrivateProperties
-    
     private let sceneBuildManager: Buildable
     private let defaultsStorage: DefaultsManagerable
     private let generalBackgroundAudioManager: AudioManagerable
@@ -230,6 +230,20 @@ extension GamePresenter: GamePresenterProtocol {
             }
         }
     }
+    
+    func getCoordinatesOfAllNodes(from rootNode: SCNNode) -> [SCNVector3] {
+        var coordinates = [SCNVector3]()
+        
+        func traverse(node: SCNNode) {
+            coordinates.append(node.position)  // Добавляем позицию текущего нода в список координат.
+            for child in node.childNodes {
+                traverse(node: child)  // Рекурсивно вызываем функцию для всех дочерних нодов.
+            }
+        }
+        
+        traverse(node: rootNode)
+        return coordinates
+    }
 }
 
 private extension GamePresenter {
@@ -250,7 +264,7 @@ private extension GamePresenter {
         case .sportBalls:
             array = SportBalls.allCases
         }
-        
+
         for item in array {
             let shot = item.shot
             addRandomPisitionARObject(
@@ -265,17 +279,26 @@ private extension GamePresenter {
         object: ARObjectModel
     ) {
         for _ in 1...number {
-            let xPos = randomPosition(
-                from: -1.5,
-                to: 1.5
-            )
-            let yPos = randomPosition(
-                from: -1.5,
-                to: 1.5
-            )
-            let zPos = randomPosition(
-                from: -4,
-                to: 0
+            var xPos: Float
+            var yPos: Float
+            var zPos: Float
+            repeat {
+                xPos = randomPosition(
+                    from: -2,
+                    to: 2
+                )
+                yPos = randomPosition(
+                    from: -2,
+                    to: 2
+                )
+                zPos = randomPosition(
+                    from: -2,
+                    to: 2
+                )
+            } while !checkPosition(
+                x: xPos,
+                y: yPos,
+                z: zPos
             )
             
             createARObject(
@@ -283,8 +306,25 @@ private extension GamePresenter {
                 xPos: xPos,
                 yPos: yPos,
                 zPos: zPos)
-            
         }
+        
+    }
+    
+    func checkPosition(x: Float, y: Float, z: Float) -> Bool {
+        guard let nodes = viewController?.getCoordinateOfAllNodes() else {
+            return false
+        }
+        
+        for i in nodes {
+            let dx = x - i.x
+            let dy = y - i.y
+            let dz = z - i.z
+            let result = sqrt(dx*dx + dy*dy + dz*dz)
+            if result > 0 && result <= 0.2 {
+                return false
+            }
+        }
+        return true
     }
     
     func randomPosition(
@@ -302,7 +342,6 @@ private extension GamePresenter {
     ) {
         let sphere = SCNSphere(radius: 0.1)
         let objectNode = SCNNode()
-        let zPos: Float = -1.5
         
         objectNode.geometry = sphere
         objectNode.position = SCNVector3(
