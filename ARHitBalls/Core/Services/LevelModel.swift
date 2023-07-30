@@ -1,8 +1,8 @@
 //
-//  CalculationModel.swift
-//  spravochnik_spz
+//  LevelModel.swift
+//  ARHitBalls
 //
-//  Created by Natalia Shevaldina on 20.05.2023.
+//  Created by Максим Косников on 30.07.2023.
 //
 
 import Foundation

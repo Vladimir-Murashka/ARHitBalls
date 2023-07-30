@@ -1,6 +1,6 @@
 //
 //  FirebaseService.swift
-//  spravochnik_spz
+//  ARHitBalls
 //
 //  Created by Natalia Shevaldina on 20.05.2023.
 //
@@ -10,17 +10,17 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 protocol FirebaseServiceProtocol {
-    func setCalculation(userID: String,
+    func setDocument(userID: String,
                         levelModel: Level,
                         completion: @escaping (Result<Bool, Error>) -> Void)
     
-    func getCalculation(userID: String,
+    func getDocument(userID: String,
                         completion: @escaping (Result<Level, Error>) -> Void)
     
-    func getAllCalculations(userID: String,
+    func getAllDocuments(userID: String,
                             completion: @escaping (Result<[QueryDocumentSnapshot]?, Error>) -> Void)
     
-    func deleteCalculation(userID: String,
+    func deleteDocument(userID: String,
                            completion: @escaping (Result<String, Error>) -> Void)
     func addUserID(userID: String)
     func getUserID() -> String
@@ -50,37 +50,37 @@ extension FirebaseService: FirebaseServiceProtocol {
         print(self.uid)
     }
     
-    func setCalculation(userID: String,
+    func setDocument(userID: String,
                         levelModel: Level,
                         completion: @escaping (Result<Bool, Error>) -> Void) {
         let db = configureFB()
         let calcRef = db.collection(userID).document("level")
 //        calcRef.setData(calcModel) { error in
 //            if let error = error {
-//                print("FirebaseService setCalculation: Error writing document: \(error)")
+//                print("FirebaseService setDocument: Error writing document: \(error)")
 //                completion(.failure(error))
 //            } else {
-//                print("FirebaseService setCalculation: Document successfully written!")
+//                print("FirebaseService setDocument: Document successfully written!")
 //                completion(.success(""))
 //            }
 //        }
         do {
             try calcRef.setData(from: levelModel) { error in
                 if let error = error {
-                    print("FirebaseService setCalculation: Error writing document: \(error)")
+                    print("FirebaseService setDocument: Error writing document: \(error)")
                     completion(.failure(error))
                 } else {
-                    print("FirebaseService setCalculation: Document successfully written!")
+                    print("FirebaseService setDocument: Document successfully written!")
                     completion(.success(true))
                 }
             }
         } catch let error {
-            print("FirebaseService setCalculation: Error writing to Firestore: \(error)")
+            print("FirebaseService setDocument: Error writing to Firestore: \(error)")
             completion(.failure(error))
         }
     }
     
-    func getCalculation(userID: String,
+    func getDocument(userID: String,
                         completion: @escaping (Result<Level, Error>) -> Void) {
         let db = configureFB()
         let calcRef = db.collection(userID).document("level")
@@ -95,22 +95,22 @@ extension FirebaseService: FirebaseServiceProtocol {
         calcRef.getDocument(as: Level.self) { result in
             switch result {
             case .success(let calc):
-                print("CalculationModel: \(calc)")
+                print("GameModel: \(calc)")
                 completion(.success(calc))
             case .failure(let error):
-                print("Error decoding CalculationModel: \(error)")
+                print("Error decoding GameModel: \(error)")
                 completion(.failure(error))
             }
         }
     }
     
-    func getAllCalculations(userID: String,
+    func getAllDocuments(userID: String,
                            completion: @escaping (Result<[QueryDocumentSnapshot]?, Error>) -> Void) {
         let db = configureFB()
         let calcRef = db.collection(userID)
         calcRef.getDocuments() { (querySnapshot, error) in
             guard let querySnapshot = querySnapshot else {
-                print("ERROR getAllCalculations querySnapshot")
+                print("ERROR getAllDocuments querySnapshot")
                 completion(.success(nil))
                 return
             }
@@ -123,7 +123,7 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func deleteCalculation(userID: String,
+    func deleteDocument(userID: String,
                            completion: @escaping (Result<String, Error>) -> Void) {
         let db = configureFB()
         let calcRef = db.collection(userID).document("level")

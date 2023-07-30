@@ -1,8 +1,8 @@
 //
 //  LoginUserRequest.swift
-//  spravochnik_spz
+//  ARHitBalls
 //
-//  Created by Николай Чунихин on 15.05.2023.
+//  Created by Максим Косников on 22.07.2023.
 //
 
 import Foundation

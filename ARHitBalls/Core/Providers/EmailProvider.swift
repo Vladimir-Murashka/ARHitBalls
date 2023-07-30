@@ -1,6 +1,6 @@
 //
 //  EmailService.swift
-//  spravochnik_spz
+//  ARHitBalls
 //
 //  Created by Максим Косников on 19.07.2023.
 //
