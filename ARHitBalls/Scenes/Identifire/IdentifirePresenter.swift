@@ -134,14 +134,14 @@ private extension IdentifirePresenter {
             
             self.defaultsManager.saveObject(true, for: .isUserAuth)
             let fbService: FirebaseServiceProtocol = FirebaseService()
-            Repository(firebaseService: fbService).getCalculation(userID: self.firestore.getUserID() ) { result in
+            Repository(firebaseService: fbService).getLevel(userID: self.firestore.getUserID() ) { result in
                 switch result {
                 case .success(let success):
                     print("MODEL GET:", success)
                 case .failure(let failure):
                     print(failure)
                     let model = LevelModel(userID: self.firestore.getUserID() , level: Level(level: 1))
-                    Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                    Repository(firebaseService: fbService).setLevel(levelModel: model) { result in
                         switch result {
                         case .success(let success):
                             print("MODEL SET:", success)
@@ -179,7 +179,7 @@ private extension IdentifirePresenter {
             self.defaultsManager.saveObject(true, for: .isUserAuth)
             let fbService: FirebaseServiceProtocol = FirebaseService()
             let model = LevelModel(userID: self.firestore.getUserID(), level: Level(level: 1))
-            Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+            Repository(firebaseService: fbService).setLevel(levelModel: model) { result in
                 switch result {
                 case .success(let success):
                     print("MODEL SET:", success)
@@ -209,14 +209,14 @@ private extension IdentifirePresenter {
             
             self.defaultsManager.saveObject(true, for: .isUserAuth)
             let fbService: FirebaseServiceProtocol = FirebaseService()
-            Repository(firebaseService: fbService).getCalculation(userID: self.firestore.getUserID()) { result in
+            Repository(firebaseService: fbService).getLevel(userID: self.firestore.getUserID()) { result in
                 switch result {
                 case .success(let success):
                     print("MODEL GET:", success)
                 case .failure(let failure):
                     print(failure)
                     let model = LevelModel(userID: self.firestore.getUserID(), level: Level(level: 1))
-                    Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                    Repository(firebaseService: fbService).setLevel(levelModel: model) { result in
                         switch result {
                         case .success(let success):
                             print("MODEL SET:", success)
@@ -247,14 +247,14 @@ private extension IdentifirePresenter {
             
             self?.defaultsManager.saveObject(true, for: .isUserAuth)
             let fbService: FirebaseServiceProtocol = FirebaseService()
-            Repository(firebaseService: fbService).getCalculation(userID: self?.firestore.getUserID() ?? "") { result in
+            Repository(firebaseService: fbService).getLevel(userID: self?.firestore.getUserID() ?? "") { result in
                 switch result {
                 case .success(let success):
                     print("MODEL GET:", success)
                 case .failure(let failure):
                     print(failure)
                     let model = LevelModel(userID: self?.firestore.getUserID() ?? "", level: Level(level: 1))
-                    Repository(firebaseService: fbService).setCalculation(levelModel: model) { result in
+                    Repository(firebaseService: fbService).setLevel(levelModel: model) { result in
                         switch result {
                         case .success(let success):
                             print("MODEL SET:", success)

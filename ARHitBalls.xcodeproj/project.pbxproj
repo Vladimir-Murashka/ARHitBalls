@@ -15,7 +15,7 @@
 		1B3A0FE92A6834DA00B19C84 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FE82A6834DA00B19C84 /* FirebaseService.swift */; };
 		1B3A0FED2A683D5D00B19C84 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEB2A683D5D00B19C84 /* LoginUserRequest.swift */; };
 		1B3A0FEE2A683D5D00B19C84 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEC2A683D5D00B19C84 /* RegisterUserRequest.swift */; };
-		1B3A0FF02A683D8500B19C84 /* CalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEF2A683D8500B19C84 /* CalculationModel.swift */; };
+		1B3A0FF02A683D8500B19C84 /* LevelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FEF2A683D8500B19C84 /* LevelModel.swift */; };
 		1B3A10142A6D568B00B19C84 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A10132A6D568B00B19C84 /* Repository.swift */; };
 		2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165B28E1FB4700936408 /* TimerProtocol.swift */; };
 		2208165E28E1FFF200936408 /* QuitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208165D28E1FFF200936408 /* QuitButton.swift */; };
@@ -88,7 +88,7 @@
 		1B3A0FE82A6834DA00B19C84 /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		1B3A0FEB2A683D5D00B19C84 /* LoginUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		1B3A0FEC2A683D5D00B19C84 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
-		1B3A0FEF2A683D8500B19C84 /* CalculationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationModel.swift; sourceTree = "<group>"; };
+		1B3A0FEF2A683D8500B19C84 /* LevelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelModel.swift; sourceTree = "<group>"; };
 		1B3A0FF12A6B38F200B19C84 /* ARHitBalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARHitBalls.entitlements; sourceTree = "<group>"; };
 		1B3A10132A6D568B00B19C84 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		2208165B28E1FB4700936408 /* TimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProtocol.swift; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 		229BC17028AA7DB6008D07A0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1B3A0FEF2A683D8500B19C84 /* CalculationModel.swift */,
+				1B3A0FEF2A683D8500B19C84 /* LevelModel.swift */,
 				1B3A0FE82A6834DA00B19C84 /* FirebaseService.swift */,
 				1B3A0FE42A68341D00B19C84 /* AuthService.swift */,
 				229BC17328AA7DEF008D07A0 /* GameService.swift */,
@@ -659,7 +659,7 @@
 				229BC15828AA708A008D07A0 /* SceneDelegate.swift in Sources */,
 				22A3170B291EA5B6003A8F93 /* UIImageView.swift in Sources */,
 				229BC17B28AA80D6008D07A0 /* SplashViewController.swift in Sources */,
-				1B3A0FF02A683D8500B19C84 /* CalculationModel.swift in Sources */,
+				1B3A0FF02A683D8500B19C84 /* LevelModel.swift in Sources */,
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
 				223772D728E38077004F820D /* KitEnum.swift in Sources */,
