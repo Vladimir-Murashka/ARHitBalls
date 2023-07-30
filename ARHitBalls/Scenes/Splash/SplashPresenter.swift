@@ -72,19 +72,23 @@ extension SplashPresenter: SplashPresenterProtocol {
     }
     
     func navigationBeforeLogin() {
+        
         DispatchQueue.main.asyncAfter(
-            deadline: .now() + .seconds(5),
+            deadline: .now() + .seconds(3),
             execute: {
-                let rootViewController = UINavigationController(
-                    rootViewController: self.sceneBuildManager.buildMenuScreen()
-                )
-                UIApplication.shared.windows.first?.rootViewController = rootViewController
+                self.viewController?.endDownloading()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                    let rootViewController = UINavigationController(
+                        rootViewController: self.sceneBuildManager.buildMenuScreen()
+                    )
+                    UIApplication.shared.windows.first?.rootViewController = rootViewController
+                }
             })
     }
     
     func navigationAfterLogin() {
         DispatchQueue.main.asyncAfter(
-            deadline: .now() + .seconds(5),
+            deadline: .now() + .seconds(3),
             execute: {
                 self.gameService.getGameModel { [weak self] result in
                     
@@ -98,8 +102,8 @@ extension SplashPresenter: SplashPresenterProtocol {
                     
                     _self.gameService.changeCurrentGameModel(model: _result)
                     
-                    self?.viewController?.endDownloading()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    _self.viewController?.endDownloading()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
                         
                         let rootViewController = UINavigationController(
                             rootViewController:
