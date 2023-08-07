@@ -167,8 +167,8 @@ extension GamePresenter: GamePresenterProtocol {
     func quitGameButtonPressed() {
         stopTimer()
         viewController?.present(
-            sceneBuildManager.buildEndGameScreen(
-                endGameType: .exitGame,
+            sceneBuildManager.buildCustomPopUpScreen(
+                PopUpType: .exitGame,
                 delegate: self
             ),
             animated: true
@@ -201,16 +201,16 @@ extension GamePresenter: GamePresenterProtocol {
             if gameType == .freeGame {
                 stopTimer()
                 viewController?.present(
-                    sceneBuildManager.buildEndGameScreen(
-                        endGameType: .levelPassedFree,
+                    sceneBuildManager.buildCustomPopUpScreen(
+                        PopUpType: .levelPassedFree,
                         delegate: self
                     ),
                     animated: true
                 )
             } else {
                 viewController?.present(
-                    sceneBuildManager.buildEndGameScreen(
-                        endGameType: .levelPassedAuth,
+                    sceneBuildManager.buildCustomPopUpScreen(
+                        PopUpType: .levelPassedAuth,
                         delegate: self
                     ),
                     animated: true
@@ -446,8 +446,8 @@ private extension GamePresenter {
         viewController?.updateTimer(text: timeString)
         if currentTimerValue == 0 {
             viewController?.present(
-                sceneBuildManager.buildEndGameScreen(
-                    endGameType: .timeIsOver,
+                sceneBuildManager.buildCustomPopUpScreen(
+                    PopUpType: .timeIsOver,
                     delegate: self
                 ),
                 animated: true
@@ -461,7 +461,7 @@ private extension GamePresenter {
     }
 }
 
-extension GamePresenter: EndGameDelegate {
+extension GamePresenter: CustomPopUpDelegate {
     func continueGame() {
        startTimer()
     }

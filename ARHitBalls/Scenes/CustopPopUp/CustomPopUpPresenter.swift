@@ -1,5 +1,5 @@
 //
-//  EndGamePresenter.swift
+//  CustomPopUpPresenter.swift
 //  ARHitBalls
 //
 //  Created by Swift Learning on 26.11.2022.
@@ -7,41 +7,41 @@
 
 import UIKit
 
-// MARK: - EndGamePresenterProtocol
+// MARK: - CustomPopUpPresenterProtocol
 
-protocol EndGamePresenterProtocol: AnyObject {
+protocol CustomPopUpPresenterProtocol: AnyObject {
     func viewDidLoad()
     func continueButtonPressed()
     func exitButtonPressed()
 }
 
-// MARK: - EndGamePresenter
+// MARK: - CustomPopUpPresenter
 
-final class EndGamePresenter {
-    weak var viewController: EndGameViewProtocol?
-    weak var delegate: EndGameDelegate?
+final class CustomPopUpPresenter {
+    weak var viewController: CustomPopUpViewProtocol?
+    weak var delegate: CustomPopUpDelegate?
     
     // MARK: - PrivateProperties
     
     private let sceneBuildManager: Buildable
-    private let endGameType: EndGameType
+    private let PopUpType: PopUpType
     
     // MARK: - Initializer
     
     init(
         sceneBuildManager: Buildable,
-        endGameType: EndGameType
+        PopUpType: PopUpType
     ) {
         self.sceneBuildManager = sceneBuildManager
-        self.endGameType = endGameType
+        self.PopUpType = PopUpType
     }
 }
 
-//MARK: - EndGamePresenterExtension
+//MARK: - CustomPopUpPresenterExtension
 
-extension EndGamePresenter: EndGamePresenterProtocol {
+extension CustomPopUpPresenter: CustomPopUpPresenterProtocol {
     func viewDidLoad() {
-        switch endGameType {
+        switch PopUpType {
         case .exitGame:
             viewController?.setupExitGameType()
         case .levelPassedFree:
@@ -63,23 +63,23 @@ extension EndGamePresenter: EndGamePresenterProtocol {
     
     func continueButtonPressed() {
         viewController?.dismiss(animated: true)
-        if endGameType == .exitGame {
+        if PopUpType == .exitGame {
             delegate?.continueGame?()
         }
         
-        if endGameType == .timeIsOver || endGameType == .levelPassedFree {
+        if PopUpType == .timeIsOver || PopUpType == .levelPassedFree {
             delegate?.restartLevel?()
         }
         
-        if endGameType == .levelPassedAuth {
+        if PopUpType == .levelPassedAuth {
             delegate?.nextLevel?()
         }
         
-        if endGameType == .logout {
+        if PopUpType == .logout {
             delegate?.logout?()
         }
         
-        if endGameType == .deleteAccount {
+        if PopUpType == .deleteAccount {
             delegate?.deleteAccount?()
         }
     }

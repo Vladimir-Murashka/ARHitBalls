@@ -1,11 +1,11 @@
 //
-//  EndGameType.swift
+//  PopUpType.swift
 //  ARHitBalls
 //
 //  Created by Swift Learning on 27.11.2022.
 //
 
-enum EndGameType {
+enum PopUpType {
     case exitGame
     case timeIsOver
     case levelPassedAuth

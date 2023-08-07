@@ -20,10 +20,10 @@ protocol Buildable {
         gameType: GameType
     ) -> GameViewController
     func buildIdentifireScreen(type: AuthType) -> IdentifireViewController
-    func buildEndGameScreen(
-        endGameType: EndGameType,
-        delegate: EndGameDelegate
-    ) -> EndGameViewController
+    func buildCustomPopUpScreen(
+        PopUpType: PopUpType,
+        delegate: CustomPopUpDelegate
+    ) -> CustomPopUpViewController
 }
 
 final class SceneBuildManager {
@@ -157,14 +157,14 @@ extension SceneBuildManager: Buildable {
         return viewController
     }
     
-    func buildEndGameScreen(
-        endGameType: EndGameType,
-        delegate: EndGameDelegate
-    ) -> EndGameViewController {
-        let viewController = EndGameViewController()
-        let presenter = EndGamePresenter(
+    func buildCustomPopUpScreen(
+        PopUpType: PopUpType,
+        delegate: CustomPopUpDelegate
+    ) -> CustomPopUpViewController {
+        let viewController = CustomPopUpViewController()
+        let presenter = CustomPopUpPresenter(
             sceneBuildManager: self,
-            endGameType: endGameType
+            PopUpType: PopUpType
         )
         presenter.delegate = delegate
         viewController.presenter = presenter

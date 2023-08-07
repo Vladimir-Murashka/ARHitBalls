@@ -123,8 +123,8 @@ extension MainPresenter: MainPresenterProtocol {
     func logoutButtonPressed() {
         if gameType == .mission {
             viewController?.present(
-                sceneBuildManager.buildEndGameScreen(
-                    endGameType: .logout,
+                sceneBuildManager.buildCustomPopUpScreen(
+                    PopUpType: .logout,
                     delegate: self
                 ),
                 animated: true
@@ -137,8 +137,8 @@ extension MainPresenter: MainPresenterProtocol {
     
     func deleteAccountButtonPressed() {
         viewController?.present(
-            sceneBuildManager.buildEndGameScreen(
-                endGameType: .deleteAccount,
+            sceneBuildManager.buildCustomPopUpScreen(
+                PopUpType: .deleteAccount,
                 delegate: self
             ),
             animated: true
@@ -239,7 +239,7 @@ private extension MainPresenter {
     }
 }
 
-extension MainPresenter: EndGameDelegate {
+extension MainPresenter: CustomPopUpDelegate {
     func logout() {
         self.authService.logout { result in
             switch result {

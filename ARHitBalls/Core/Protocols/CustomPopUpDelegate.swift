@@ -1,5 +1,5 @@
 //
-//  EndGameDelegateProtocol.swift
+//  CustomPopUpDelegateProtocol.swift
 //  ARHitBalls
 //
 //  Created by Swift Learning on 30.11.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc protocol EndGameDelegate: AnyObject {
+@objc protocol CustomPopUpDelegate: AnyObject {
     @objc optional func continueGame()
     @objc optional func exitGame()
     @objc optional func restartLevel()

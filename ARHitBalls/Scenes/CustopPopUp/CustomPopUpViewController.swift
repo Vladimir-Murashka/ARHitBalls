@@ -1,5 +1,5 @@
 //
-//  EndGameViewController.swift
+//  CustomPopUpViewController.swift
 //  ARHitBalls
 //
 //  Created by Swift Learning on 26.11.2022.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-// MARK: - EndGameViewProtocol
+// MARK: - CustomPopUpViewProtocol
 
-protocol EndGameViewProtocol: UIViewController {
+protocol CustomPopUpViewProtocol: UIViewController {
     func setupExitGameType()
     func setupTimeIsOverType()
     func setupLevelPassedAuthType()
@@ -19,10 +19,10 @@ protocol EndGameViewProtocol: UIViewController {
     func updateGameValueLabel(level: String, time: String)
 }
 
-// MARK: - EndGameViewController
+// MARK: - CustomPopUpViewController
 
-final class EndGameViewController: UIViewController {
-    var presenter: EndGamePresenterProtocol?
+final class CustomPopUpViewController: UIViewController {
+    var presenter: CustomPopUpPresenterProtocol?
     
     // MARK: - PrivateProperties
     
@@ -269,9 +269,9 @@ final class EndGameViewController: UIViewController {
     }
 }
 
-// MARK: - EndGameViewProtocol Impl
+// MARK: - CustomPopUpViewProtocol Impl
 
-extension EndGameViewController: EndGameViewProtocol {
+extension CustomPopUpViewController: CustomPopUpViewProtocol {
     func setupExitGameType() {
         gameValueBackgroundStackView.isHidden = true
         gameValueStackView.isHidden = true
@@ -355,7 +355,7 @@ extension EndGameViewController: EndGameViewProtocol {
 
 // MARK: - PrivateMethods
 
-private extension EndGameViewController {
+private extension CustomPopUpViewController {
     func setupViewController() {
         isModalInPresentation = true
         addSubViews()
