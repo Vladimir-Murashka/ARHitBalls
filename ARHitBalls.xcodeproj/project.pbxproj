@@ -66,14 +66,14 @@
 		22AA5EB429758343007D3B11 /* back.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22AA5EB129758342007D3B11 /* back.mp3 */; };
 		22AA5EB529758343007D3B11 /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22AA5EB229758343007D3B11 /* hit.mp3 */; };
 		22AA5EB629758343007D3B11 /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22AA5EB329758343007D3B11 /* track.mp3 */; };
-		22B614E72932A51000F24C1F /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E62932A51000F24C1F /* EndGameViewController.swift */; };
-		22B614E92932A51F00F24C1F /* EndGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E82932A51F00F24C1F /* EndGamePresenter.swift */; };
-		22B614EB2933EE5F00F24C1F /* EndGameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614EA2933EE5E00F24C1F /* EndGameType.swift */; };
+		22B614E72932A51000F24C1F /* CustomPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E62932A51000F24C1F /* CustomPopUpViewController.swift */; };
+		22B614E92932A51F00F24C1F /* CustomPopUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614E82932A51F00F24C1F /* CustomPopUpPresenter.swift */; };
+		22B614EB2933EE5F00F24C1F /* PopUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B614EA2933EE5E00F24C1F /* PopUpType.swift */; };
 		22D801D828BE531600263002 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D801D728BE531600263002 /* AudioManager.swift */; };
 		22E1743E28C1214B00F20AE9 /* ShotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1743D28C1214B00F20AE9 /* ShotButton.swift */; };
 		22E5941D28C2786A0063586D /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941C28C2786A0063586D /* AuthType.swift */; };
 		22E5942028C37E110063586D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5941F28C37E110063586D /* SettingType.swift */; };
-		22EE51E429376D04009ED6F0 /* EndGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EE51E329376D04009ED6F0 /* EndGameDelegate.swift */; };
+		22EE51E429376D04009ED6F0 /* CustomPopUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EE51E329376D04009ED6F0 /* CustomPopUpDelegate.swift */; };
 		22FDAFC128B8F38A002146B6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC028B8F38A002146B6 /* AlertManager.swift */; };
 		22FDAFC428B8F58B002146B6 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDAFC328B8F58B002146B6 /* AlertModels.swift */; };
 		9C3634E092E79B02CD1A6736 /* Pods_ARHitBalls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3932BCCB2CF33D98ACB0D5B6 /* Pods_ARHitBalls.framework */; };
@@ -142,14 +142,14 @@
 		22AA5EB129758342007D3B11 /* back.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = back.mp3; sourceTree = "<group>"; };
 		22AA5EB229758343007D3B11 /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
 		22AA5EB329758343007D3B11 /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track.mp3; sourceTree = "<group>"; };
-		22B614E62932A51000F24C1F /* EndGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
-		22B614E82932A51F00F24C1F /* EndGamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGamePresenter.swift; sourceTree = "<group>"; };
-		22B614EA2933EE5E00F24C1F /* EndGameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameType.swift; sourceTree = "<group>"; };
+		22B614E62932A51000F24C1F /* CustomPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpViewController.swift; sourceTree = "<group>"; };
+		22B614E82932A51F00F24C1F /* CustomPopUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpPresenter.swift; sourceTree = "<group>"; };
+		22B614EA2933EE5E00F24C1F /* PopUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpType.swift; sourceTree = "<group>"; };
 		22D801D728BE531600263002 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		22E1743D28C1214B00F20AE9 /* ShotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotButton.swift; sourceTree = "<group>"; };
 		22E5941C28C2786A0063586D /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		22E5941F28C37E110063586D /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
-		22EE51E329376D04009ED6F0 /* EndGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameDelegate.swift; sourceTree = "<group>"; };
+		22EE51E329376D04009ED6F0 /* CustomPopUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpDelegate.swift; sourceTree = "<group>"; };
 		22FDAFC028B8F38A002146B6 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		22FDAFC328B8F58B002146B6 /* AlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
 		3932BCCB2CF33D98ACB0D5B6 /* Pods_ARHitBalls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARHitBalls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,7 +201,7 @@
 			children = (
 				2208165B28E1FB4700936408 /* TimerProtocol.swift */,
 				22568D4E28F05D5500B83261 /* ARObjectable.swift */,
-				22EE51E329376D04009ED6F0 /* EndGameDelegate.swift */,
+				22EE51E329376D04009ED6F0 /* CustomPopUpDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 				229BC16C28AA7A45008D07A0 /* Main */,
 				229BC16A28AA7A2A008D07A0 /* Settings */,
 				229BC16E28AA7C6D008D07A0 /* Game */,
-				22B614E52932A4D700F24C1F /* EndGame */,
+				22B614E52932A4D700F24C1F /* CustopPopUp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -435,13 +435,13 @@
 			path = Identifire;
 			sourceTree = "<group>";
 		};
-		22B614E52932A4D700F24C1F /* EndGame */ = {
+		22B614E52932A4D700F24C1F /* CustopPopUp */ = {
 			isa = PBXGroup;
 			children = (
-				22B614E62932A51000F24C1F /* EndGameViewController.swift */,
-				22B614E82932A51F00F24C1F /* EndGamePresenter.swift */,
+				22B614E62932A51000F24C1F /* CustomPopUpViewController.swift */,
+				22B614E82932A51F00F24C1F /* CustomPopUpPresenter.swift */,
 			);
-			path = EndGame;
+			path = CustopPopUp;
 			sourceTree = "<group>";
 		};
 		22E1743C28C1211F00F20AE9 /* Classes */ = {
@@ -468,7 +468,7 @@
 				2268E4D628DCDB590029C755 /* CollisionCategory.swift */,
 				22866A0B291926E3009FF7D4 /* GameType.swift */,
 				22E5941F28C37E110063586D /* SettingType.swift */,
-				22B614EA2933EE5E00F24C1F /* EndGameType.swift */,
+				22B614EA2933EE5E00F24C1F /* PopUpType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -626,12 +626,12 @@
 				22568D4F28F05D5500B83261 /* ARObjectable.swift in Sources */,
 				1B3A0FEE2A683D5D00B19C84 /* RegisterUserRequest.swift in Sources */,
 				22568D4D28F038B900B83261 /* Planets.swift in Sources */,
-				22B614E72932A51000F24C1F /* EndGameViewController.swift in Sources */,
+				22B614E72932A51000F24C1F /* CustomPopUpViewController.swift in Sources */,
 				223772AB28E2F1A8004F820D /* IdentifireTextField.swift in Sources */,
 				221D057028E4547100A7921A /* SportBalls.swift in Sources */,
 				229BC18328AA8126008D07A0 /* GameViewController.swift in Sources */,
 				221D056C28E4543100A7921A /* Fruits.swift in Sources */,
-				22EE51E429376D04009ED6F0 /* EndGameDelegate.swift in Sources */,
+				22EE51E429376D04009ED6F0 /* CustomPopUpDelegate.swift in Sources */,
 				2208165C28E1FB4700936408 /* TimerProtocol.swift in Sources */,
 				229BC17428AA7DEF008D07A0 /* GameService.swift in Sources */,
 				225427A6292146E10000D2F9 /* KitCellViewModel.swift in Sources */,
@@ -641,7 +641,7 @@
 				229BC19A28ABF60B008D07A0 /* IdentifireViewController.swift in Sources */,
 				229BC18A28AA8666008D07A0 /* MenuPresenter.swift in Sources */,
 				2268E4D728DCDB590029C755 /* CollisionCategory.swift in Sources */,
-				22B614EB2933EE5F00F24C1F /* EndGameType.swift in Sources */,
+				22B614EB2933EE5F00F24C1F /* PopUpType.swift in Sources */,
 				221D057428E454D800A7921A /* BilliardBalls.swift in Sources */,
 				225427AD292178BA0000D2F9 /* KitCollectionViewFlowLayout.swift in Sources */,
 				229BC18628AA82BB008D07A0 /* MenuViewController.swift in Sources */,
@@ -663,7 +663,7 @@
 				2208166228E20D0900936408 /* MenuButton.swift in Sources */,
 				22568D5328F1B24700B83261 /* ARObjectModel.swift in Sources */,
 				223772D728E38077004F820D /* KitEnum.swift in Sources */,
-				22B614E92932A51F00F24C1F /* EndGamePresenter.swift in Sources */,
+				22B614E92932A51F00F24C1F /* CustomPopUpPresenter.swift in Sources */,
 				225427A3292143960000D2F9 /* KitCollectionViewCell.swift in Sources */,
 				229BC17F28AA8100008D07A0 /* MainViewController.swift in Sources */,
 				22E5942028C37E110063586D /* SettingType.swift in Sources */,

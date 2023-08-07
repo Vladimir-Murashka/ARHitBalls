@@ -1,5 +1,5 @@
 //
-//  EndGameViewController.swift
+//  CustomPopUpViewController.swift
 //  ARHitBalls
 //
 //  Created by Swift Learning on 26.11.2022.
@@ -7,20 +7,22 @@
 
 import UIKit
 
-// MARK: - EndGameViewProtocol
+// MARK: - CustomPopUpViewProtocol
 
-protocol EndGameViewProtocol: UIViewController {
+protocol CustomPopUpViewProtocol: UIViewController {
     func setupExitGameType()
     func setupTimeIsOverType()
     func setupLevelPassedAuthType()
     func setupLevelPassedFreeType()
+    func setupLogoutType()
+    func setupDeleteAccountType()
     func updateGameValueLabel(level: String, time: String)
 }
 
-// MARK: - EndGameViewController
+// MARK: - CustomPopUpViewController
 
-final class EndGameViewController: UIViewController {
-    var presenter: EndGamePresenterProtocol?
+final class CustomPopUpViewController: UIViewController {
+    var presenter: CustomPopUpPresenterProtocol?
     
     // MARK: - PrivateProperties
     
@@ -267,9 +269,9 @@ final class EndGameViewController: UIViewController {
     }
 }
 
-// MARK: - EndGameViewProtocol Impl
+// MARK: - CustomPopUpViewProtocol Impl
 
-extension EndGameViewController: EndGameViewProtocol {
+extension CustomPopUpViewController: CustomPopUpViewProtocol {
     func setupExitGameType() {
         gameValueBackgroundStackView.isHidden = true
         gameValueStackView.isHidden = true
@@ -297,6 +299,54 @@ extension EndGameViewController: EndGameViewProtocol {
         continueButton.setTitle("Перезапустить уровень", for: .normal)
     }
     
+    func setupLogoutType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+        attensionLabel.text = "Выйти из аккаунта"
+        messageLabel.text = "Вы уверены?"
+        continueButton.setTitle("Выйти", for: .normal)
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(
+                name: "Dela Gothic One",
+                size: 16
+            ) ?? .systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Назад",
+            attributes: buttonAttributes
+         )
+        exitButton.setAttributedTitle(
+            attributeString,
+            for: .normal
+        )
+    }
+    
+    func setupDeleteAccountType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+        attensionLabel.text = "Удалить аккаунт"
+        messageLabel.text = "Вы уверены?"
+        continueButton.setTitle("Удалить", for: .normal)
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(
+                name: "Dela Gothic One",
+                size: 16
+            ) ?? .systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Назад",
+            attributes: buttonAttributes
+         )
+        exitButton.setAttributedTitle(
+            attributeString,
+            for: .normal
+        )
+    }
+    
     func updateGameValueLabel(level: String, time: String) {
         levelLabel.text = level
         timeLabel.text = time
@@ -305,7 +355,7 @@ extension EndGameViewController: EndGameViewProtocol {
 
 // MARK: - PrivateMethods
 
-private extension EndGameViewController {
+private extension CustomPopUpViewController {
     func setupViewController() {
         isModalInPresentation = true
         addSubViews()

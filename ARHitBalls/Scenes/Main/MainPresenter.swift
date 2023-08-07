@@ -14,7 +14,9 @@ protocol MainPresenterProtocol: AnyObject, TimerProtocol {
     func viewWillAppear()
     func settingsButtonPressed()
     func startQuickGameButtonPressed()
+    func homeButtonPressed()
     func logoutButtonPressed()
+    func deleteAccountButtonPressed()
     func missionStartGameButtonPressed()
     func indicatorLeftButtonPressed()
     func indicatorRightButtonPressed()
@@ -59,6 +61,7 @@ final class MainPresenter {
 //MARK: - MainPresenterExtension
 
 extension MainPresenter: MainPresenterProtocol {
+
     func viewDidLoad() {
         print("asdsadas")
         if gameType == .mission {
@@ -113,33 +116,33 @@ extension MainPresenter: MainPresenterProtocol {
         )
     }
     
+    func homeButtonPressed() {
+        viewController?.expand()
+    }
+
     func logoutButtonPressed() {
         if gameType == .mission {
-            alertManager.showAlert(
-                fromViewController: viewController,
-                title: "Внимание",
-                message: "Вы хотите выйти?",
-                firstButtonTitle: "Отменить",
-                firstActionBlock: {},
-                secondTitleButton: "Выйти") {
-                    self.authService.logout { result in
-                        switch result {
-                        case .success(_):
-                            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
-                            UIApplication.shared.windows.first?.rootViewController = rootViewController
-                        case .failure(_):
-                            self.alertManager.showAlert(
-                                fromViewController: self.viewController,
-                                title: "Ошибка",
-                                message: "Проверьте соеденение с интернетом",
-                                firstButtonTitle: "OK") {}
-                        }
-                    }
-                }
+            viewController?.present(
+                sceneBuildManager.buildCustomPopUpScreen(
+                    PopUpType: .logout,
+                    delegate: self
+                ),
+                animated: true
+            )
         } else {
             let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
             UIApplication.shared.windows.first?.rootViewController = rootViewController
         }
+    }
+    
+    func deleteAccountButtonPressed() {
+        viewController?.present(
+            sceneBuildManager.buildCustomPopUpScreen(
+                PopUpType: .deleteAccount,
+                delegate: self
+            ),
+            animated: true
+        )
     }
     
     func missionStartGameButtonPressed() {
@@ -233,5 +236,39 @@ private extension MainPresenter {
             KitCellViewModel(image: $0.type.imageName, isLocked: $0.isLocked)
         }
         return result
+    }
+}
+
+extension MainPresenter: CustomPopUpDelegate {
+    func logout() {
+        self.authService.logout { result in
+            switch result {
+            case .success(_):
+                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                UIApplication.shared.windows.first?.rootViewController = rootViewController
+            case .failure(_):
+                self.alertManager.showAlert(
+                    fromViewController: self.viewController,
+                    title: "Ошибка",
+                    message: "Проверьте соеденение с интернетом",
+                    firstButtonTitle: "OK") {}
+            }
+        }
+    }
+    
+    func deleteAccount() {
+        self.authService.deleteUser { result in
+            switch result {
+            case .success(_):
+                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                UIApplication.shared.windows.first?.rootViewController = rootViewController
+            case .failure(_):
+                self.alertManager.showAlert(
+                    fromViewController: self.viewController,
+                    title: "Ошибка",
+                    message: "Проверьте соеденение с интернетом",
+                    firstButtonTitle: "OK") {}
+            }
+        }
     }
 }
