@@ -33,6 +33,8 @@ final class MainViewController: UIViewController {
     // MARK: - PrivateProperties
     private var isExpanded: Bool = false
     private var viewModel: [KitCellViewModel] = []
+    var homeButtonCenterYConstraint: NSLayoutConstraint!
+    var deleteButtonCenterYConstraint: NSLayoutConstraint!
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
@@ -64,12 +66,12 @@ final class MainViewController: UIViewController {
     
     private lazy var homeButton: UIButton = { // TODO: переименовать в logout
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
-//        let imageQuitGameButton = UIImage(named: "homeButton")
-//        button.setBackgroundImage(
-//            imageQuitGameButton,
-//            for: .normal
-//        )
+//        button.backgroundColor = .blue
+        let imageLogoutButton = UIImage(named: "logoutButton")
+        button.setBackgroundImage(
+            imageLogoutButton,
+            for: .normal
+        )
 //        button.addTarget(
 //            self,
 //            action: #selector(logoutButtonPressed),
@@ -80,12 +82,12 @@ final class MainViewController: UIViewController {
     
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
-//        let imageQuitGameButton = UIImage(named: "homeButton")
-//        button.setBackgroundImage(
-//            imageQuitGameButton,
-//            for: .normal
-//        )
+//        button.backgroundColor = .blue
+        let imageDeleteAccountButton = UIImage(named: "trashButton")
+        button.setBackgroundImage(
+            imageDeleteAccountButton,
+            for: .normal
+        )
 //        button.addTarget(
 //            self,
 //            action: #selector(logoutButtonPressed),
@@ -300,27 +302,33 @@ final class MainViewController: UIViewController {
     
     
     func expand() {
-        homeButton.isHidden = false
-        deleteButton.isHidden = false
         if isExpanded {
             UIView.animate(withDuration: 0.5) {
                 self.homeButton.alpha = 0
                 self.deleteButton.alpha = 0
-                print(self.logoutButton.center.y)
-                self.homeButton.center.y -= self.logoutButton.frame.width + 16
-                self.deleteButton.center.y -= (self.logoutButton.frame.width + 16) * 2
-                print(self.deleteButton.center.y)
+                self.homeButtonCenterYConstraint.constant = 0
+                self.deleteButtonCenterYConstraint.constant = 0
+                
+                self.view.layoutIfNeeded()
+                self.logoutButton.setBackgroundImage(
+                    UIImage(named: "homeButton"),
+                    for: .normal
+                )
             }
         } else {
             UIView.animate(withDuration: 0.5) {
                 self.homeButton.alpha = 1
                 self.deleteButton.alpha = 1
-                print(self.logoutButton.center.y)
-                self.homeButton.center.y += self.logoutButton.frame.width + 16
-                self.deleteButton.center.y += (self.logoutButton.frame.width + 16) * 2
+                self.homeButtonCenterYConstraint.constant = (self.logoutButton.frame.width + 16)
+                self.deleteButtonCenterYConstraint.constant = ((self.logoutButton.frame.width + 16) * 2)
+                self.view.layoutIfNeeded()
+                self.logoutButton.setBackgroundImage(
+                    UIImage(named: "backButton"),
+                    for: .normal
+                )
             }
         }
-        isExpanded = !isExpanded
+        isExpanded.toggle()
     }
     
     @objc
@@ -459,18 +467,20 @@ private extension MainViewController {
         )
         
         view.addSubviews(
+            
             imageViewBackgroundScreen,
             logoImageView,
+            homeButton,
+            deleteButton,
             topStackView,
             middleStackView,
             collectionStackView,
-            verticalStackView,
-            homeButton,
-            deleteButton
+            verticalStackView
+            
         )
         
-        homeButton.isHidden = true
-        deleteButton.isHidden = true
+//        homeButton.isHidden = true
+//        deleteButton.isHidden = true
     }
     
     func setupConstraints() {
@@ -538,15 +548,21 @@ private extension MainViewController {
             verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             homeButton.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
-            homeButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor),
+//            homeButton.centerYAnchor.constraint(equalTo: topStackView.centerYAnchor),
             homeButton.heightAnchor.constraint(equalTo: logoutButton.heightAnchor),
             homeButton.widthAnchor.constraint(equalTo: logoutButton.widthAnchor),
             
             deleteButton.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
-            deleteButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor),
+//            deleteButton.centerYAnchor.constraint(equalTo: topStackView.centerYAnchor),
             deleteButton.heightAnchor.constraint(equalTo: logoutButton.heightAnchor),
             deleteButton.widthAnchor.constraint(equalTo: logoutButton.widthAnchor)
         ])
+        
+        homeButtonCenterYConstraint = homeButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor)
+        homeButtonCenterYConstraint.isActive = true
+        
+        deleteButtonCenterYConstraint = deleteButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor)
+        deleteButtonCenterYConstraint.isActive = true
     }
 }
 
