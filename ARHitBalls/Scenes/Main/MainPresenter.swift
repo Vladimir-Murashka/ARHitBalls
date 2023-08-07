@@ -240,16 +240,6 @@ private extension MainPresenter {
 }
 
 extension MainPresenter: EndGameDelegate {
-    func continueGame() {}
-    
-    func exitGame() {}
-    
-    func restartLevel() {}
-    
-    func nextLevel() {}
-    
-    func newGameValue() -> [String] { return [""]}
-    
     func logout() {
         self.authService.logout { result in
             switch result {
@@ -281,6 +271,4 @@ extension MainPresenter: EndGameDelegate {
             }
         }
     }
-    
-    
 }

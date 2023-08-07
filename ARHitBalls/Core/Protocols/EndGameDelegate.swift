@@ -5,12 +5,14 @@
 //  Created by Swift Learning on 30.11.2022.
 //
 
-protocol EndGameDelegate: AnyObject {
-    func continueGame()
-    func exitGame()
-    func restartLevel()
-    func nextLevel()
-    func newGameValue() -> [String]
-    func logout()
-    func deleteAccount()
+import Foundation
+
+@objc protocol EndGameDelegate: AnyObject {
+    @objc optional func continueGame()
+    @objc optional func exitGame()
+    @objc optional func restartLevel()
+    @objc optional func nextLevel()
+    @objc optional func newGameValue() -> [String]
+    @objc optional func logout()
+    @objc optional func deleteAccount()
 }
