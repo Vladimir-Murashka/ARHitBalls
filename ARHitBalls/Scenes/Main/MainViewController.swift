@@ -22,6 +22,7 @@ protocol MainViewProtocol: UIViewController {
     func lockStartGameButton()
     func activeStartGameButton()
     func activeDemoGameButton()
+    func expand()
 }
 
 // MARK: - MainViewController
@@ -30,7 +31,7 @@ final class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     
     // MARK: - PrivateProperties
-    
+    private var isExpanded: Bool = false
     private var viewModel: [KitCellViewModel] = []
     
     private let imageViewBackgroundScreen: UIImageView = {
@@ -46,7 +47,7 @@ final class MainViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var logoutButton: UIButton = {
+    private lazy var logoutButton: UIButton = { // TODO: переименовать в home
         let button = UIButton(type: .system)
         let imageQuitGameButton = UIImage(named: "homeButton")
         button.setBackgroundImage(
@@ -60,6 +61,40 @@ final class MainViewController: UIViewController {
         )
         return button
     }()
+    
+    private lazy var homeButton: UIButton = { // TODO: переименовать в logout
+        let button = UIButton(type: .system)
+        button.backgroundColor = .blue
+//        let imageQuitGameButton = UIImage(named: "homeButton")
+//        button.setBackgroundImage(
+//            imageQuitGameButton,
+//            for: .normal
+//        )
+//        button.addTarget(
+//            self,
+//            action: #selector(logoutButtonPressed),
+//            for: .touchUpInside
+//        )
+        return button
+    }()
+    
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .blue
+//        let imageQuitGameButton = UIImage(named: "homeButton")
+//        button.setBackgroundImage(
+//            imageQuitGameButton,
+//            for: .normal
+//        )
+//        button.addTarget(
+//            self,
+//            action: #selector(logoutButtonPressed),
+//            for: .touchUpInside
+//        )
+        return button
+    }()
+    
+    
     
     private lazy var settingsButton: UIButton = {
         let button = UIButton(type: .system)
@@ -263,6 +298,31 @@ final class MainViewController: UIViewController {
         }
     }
     
+    
+    func expand() {
+        homeButton.isHidden = false
+        deleteButton.isHidden = false
+        if isExpanded {
+            UIView.animate(withDuration: 0.5) {
+                self.homeButton.alpha = 0
+                self.deleteButton.alpha = 0
+                print(self.logoutButton.center.y)
+                self.homeButton.center.y -= self.logoutButton.frame.width + 16
+                self.deleteButton.center.y -= (self.logoutButton.frame.width + 16) * 2
+                print(self.deleteButton.center.y)
+            }
+        } else {
+            UIView.animate(withDuration: 0.5) {
+                self.homeButton.alpha = 1
+                self.deleteButton.alpha = 1
+                print(self.logoutButton.center.y)
+                self.homeButton.center.y += self.logoutButton.frame.width + 16
+                self.deleteButton.center.y += (self.logoutButton.frame.width + 16) * 2
+            }
+        }
+        isExpanded = !isExpanded
+    }
+    
     @objc
     private func missionStartGameButtonPressed() {
         missionStartGameButton.pushAnimate { [weak self] in
@@ -404,8 +464,13 @@ private extension MainViewController {
             topStackView,
             middleStackView,
             collectionStackView,
-            verticalStackView
+            verticalStackView,
+            homeButton,
+            deleteButton
         )
+        
+        homeButton.isHidden = true
+        deleteButton.isHidden = true
     }
     
     func setupConstraints() {
@@ -416,6 +481,8 @@ private extension MainViewController {
         let collectionViewSize: CGFloat = 250
         
         NSLayoutConstraint.activate([
+            
+            
             imageViewBackgroundScreen.topAnchor.constraint(
                 equalTo: view.topAnchor,
                 constant: imageViewBackgroundScreenIndent
@@ -468,7 +535,17 @@ private extension MainViewController {
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                 constant: -stackViewOffset
             ),
-            verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            homeButton.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
+            homeButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor),
+            homeButton.heightAnchor.constraint(equalTo: logoutButton.heightAnchor),
+            homeButton.widthAnchor.constraint(equalTo: logoutButton.widthAnchor),
+            
+            deleteButton.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
+            deleteButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor),
+            deleteButton.heightAnchor.constraint(equalTo: logoutButton.heightAnchor),
+            deleteButton.widthAnchor.constraint(equalTo: logoutButton.widthAnchor)
         ])
     }
 }
