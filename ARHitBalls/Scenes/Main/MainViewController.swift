@@ -49,11 +49,26 @@ final class MainViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var logoutButton: UIButton = { // TODO: переименовать в home
+    private lazy var homeButton: UIButton = {
         let button = UIButton(type: .system)
         let imageQuitGameButton = UIImage(named: "homeButton")
         button.setBackgroundImage(
             imageQuitGameButton,
+            for: .normal
+        )
+        button.addTarget(
+            self,
+            action: #selector(homeButtonPressed),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
+    private lazy var logoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        let imageLogoutButton = UIImage(named: "logoutButton")
+        button.setBackgroundImage(
+            imageLogoutButton,
             for: .normal
         )
         button.addTarget(
@@ -64,35 +79,18 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var homeButton: UIButton = { // TODO: переименовать в logout
-        let button = UIButton(type: .system)
-//        button.backgroundColor = .blue
-        let imageLogoutButton = UIImage(named: "logoutButton")
-        button.setBackgroundImage(
-            imageLogoutButton,
-            for: .normal
-        )
-//        button.addTarget(
-//            self,
-//            action: #selector(logoutButtonPressed),
-//            for: .touchUpInside
-//        )
-        return button
-    }()
-    
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
-//        button.backgroundColor = .blue
         let imageDeleteAccountButton = UIImage(named: "trashButton")
         button.setBackgroundImage(
             imageDeleteAccountButton,
             for: .normal
         )
-//        button.addTarget(
-//            self,
-//            action: #selector(logoutButtonPressed),
-//            for: .touchUpInside
-//        )
+        button.addTarget(
+            self,
+            action: #selector(deleteAccountButtonPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -294,35 +292,46 @@ final class MainViewController: UIViewController {
     }
     
     @objc
+    private func homeButtonPressed() {
+        homeButton.pushAnimate { [weak self] in
+            self?.presenter?.homeButtonPressed()
+        }
+    }
+    
+    @objc
     private func logoutButtonPressed() {
         logoutButton.pushAnimate { [weak self] in
             self?.presenter?.logoutButtonPressed()
         }
     }
     
+    @objc func deleteAccountButtonPressed() {
+        deleteButton.pushAnimate { [weak self] in
+            self?.presenter?.deleteAccountButtonPressed()
+        }
+    }
     
     func expand() {
         if isExpanded {
             UIView.animate(withDuration: 0.5) {
-                self.homeButton.alpha = 0
+                self.logoutButton.alpha = 0
                 self.deleteButton.alpha = 0
                 self.homeButtonCenterYConstraint.constant = 0
                 self.deleteButtonCenterYConstraint.constant = 0
-                
                 self.view.layoutIfNeeded()
-                self.logoutButton.setBackgroundImage(
+                self.homeButton.setBackgroundImage(
                     UIImage(named: "homeButton"),
                     for: .normal
                 )
             }
         } else {
             UIView.animate(withDuration: 0.5) {
-                self.homeButton.alpha = 1
+                self.logoutButton.alpha = 1
                 self.deleteButton.alpha = 1
-                self.homeButtonCenterYConstraint.constant = (self.logoutButton.frame.width + 16)
-                self.deleteButtonCenterYConstraint.constant = ((self.logoutButton.frame.width + 16) * 2)
+                self.homeButtonCenterYConstraint.constant = (self.homeButton.frame.width + 16)
+                self.deleteButtonCenterYConstraint.constant = ((self.homeButton.frame.width + 16) * 2)
                 self.view.layoutIfNeeded()
-                self.logoutButton.setBackgroundImage(
+                self.homeButton.setBackgroundImage(
                     UIImage(named: "backButton"),
                     for: .normal
                 )
@@ -436,7 +445,7 @@ private extension MainViewController {
     
     func addSubViews() {
         topStackView.addArrangedSubviews(
-            logoutButton,
+            homeButton,
             settingsButton
         )
         
@@ -467,20 +476,15 @@ private extension MainViewController {
         )
         
         view.addSubviews(
-            
             imageViewBackgroundScreen,
             logoImageView,
-            homeButton,
+            logoutButton,
             deleteButton,
             topStackView,
             middleStackView,
             collectionStackView,
             verticalStackView
-            
         )
-        
-//        homeButton.isHidden = true
-//        deleteButton.isHidden = true
     }
     
     func setupConstraints() {
@@ -491,8 +495,6 @@ private extension MainViewController {
         let collectionViewSize: CGFloat = 250
         
         NSLayoutConstraint.activate([
-            
-            
             imageViewBackgroundScreen.topAnchor.constraint(
                 equalTo: view.topAnchor,
                 constant: imageViewBackgroundScreenIndent
@@ -547,21 +549,19 @@ private extension MainViewController {
             ),
             verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            homeButton.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
-//            homeButton.centerYAnchor.constraint(equalTo: topStackView.centerYAnchor),
-            homeButton.heightAnchor.constraint(equalTo: logoutButton.heightAnchor),
-            homeButton.widthAnchor.constraint(equalTo: logoutButton.widthAnchor),
+            logoutButton.centerXAnchor.constraint(equalTo: homeButton.centerXAnchor),
+            logoutButton.heightAnchor.constraint(equalTo: homeButton.heightAnchor),
+            logoutButton.widthAnchor.constraint(equalTo: homeButton.widthAnchor),
             
-            deleteButton.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
-//            deleteButton.centerYAnchor.constraint(equalTo: topStackView.centerYAnchor),
-            deleteButton.heightAnchor.constraint(equalTo: logoutButton.heightAnchor),
-            deleteButton.widthAnchor.constraint(equalTo: logoutButton.widthAnchor)
+            deleteButton.centerXAnchor.constraint(equalTo: homeButton.centerXAnchor),
+            deleteButton.heightAnchor.constraint(equalTo: homeButton.heightAnchor),
+            deleteButton.widthAnchor.constraint(equalTo: homeButton.widthAnchor)
         ])
         
-        homeButtonCenterYConstraint = homeButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor)
+        homeButtonCenterYConstraint = logoutButton.centerYAnchor.constraint(equalTo: homeButton.centerYAnchor)
         homeButtonCenterYConstraint.isActive = true
         
-        deleteButtonCenterYConstraint = deleteButton.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor)
+        deleteButtonCenterYConstraint = deleteButton.centerYAnchor.constraint(equalTo: homeButton.centerYAnchor)
         deleteButtonCenterYConstraint.isActive = true
     }
 }

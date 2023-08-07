@@ -41,24 +41,23 @@ final class EndGamePresenter {
 
 extension EndGamePresenter: EndGamePresenterProtocol {
     func viewDidLoad() {
-        if endGameType == .exitGame {
+        switch endGameType {
+        case .exitGame:
             viewController?.setupExitGameType()
-        }
-        
-        if endGameType == .levelPassedFree {
+        case .levelPassedFree:
             viewController?.setupLevelPassedFreeType()
-        }
-        
-        if endGameType == .levelPassedAuth {
+        case .levelPassedAuth:
             viewController?.setupLevelPassedAuthType()
             guard let newGameValue = delegate?.newGameValue() else {
                 return
             }
             viewController?.updateGameValueLabel(level: newGameValue[0], time: newGameValue[1])
-        }
-        
-        if endGameType == .timeIsOver {
+        case .timeIsOver:
             viewController?.setupTimeIsOverType()
+        case .logout:
+            viewController?.setupLogoutType()
+        case .deleteAccount:
+            viewController?.setupDeleteAccountType()
         }
     }
     
@@ -74,6 +73,14 @@ extension EndGamePresenter: EndGamePresenterProtocol {
         
         if endGameType == .levelPassedAuth {
             delegate?.nextLevel()
+        }
+        
+        if endGameType == .logout {
+            delegate?.logout()
+        }
+        
+        if endGameType == .deleteAccount {
+            delegate?.deleteAccount()
         }
     }
     

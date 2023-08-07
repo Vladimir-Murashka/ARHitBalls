@@ -462,6 +462,10 @@ private extension GamePresenter {
 }
 
 extension GamePresenter: EndGameDelegate {
+    func logout() {}
+    
+    func deleteAccount() {}
+    
     func continueGame() {
        startTimer()
     }

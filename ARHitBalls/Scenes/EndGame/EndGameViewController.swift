@@ -14,6 +14,8 @@ protocol EndGameViewProtocol: UIViewController {
     func setupTimeIsOverType()
     func setupLevelPassedAuthType()
     func setupLevelPassedFreeType()
+    func setupLogoutType()
+    func setupDeleteAccountType()
     func updateGameValueLabel(level: String, time: String)
 }
 
@@ -295,6 +297,24 @@ extension EndGameViewController: EndGameViewProtocol {
         attensionLabel.text = "Поздравляем!"
         messageLabel.text = "Уровень пройден"
         continueButton.setTitle("Перезапустить уровень", for: .normal)
+    }
+    
+    func setupLogoutType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+        attensionLabel.text = "Выйти из аккаунта"
+        messageLabel.text = "Вы уверены?"
+        continueButton.setTitle("Выйти", for: .normal)
+        exitButton.setTitle("Назад", for: .normal)
+    }
+    
+    func setupDeleteAccountType() {
+        gameValueBackgroundStackView.isHidden = true
+        gameValueStackView.isHidden = true
+        attensionLabel.text = "Удалить аккаунт"
+        messageLabel.text = "Вы уверены?"
+        continueButton.setTitle("Удалить", for: .normal)
+        exitButton.setTitle("Назад", for: .normal)
     }
     
     func updateGameValueLabel(level: String, time: String) {

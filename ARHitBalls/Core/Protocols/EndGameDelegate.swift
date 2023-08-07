@@ -11,4 +11,6 @@ protocol EndGameDelegate: AnyObject {
     func restartLevel()
     func nextLevel()
     func newGameValue() -> [String]
+    func logout()
+    func deleteAccount()
 }

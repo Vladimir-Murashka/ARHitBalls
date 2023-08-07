@@ -10,4 +10,6 @@ enum EndGameType {
     case timeIsOver
     case levelPassedAuth
     case levelPassedFree
+    case logout
+    case deleteAccount
 }
