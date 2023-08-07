@@ -305,7 +305,22 @@ extension EndGameViewController: EndGameViewProtocol {
         attensionLabel.text = "Выйти из аккаунта"
         messageLabel.text = "Вы уверены?"
         continueButton.setTitle("Выйти", for: .normal)
-        exitButton.setTitle("Назад", for: .normal)
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(
+                name: "Dela Gothic One",
+                size: 16
+            ) ?? .systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Назад",
+            attributes: buttonAttributes
+         )
+        exitButton.setAttributedTitle(
+            attributeString,
+            for: .normal
+        )
     }
     
     func setupDeleteAccountType() {
@@ -314,7 +329,22 @@ extension EndGameViewController: EndGameViewProtocol {
         attensionLabel.text = "Удалить аккаунт"
         messageLabel.text = "Вы уверены?"
         continueButton.setTitle("Удалить", for: .normal)
-        exitButton.setTitle("Назад", for: .normal)
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(
+                name: "Dela Gothic One",
+                size: 16
+            ) ?? .systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Назад",
+            attributes: buttonAttributes
+         )
+        exitButton.setAttributedTitle(
+            attributeString,
+            for: .normal
+        )
     }
     
     func updateGameValueLabel(level: String, time: String) {

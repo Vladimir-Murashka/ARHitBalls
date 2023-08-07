@@ -122,27 +122,13 @@ extension MainPresenter: MainPresenterProtocol {
 
     func logoutButtonPressed() {
         if gameType == .mission {
-            alertManager.showAlert(
-                fromViewController: viewController,
-                title: "Внимание",
-                message: "Вы хотите выйти?",
-                firstButtonTitle: "Отменить",
-                firstActionBlock: {},
-                secondTitleButton: "Выйти") {
-                    self.authService.logout { result in
-                        switch result {
-                        case .success(_):
-                            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
-                            UIApplication.shared.windows.first?.rootViewController = rootViewController
-                        case .failure(_):
-                            self.alertManager.showAlert(
-                                fromViewController: self.viewController,
-                                title: "Ошибка",
-                                message: "Проверьте соеденение с интернетом",
-                                firstButtonTitle: "OK") {}
-                        }
-                    }
-                }
+            viewController?.present(
+                sceneBuildManager.buildEndGameScreen(
+                    endGameType: .logout,
+                    delegate: self
+                ),
+                animated: true
+            )
         } else {
             let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
             UIApplication.shared.windows.first?.rootViewController = rootViewController
@@ -264,9 +250,37 @@ extension MainPresenter: EndGameDelegate {
     
     func newGameValue() -> [String] { return [""]}
     
-    func logout() {}
+    func logout() {
+        self.authService.logout { result in
+            switch result {
+            case .success(_):
+                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                UIApplication.shared.windows.first?.rootViewController = rootViewController
+            case .failure(_):
+                self.alertManager.showAlert(
+                    fromViewController: self.viewController,
+                    title: "Ошибка",
+                    message: "Проверьте соеденение с интернетом",
+                    firstButtonTitle: "OK") {}
+            }
+        }
+    }
     
-    func deleteAccount() {}
+    func deleteAccount() {
+        self.authService.deleteUser { result in
+            switch result {
+            case .success(_):
+                let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+                UIApplication.shared.windows.first?.rootViewController = rootViewController
+            case .failure(_):
+                self.alertManager.showAlert(
+                    fromViewController: self.viewController,
+                    title: "Ошибка",
+                    message: "Проверьте соеденение с интернетом",
+                    firstButtonTitle: "OK") {}
+            }
+        }
+    }
     
     
 }
