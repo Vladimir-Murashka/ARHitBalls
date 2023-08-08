@@ -583,7 +583,10 @@ extension MainViewController: UICollectionViewDataSource {
             indexPath: indexPath
         )
         let viewModel = viewModel[indexPath.item]
-        cell.configureCell(with: viewModel)
+        cell.configureCell(
+            with: viewModel,
+            level: indexPath.row
+        )
         return cell
     }
 }
