@@ -28,6 +28,22 @@ final class KitCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let collectionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = .zero
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let collectionLockStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 12
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        return stackView
+    }()
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -41,10 +57,14 @@ final class KitCollectionViewCell: UICollectionViewCell {
     
     // MARK: - PublicMethods
     
-    func configureCell(with viewModel: KitCellViewModel) {
+    func configureCell(
+        with viewModel: KitCellViewModel,
+        level: Int
+    ) {
         collectionImageView.image = UIImage(named: viewModel.image)
-        collectionLockImageView.isHidden = viewModel.isLocked ? true : false
+        collectionLockStackView.isHidden = viewModel.isLocked ? true : false
         collectionImageView.alpha = viewModel.isLocked ? 1 : 0.5
+        collectionLabel.text = "Для открытия этого контента необхожимо пройти \(level * 10) уровней"
     }
 }
 
@@ -63,7 +83,9 @@ private extension KitCollectionViewCell {
     
     func addSubViews() {
         contentView.addSubviews(collectionImageView)
-        contentView.addSubviews(collectionLockImageView)
+        collectionLockStackView.addArrangedSubviews(collectionLockImageView,
+                                                    collectionLabel)
+        contentView.addSubviews(collectionLockStackView)
     }
     
     func setupConstraints() {
@@ -73,8 +95,9 @@ private extension KitCollectionViewCell {
             collectionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             
-            collectionLockImageView.topAnchor.constraint(equalTo: collectionImageView.topAnchor, constant: 90),
-            collectionLockImageView.centerXAnchor.constraint(equalTo: collectionImageView.centerXAnchor)
+            collectionLockStackView.topAnchor.constraint(equalTo: collectionImageView.topAnchor, constant: 68),
+            collectionLockStackView.leadingAnchor.constraint(equalTo: collectionImageView.leadingAnchor, constant: 16),
+            collectionLockStackView.trailingAnchor.constraint(equalTo: collectionImageView.trailingAnchor, constant: -16)
         ])
     }
 }
