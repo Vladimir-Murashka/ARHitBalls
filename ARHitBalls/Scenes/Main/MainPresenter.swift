@@ -117,7 +117,15 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func homeButtonPressed() {
-        viewController?.expand()
+        switch gameType {
+        case .freeGame:
+            let rootViewController = UINavigationController.init(rootViewController: self.sceneBuildManager.buildMenuScreen())
+            UIApplication.shared.windows.first?.rootViewController = rootViewController
+        case .mission:
+            viewController?.expand()
+        }
+            
+        
     }
 
     func logoutButtonPressed() {
