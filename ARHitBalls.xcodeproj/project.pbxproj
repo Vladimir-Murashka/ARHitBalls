@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		141A41E02A46F12300A906EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 141A41DF2A46F12300A906EA /* GoogleService-Info.plist */; };
+		1B27EAF92AAA558400DD4E30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B27EAFB2AAA558400DD4E30 /* InfoPlist.strings */; };
 		1B3A0FE12A6833DB00B19C84 /* GoogleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FDE2A6833DB00B19C84 /* GoogleProvider.swift */; };
 		1B3A0FE22A6833DB00B19C84 /* EmailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FDF2A6833DB00B19C84 /* EmailProvider.swift */; };
 		1B3A0FE32A6833DB00B19C84 /* AppleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3A0FE02A6833DB00B19C84 /* AppleProvider.swift */; };
@@ -81,6 +82,9 @@
 
 /* Begin PBXFileReference section */
 		141A41DF2A46F12300A906EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1B27EAFA2AAA558400DD4E30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1B27EAFC2AAB49CB00DD4E30 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1B27EAFD2AAB49CB00DD4E30 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B3A0FDE2A6833DB00B19C84 /* GoogleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleProvider.swift; sourceTree = "<group>"; };
 		1B3A0FDF2A6833DB00B19C84 /* EmailProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailProvider.swift; sourceTree = "<group>"; };
 		1B3A0FE02A6833DB00B19C84 /* AppleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleProvider.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 				2254279D291FA0440000D2F9 /* Fonts */,
 				229BC15E28AA7091008D07A0 /* Assets.xcassets */,
 				229BC16028AA7091008D07A0 /* LaunchScreen.storyboard */,
+				1B27EAFB2AAA558400DD4E30 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 229BC14928AA7089008D07A0;
 			productRefGroup = 229BC15328AA708A008D07A0 /* Products */;
@@ -551,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22AA5EB529758343007D3B11 /* hit.mp3 in Resources */,
+				1B27EAF92AAA558400DD4E30 /* InfoPlist.strings in Resources */,
 				229BC16228AA7091008D07A0 /* LaunchScreen.storyboard in Resources */,
 				22AA5EB629758343007D3B11 /* track.mp3 in Resources */,
 				229BC15F28AA7091008D07A0 /* Assets.xcassets in Resources */,
@@ -677,10 +684,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1B27EAFB2AAA558400DD4E30 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B27EAFA2AAA558400DD4E30 /* en */,
+				1B27EAFD2AAB49CB00DD4E30 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		229BC16028AA7091008D07A0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				229BC16128AA7091008D07A0 /* Base */,
+				1B27EAFC2AAB49CB00DD4E30 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -692,6 +709,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -752,6 +770,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -810,11 +829,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ARHitBalls/ARHitBalls.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = B22MD3V3UZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ARHitBalls/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -845,11 +863,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ARHitBalls/ARHitBalls.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = B22MD3V3UZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ARHitBalls/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
