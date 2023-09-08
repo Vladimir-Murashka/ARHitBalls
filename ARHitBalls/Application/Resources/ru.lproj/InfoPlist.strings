@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  ARHitBalls
+
+  Created by Максим Косников on 07.09.2023.
+  
+*/
+
+NSCameraUsageDescription = "ARHitBalls необходим доступ к камере устройства для использования AR технологий в игровом процесе";

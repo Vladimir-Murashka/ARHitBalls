@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>AR experience requires access to Camera</string>
+	<string>ARHitBalls need camera access to play the game using AR experience</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
